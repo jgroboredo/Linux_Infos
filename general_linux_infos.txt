@@ -1,0 +1,371 @@
+
+##############################################################################################################################################################################
+#############################################################################   GIT NOTES      ###############################################################################
+##############################################################################################################################################################################
+
+NOTES ON CREATING GIT REPOSITORY ON GITHUB
+
+On folder do:
+	- git init
+	- git commit
+	- git branch -M main
+	- git remote add origin https://github.com/jgroboredo/test.git
+	- git push -u origin main
+
+Some Notes on the above commands:
+	- git branch -m master main -> renames the master branch in local git repository
+	- In the second step, we'll have to create a new branch on the remote named "main" - because Git does not allow to simply "rename" a remote branch. Instead, we'll have to create a new "main" branch and then delete the old "master" branch:
+			- git push -u origin main
+		We now have a new branch on the remote named "main".
+	- When you clone a repository with git clone , it automatically creates a remote connection called origin pointing back to the cloned repository. 
+	- when you do a git push origin master, you are saying to git: "Look git, I want to push the current branch I am on to the remote repository named origin, and I want to push to the master branch in that remote.". By default, the remote repository is named origin. I only need to specify where I want to push if there are more than 1 repositories.
+	- When you execute the command: git remote add origin "github repo link"
+		you are saying that for the current project, there is a remote repository with the name origin, with the address of "github repo link"
+
+--------------------------------------------------
+
+CHECK PREVIOUS COMMIT
+	- git log and find the desired commit
+	- git checkout commit_hash (example: 18e0b6a044a715b04bcacd599061b6b8bd586a7a)
+	- git checkout branch to return to present state
+
+--------------------------------------------------
+
+GIT STASH AND LOG
+	- git log --stat -> see which files were altered in each commit
+	- git stash; git stash list; git stash drop
+
+
+
+##############################################################################################################################################################################
+
+
+
+
+
+##############################################################################################################################################################################
+############################################################################   BASH NOTES      ###############################################################################
+##############################################################################################################################################################################
+
+
+$# -> number of arguments passed to the shell script
+$1, $2, etc identify the arguments passed to the script
+
+--------------------------------------------------
+
+The code:
+
+case $1 in
+	-f|--from) command1; shift ;;
+	*)         command2;;
+	esac
+	shift
+
+will check if the first argument ($1)  passed to the script matches -f or --from or any other cases;
+The arterisk means that it does command2 if it doesn't match any of the cases above;
+The "shift" command shifts the arguments, i.e., if I have $1, $2 arguments, then $2 -> $1 
+
+--------------------------------------------------
+
+The code:
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+will give you the full directory name of the script no matter where it is being called from.
+
+--------------------------------------------------
+
+- Note: grep -F -x -v -f fileA fileB -> This works by using each line in fileA as a pattern (-f fileA) and treating it as a plain string to match (-F). You force the match to happen on the whole line -x and print out only the lines that don't match (-v). Therefore, you are printing out the lines in fileB that don't contain the same data as any line in fileA. 
+
+##############################################################################################################################################################################
+
+
+
+
+
+
+##############################################################################################################################################################################
+################################################################################   LYX    ####################################################################################
+##############################################################################################################################################################################
+
+ Configure lyx:
+	- Tools-Preferences-File Formats: PDF (pdflatex), shortname: pdf2, Viewer: Custom - zathura
+	- Tools-Preferences-Output-PDF command: zathura --synctex-forward $$n:1:$$t $$o
+	- Tools-Preferences-Shortcuts-New: buffer-view pdf2 and buffer-update pdf2
+	- For the spellchecker, might need to install hunspell-en_US and hunspel-pt_pt and enchant
+	- For lgrenc.def not found -> install texlive-langgreek
+	- To use eps figures in lyx I need ghostscript : try to epstopdf on command line to discover this.
+
+
+##############################################################################################################################################################################
+
+
+
+
+
+
+
+
+##############################################################################################################################################################################
+################################################################################  INKSCAPE  ##################################################################################
+##############################################################################################################################################################################
+
+ Inkscape:
+	- If I have problems with eps images, in this case, also need to install ghostscript.
+	- Do you have ImageMagick installed? LyX relies on ImageMagick to convert among
+	 graphics formats. It also needs Ghostscript installed (IM uses GS when the
+	 conversions involve PS, EPS or PDF files).
+
+
+
+##############################################################################################################################################################################
+
+
+
+
+
+
+##############################################################################################################################################################################
+################################################################################  VSTUDIO # ##################################################################################
+##############################################################################################################################################################################
+
+
+ Visual Code:
+	- You can format an entire file with Format Document (Ctrl+Shift+I) 
+	 or just the current selection with Format Selection (Ctrl+K Ctrl+F) 
+	 in right-click context menu.
+	- F1 -> command pallet
+	- SSH : F1 -> Remote-SSH: Connect to Host...
+	- Install extension: TabNine
+
+
+
+##############################################################################################################################################################################
+
+
+
+
+
+##############################################################################################################################################################################
+################################################################################  ZATHURA ####################################################################################
+##############################################################################################################################################################################
+
+ Zathura:
+	- make zathura default pdf viewer: mimeo --ad application/pdf zathura.desktop
+	- to discover the real name of zathura.desktop run "locate zathura.desktop"
+	- to check that pdf files have the correct mimetype run "mimeo -m pdf_file.pdf" 
+
+
+
+##############################################################################################################################################################################
+
+
+
+
+
+##############################################################################################################################################################################
+################################################################################  ZSH  #######################################################################################
+##############################################################################################################################################################################
+
+ Zsh:
+	- git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+	- source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh in .zshrc
+	- mkdir .cache/zsh && touch .cache/zsh/dirs
+
+
+
+##############################################################################################################################################################################
+
+
+
+
+
+##############################################################################################################################################################################
+################################################################################  JUPYTER ####################################################################################
+##############################################################################################################################################################################
+
+ Jupyter-Lab
+	- To run over ssh, execute:
+		  ssh -L 8888(port on local):localhost::8889(port on remote) goncalo@ip jupyter-lab --no-browser --port=(same as before on remote)8889
+
+--------------------------------------------------
+
+ Opening browser
+			- If jupyter doesn't open, do :
+				- jupyter lab build;
+			- If command above gives permission error, do:
+			  - sudo chown -hR {user} {dir}
+			- jupyter notebook (lab) --generate-config 
+			  - change redirect_file to false
+			- Na verdade, isto não funciona porque tenho de mudar o ~/.profile para firefox LOL
+
+
+##############################################################################################################################################################################
+
+
+
+
+##############################################################################################################################################################################
+################################################################################  TMUX    ####################################################################################
+##############################################################################################################################################################################
+
+ TMUX
+	- ssh host, tmux, run command, ctr+b d, exit. To check the tmux session, run "tmux attach"
+
+
+
+##############################################################################################################################################################################
+
+
+
+##############################################################################################################################################################################
+################################################################################  PACMAN   ###################################################################################
+##############################################################################################################################################################################
+
+
+ PACMAN
+	- Update pacman mirrors: reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+	- Check recently installed packages: grep -i installed /var/log/pacman.log
+	- Pacman cache:
+		- sudo ls /var/cache/pacman/pkg/ | wc -l ->checks cached packages
+		- du -sh /var/cache/pacman/pkg/ -> disk space occupied by cache
+		- sudo paccache -r -> cleans all packages except most recent 3
+		- sudo paccache -rk 1 -> keep only one most recent version
+		- sudo pacman -Sc -> remove all uninstalled packages
+		- sudo pacman -Scc -> remove installed and uninstalled packages from cache
+		- sudo paccache -ruk0 -> remove all versions of uninstalled packages
+
+
+
+
+##############################################################################################################################################################################
+
+
+
+
+
+##############################################################################################################################################################################
+################################################################################  GRUB   #####################################################################################
+##############################################################################################################################################################################
+
+ GRUB:
+	- If no update-grub command, do:
+		sudo nano /usr/sbin/update-grub
+		"
+		#!/bin/sh
+		set -e
+		exec grub-mkconfig -o /boot/grub/grub.cfg "$@" 
+		"
+		sudo chown root:root /usr/sbin/update-grub
+		sudo chmod 755 /usr/sbin/update-grub
+	- If error syntax in grub-customizer:
+		- View -> Show placeholders
+		- select entry "script code" 
+		- remove
+	- check kernel by uname -r
+
+
+##############################################################################################################################################################################
+
+
+
+
+##############################################################################################################################################################################
+################################################################################  VIM  #######################################################################################
+##############################################################################################################################################################################
+
+ 
+  VIM
+  	- yay -S vim-plug-git
+		- add .vimrc with the plugs I want
+		- add folder ~/.vim/plugged/
+		- to install plugs, do :PlugInstall
+		- for fzt pluggin: :Files command
+		- For the NERDTree plugin to see icon of file, install: yay -S nerd-fonts-complete;
+			This font package my screw up font sizes of icons. To correct this, add to i3blocks config the following: 
+						- <span size='small' font_weight='light'> icon </span> 
+			And change font on terminal to SauceCodePro Nerd Font Medium
+
+		- To open a file in a new tab in nerdtree, press t (or T); to open vertically click s;
+		- To cycle through windows: C-W-W, C-W-H, C-W-L, C-W-J, C-W-K
+		- To open file using fzf do:
+			- CTRL+T to open in new tab
+			- CTRL+X to open a new split
+			- CTRL+V to open in a new vertical split
+		- While in NERDTree, click on "m" to have a menu to do stuff with the file or other things
+		- yay -S vim-youcompleteme-git -> vim autocompletion
+		- No need to add this plugin (vim-youcompleteme-git) to the .vimrc file
+		- add: let g:ycm_show_diagnostics_ui = 0 to disable error checking by YouCompleteMe
+		- pacman -S python-black
+		
+		-INSTALL VIM IN CLUSTER:
+					- git clone https://github.com/vim/vim.git
+					- ./configure --prefix=$HOME/.local && make && make install
+					- More flags: --disable-perlinterp --enable-rubyinterp --enable-multibyte --enable-pythoninterp --with-features=huge
+					- export PATH="/home/youruser/.local/bin:$PATH"
+					- PLUGINS:
+					   - mkdir .vim/autoload
+						 - curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+						 - Place in .vimrc before plug#begin():
+						  let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+							if empty(glob(data_dir . '/autoload/plug.vim'))
+  							silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  							autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+							endif
+
+
+
+
+##############################################################################################################################################################################
+
+
+
+
+
+##############################################################################################################################################################################
+################################################################################  LIGHTDM  ###################################################################################
+##############################################################################################################################################################################
+
+
+   LIGHTDM
+			- pacman -S lightdm-gtk-greeter-settings
+			- change default greeter: /etc/lightdm/lightdm.conf under [Seat:*]
+		  - pacman -S archlinux-wallpaper
+			- pacman -S materia-gtk-theme
+			- yay -S pop-icon-theme-git
+			- yay -S pop-gtk-theme
+
+
+##############################################################################################################################################################################
+
+
+
+
+##############################################################################################################################################################################
+############################################################################   GENERAL    ####################################################################################
+##############################################################################################################################################################################
+
+
+NOTES:
+
+ 1) By disabling all F86 binds in config and installing xfce-power-management
+(which needs to be started in config and need to get config from Manjaro/Home/.config) 
+and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
+ 
+ 2) It is preferable to have xfce4-notify than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
+ 		In manjaro, do: sudo mv /usr/share/dbus-1/services/org.knopwob.dunst.service{,.disabled}
+ 
+ 3) Bluetooth alexandra
+	- pacman -S pulseaudio-bluetooth
+	- pulseaudio -k
+ 
+ 4) Sticky xrandr
+	- xrandr --output eDP --primary
+	- pacman -S autorandr
+	- autorandr --save laptop
+
+ 5) FSTAB
+        - sshfs : jose@pi:/ /mnt/rebelo-pi fuse.sshfs noauto,x-systemd.automount,_netdev,user,idmap=user,follow_symlinks,identityfile=/root/.ssh/id_rsa,allow_other,default_permissions,uid=1995,gid=1995,noatime,reconnect,ServerAliveInterval=45,ServerAliveCountMax=2 0 0
+
