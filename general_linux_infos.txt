@@ -405,3 +405,9 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
  5) FSTAB
         - sshfs : jose@pi:/ /mnt/rebelo-pi fuse.sshfs noauto,x-systemd.automount,_netdev,user,idmap=user,follow_symlinks,identityfile=/root/.ssh/id_rsa,allow_other,default_permissions,uid=1995,gid=1995,noatime,reconnect,ServerAliveInterval=45,ServerAliveCountMax=2 0 0
 
+ 6) SYMBOLIC LINKS
+ 	- ln -s /complete/path/to/original/file /complete/path/to/target/file (the target file will be a "pointer" to the original file, but it's like the file is in the new target location)
+	- ln -sr /relative/path/to/original/directory /complete/path/to/target/directory (the target directory will be a link to the first; the -r flag means relative)
+	- The -f flag will force the link, meaning it delets the target file/directory if it exists
+	- Remember to always use complete paths and not relative paths if the -r flag is not specified
+
