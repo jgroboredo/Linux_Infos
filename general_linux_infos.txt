@@ -43,6 +43,13 @@ CREATE LOCAL GIT REPOSITORY
 	- On the same computer do: git clone /path/to/server   -> the repository created this way will be linked to the "server" by an absolute path which only works on this same pc
 	- On the other computer do: git clone goncalo@ip:/path/to/server
 
+
+--------------------------------------------------
+
+CHANGE AUTHOR NAME
+	- git config --global user.name "John Doe"
+
+
 ##############################################################################################################################################################################
 
 
