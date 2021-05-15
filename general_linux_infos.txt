@@ -90,6 +90,30 @@ will give you the full directory name of the script no matter where it is being 
 
 - Note: grep -F -x -v -f fileA fileB -> This works by using each line in fileA as a pattern (-f fileA) and treating it as a plain string to match (-F). You force the match to happen on the whole line -x and print out only the lines that don't match (-v). Therefore, you are printing out the lines in fileB that don't contain the same data as any line in fileA. 
 
+
+--------------------------------------------------
+
+USE OF CURLY BRACES
+
+	1) In the example: var=10        # Declare variable
+
+										 echo "${var}" # One use of the variable
+										 echo "$var"   # Another use of the variable
+		it makes no difference to use curly braces.
+	
+	2) However, the {} in ${} are useful if you want to expand the variable foo in the string
+
+			"${foo}bar"
+			since "$foobar" would instead expand the variable identified by foobar.
+
+Curly braces are also unconditionally required when:
+
+    - expanding array elements, as in ${array[42]}
+    - using parameter expansion operations, as in ${filename%.*} (remove extension)
+    - expanding positional parameters beyond 9: "$8 $9 ${10} ${11}"
+
+
+
 ##############################################################################################################################################################################
 
 
