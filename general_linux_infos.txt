@@ -35,7 +35,13 @@ GIT STASH AND LOG
 	- git log --stat -> see which files were altered in each commit
 	- git stash; git stash list; git stash drop
 
+--------------------------------------------------
 
+CREATE LOCAL GIT REPOSITORY
+	- Create a folder which is going to be the "server" -> For example, Notes.git
+	- Inside the repository do: git init --bare
+	- On the same computer do: git clone /path/to/server   -> the repository created this way will be linked to the "server" by an absolute path which only works on this same pc
+	- On the other computer do: git clone goncalo@ip:/path/to/server
 
 ##############################################################################################################################################################################
 
