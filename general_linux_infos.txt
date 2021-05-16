@@ -391,15 +391,73 @@ Curly braces are also unconditionally required when:
 				Set archiver integration: xarchiver
 		
     - To see thumbnails, install the following packages:
-				. thumbler
 				. poppler-glib
 				. ffmpegthumbnailer
 				. freetype2
-				. libgfs
 				. raw-thumbnailer
+				. tumbler
+				. libgsf
+				. libgepub
 
 
 ##############################################################################################################################################################################
+
+
+
+##############################################################################################################################################################################
+################################################################################  MPV  #######################################################################################
+##############################################################################################################################################################################
+
+
+	ANNOYING BAR AT TOP
+		- Change picom config: frame-opacity option
+
+##############################################################################################################################################################################
+
+
+
+
+
+##############################################################################################################################################################################
+#######################################################################   MIME-TYPES   #######################################################################################
+##############################################################################################################################################################################
+
+	ALTERNATIVE TO XDG:
+		- yay -S mimeo
+		- yay -S xdg-utils-mimeo 
+
+	MIMEO COMMANDS: (https://xyne.archlinux.ca/projects/mimeo/)
+	- Open files (foo, bar, etc) : mimeo foo bar baz
+	- find Leafpad's desktop file: mimeo --app2desk leafpad
+	- determine "test" file's MIME-type: mimeo -m test
+	- associate "application/x-shellscript" with Leafpad: mimeo --add application/x-shellscript leafpad.desktop
+	- Associate all text files with Medit: mimeo --add 'glob:text/*' medit.desktop
+	- Association File Examples: (mimeo --assoc-help)
+		- vlc --one-instance --playlist-enqueue %U
+  		    ^https?://(www.)?youtube.com/watch\?.*v=
+
+		- /usr/bin/firefox %U   -> Open HTTP(S) URLs with Firefox:
+  		   ^https?://
+
+		- Open various media files in VLC by extension:
+		  	/usr/bin/vlc --one-instance --playlist-enqueue %F
+  			  \.mp3$
+  			  \.flac$
+  			  \.avi$
+	- CUSTOM ASSOCIATION FILES (mimeo --help, mimeo --filepath-help
+		If --assoc is not passed then the following paths will be checked for
+  		custom associations, in order:
+
+    		/home/goncalo/.config/mimeo/associations.txt
+    		/etc/xdg/mimeo/associations.txt
+		
+##############################################################################################################################################################################
+
+
+
+
+
+
 
 
 
