@@ -1,0 +1,68 @@
+Notes on vim based on Ben Awad youtube video "Vim tutorial"
+
+1) When in command mode (mode in which vim is initialized), we can press "j,k,l,h" to move the cursor;
+
+2) When in command mode, press i to enter insert mode; to leave insert mode, press escape; Although we can use the arrow keys, it is useful to keep our fingers mid keyboard;
+
+3) When in command mode, pressing "d+d" deletes the current line; 
+
+4) When in command mode, "G" takes me to the bottom of the file and "g+g" takes me to the beggining of the file;
+
+5) When in command mode, "{" skips blocks of code; "}" takes me back a block of code;
+
+6) When in command mode, pressing a number and then "j" skips that number of lines down;
+
+7) When in command mode, in general, pressing a number before a command will execute that command that number of times;
+
+8) When in command mode, pressing "u" undos the last command;
+
+9) When in command mode, pressing "Ctrl + R" redos the command;
+
+10) When in command mode, pressing "y+y" copies the line; then, pressing "p" will paste the line below; pressing "P" will paste it above;
+
+11) When in command mode, if we delete a line with "d+d" it will actually copy it to clipboard; we can then paste it using "p";
+
+12) When in command mode, "V" will take me to visual mode; while in visual mode, we can select a group; we can also use the movement keys in this mode;
+
+13) When in visual mode, pressing "d" will delete the block of code selected;
+
+14) When in command mode, we can press "o" to insert a line below; it will also take us to insert mode;"O" creates a line above;
+
+15) When in command mode, pressing "w" will take us to the next word; pressing "b" will go in the opposite direction; "W" or "B" ignores punctuation;
+
+16) If we want to go to a specific line, we can press ":", write the number of the line and pressing enter;
+
+17) When in command mode, pressing "0" takes us to the very beggining of the line; "^" takes us to the first word of the line; on the other hand, "0+w" does the same as "^"; "$" takes us to the end of the line; 
+
+18) When in command mode, pressing "t + "something"" goes to "something" in that line; "f" does the same thing as "t" but puts the cursor exacly in the "something"; If we then press ";" takes us to the next instance;
+
+19) When in command mode, "%" takes us to the ending "(" or "{"; If we press "d+%" we delete everything between the parenthesis, for example;
+
+20) When in command mode, pressing "c+d" stands for changing the word. Therefore, it will delete the word and go into insert mode;
+
+21) When in command mode, pressing "d+w" deletes the word;
+
+22) When in command mode, "D" deletes the rest of the line; "C" deletes the rest of the line and takes us to insert mode;
+
+23) When in command mode, "c+t+}" for example, deletes everything till the next } of that line; same thing works with "d+t+}" but doesn't go to insert mode;
+
+24) When in command mode, pressing "*" seaches for the same word in other ocassions in the file;
+
+25) When in command mode, "z+z" will center the file;
+
+25) When in command mode, "z+z" will center the file;
+
+26) When in command mode, "a" will take us to insert mode and move the cursor to the right once; "A" takes to the end of the line and goes into insert mode;
+
+27) When in command mode, "x" will delete the character of the cursor;
+
+28) When in command mode, "~" swaps the case;
+
+29) When in command mode, "." redoes the last thing we did;
+
+30) When in command mode, "r" allows us to replace the letter;
+
+31) When in command mode, ">+>" allows to indent the code;
+
+32) When in command mode, "q" enters the recording mode; after pressing "q" we press the letter we want to save the macro to and press "q" again to finish; to access the macro, press "@+Shift+key";
+
