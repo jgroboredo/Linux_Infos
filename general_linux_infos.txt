@@ -337,7 +337,7 @@ Curly braces are also unconditionally required when:
 			- CTRL+X to open a new split
 			- CTRL+V to open in a new vertical split
 		- While in NERDTree, click on "m" to have a menu to do stuff with the file or other things
-		- yay -S vim-youcompleteme-git -> vim autocompletion
+		- yay -S vim-youcompleteme-git -> vim autocompletion (Needs to be done separately from the installation of the dotfiles)
 		- No need to add this plugin (vim-youcompleteme-git) to the .vimrc file
 		- add: let g:ycm_show_diagnostics_ui = 0 to disable error checking by YouCompleteMe
 		- pacman -S python-black
@@ -370,6 +370,12 @@ MANAGE TABS
 	- To exchange position of merged tabs -> <C-w> x;
 	- To change cursor position -> <C-w> w;
 	- To rotate windows -> <C-w> <C-r>
+
+VIM SURROUNDINGS
+	- cs(atual)(target) -> change surround from "atual" to "target"
+	- ds"  -> delete surround "
+	- ysiw[ -> yank surround inner word [ -> puts [ surrounding the word the curson is in
+	- ysf(smth)[ -> puts [ surrounding current cursor position till smth
 
 
 ##############################################################################################################################################################################
