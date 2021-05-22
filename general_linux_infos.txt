@@ -364,6 +364,12 @@ VIM SNIPPETS
 	- :UltiSnipsEdit command opens up a custom snippets file for the current language/filytype
 	- Don't need the above step if I install vim-snippets plugin
 
+MANAGE TABS
+	- To move tabs -> Alt + arrows
+	- To merge tabs -> Ctr + m or Ctrl + n
+	- To exchange position of merged tabs -> <C-w> x;
+	- To change cursor position -> <C-w> w;
+	- To rotate windows -> <C-w> <C-r>
 
 
 ##############################################################################################################################################################################
