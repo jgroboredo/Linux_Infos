@@ -282,7 +282,7 @@ Curly braces are also unconditionally required when:
 		- sudo pacman -Sc -> remove all uninstalled packages
 		- sudo pacman -Scc -> remove installed and uninstalled packages from cache
 		- sudo paccache -ruk0 -> remove all versions of uninstalled packages
-
+	- change /etc/pacman.conf	ParallelDownloads=5
 
 
 
