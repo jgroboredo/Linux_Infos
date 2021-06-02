@@ -479,6 +479,8 @@ VIM SURROUNDINGS
     		/etc/xdg/mimeo/associations.txt
 	
 	 Note: Eventually try mimi!
+	 repo:https://github.com/taylorchu/mimi
+	 aur:https://aur.archlinux.org/packages.php?ID=56438	
 		
 ##############################################################################################################################################################################
 
