@@ -477,6 +477,8 @@ VIM SURROUNDINGS
 
     		/home/goncalo/.config/mimeo/associations.txt
     		/etc/xdg/mimeo/associations.txt
+	
+	 Note: Eventually try mimi!
 		
 ##############################################################################################################################################################################
 
