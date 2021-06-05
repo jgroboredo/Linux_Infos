@@ -527,7 +527,7 @@ NOTES:
 (which needs to be started in config and need to get config from Manjaro/Home/.config) 
 and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
  
- 2) It is preferable to have xfce4-notify than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
+ 2) It is preferable to have xfce4-notify (initiated in config by running /usr/lib/xfce4/notifyd/xfce4-notifyd) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
  		In manjaro, do: sudo mv /usr/share/dbus-1/services/org.knopwob.dunst.service{,.disabled}
  
  3) Bluetooth alexandra
