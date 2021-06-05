@@ -59,6 +59,9 @@ CHECK LAST COMMIT CHANGES
  	- git show --name-only -> Lists just the files in the last commit and doesn't give you the entire guts
 	- git diff HEAD^ HEAD -> HEAD^ identifies last commit
 
+INSTALLING GIT IN LIVE ISO ARCH
+	- If error in keys: pacman -Sy archlinux-keyring; pacman-key --populate archlinux
+
 
 ##############################################################################################################################################################################
 
