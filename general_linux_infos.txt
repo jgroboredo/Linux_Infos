@@ -500,7 +500,9 @@ VIM SURROUNDINGS
 	- Add to .vimrc:
 		- colorscheme wal
 		- set background=dark
-	
+
+NOTE
+	- This pywal thing seems to screw up with other windows. Removed for now!	
 
 ##############################################################################################################################################################################
 
