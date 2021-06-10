@@ -503,6 +503,7 @@ VIM SURROUNDINGS
 
 NOTE
 	- This pywal thing seems to screw up with other windows. Removed for now!	
+	- It seems like it isn't pywal that messed with firefox -> Firefox stopped crahsing when I disabled the popOS gtk theme!!!
 
 ##############################################################################################################################################################################
 
