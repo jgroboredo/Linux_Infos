@@ -554,3 +554,15 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 	- The -f flag will force the link, meaning it delets the target file/directory if it exists
 	- Remember to always use complete paths and not relative paths if the -r flag is not specified
 
+ 7) SSH
+  - I can run commands over ssh like this: ssh user@host 'command'
+		- Example: liplisboacluster 'echo $(hostname)' -> prints hostname
+	- Writting on a remote file:
+		- echo 'Some Text' | ssh user@remotehost -T "cat > /remotefile.txt"
+		   (-T flag fowards stdin local through ssh)
+		- cat ~/.ssh/id_rsa.pub | ssh user@remote.host 'dd of=.ssh/authorized_keys oflag=append conv=notrunc'
+
+ 8) FIREFOX CRASH
+  - Seems like it was the gtk theme from popOS that made firefox to crash
+
+
