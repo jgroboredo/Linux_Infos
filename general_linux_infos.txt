@@ -62,6 +62,11 @@ CHECK LAST COMMIT CHANGES
 INSTALLING GIT IN LIVE ISO ARCH
 	- If error in keys: pacman -Sy archlinux-keyring; pacman-key --populate archlinux
 
+--------------------------------------------------
+
+CHANGE REMOTE URL
+	- git remove -v (to check the present remote url)
+	- git remote set-url origin git@github.com:jgroboredo/Linux_Infos.git
 
 ##############################################################################################################################################################################
 
