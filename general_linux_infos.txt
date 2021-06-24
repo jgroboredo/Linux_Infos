@@ -564,5 +564,7 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 
  8) FIREFOX CRASH
   - Seems like it was the gtk theme from popOS that made firefox to crash
+	- In sway, if font problems, export GTK_USE_PORTAL=1
+	- In what concerns crashes, picom with xrender crashes! Need to use glx
 
 
