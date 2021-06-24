@@ -65,7 +65,7 @@ INSTALLING GIT IN LIVE ISO ARCH
 --------------------------------------------------
 
 CHANGE REMOTE URL
-	- git remove -v (to check the present remote url)
+	- git remote -v (to check the present remote url)
 	- git remote set-url origin git@github.com:jgroboredo/Linux_Infos.git
 
 ##############################################################################################################################################################################
