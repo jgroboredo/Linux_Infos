@@ -585,3 +585,7 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 	- In what concerns crashes, picom with xrender crashes! Need to use glx
 
 
+ 9) ARCH NOT BOOTING IN VM
+  - On a recent installation of arch on a VM, it did not boot after installing the custom grub-theme. 
+	  In order to solve this, either chroot or open a terminal using ctrl+alt+F2. There, delete the grub theme
+		in /usr/share/grub/themes and after that run grub-mkconfig -o /boot/grub/grub.cfg
