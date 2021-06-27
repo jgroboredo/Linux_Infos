@@ -68,6 +68,12 @@ CHANGE REMOTE URL
 	- git remote -v (to check the present remote url)
 	- git remote set-url origin git@github.com:jgroboredo/Linux_Infos.git
 
+--------------------------------------------------
+
+USE CURL TO DOWNLOAD GITHUB
+	- curl -LkSs https://api.github.com/repos/jgroboredo/arch_install/tarball -o master.tar.gz 
+
+
 ##############################################################################################################################################################################
 
 
