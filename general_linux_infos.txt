@@ -249,6 +249,8 @@ Curly braces are also unconditionally required when:
 	- To run over ssh, execute:
 		  ssh -L 8888(port on local):localhost::8889(port on remote) goncalo@ip jupyter-lab --no-browser --port=(same as before on remote)8889
 	- To avoid authentication by token: jupyter server password
+	- To list active sessions: jupyter lab list
+	- To kill a session: jupyter lab stop 8888 (for e.g.)
 
 --------------------------------------------------
 
