@@ -161,7 +161,27 @@ Curly braces are also unconditionally required when:
 	- For the spellchecker, might need to install hunspell-en_US and hunspel-pt_pt and enchant
 	- For lgrenc.def not found -> install texlive-langgreek
 	- To use eps figures in lyx I need ghostscript : try to epstopdf on command line to discover this.
+	
+ Kpathsea:
+  - Kpathsea is a library for path searching (e.g., for very quickly locating a given .sty file in a set of potentially large TEXMF trees, without doing a 
+	  recursive directory tree trversal every time a given file is needed. (pse -> pathsea)
+	- kpsewhich minted.sy to search efficiently on tex library
 
+
+ Configure minted:
+ 	- sudo mkdir "/usr/share/texmf-texlive/tex/latex/minted/"
+		sudo cp minted.sty "/usr/share/texmf-texlive/tex/latex/minted/"
+		sudo mktexlsr
+	- Then in lyx, go to Tools/Tex Information, select latex styles and click rescan. minted.sty should appear in the list
+		in lyx, go to "Tools>preferences>file handling>converters" and find the converter from tex to pdflatex. 
+		Edit its command line adding the option "-shell-escape" (no quotes) into the Converter field, then click the Modify button next to the list of converters. This is equivalent to 
+		going to Documents->Formats->Allow running external programs (is a better solution since it avoids writting a warning message)
+		Then click Apply in lyx, go to Document>Settings and enter "/usepackage{minted}" (no quotes) in the latex preamble in lyx, in the part of your document where you want 
+		the highlighted code to appear, go to "Insert>TEX code" to get an Evil Red Text (ERT) box
+	- In Document->Settings->Listings, add following options:
+		language=C++
+		frame=single
+		mathescape=true
 
 ##############################################################################################################################################################################
 
