@@ -662,3 +662,6 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 		in /usr/share/grub/themes and after that run grub-mkconfig -o /boot/grub/grub.cfg
 	- The above solution doesn't work. In fact I am very dumb. This was only related with the fact that I have a 
 	  intel config file in /etc/X11/xorg.d.... DUMBBBB
+
+ 10) FIND UUID OF DISK
+ 	- sudo blkid | grep UUID=
