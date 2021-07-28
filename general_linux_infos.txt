@@ -619,6 +619,8 @@ NOTE
 	-MAC ADDRESS
 	  - To find the default device -> ip route list
 		- To find the mac address -> ifconfig -a
+		- Alternatives: - ip addr show && ip addr show device
+										- ip link show
 ##############################################################################################################################################################################
 
 
