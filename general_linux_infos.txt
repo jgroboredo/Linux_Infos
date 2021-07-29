@@ -72,8 +72,52 @@ CHANGE REMOTE URL
 
 ADD REMOTE URL
 	- git remote add name_of_remote git@github.com:jgroboredo/Linux_Infos.git
-	- git push -u name_of_remote --all 
+	- git push -u name_of_remote --all (note: this changes the default repository! It also pushes all branches!)
+	- git config --edit -> can use this command to change the default git push
+	- git branch --set-upstream-to <remote-name> -> set preferred remote for current branch
+	- git branch -vv
 
+--------------------------------------------------
+
+DIFFERENT PUSHES
+	- To push all branches to all remotes:
+		git remote | xargs -L1 git push --all
+	
+	- Push a specific branch to all remotes:
+		git remote | xargs -L1 -I R git push R branch_name
+
+	- To make a git alias for the command:
+		git config --global alias.pushall '!git remote | xargs -L1 git push --all'
+
+OR
+  - Create an all remote with several repo URLs to its name:
+		git remote add all origin-host:path/proj.git
+	  git remote set-url --add all nodester-host:path/proj.git
+		git remote set-url --add all duostack-host:path/proj.git
+		git push all --all
+OR
+ 	- If you want to always push to repo1, repo2, and repo3 but always pull only from repo1, 
+	  set up the remote 'origin' as:
+		git remote add origin https://exampleuser@example.com/path/to/repo1
+		git remote set-url --push --add origin https://exampleuser@example.com/path/to/repo1
+  	git remote set-url --push --add origin https://exampleuser@example.com/path/to/repo2
+		git remote set-url --push --add origin https://exampleuser@example.com/path/to/repo3
+	
+	- If you only want to pull from repo1 but push to repo1 and repo2 for a specific branch specialBranch:
+		[remote "origin"]
+    	url = ssh://git@aaa.xxx.com:7999/yyy/repo1.git
+    	fetch = +refs/heads/*:refs/remotes/origin/*
+    	...
+		[remote "specialRemote"]
+    	url = ssh://git@aaa.xxx.com:7999/yyy/repo1.git
+    	pushurl = ssh://git@aaa.xxx.com:7999/yyy/repo1.git
+    	pushurl = ssh://git@aaa.xxx.com:7999/yyy/repo2.git
+    	fetch = +refs/heads/*:refs/remotes/origin/*
+    	...
+		[branch "specialBranch"]
+    	remote = origin
+    	pushRemote = specialRemote
+    	...
 
 --------------------------------------------------
 
