@@ -70,6 +70,13 @@ CHANGE REMOTE URL
 
 --------------------------------------------------
 
+ADD REMOTE URL
+	- git remote add name_of_remote git@github.com:jgroboredo/Linux_Infos.git
+	- git push -u name_of_remote --all 
+
+
+--------------------------------------------------
+
 USE CURL TO DOWNLOAD GITHUB
 	- curl -LkSs https://api.github.com/repos/jgroboredo/arch_install/tarball -o master.tar.gz 
 
