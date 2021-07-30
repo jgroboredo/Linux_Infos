@@ -112,13 +112,20 @@ OR
     	url = ssh://git@aaa.xxx.com:7999/yyy/repo1.git
     	pushurl = ssh://git@aaa.xxx.com:7999/yyy/repo1.git
     	pushurl = ssh://git@aaa.xxx.com:7999/yyy/repo2.git
-    	fetch = +refs/heads/*:refs/remotes/origin/*
+    	fetch = +refs/heads/*:refs/remotes/origin/* (Note: Has origin here again, only pulls from origin)
     	...
 		[branch "specialBranch"]
     	remote = origin
     	pushRemote = specialRemote
     	...
 
+MY EXPERIENCE
+	- I can specify which remote to push or pull from:
+		git pull remote_name branch 
+		git push remote_name branch
+	- A branch has a default remote: I only need to specify the remote_name
+and eventually the branch_name (I can't pull from a non-default remote without specifying
+the branch) if I don't want to do it to the default one
 --------------------------------------------------
 
 USE CURL TO DOWNLOAD GITHUB
