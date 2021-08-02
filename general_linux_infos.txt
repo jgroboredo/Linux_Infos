@@ -732,6 +732,97 @@ NOTE
 
 
 
+##############################################################################################################################################################################
+#######################################################################   SUBLIME-TEXT  ######################################################################################
+##############################################################################################################################################################################
+
+	- Go to sublime text webpage, linux repos and find pacman. Follow the commands
+	- Go to preferences -> package control (to install the package manager)
+	- To install a package: Ctrl + Shift + p (command pallet) -> Install -> Package name
+	- Imporant packages to install: (To see packges: Preferences->Package Control->List Packages)
+		- SFTP
+		- C++ Starting Kit
+		- C++NamespaceTool
+		- ClangFormat
+		- Anaconda
+		- C Improved
+		- C++11
+		- SideBarEnhancements
+
+	- Define shorcuts for sftp: Preferences->Package Settings->SFTP->Key Bindings
+	  and write on the file on the right hand side with the directory:
+		.config/...../Packages/User/...
+		My first shortcuts were: alt+z(open files) e alt+x(open servers)
+
+	- Example file for server setup:
+	{
+    // The tab key will cycle through the settings when first created
+    // Visit https://codexns.io/products/sftp_for_subime/settings for help
+
+    // sftp, ftp or ftps
+    "type": "sftp",
+
+    "sync_down_on_open": true,
+    "sync_same_age": true,
+
+    "host": "176.79.187.130",
+    "user": "goncalo",
+    //"password": "",
+    //"port": "22",
+
+    "remote_path": "/home/goncalo/Documents/Optics/NonLinearOptics_Interpolation/",
+    //"file_permissions": "664",
+    //"dir_permissions": "775",
+
+    //"extra_list_connections": 0,
+
+    "connect_timeout": 30,
+    //"keepalive": 120,
+    //"ftp_passive_mode": true,
+    //"ftp_obey_passive_host": false,
+    //"ssh_key_file": "~/.ssh/id_rsa",
+    //"sftp_flags": ["-F", "/path/to/ssh_config"],
+
+    //"preserve_modification_times": false,
+    //"remote_time_offset_in_hours": 0,
+    //"remote_encoding": "utf-8",
+    //"remote_locale": "C",
+    //"allow_config_upload": false,
+}
+
+	- To use clang on save:
+	 - Install clang (pacman -S clang) and the clang package in sublime
+	 - Preferences->Package Settings->Clang Format->Setting-User:
+	 		{
+    	"binary": "/usr/bin/clang-format-3.8" (/path/to/your/clang-format/executable/file),
+    	"format_on_save": true,
+    	"style": "Custom",
+			}
+	- Preferences->Package Settings->Clang Format->Custom Style-User:
+	  {
+    "Language": "Cpp",
+    "TabWidth": 4,
+    "AlignTrailingComments": "true",
+    "UseTab": "Never",
+		}
+ or
+ 		Language: Cpp
+		BreakBeforeBraces: Attach
+		PointerAlignment: Right
+		TabWidth: 4
+		IndentWidth: 4
+		AccessModifierOffset: 0
+		ColumnLimit: 120
+		NamespaceIndentation: All
+		AlignTrailingComments: true
+		AllowAllParametersOfDeclarationOnNextLine: true
+		AlwaysBreakTemplateDeclarations: true
+		UseTab: Never
+
+##############################################################################################################################################################################
+
+
+
 
 ##############################################################################################################################################################################
 ############################################################################   GENERAL    ####################################################################################
