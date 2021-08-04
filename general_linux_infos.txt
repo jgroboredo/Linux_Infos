@@ -75,7 +75,8 @@ ADD REMOTE URL
 	- git push -u name_of_remote --all (note: this changes the default repository! It also pushes all branches!)
 	- git config --edit -> can use this command to change the default git push
 	- git branch --set-upstream-to <remote-name> -> set preferred remote for current branch
-	- git branch -vv
+	- git branch branch_name --set-upstream-to <remote-name>/branch -> set preferred remote for branch_name
+	- git branch -vv -> shows the default remote for the current branch
 
 --------------------------------------------------
 
@@ -130,12 +131,20 @@ the branch) if I don't want to do it to the default one
 
 USE CURL TO DOWNLOAD GITHUB
 	- curl -LkSs https://api.github.com/repos/jgroboredo/arch_install/tarball -o master.tar.gz 
-
 --------------------------------------------------
+
 DOWNLOAD A FILE FROM GITHUB
 	
 	- Go to file, click on raw, copy link 
 	- curl -L "link from above step" >> output
+
+--------------------------------------------------
+MERGE BRANCHES
+
+	- git checkout master; git merge other_branch_name
+	- git branch -d branch_name -> deletes branch locally
+	- git push origin --delete branch_name -> deletes a branch remotely
+	- git fetch -p -> synchronize branch listing. After fetching, branches which no longer exist on the remote will be deleted.
 
 ##############################################################################################################################################################################
 
@@ -863,6 +872,11 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 		- echo 'Some Text' | ssh user@remotehost -T "cat > /remotefile.txt"
 		   (-T flag fowards stdin local through ssh)
 		- cat ~/.ssh/id_rsa.pub | ssh user@remote.host 'dd of=.ssh/authorized_keys oflag=append conv=notrunc'
+		- In order to have several ssh keys, do:
+		 - ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+		 - eval $(ssh-agent)
+		 - ssh-add ~/.ssh/id_rsa2 (newly created key)
+		 - In order to have ssh-agent always running, check ~/.config/systemd and .zshrc
 
  8) FIREFOX CRASH
   - Seems like it was the gtk theme from popOS that made firefox to crash
