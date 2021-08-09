@@ -945,7 +945,8 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 		 - eval $(ssh-agent)
 		 - ssh-add ~/.ssh/id_rsa2 (newly created key)
 		 - In order to have ssh-agent always running, check ~/.config/systemd and .zshrc
-		 - systemctl --user enable ssh-agent.service
+		 - systemctl --user enable ssh-agent.service (probably don't need to do this since
+		 I have a backup of .config/systemd
 		 - Also, need to add to zshrc a function to load keys, since ssh-add only works for the current session 
 
  8) FIREFOX CRASH
