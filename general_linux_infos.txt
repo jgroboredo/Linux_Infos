@@ -833,6 +833,73 @@ NOTE
 
 
 
+##############################################################################################################################################################################
+########################################################################   CONFIG PRINTER   ##################################################################################
+##############################################################################################################################################################################
+
+CUPS
+	- Packages to install:
+		- cups, cups-filters, liblouis, qpdf, cups-pdf, python-pycups, python-pycurl, gsfonts
+		- system-config-printer
+
+	- Services to activate
+		- sudo systemctl enable --now cups.service
+		- sudo systemctl enable --now cups.socket
+		- sudo systemctl enable --now cups.path
+	
+	- List services:
+		- sudo systemctl -a list-units | grep -i cups
+	
+	- Configuration:
+		- Verify the following user groups are set in file /etc/cups/cups-files.conf
+			- SystemGroup sys root wheel
+		- Associate a user to the "sys" group by replacing "username" below:
+			- gpasswd -a username sys
+
+	- Add A Printer Using CUPS Web Interface
+		- Open "Manage Printing" or browse to http://localhost:631/
+		- Click on “Administration” at the top of the web page.
+		- Click on “Add Printers”. 
+		- Select the desired printer under "Discovered Network Printers" and click the "Continue" button.
+		- Set the "Name", "Description" and "Location" and then clock on the "Continue" button.
+		- Select the "Model" of printer and click the "Add Printer" button.
+		- Select default options and click the "Set Default Options" button.
+	
+	- Add A Printer Using Printer Settings
+	This utilizes "Printer Settings" (system-config-printer package) a native GUI application.
+		- Open "Printer Settings".
+		- Click on the "Unlock" button.
+		- Click on the "Add" button.
+		- Select the desired printer and click the "Forward" button.
+		- Set the desired "Printer Name", "Description" and "Location".
+		- Click the "Apply" button.
+
+After these steps, it should work. Do not need to go for avahi!!!!
+
+AVAHI
+	- Packages to install:
+		- avahi, nss-mdns
+
+	- sudo systemctl enable avahi-daemon.service
+
+	- edit the file /etc/nsswitch.conf and change the hosts line to include 
+		mdns_minimal [NOTFOUND=return] 
+		before the word resolve
+	
+	- avahi-browse --all --ignore-local --resolve --terminate
+	or
+	- avahi-discover (needs gtk3, dbus-python and python-gobject)
+
+The question is not avahi or cups but : Do I need/want printer autodiscovery or not ?
+If answer is yes > enable avahi , if answer is no > disable avahi
+Either use cups or cups + avahi
+
+
+##############################################################################################################################################################################
+
+
+
+
 
 ##############################################################################################################################################################################
 ############################################################################   GENERAL    ####################################################################################
