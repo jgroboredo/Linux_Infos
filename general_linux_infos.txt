@@ -968,7 +968,8 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 		Updated picom config from arch linux wiki, did not help.
 		Firefox->Settings->Performance did not change anything
 	- Starting firefox from terminal does not seem to solve the problem. Does not output any errors.
-	- Testing launching firefox and terminal from i3 bind with the flag --no-startup-id
+	- Testing launching firefox and terminal from i3 bind with the flag --no-startup-id -> doesnt work
+	- Testing google-chrome-stable; disabled guake
 
 
  9) ARCH NOT BOOTING IN VM
