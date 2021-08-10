@@ -139,6 +139,7 @@ DOWNLOAD A FILE FROM GITHUB
 	- curl -L "link from above step" >> output
 
 --------------------------------------------------
+
 MERGE BRANCHES
 
 	- git checkout master; git merge other_branch_name
@@ -146,6 +147,14 @@ MERGE BRANCHES
 	- git branch -d branch_name -> deletes branch locally
 	- git push origin --delete branch_name -> deletes a branch remotely
 	- git fetch -p -> synchronize branch listing. After fetching, branches which no longer exist on the remote will be deleted.
+
+--------------------------------------------------
+
+GIT MERGE "DELETED BY US"
+	- Resolve all non deleted merge conflicts by hand, which you have to do anyway;
+	- Type git diff --name-only --diff-filter=U to get a list of all remaining files
+	in conflit. These files must be the ones you want deleted.
+	- git diff --name-only --diff-filter=U | xargs git rm
 
 ##############################################################################################################################################################################
 
