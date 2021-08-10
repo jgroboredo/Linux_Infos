@@ -964,6 +964,10 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
   - Seems like it was the gtk theme from popOS that made firefox to crash
 	- In sway, if font problems, export GTK_USE_PORTAL=1
 	- In what concerns crashes, picom with xrender crashes! Need to use glx
+	- Today, 10/08/2021, firefox started crashing. Disabled picom and it did not solve the problem.
+		Updated picom config from arch linux wiki, did not help.
+		Firefox->Settings->Performance did not change anything
+	- Starting firefox from terminal seems to solve the problem. The problem seems to be in executing firefox from bind in i3 config
 
 
  9) ARCH NOT BOOTING IN VM
