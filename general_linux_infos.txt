@@ -532,7 +532,7 @@ VIM SURROUNDINGS
 
    BASIC CONFIGURATION
 		- Go to edit -> Preferences -> Advanced :
-				Set terminal emulator (ex: xfce4-terminal
+				Set terminal emulator (ex: xfce4-terminal)
 				Set archiver integration: xarchiver
 		
     - To see thumbnails, install the following packages:
@@ -968,7 +968,13 @@ SWAY MY EXPERIENCE
 		- Install playerctl for these controls and waybar.
 		- For the autostart applications, need to add the flag --indicator to nm-applet
 		- For the dual monitor, check the monitor with swaymsg -t get_outputs
-
+		- Sway doesn't work very well with lightdm -> use lydm -> systemctl enable ly.service -f
+		- Instead of using ly, simply use .zprofile to login. For it to work, need whiptail and
+		Rebelo's package shiftstate (it is on lap_dotfiles). Ctr+Enter after putting pw on 
+		tty takes me to a tui to choose the wm. Shift+Enter takes me to tty login
+		- The env variable MOZ_ENABLE_WAYLAND=1 enables to run firefox on wayland mode. 
+		However, it doesn't load the gtk theme this way. Then, I added to .confi/sway/env the
+		flag GTK_THEME=Nordic. Need to change this in accordance to the gtk theme I want
 
 
 ##############################################################################################################################################################################
