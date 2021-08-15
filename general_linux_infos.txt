@@ -908,6 +908,74 @@ Either use cups or cups + avahi
 
 
 
+##############################################################################################################################################################################
+########################################################################   SWAY   ############################################################################################
+##############################################################################################################################################################################
+
+PACKAGES TO CHECK FOR BASE ARCH INSTALL:
+	pacman -S grub efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools reflector base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils cups hplip alsa-utils bash-completion openssh rsync reflector acpi acpi_call tlp virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat iptables-nft ipset firewalld flatpak sof-firmware nss-mdns acpid os-prober ntfs-3g terminus-font
+	pacman -S xdg-desktop-portal-wlr
+
+	Services:
+		- systemctl enable NetworkManager
+		- systemctl enable bluetooth
+		- systemctl enable cups.service
+		- systemctl enable sshd
+		- systemctl enable avahi-daemon
+		- systemctl enable tlp # You can comment this command out if you didn't install tlp, see above
+		- systemctl enable reflector.timer
+		- systemctl enable fstrim.timer
+		- systemctl enable libvirtd
+		- systemctl enable firewalld
+		- systemctl enable acpid
+
+SWAY INSTALL FROM YT:
+	- pacman -S sway swaylock swayidle xorg-xwayland ttf-font-awesome
+
+SWAY MY EXPERIENCE
+	
+	PACKAGES
+		- pacman -S sway swaylock
+		- pacman -S mako grim
+		- yay -S grimshot
+		- pacman -S wl-clipboard
+		- pacman -S light (manage brightness)
+		- pacman -S playerctl (waybar config)
+		- pacman -S waybar
+		- yay -S swaylock-effects-git
+		- pacman -S swayidle
+		- pacman -S xdg-desktop-portal-wlr
+		- pacman -S dex
+		- yay -S rambox-bin
+		- yay -S albert-minimal
+		- pacman -S pamixer
+		- pacman -S brightnessctl
+		- yay -S nordic-theme
+		- yay -S clipman
+		- installed i3-quickterm from github: https://github.com/lbonn/i3-quickterm.git
+	
+	CONFIGURATION
+		- The first config lines are concerned with environment variables needed to make gtk applications launch faster:
+			- exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+			-	exec hash dbus-update-activation-environment 2>/dev/null && \
+     			dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+		- The keyboard and touchpad are configured in sway config. To get the inputs run: swaymsg -t get_inputs
+		- using i3-quickterm to have a dropdown menu. Need to install rofi for it to work but I can also use i3-quickterm shell and then I do not need to install rofi.
+		- binding albert in config with exec albert toggle
+		- using swaylock-effects-git for sway lock
+		- Using "exec grimshot copy area" for screenshots (requires wl-clipboard) 
+		- Bind media keys (brightness and volume) on config. Associated icons to notifications. The icons are from Arc-X-D package.
+		- Install playerctl for these controls and waybar.
+		- For the autostart applications, need to add the flag --indicator to nm-applet
+		- For the dual monitor, check the monitor with swaymsg -t get_outputs
+
+
+
+##############################################################################################################################################################################
+
+
+
+
 
 
 ##############################################################################################################################################################################
@@ -970,6 +1038,8 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 	- Starting firefox from terminal does not seem to solve the problem. Does not output any errors.
 	- Testing launching firefox and terminal from i3 bind with the flag --no-startup-id -> doesnt work
 	- Testing google-chrome-stable; disabled guake
+	- Google-chrome also crashed; However, it recovered after a few seconds, similar to what previously happened to
+	vscode. It seems like a X11 problem. Moved to sway.
 
 
  9) ARCH NOT BOOTING IN VM
