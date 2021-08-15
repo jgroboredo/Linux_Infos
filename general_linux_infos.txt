@@ -965,6 +965,7 @@ SWAY MY EXPERIENCE
 		- using swaylock-effects-git for sway lock
 		- Using "exec grimshot copy area" for screenshots (requires wl-clipboard) 
 		- Bind media keys (brightness and volume) on config. Associated icons to notifications. The icons are from Arc-X-D package.
+		- If I want to use light, need to add the following line to sudoers: %wheel ALL=(root) NOPASSWD: /usr/bin/light
 		- Install playerctl for these controls and waybar.
 		- For the autostart applications, need to add the flag --indicator to nm-applet
 		- For the dual monitor, check the monitor with swaymsg -t get_outputs
