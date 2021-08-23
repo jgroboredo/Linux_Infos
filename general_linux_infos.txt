@@ -977,6 +977,10 @@ SWAY MY EXPERIENCE
 		However, it doesn't load the gtk theme this way. Then, I added to .confi/sway/env the
 		flag GTK_THEME=Nordic. Need to change this in accordance to the gtk theme I want
 
+	
+	MATHEMATICA
+		- In order to run mathematica: QT_QPA_PLATFORM="xcb" mathematica &
+
 
 ##############################################################################################################################################################################
 
