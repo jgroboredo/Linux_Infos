@@ -980,6 +980,14 @@ SWAY MY EXPERIENCE
 	
 	MATHEMATICA
 		- In order to run mathematica: QT_QPA_PLATFORM="xcb" mathematica &
+		- A better way is to add a folder: $HOME/bin and the following script name mathematica
+(same name as the original in /usr/local/bin):
+			#!/bin/sh
+			QT_QPA_PLATFORM="xcb" /usr/local/bin/mathematica "$@"
+		- Then, if in sway, add to the env script in .config/sway the following line:
+			PATH="${HOME}/bin:${PATH}"
+		The fact that $HOME/bin comes before path overrides the original mathematica script!Now,
+I can launch mathematica from dmenu
 
 
 ##############################################################################################################################################################################
