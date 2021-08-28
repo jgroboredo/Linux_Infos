@@ -1081,3 +1081,6 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
  12) FIX PAMAC	
   - Error: libpamac-aur: /etc/pamac.conf exists in filesystem (owned by pamac-aur) 
 	- Fix: pacman -R pamac-aur && yay -S pamac-aur
+
+ 13) FIX TIME
+  - sudo ntpd -qg
