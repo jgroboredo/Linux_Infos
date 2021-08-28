@@ -1084,3 +1084,6 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 
  13) FIX TIME
   - sudo ntpd -qg
+	- install ntp
+	- sudo ntpdate pool.ntp.org
+	- timedatectl set-ntp true
