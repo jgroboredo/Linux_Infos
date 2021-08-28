@@ -401,6 +401,15 @@ Curly braces are also unconditionally required when:
 		- sudo pacman -Scc -> remove installed and uninstalled packages from cache
 		- sudo paccache -ruk0 -> remove all versions of uninstalled packages
 	- change /etc/pacman.conf	ParallelDownloads=5
+	- Install from live usb:
+		- mount system: mount /dev/sdax /mnt
+		- sudo pacman --root /mnt -S package
+		- sudo pacman -Qkk | grep warning -> To verify the presence of the files installed by a package
+		- sudo pacman --root /mnt -S $(sudo pacman --root /mnt -Qeq) --noconfirm -> reinstalls 
+installed packages
+		- If need to remove aur packages:
+			- sudo pacman --root /mnt -Qeq > packages.txt
+			- sudo pacman --root /mnt -S $(cat packages.txt) --noconfirm
 
 
 
