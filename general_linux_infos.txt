@@ -1087,3 +1087,6 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 	- install ntp
 	- sudo ntpdate pool.ntp.org
 	- timedatectl set-ntp true
+
+ 14) CHECK RAM
+  - sudo dmidecode -t memory
