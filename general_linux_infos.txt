@@ -401,6 +401,15 @@ Curly braces are also unconditionally required when:
 		- sudo pacman -Scc -> remove installed and uninstalled packages from cache
 		- sudo paccache -ruk0 -> remove all versions of uninstalled packages
 	- change /etc/pacman.conf	ParallelDownloads=5
+	- Install from live usb:
+		- mount system: mount /dev/sdax /mnt
+		- sudo pacman --root /mnt -S package
+		- sudo pacman -Qkk | grep warning -> To verify the presence of the files installed by a package
+		- sudo pacman --root /mnt -S $(sudo pacman --root /mnt -Qeq) --noconfirm -> reinstalls 
+installed packages
+		- If need to remove aur packages:
+			- sudo pacman --root /mnt -Qeq > packages.txt
+			- sudo pacman --root /mnt -S $(cat packages.txt) --noconfirm
 
 
 
@@ -989,6 +998,31 @@ SWAY MY EXPERIENCE
 		The fact that $HOME/bin comes before path overrides the original mathematica script!Now,
 I can launch mathematica from dmenu
 
+	ZOOM
+		- Currently doesn't allow for sreen sharing. Use zoom in firefox and it works fine!
+		- Eventually try XGD_CURRENT_DESKTOP=gnome zoom
+
+
+##############################################################################################################################################################################
+
+
+
+
+
+##############################################################################################################################################################################
+ #######################################################################   RCLONE   ##########################################################################################
+##############################################################################################################################################################################
+
+	CONFIG
+	 - rclone is best configured using ssh-agent:
+	 	- rclone config
+		- new remote
+		- Storage > sftp
+		- host: 192.168.1.64 (e.g)
+		- user: goncalo (e.g)
+		- ssh port: blank
+		- To use ssh-agent, leave all the other options blank (and eventually refuse them)
+
 
 ##############################################################################################################################################################################
 
@@ -1042,7 +1076,7 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 		 - ssh-add ~/.ssh/id_rsa2 (newly created key)
 		 - In order to have ssh-agent always running, check ~/.config/systemd and .zshrc
 		 - systemctl --user enable ssh-agent.service (probably don't need to do this since
-		 I have a backup of .config/systemd
+		 I have a backup of .config/systemd)
 		 - Check services: systemctl --user list-unit-files | grep enabled
 		 - Check services (all): systemctl list-unit-files | grep enabled
 		 - Also, need to add to zshrc a function to load keys, since ssh-add only works for the current session 
