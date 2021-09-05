@@ -1041,6 +1041,7 @@ I can launch mathematica from dmenu
 	 - pacman -S libpulse (comes with pulseaudio)
 	 - pacman -Qo pactl
 	 - bluetooth should not be affected by this
+	 - pacmd used by volume-script no longer works. Need to use amixer (which comes with alsa-utils) to check if muted or not.
 
 ##############################################################################################################################################################################
 
