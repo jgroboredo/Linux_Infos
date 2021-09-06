@@ -1111,6 +1111,7 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 	- Testing google-chrome-stable; disabled guake
 	- Google-chrome also crashed; However, it recovered after a few seconds, similar to what previously happened to
 	vscode. It seems like a X11 problem. Moved to sway.
+	- Testing again firefox crashes on i3. For now, uninstalled xf86-video-intel. Since then, no crashes yet.
 
 
  9) ARCH NOT BOOTING IN VM
