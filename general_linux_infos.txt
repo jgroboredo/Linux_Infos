@@ -156,6 +156,14 @@ On the other hand, we can simply set tracking information for the current branch
 CHECK MERGE CONFLITS
 	- git show --name-only [commit sha] on a commit that was a merge containing conflicts and you'll see it as part of the message.
 
+MERGE MISTAKE (You committed changes to (local) master)
+	- git branch new-branch
+	- git reset HEAD~ --hard
+	- git checkout new-branch
+
+	The first command creates the new branch we want to work with. The second command resets the main branch to just before the last commit, but leaves the changes you just made in the new branch. Finally, we switch to the new branch where your changes await you.
+	If you’ve made multiple commits, use git reset HEAD~<n> --hard, where <n> is the number of commits back you want to go.
+
 --------------------------------------------------
 
 GIT MERGE "DELETED BY US"
