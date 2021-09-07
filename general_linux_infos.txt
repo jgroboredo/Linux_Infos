@@ -241,6 +241,13 @@ Curly braces are also unconditionally required when:
     - expanding positional parameters beyond 9: "$8 $9 ${10} ${11}"
 
 
+--------------------------------------------------
+
+SEARCH RECURSIVELY IN DIRECTORY
+
+	- grep -R "stuff" will search recursively on all files on that directory and look for the word stuff
+	- for i in **/.ipynb_checkpoints will find recursively all directories with this name
+	- for i in ./pattern will search for this pattern in current directory
 
 ##############################################################################################################################################################################
 
