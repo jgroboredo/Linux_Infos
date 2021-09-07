@@ -152,6 +152,10 @@ MERGE BRANCHES
 	- After creating a new branch, we need to specify tracking information for the current branch. That means we need to do something like git pull <remote> <branch> for it to work.
 On the other hand, we can simply set tracking information for the current branch by:
 		- git branch --set-upstream-to=origin/<branch> correction_chapter1
+
+CHECK MERGE CONFLITS
+	- git show --name-only [commit sha] on a commit that was a merge containing conflicts and you'll see it as part of the message.
+
 --------------------------------------------------
 
 GIT MERGE "DELETED BY US"
@@ -160,6 +164,12 @@ GIT MERGE "DELETED BY US"
 	in conflit. These files must be the ones you want deleted.
 	- git diff --name-only --diff-filter=U | xargs git rm
 
+--------------------------------------------------
+
+COMMIT ID AND SHA
+	- git show -s --format=%H -> shows the last commit full id
+	- git show -s --format=%h -> shows the last commit sha
+ 
 ##############################################################################################################################################################################
 
 
