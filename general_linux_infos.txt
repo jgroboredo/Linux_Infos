@@ -148,6 +148,10 @@ MERGE BRANCHES
 	- git push origin --delete branch_name -> deletes a branch remotely
 	- git fetch -p -> synchronize branch listing. After fetching, branches which no longer exist on the remote will be deleted.
 
+	- If I do a: "git pull origin master" on another branch, it will merge them.
+	- After creating a new branch, we need to specify tracking information for the current branch. That means we need to do something like git pull <remote> <branch> for it to work.
+On the other hand, we can simply set tracking information for the current branch by:
+		- git branch --set-upstream-to=origin/<branch> correction_chapter1
 --------------------------------------------------
 
 GIT MERGE "DELETED BY US"
