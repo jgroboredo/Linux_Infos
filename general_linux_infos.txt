@@ -707,6 +707,26 @@ NOTE
 
 
 
+##############################################################################################################################################################################
+ #######################################################################   TTY LOGIN   ##########################################################################################
+##############################################################################################################################################################################
+
+	ADD USERNAME
+		- cat /etc/systemd/system/getty@tty1.service.d/override.conf:
+			[Service]
+			ExecStart=
+			ExecStart=-/usr/bin/agetty -n -o jose %I
+		- systemctl edit getty@tty1
+
+	CHANGE STARTUP MESSAGE
+		1) added script to bin folder that re-writes /etc/issue with the correct value of the 
+		baterry. It uses a template situated in issue folder. This template has a PLACEHOLDER 
+		text that is used by sed to substitute with the value of the battery. In order for this
+		to work, I created a systemd service (check systemd_scripts folder) which runs the 
+		script. Everything is situated in lap_dotfiles
+##############################################################################################################################################################################
+
+
 
 
 ##############################################################################################################################################################################
