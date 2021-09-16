@@ -1046,6 +1046,12 @@ SWAY MY EXPERIENCE
 			PATH="${HOME}/bin:${PATH}"
 		The fact that $HOME/bin comes before path overrides the original mathematica script!Now,
 I can launch mathematica from dmenu
+		- Although the above steps solve the problem when we call the binary mathematica,
+		it doesn't solve the problem when we want to open a mathematica notebook through the
+		file manager. To solve that problem I need to change the wolfram-mathematica12.desktop
+		file in /usr/share/applications/wolfram-mathematica12.desktop. In the field exec I need
+		to put the path to $HOME/bin/mathematica script. I saved the original desktop file in 
+		/usr/share/applications/mathematica.desktop.
 
 	ZOOM
 		- Currently doesn't allow for sreen sharing. Use zoom in firefox and it works fine!
