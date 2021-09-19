@@ -1057,6 +1057,9 @@ I can launch mathematica from dmenu
 	ZOOM
 		- Currently doesn't allow for sreen sharing. Use zoom in firefox and it works fine!
 		- Eventually try XGD_CURRENT_DESKTOP=gnome zoom
+	
+	ALBERT
+		- albert crashing after search or cancelling search: rm .config/albert/core.db
 
 
 ##############################################################################################################################################################################
