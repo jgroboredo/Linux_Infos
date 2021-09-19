@@ -1052,6 +1052,7 @@ I can launch mathematica from dmenu
 		file in /usr/share/applications/wolfram-mathematica12.desktop. In the field exec I need
 		to put the path to $HOME/bin/mathematica script. I saved the original desktop file in 
 		/usr/share/applications/mathematica.desktop.
+		- mathematica was crashing with 3D graphics. Solution: run mathematica with mesa: mathematica -mesa notebook_name.
 
 	ZOOM
 		- Currently doesn't allow for sreen sharing. Use zoom in firefox and it works fine!
