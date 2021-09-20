@@ -1107,6 +1107,83 @@ I can launch mathematica from dmenu
 
 
 
+##############################################################################################################################################################################
+ #######################################################################   DOCKER   ##########################################################################################
+##############################################################################################################################################################################
+
+	DOCKER
+	 - pacman -S docker docker-compose
+	 - systemctl enble docker.service
+	 - docker info; sudo chmod 666 /var/run/docker.sock
+	 - On folder, run: docker-compose up -d
+	 - To access things on the web, check the port on .yml file and:  http://localhost:8080
+	 - Login on web: admin, pw: adminadmin
+	 - On qbittorrent, tools->options->default save path: /downloads/
+	 - On qbittorrent, tools->options->(under automatically add torrents from) Monitored Folder -> /blackhole
+	 - Get image: https://hub.docker.com/r/linuxserver/radarr
+	 - docker ps -a -> check running containers
+	 - To set pw and username on qbittorrent: Tools -> Options -> Connection -> Authentication
+	 
+	JACKETT
+	 - http://localhost:9117
+	 - Add indexer -> RARBG and 1337x;
+
+	SONARR
+	 - Download clients -> Clicl + -> Select qbittorrent -> host é qbittorrent (you can access containers by name)
+	 - Port: 8080
+	 - Username and Pw : same as qbittorrent login (admin, adminadmin)
+	 - We can access a container from the terminal: docker exec -it qbittorrent bash
+	 - Go to Indexers -> Select Torznab -> In URL paste the Torznab feed from jackett (and change localhost to jackett in the URL)
+	 - Add API key from jackett (on top of the page)
+	 - If this doesn't work, change dns:
+	 	- vim /etc/resolv.conf
+			- nameserver 1.1.1.2
+		- vim /etc/NetworkManager/NetworkManager.conf
+			- [main]
+				# Ignore network-provided dns
+				dns = none
+		- check if I can ping from jackett: docker exec -it jackett bash; curl 1337x.to
+		- systemctl restart docker
+		- docker-compose up -d
+	 - When adding series, the root folder should be: /media -> this is mapped to a volume outside the container
+	 - qbittorrent downloads to /downloads and sonarr moves it to /media
+	 - old episodes on sonarr must be downloaded manually
+	 - A lupa saca automatico e o boneco deixa escolher o torrent
+	
+	SYSTEM SERVICE TO RUN DOCKER
+		/etc/systemd/system/docker-compose.service
+
+		[Unit]
+		Description=Docker Compose Service
+		Requires=docker.service
+		After=docker.service
+		After=network-online.target
+		Wants=network-online.target
+
+		[Service]
+		Type=oneshot
+		RemainAfterExit=yes
+		WorkingDirectory=/home/jose/dotfiles/pi
+		ExecStart=/usr/sbin/docker-compose up -d
+		ExecStop=/usr/sbin/docker-compose down
+		TimeoutStartSec=0
+
+		[Install]
+		WantedBy=multi-user.target
+
+
+	RCLONE DLNA
+		- This is streaming the /media folder to my network
+		- In VLC go to view -> playlist -> local network -> universal plug and play
+	 
+	TRANSDRONE
+	 - App for android to manage torrents
+	 
+##############################################################################################################################################################################
+
+
+
+
 
 ##############################################################################################################################################################################
 ############################################################################   GENERAL    ####################################################################################
