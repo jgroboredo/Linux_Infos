@@ -1117,6 +1117,8 @@ I can launch mathematica from dmenu
 	 - docker info; sudo chmod 666 /var/run/docker.sock
 	 - On folder, run: docker-compose up -d
 	 - To access things on the web, check the port on .yml file and:  http://localhost:8080
+	 - To access using any device on the network, substitute 127.0.0.1 to 0.0.0.0 in all containers in the .yml file
+	 	 Then, only need to do ip(192.168.1.64):port on any device and it will work.
 	 - Login on web: admin, pw: adminadmin
 	 - On qbittorrent, tools->options->default save path: /downloads/
 	 - On qbittorrent, tools->options->(under automatically add torrents from) Monitored Folder -> /blackhole
@@ -1178,6 +1180,18 @@ I can launch mathematica from dmenu
 	 
 	TRANSDRONE
 	 - App for android to manage torrents
+
+	JELLYFIN
+	 - drive ntfs -> does not support inotify -> scan manually: Settings -> dashboard -> scan all libraries
+	 - In order to change folder go to settings -> Dashboard -> Libraries
+	 - If informations are not correct, select movie or series and click identify
+	 
+	 - DNLA
+	 	- add to yml: "network_mode: host" on jellyfin container and remove ports section
+	 
+	QBITTORRENT
+	 - In order to stop seeding go to tools -> bittorrent -> seeding limits -> min ratio 0.01 -> max seed time 1 minute (Pause torrent, remove doesnt work)
+
 	 
 ##############################################################################################################################################################################
 
