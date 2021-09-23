@@ -1198,6 +1198,62 @@ I can launch mathematica from dmenu
 
 
 
+##############################################################################################################################################################################
+ #######################################################################   VPN   ##########################################################################################
+##############################################################################################################################################################################
+
+	CONFIGURATION
+	 - pacman -S wireguard-tools
+
+	 - script wgg from rebelo:
+	 	- WG_PEERS: names of  the devices I want connected to the VPN
+		- NODE_URL is the public ip
+		- WG_NODE_ADDRESS is the desktop's ip inside the VPN
+		- WG_VPN_LAN is the VPN network (which must match the IP chosen in the above line)
+		- The WG_NODE_INTERFACE can be seen running: ip addr show
+		- The script may be run again in order to add devices (the configurations before won't be altered)
+
+	 - Open port on router:
+	 	- Go to games and apps, configuration, and remove all the ports there;
+		- Protocol: UDP
+		- Log and CONE unchecked (like everything else really)
+		- Port: 57278
+
+	 - In order to show a qrcode for the wireguard app on cell phone: qrencode -t ansiutf8 -r /etc/wireguard/peers/telemovel.conf
+	 - Give wireguard on cellphone root privileges
+	 - On phone's wireguard, tunnel name can be anything I want
+
+	 - To turn vpn on: sudo wg-quick up wg1
+	 - Startup: sudo systemctl enable wg-quick@wg1
+	 - To check hand shakes: sudo wg show wg1 latest-handshakes 
+
+	 - On laptop: pacman -S wireguard-tools
+	 - Copy /etc/wireguard/peers/laptop.conf to /etc/wireguard/wg0.conf 
+	 - sudo wg-quick up wg0
+
+	 - ip r show show the routes
+
+
+	NOTES
+		- Each computer needs an individual ip and key
+		- For example, if I copy my laptop's file and put it in another computer, changing the ip, it won't
+		work if both connect since the key is the same
+		- IPS have 32 bits
+		- With A.B.C.D/X we mean that the X most significant digits are considered: 192.168.1.0/24 -> 192.168.0.x with x between 0 to 255
+		- 192.168.0.0/16 -> 192.168.0.0 to 192.168.255.255
+
+	VISEU
+		- na config do desktop do porto, tens lá uma entrada para cada peer
+		- no peer de viseu, para alem de 10.0.10.4/32, adicionavas 192.168.20.0/24
+		- e nos peer/*.conf também
+		- ou seja, de qualquer lado, o teu telemóvel sabia que, para chegar à rede 192.168.20.0/24, tem que enviar pacotes para o desktop do porto
+		- e o desktop do porto sabe que, para chegar a essa mesma rede, tem que enviar pacotes para o peer de viseu
+		- tinhas que adicionar a 192.168.20.0/24 no peer de viseu em wg1 no desktop do porto
+		- e nos peers tinha de adicionar  192.168.20.0/24 para cada um dos peers saber que, pelo desktop do porto, consegue chegar a viseu
+##############################################################################################################################################################################
+
+
+
 
 ##############################################################################################################################################################################
 ############################################################################   GENERAL    ####################################################################################
