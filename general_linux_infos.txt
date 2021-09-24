@@ -1250,6 +1250,11 @@ I can launch mathematica from dmenu
 		- e o desktop do porto sabe que, para chegar a essa mesma rede, tem que enviar pacotes para o peer de viseu
 		- tinhas que adicionar a 192.168.20.0/24 no peer de viseu em wg1 no desktop do porto
 		- e nos peers tinha de adicionar  192.168.20.0/24 para cada um dos peers saber que, pelo desktop do porto, consegue chegar a viseu
+
+	
+	CHECK PORTS
+		- sudo nmap -sU -p- ip (UDP)
+		- sudo nmap -sT -p- ip (TCP)
 ##############################################################################################################################################################################
 
 
