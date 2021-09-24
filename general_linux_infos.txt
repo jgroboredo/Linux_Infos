@@ -308,6 +308,8 @@ SEARCH RECURSIVELY IN DIRECTORY
 	 graphics formats. It also needs Ghostscript installed (IM uses GS when the
 	 conversions involve PS, EPS or PDF files).
 
+	- If textext package form the AUR gives problem, simply go to textext official website and install it from there
+
 
 
 ##############################################################################################################################################################################
