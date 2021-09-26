@@ -1261,6 +1261,12 @@ I can launch mathematica from dmenu
 	CHECK PORTS
 		- sudo nmap -sU -p- ip (UDP)
 		- sudo nmap -sT -p- ip (TCP)
+
+	FIX CONNECTION PROBLEM
+		- On laptop:
+			- ip route add 192.168.1.64/32 via 192.168.1.254 dev (interface, ex: wlp0s20f3)
+			- nmcli connection show
+			- nmcli connection modify CONNECTION_NAME (ex: ROBOREDO) +ipv4.routes "192.168.1.0/24 192.168.1.254"
 ##############################################################################################################################################################################
 
 
