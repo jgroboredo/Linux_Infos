@@ -1156,6 +1156,7 @@ I can launch mathematica from dmenu
 	 - qbittorrent downloads to /downloads and sonarr moves it to /media
 	 - old episodes on sonarr must be downloaded manually
 	 - A lupa saca automatico e o boneco deixa escolher o torrent
+	 - If I can't add indexer, I can add one that I know that works and then edit it and substitute the url for the one I want to add.
 	
 	SYSTEM SERVICE TO RUN DOCKER
 		/etc/systemd/system/docker-compose.service
