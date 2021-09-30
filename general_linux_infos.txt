@@ -642,6 +642,8 @@ VIM SURROUNDINGS
 	 Note: Eventually try mimi!
 	 repo:https://github.com/taylorchu/mimi
 	 aur:https://aur.archlinux.org/packages.php?ID=56438	
+
+	 Note: eventually take a look at package perl-file-mimeinfo (mimeopen -d )
 		
 ##############################################################################################################################################################################
 
