@@ -1200,6 +1200,29 @@ I can launch mathematica from dmenu
 	QBITTORRENT
 	 - In order to stop seeding go to tools -> bittorrent -> seeding limits -> min ratio 0.01 -> max seed time 1 minute (Pause torrent, remove doesnt work)
 
+	UPDATE CONTAINERS
+	 - docker-compose pull 
+	 - docker-compose up
+
+	 - Container to update containers:
+	 	watchtower:
+  		container_name: watchtower
+  		image: containrrr/watchtower:latest
+  		networks:
+    		- monitoring
+  		volumes:
+    		- /var/run/docker.sock:/var/run/docker.sock
+  		command: >-
+    		--cleanup --rolling-restart --schedule "0 0 4 * * *"
+
+
+		Info: --cleanup doesn't leave older version on the computer. 
+					--rolling-restart restarts the containers one by one (important to deal with dependencies)
+					The container pulls automatically
+
+	 - docker system prune -a
+
+
 	 
 ##############################################################################################################################################################################
 
