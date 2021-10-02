@@ -1183,6 +1183,9 @@ I can launch mathematica from dmenu
 
 
 	RCLONE DLNA
+		- Settings -> Download clients -> Advanced options -> Enable remove imported downloads from download client history
+
+	RCLONE DLNA
 		- This is streaming the /media folder to my network
 		- In VLC go to view -> playlist -> local network -> universal plug and play
 	 
