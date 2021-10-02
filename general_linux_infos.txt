@@ -348,9 +348,11 @@ SEARCH RECURSIVELY IN DIRECTORY
 ##############################################################################################################################################################################
 
  Zathura:
+  - pacman -S zahtura-pdf-poppler
 	- make zathura default pdf viewer: mimeo --ad application/pdf zathura.desktop
 	- to discover the real name of zathura.desktop run "locate zathura.desktop"
 	- to check that pdf files have the correct mimetype run "mimeo -m pdf_file.pdf" 
+	- Clipboard: add "set selection-clipboard clipboard" to ~/.config/zahtura/zathurarc or /etc/zathurarc
 
 
 
@@ -445,6 +447,16 @@ installed packages
 			- sudo pacman --root /mnt -Qeq > packages.txt
 			- sudo pacman --root /mnt -S $(cat packages.txt) --noconfirm
 
+		- #pacman infos
+			pacman -Qe ---> lists explicitly installed packages
+			pacman -Rsc ---> uninstalls (including unneeded dependencies)
+			pacman -Qs "query" ---> search installed packages for keywords
+			pacman -Qdt ---> list unneeded packages
+			pacman -Rns $(pacman -Qdtq) ---> uninstall unneeded packages (nota: quando adicionei isto aos aliases, sempre que abri o terminal pedia-me a pass do sudo (estava a correr o que esta a frente de $)
+		
+		- pacman mirrors
+			sudo pacman-mirrors --fasttrack && pacman -Syyu
+
 
 
 ##############################################################################################################################################################################
@@ -472,6 +484,21 @@ installed packages
 		- select entry "script code" 
 		- remove
 	- check kernel by uname -r
+
+
+ INSTALL GRUB MANUALLY WHEN MANJARO FAILS
+  - DESATIVAR CSM NA BIOS
+	- Quando acaba a instalacao, ver se ele cria a particao em /boot/efi ou /boot
+	- sudo fdisk --list (para ver onde foi instalada a particao no pc)
+	- sudo su
+	- mount /dev/sda2 /mnt (em que sda2 era a particao com o linux)
+	- mount /dev/sda1 /mnt/boot/efi
+	- grub-install --target=x86_64-efi --efi-directory=/mnt/boot/efi --bootloader-id=manjaro --boot-directory=/mnt/boot --recheck --debug
+	- manjaro-chroot -a
+	- update-grub
+	- umount -R /mnt
+
+		Links: https://forum.manjaro.org/t/manjaro-grub-install-error-calamares-and-manual-the-why/125886
 
 
 ##############################################################################################################################################################################
@@ -543,6 +570,17 @@ VIM SURROUNDINGS
 	- ysf(smth)[ -> puts [ surrounding current cursor position till smth
 
 
+SOME COMMANDS
+	- procurar coisas: /searchthing e usa-se n ou N para avançar para as seguintes
+	- procurar string e substituir:
+			:s/search/replace/
+			:8,10 s/search/replace/g procura nas linhas 8 a 10
+			:%s/search/replace/g procura no documento inteiro
+			:%s/search/replace/gc pede confirmação para alterar
+	- copiar e colar:
+			selecionar o texto, y copia, p cola
+
+
 ##############################################################################################################################################################################
 
 
@@ -562,6 +600,19 @@ VIM SURROUNDINGS
 			- yay -S pop-icon-theme-git
 			- yay -S pop-gtk-theme
 
+
+##############################################################################################################################################################################
+
+
+
+
+##############################################################################################################################################################################
+################################################################################  i3BLOCKS  ###################################################################################
+##############################################################################################################################################################################
+
+	- for the scripts to work, even if it is .py, need to chmod +x
+	- https://github.com/vivien/i3blocks-contrib/tree/master/
+	- For calendar, install yad and xdotool; add: for_window [class='Yad'] floating enable
 
 ##############################################################################################################################################################################
 
@@ -746,6 +797,20 @@ NOTE
 		- To load a module: module load x
 		- To unload a module: module unload x
 		- To swap a specific module for another: module switch x y
+
+	-SOME COMMANDS
+		- sinfo
+		- squeue
+		- scontrol show partition/node/....
+		- scancel (process_id)
+		- Don't forget to load modules - e.g. -> module load gcc-8.1, module load openmpi/4.0.1
+		- module avail -> to see modules
+		- srun -n 1 -p partition bash -> takes me to a shell inside the node
+		- Launch Script:
+			 #!bin/bash
+			 #SBATCH -> instrucoes ao sbatch
+			 ./ficheiro.out
+
 
 ##############################################################################################################################################################################
 
@@ -1237,7 +1302,7 @@ I can launch mathematica from dmenu
 ##############################################################################################################################################################################
 
 	CONFIGURATION
-	 - pacman -S wireguard-tools
+	 - pacman -S wireguard-tools (wireguard-dkms, headers)
 
 	 - script wgg from rebelo:
 	 	- WG_PEERS: names of  the devices I want connected to the VPN
@@ -1312,6 +1377,292 @@ I can launch mathematica from dmenu
 	  Service: No-IP -> Host: hostname chosen in no-ip account (--.ddns.net)
 	 - Do not forget to change router's account pw to something different from default (currently, it is my usual pw)
 ##############################################################################################################################################################################
+
+
+
+
+##############################################################################################################################################################################
+ #######################################################################   BARRIER   ##########################################################################################
+##############################################################################################################################################################################
+
+
+connect first with barrier only after do this	
+		sudo vim /etc/systemd/system/barrier.service
+			[Unit]
+			Description=Barrier Client mouse/keyboard share
+			Requires=display-manager.service
+			After=display-manager.service
+			StartLimitIntervalSec=0
+	
+			[Service]
+			Type=forking
+			ExecStart=/usr/bin/barrierc --no-restart --name raspberrypi --enable-crypto 192.168.0.109
+			Restart=always
+			RestartSec=10
+			User=pi
+
+			[Install]		
+			WantedBy=multi-user.target
+
+		sudo systemctl daemon-reload
+		systemctl start barrier.service
+		systemctl status barrier.service
+		systemctl enable barrier.service
+		
+		so that the service doesn't run when I go to openbox, since I want to play cs,
+		add to /etc/sudoers : goncalo ALL = NOPASSWD: /bin/systemctl stop barrier.service
+		and add sudo systemctl stop barrier.service to autostart
+
+
+##############################################################################################################################################################################
+
+
+##############################################################################################################################################################################
+ #######################################################################   TEAMVIEWER   ####################################################################################
+##############################################################################################################################################################################
+
+	Start teamviewer service: systemctl start teamviewerd.service
+
+##############################################################################################################################################################################
+
+
+
+
+
+##############################################################################################################################################################################
+ #######################################################################   LATEX  ####################################################################################
+##############################################################################################################################################################################
+
+		/usr/share/texmf-dist/tex/latex/local
+		which mktexlsr
+		sudo path/to/mktexlsr or sudo $(which mktexlsr)---> update latex
+
+##############################################################################################################################################################################
+
+
+
+
+##############################################################################################################################################################################
+ #######################################################################   PHONE FORMAT   ####################################################################################
+##############################################################################################################################################################################
+
+ FORMATTING
+ 		- pacman -S android-tools
+		- adb shell - cd /data/adb/modules/quick* - find . -name "*.apk"
+		- backup -> boot, system image, data
+		- adb pull /sdcard/Fox -> copy of the backup to pc
+		- adb push zipname.zip /sdcard  (no need to wipe to do this) 
+		- important partitions to wipe -> system, cache, data
+		- to flash recovery: sudo fastboot flash recovery ficheiro-do-recovery.img
+		- pacman -S android-udev (fastboot has no permissions)
+		- treble check
+		- fastboot getvar all | grep “slot”
+		- If there's any problem, I can always flash xiaomi rom (bookmarks)
+		- with command: bash flash_all.sh (only need to connect phone in fastboot mode)
+
+
+ CONNECTING TO PC
+ 		- Primeiro instalar termux
+		- pkg upgrade
+		- pkg install openssh
+		- touch ~/.ssh/authorized_keys
+		- chmod 600 ~/.ssh/authorized_keys
+		- chmod 700 ~/.ssh
+		- copy key from pc to phone
+		- cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+		- chmod 600 ~/.ssh/authorized_keys
+		- run ssh: sshd
+		- kill ssh: pkill sshd
+		- apt update && apt upgrade
+		- termux-setup-storage: (creates folder ~/storage)
+				-shared: phone internal memory directory
+				-external: sdcard (on sdcard: android-data-com.termux)
+		- pkg install tsu - using magisk this will give termux super user sudo
+		- install jupyter-notebook:
+				- apt install clang python fftw libzmq freetype libpng pkg-config libcrypt
+				- LDFLAGS="-lm -lcompiler_rt" pip install jupyter
+				- pip install numpy (ou pkg)
+				- pip install matplotlib
+				- run: jupyter notebook
+
+		- install termux-sudo-master : file in phone format folder:
+				- pkg install ncurses-utils
+				- change to extraction directory of termux-sudo-master
+				- cat sudo > /data/data/com.termux/files/usr/bin/sudo
+				- chmod 700 /data/data/com.termux/files/usr/bin/sudo
+				- sudo su [-] -> gets me to root shell
+				- sudo <comand>
+
+ ARCH LINUX IN TERMUX
+		- pkg update		
+    - pkg install curl bsdtar
+		- curl -OL https://raw.githubusercontent.com/TermuxArch/TermuxArch/master/setupTermuxArch.bash
+		- bash setupTermuxArch.bash
+		- exit
+		- pkg install vim
+		- touch .bashrc (in home):
+				~/arch/startarch at the bash prompt
+		- pacman -Syyu sudo wget curl
+		- sudo chown root:root /etc/resolv.conf
+		- sudo chmod 644 /etc/resolv.conf
+		- sudo passwd root
+		- addauser <user>
+		- exit
+		- sudo passwd <user>
+		- visudo
+		- And add your user's privileges under root's in the "User privilege specification" section: <user> ALL=(ALL) ALL
+		- su - <user>
+		- wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=107Fh0l_p0ItVkUufOhP9to-OU_6KYhPW' -O fresharch.sh && chmod +x fresharch.sh && sudo bash fresharch.sh
+		- add su - <user> to bash
+		- If you need to access shared storage, then cd into /storage/emulated/0
+		- create symlinks (ln -s) for storage
+
+
+	
+##############################################################################################################################################################################
+
+
+
+
+
+##############################################################################################################################################################################
+ #######################################################################   CONKY DESKTOP  ####################################################################################
+##############################################################################################################################################################################
+
+	
+		conky is responsible
+		/usr/share/conky conky_maia is the file I want. I have it saved in Linux backup
+		Install conky-manager
+		Change in config:
+			own_window yes
+			own_window_class Conky
+			own_window_type override
+			background yes
+		To use the conky-manager, comment on config the line with
+		To use the conky-manager, comment on config the line with
+		exec --no-startup-id start_conky_maia
+		check for driver: lspci -k
+		ifconfig: install net-tools : this allows to see the name of the
+		device in use (eg. wlan0)
+		add the files in conky-startup.sh like:
+		conky -c pathtofile
+		add conky-startup to config
+
+
+##############################################################################################################################################################################
+
+
+
+
+
+
+##############################################################################################################################################################################
+ #######################################################################   ENDEAVOUR STUFF  ####################################################################################
+##############################################################################################################################################################################
+
+	  Might need to connect to network:
+			nmcli d -> to determine the name of the wifi interface
+			nmcli r wifi on
+			nmcli d wifi list
+			nmcli d wifi connect my_wifi password <password>
+		Check wlan interface
+			iw dev
+		Script photo nationalgeographic
+			pacman -S python-pillow
+		Put touchpad file in /etc/X11/xorg.conf.d
+			NaturalScrolling off
+			AccelProfile -1
+		Nao consigo obter em lyx o output por causa de ficheiros eps:
+			pacman -S ghostscript
+		Ao instalar o Mathematica, o script não gostou que o path tivesse um espaco
+		Relativamente ao barrier:
+			O nome dos dois pcs nao pode ser o mesmo;
+			No ficheiro /etc/systemd/system/barrier.service tenho de ter:
+				[Unit]
+				Description=Barrier Client mouse/keyboard share
+				Requires=display-manager.service
+				After=display-manager.service
+				StartLimitIntervalSec=0
+
+				[Service]
+				Type=forking
+				ExecStart=/usr/bin/barrierc --no-restart --name raspberrypi --enable-crypto 192.168.0.109
+				Restart=always
+				RestartSec=10
+				User=pi
+
+				[Install]		
+				WantedBy=multi-user.target
+			O important é em --name ter o nome do pc que eu pus no servidor (exemplo: no servidor, disse que o monitor se chamava goncalo-desktop... Entao, este é o nome que tenho de usar)
+
+		Adicionar à config workspace_auto_back_and_forth yes
+
+
+	
+##############################################################################################################################################################################
+
+
+
+
+##############################################################################################################################################################################
+ #######################################################################  MAP KEYBOARD KEYS  ####################################################################################
+##############################################################################################################################################################################
+
+
+		Search for keycode:
+			- xmodmap -pk
+		Go to i3 config, add command:
+			- exec_always --no-startup-id xmodmap -e "keycode 106 = backslash" 
+		Note:
+			In the command above, keycode 106 is the key to be altered; backslash is the name of the
+			the name of the key(In this example, it is backslash) and the keycode of the key 
+			I want to replace (which also has a name associated with it, in this case it was
+			KP_Divide)
+
+		Example:
+			xmodmap -e "keycode 38 = a A aacute Aacute ae AE ae"
+			Then:
+				1) a: normal a
+    				2) A: shift + a
+    				3) á: altgr + a
+    				4) Á: shift + altgr + a
+		Using the example above, I can do:
+			exec_always --no-startup-id xmodmap -e "keycode 106 = backslash bar"
+			This will include the | in the key when doing shift+key
+
+			On my keyboard, ç -> alt + ,
+
+	
+##############################################################################################################################################################################
+
+
+
+
+
+##############################################################################################################################################################################
+ #######################################################################   PEN FORMAT   ####################################################################################
+##############################################################################################################################################################################
+
+	APAGAR PARTIÇÕES DE PEN
+			sudo fdisk -l -> para ver qual é a pen
+			sudo gdisk /dev/sdX -> em que X é o que encontro em cima
+				o, enter
+				n, enter, enter, enter
+				0700
+				w
+	CRIAR PARTIÇÃO
+			sudo mkfs.vfat /dev/sdX1
+
+	FORMAT PEN WITH ISO
+		- check where is pen with sudo fdisk --list
+		- dd if=manjaro.iso of=/dev/sd# status=progress
+		- sync
+		if I want to install windows, use woeusb
+
+	
+##############################################################################################################################################################################
+
+
 
 
 
@@ -1410,3 +1761,5 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 
  14) CHECK RAM
   - sudo dmidecode -t memory
+
+ 15) lxrandr to change monitors
