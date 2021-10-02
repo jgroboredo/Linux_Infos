@@ -1463,6 +1463,7 @@ connect first with barrier only after do this
 		- update firmware before new rom! Flashing the same way as the others
 		- Maybe need to really format data partition
 		- To update recovery, I can do it inside recover, flashing the zip
+		- To install, for example, Orange Fox, from TWRP, I can simply flash it from TWRP
 		- Installing lavender with gapps did not work... Need MindTheGapps
 
 
@@ -1480,9 +1481,10 @@ connect first with barrier only after do this
 		- run ssh: sshd
 		- kill ssh: pkill sshd
 		- apt update && apt upgrade
+		- port: 8022
 		- termux-setup-storage: (creates folder ~/storage)
 				-shared: phone internal memory directory
-				-external: sdcard (on sdcard: android-data-com.termux)
+				-external: sdcard (on sdcard: android-data-com.termux: Symlink external-1 points to a private Termux directory on external sdcard, i.e. /storage/XXXX-XXXX/Android/data/com.termux/files)
 		- pkg install tsu - using magisk this will give termux super user sudo
 		- install jupyter-notebook:
 				- apt install clang python fftw libzmq freetype libpng pkg-config libcrypt
