@@ -1462,10 +1462,13 @@ connect first with barrier only after do this
 		- flash gapps after flahsing rom
 		- update firmware before new rom! Flashing the same way as the others
 		- Maybe need to really format data partition
+		- To update recovery, I can do it inside recover, flashing the zip
+		- Installing lavender with gapps did not work... Need MindTheGapps
 
 
  CONNECTING TO PC
  		- Primeiro instalar termux
+			- install fdroid and install termux from  there
 		- pkg upgrade
 		- pkg install openssh
 		- touch ~/.ssh/authorized_keys
