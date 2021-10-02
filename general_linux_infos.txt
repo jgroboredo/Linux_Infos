@@ -1459,6 +1459,8 @@ connect first with barrier only after do this
 		- fastboot getvar all | grep “slot”
 		- If there's any problem, I can always flash xiaomi rom (bookmarks)
 		- with command: bash flash_all.sh (only need to connect phone in fastboot mode)
+		- flash gapps after flahsing rom
+		- update firmware before new rom! Flashing the same way as the others
 
 
  CONNECTING TO PC
