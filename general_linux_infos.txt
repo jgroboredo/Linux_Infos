@@ -1486,6 +1486,7 @@ connect first with barrier only after do this
 				-shared: phone internal memory directory
 				-external: sdcard (on sdcard: android-data-com.termux: Symlink external-1 points to a private Termux directory on external sdcard, i.e. /storage/XXXX-XXXX/Android/data/com.termux/files)
 		- pkg install tsu - using magisk this will give termux super user sudo
+		- After installing tsu, I can sudo chown /storage/XXXX-XXXX to be able to write on sdcard directly
 		- install jupyter-notebook:
 				- apt install clang python fftw libzmq freetype libpng pkg-config libcrypt
 				- LDFLAGS="-lm -lcompiler_rt" pip install jupyter
@@ -1493,7 +1494,8 @@ connect first with barrier only after do this
 				- pip install matplotlib
 				- run: jupyter notebook
 
-		- install termux-sudo-master : file in phone format folder:
+		- install termux-sudo-master : file in phone format folder (after installing tsu, dont
+need this):
 				- pkg install ncurses-utils
 				- change to extraction directory of termux-sudo-master
 				- cat sudo > /data/data/com.termux/files/usr/bin/sudo
