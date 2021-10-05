@@ -1261,6 +1261,7 @@ I can launch mathematica from dmenu
 	 - drive ntfs -> does not support inotify -> scan manually: Settings -> dashboard -> scan all libraries
 	 - In order to change folder go to settings -> Dashboard -> Libraries
 	 - If informations are not correct, select movie or series and click identify
+	 - Do not watch jellyfin on browser. Instead, yay -S jellyfin-media-player
 	 
 	 - DNLA
 	 	- add to yml: "network_mode: host" on jellyfin container and remove ports section
@@ -1362,6 +1363,26 @@ I can launch mathematica from dmenu
 			- nmcli connection modify CONNECTION_NAME (ex: ROBOREDO) +ipv4.routes "192.168.1.0/24 192.168.1.254"
 	 
 	 - Apparently, this fix isn't permanent
+
+	
+	CONNECT TO REBELO
+		- Add wg2.conf in /etc/wireguard (note: can have both vpns up)
+		- Alternatively, I can add the [Peer] section to wg1 and, then, I don't need wg2 and this works best.
+		
+		- Some notes if I didn't include the [Peer] section inside wg1:
+			- When I added the AllowedIPs on phone, I couldn't connect to Rebelo-pi. This happened because the reply from Rebelo wasn't
+			being forwarded to phone. I would need to add something like: "iptables -A FORWARD -i wg2 -o wg1 -j ACCEPT" in wg1 config.
+			- "sudo iptables -A FORWARD -j ACCEPT" also makes it work (this allows all trafic)
+			- "sudo iptables -D FORWARD -j ACCEPT" reverts the above command
+		
+		- Add 10.0.1.0/24 in AllowedIPs of peers
+		- wg show wg1 latest-handshakes -> to check if connection is successful
+		- echo "your_private_key" | wg pubkey -> generates public key using private key
+		- This connection only works when connected to vpn, even if I'm on my LAN!!!
+		- tcpdump -i any icmp (icmp are the type of packages, the ones used by ping command. This command listens to packages being sent through
+		my computer)
+
+	NOTE:  https://hub.docker.com/r/linuxserver/swag (for nginx server)
 ##############################################################################################################################################################################
 
 
