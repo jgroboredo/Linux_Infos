@@ -1289,7 +1289,7 @@ I can launch mathematica from dmenu
 					--rolling-restart restarts the containers one by one (important to deal with dependencies)
 					The container pulls automatically
 
-	 - docker system prune -a
+	 - docker system prune -a (after doing docker-compose up, otherwise deletes images I just pulled)
 
 
 	 
