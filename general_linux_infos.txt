@@ -1364,7 +1364,7 @@ I can launch mathematica from dmenu
 	 
 	 - Apparently, this fix isn't permanent
 
-	
+  
 	CONNECT TO REBELO
 		- Add wg2.conf in /etc/wireguard (note: can have both vpns up)
 		- Alternatively, I can add the [Peer] section to wg1 and, then, I don't need wg2 and this works best.
@@ -1381,6 +1381,39 @@ I can launch mathematica from dmenu
 		- This connection only works when connected to vpn, even if I'm on my LAN!!!
 		- tcpdump -i any icmp (icmp are the type of packages, the ones used by ping command. This command listens to packages being sent through
 		my computer)
+
+  UDP2RAW
+		- pacman -S udp2raw-tunnel
+		- Open tcp port on router for udp2raw (e.g: 58374)
+		- I can still have a direct port for wireguard (e.g. 57278). This is also the ListenPort in wg1.conf
+		- On server, run: udp2raw -s -l "0.0.0.0:58374" -r "127.0.0.1:57278" -k "tgbyhnrfv" --raw-mode faketcp -a :
+		  - "0.0.0.0:58374" -> this means traffic can come from anywhere (0.0.0.0) and udp2raw listens on port 58374, which I specifically openned in router
+			- "127.0.0.1:57278" -> this means that traffic coming from port 58374 is going to be sent to port 57278, which is wireguard's port
+			- Example udp2raw.service:
+			
+			[Unit]
+			Description=udp2raw-tunnel client service
+			ConditionFileIsExecutable=/usr/bin/udp2raw
+			After=network-online.target
+
+			[Service]
+			Type=simple
+			RemainAfterExit=yes
+			ExecStart=/usr/bin/udp2raw -s -l "0.0.0.0:58374" -r "127.0.0.1:57278" -k "tgbyhnrfv" --raw-mode faketcp -a
+			Restart=on-failure
+
+			[Install]
+			WantedBy=multi-user.target
+
+		- On client: sudo udp2raw -c -l "127.0.0.1:5634" -r "$(ssh goncalo@jgroboredo.ddns.net 'curl -s ifconfig.me'):58374" -k "tgbyhnrfv" --raw-mode faketcp -a
+		  - "127.0.0.1:5634" -> local traffic to port 5634
+			- "$(ssh goncalo@jgroboredo.ddns.net 'curl -s ifconfig.me'):58374" -> target is my ipv4 ip and the port where upd2raw is listening on server, meaning in this case 58374
+		- The only thing left is to change wireguard config in the client: 
+		  - For this, simply create a new config;
+			- Add in the [Interface] group the line: "MTU = 1300" (udp2raw doesn't support large packages)
+			- Change endpoint to: "127.0.0.1:5634"
+
+ 
 
 	NOTE:  https://hub.docker.com/r/linuxserver/swag (for nginx server)
 ##############################################################################################################################################################################
