@@ -709,6 +709,7 @@ SOME COMMANDS
 	- Run: wal --theme base16-nord
 	- Add to .zshrc: (cat ~/.cache/wal/sequences &)
 	- Add to .vimrc:
+		- Plug 'dylanaraps/wal.vim' (install with PlugInstall)
 		- colorscheme wal
 		- set background=dark
 
