@@ -1836,3 +1836,4 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 	- /etc/ssh/sshd_config -> Allow pubkey and add authorized_keys file;
 	- chsh -s $(which zsh)
 	- sudo service ssh restart
+	- redmine: couldn't add repos to redmine: change permissions: chmod 775 /path/to/dir
