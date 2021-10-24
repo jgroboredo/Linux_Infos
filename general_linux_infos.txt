@@ -1480,7 +1480,7 @@ connect first with barrier only after do this
 	
 			[Service]
 			Type=forking
-			ExecStart=/usr/bin/barrierc --no-restart --name raspberrypi --enable-crypto 192.168.0.109
+			ExecStart=/usr/bin/barrierc --no-restart --name raspberrypi (name I want for the client to be known) --enable-crypto 192.168.0.109 (ip of server)
 			Restart=always
 			RestartSec=10
 			User=pi
@@ -1496,6 +1496,8 @@ connect first with barrier only after do this
 		so that the service doesn't run when I go to openbox, since I want to play cs,
 		add to /etc/sudoers : goncalo ALL = NOPASSWD: /bin/systemctl stop barrier.service
 		and add sudo systemctl stop barrier.service to autostart
+
+		Barrier does not work on wayland
 
 
 ##############################################################################################################################################################################
