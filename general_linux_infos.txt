@@ -1868,3 +1868,7 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 	- chsh -s $(which zsh)
 	- sudo service ssh restart
 	- redmine: couldn't add repos to redmine: change permissions: chmod 775 /path/to/dir
+ 
+ 17)dmenu-extended
+  - For apps to open I need desktop files to associate a given mimetype to a binary
+	- After doing the above step, rebuild cache
