@@ -1869,6 +1869,19 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 	- sudo service ssh restart
 	- redmine: couldn't add repos to redmine: change permissions: chmod 775 /path/to/dir
  
- 17)dmenu-extended
+ 17) dmenu-extended
   - For apps to open I need desktop files to associate a given mimetype to a binary
 	- After doing the above step, rebuild cache
+ 
+ 18) NetworkManager/Network interface stopped working
+  - Solution: boot to a pen with manjaro and reboot
+	- See logs:
+	 - find /sys/class/net -follow -maxdepth 2 -name wireless
+	 - cat /proc/net/wireless
+	 - iw dev
+	 - sudo iw dev wlp0s20f3 connect "ROBOREDO"
+	 - sudo dmesg | grep firmware
+	 - sudo dmesg --level=emerg,alert,crit,err
+	 - lspci | grep net
+	 - lsmod
+	 - sudo ls /etc/netctl/interfaces
