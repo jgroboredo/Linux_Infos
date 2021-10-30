@@ -292,6 +292,18 @@ SEARCH RECURSIVELY IN DIRECTORY
  Ordered bibliography:
   - Use style unsrt and add to preamble: \usepackage{notoccite}
 
+ INSTALL CUSTOM CLS
+	- latex my_class.ins -> produces my_class.cls
+	- kpsewhich -var-value=TEXMFHOME -> prints path where to put cls
+	- Regarding the above command, it's good to put the usual path: $HOME/texmf/tex/latex/commonstuff/
+	- kpsewhich my_class.cls -> to check path of the class
+	- Write lyx layout: In order to do this, find the basis class for our new class. For that, inspect my_class.cls and check the line LoadClass. It implies that my_class.cls is a descendent of that class (let's suppose it's dependent on report class). Then, in /usr/share/lyx/layouts copy report.layout, change its name to my_class.layout and edit like this:
+	\DeclareLaTeXClass[my_class]{name_of_layout}
+	Input report.layout
+ - In lyx, reconfigure. Now, name_of_layout is the text we see in Document-Class
+ - Default classes: /usr/share/texmf-dist/latex/elsarticle/elsarticle.cls
+
+
 ##############################################################################################################################################################################
 
 
