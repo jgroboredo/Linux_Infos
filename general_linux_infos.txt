@@ -1046,6 +1046,14 @@ The question is not avahi or cups but : Do I need/want printer autodiscovery or 
 If answer is yes > enable avahi , if answer is no > disable avahi
 Either use cups or cups + avahi
 
+HP SCANNER
+	- wiki page: SANE/Scanner-specific problems
+	- pacman -S sane-airscan ipp-usb
+	- pacman -S hplip
+	- Go to system-config-printer and now add printer (printing should work from now on)
+	In order to scan:
+		- hp-makeuri <scanner_ip> 
+		- scanimage --device "<hpaio:/net....>" --format=png --resolution 300 >scan.png
 
 ##############################################################################################################################################################################
 
