@@ -1052,7 +1052,7 @@ HP SCANNER
 	- pacman -S hplip
 	- Go to system-config-printer and now add printer (printing should work from now on)
 	In order to scan:
-		- hp-makeuri <scanner_ip> 
+		- hp-makeuri <scanner_ip> / scanimage -L 
 		- scanimage --device "<hpaio:/net....>" --format=png --resolution 300 >scan.png
 
 ##############################################################################################################################################################################
