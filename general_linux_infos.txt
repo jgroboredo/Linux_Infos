@@ -1214,6 +1214,11 @@ I can launch mathematica from dmenu
 	 	 Then, only need to do ip(192.168.1.64):port on any device and it will work.
 	 - Login on web: admin, pw: adminadmin
 	 - On qbittorrent, tools->options->default save path: /downloads/
+	   Notes on the downloads folder:
+		 			- It is important that this folder is mounted to some directory on my computer (check docker-compose) and that this mount point is 
+					the same in radarr/sonarr. Radarr/sonarr will check the download folder in the qbittorrent settings (which is /downloads) and will
+					therefore look in the directory /downloads. Therefore, /downloads must be a volume in docker-compose and should point to the same
+					folder as in qbittorrent.
 	 - On qbittorrent, tools->options->(under automatically add torrents from) Monitored Folder -> /blackhole
 	 - Get image: https://hub.docker.com/r/linuxserver/radarr
 	 - docker ps -a -> check running containers
@@ -1289,6 +1294,9 @@ I can launch mathematica from dmenu
 	 
 	QBITTORRENT
 	 - In order to stop seeding go to tools -> bittorrent -> seeding limits -> min ratio 0.01 -> max seed time 1 minute (Pause torrent, remove doesnt work)
+
+	BAZARR
+	 - Go to settings -> Languages -> Add New Profile -> Add desired languages -> Below this option, check the boxes Series and Movies and choose the profile just created in the step before
 
 	UPDATE CONTAINERS
 	 - docker-compose pull 
