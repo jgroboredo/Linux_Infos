@@ -1199,6 +1199,29 @@ I can launch mathematica from dmenu
 
 
 
+##############################################################################################################################################################################
+ #######################################################################   FAIL2BAN   ##########################################################################################
+##############################################################################################################################################################################
+
+	FAIL2BAN
+		- pacman -S fail2ban
+		- enable/start fail2ban.service
+	
+	CONFIGURATION
+		- file /etc/fail2ban/jail.local:
+			[DEFAULT]
+			bantime = -1
+			findtime = 1d
+			maxretry = 5
+			
+			[sshd]
+			enabled = true
+
+##############################################################################################################################################################################
+
+
+
+
 
 ##############################################################################################################################################################################
  #######################################################################   DOCKER   ##########################################################################################
@@ -1355,6 +1378,9 @@ I can launch mathematica from dmenu
 	 - To turn vpn on: sudo wg-quick up wg1
 	 - Startup: sudo systemctl enable wg-quick@wg1
 	 - To check hand shakes: sudo wg show wg1 latest-handshakes 
+	 - In order to fix the problem of the VPN not starting with systemctl service, a possible cause might be fail2ban. Then:
+	 		- vim /usr/lib/systemd/system/fail2ban.service
+				Append to "After= :" the following: wg-quick@wg1.service 
 
 	 - On laptop: pacman -S wireguard-tools
 	 - Copy /etc/wireguard/peers/laptop.conf to /etc/wireguard/wg0.conf 
