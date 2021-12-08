@@ -1176,6 +1176,15 @@ I can launch mathematica from dmenu
 		- To use ssh-agent, leave all the other options blank (and eventually refuse them)
 
 
+	PROBLEM
+		- NewFs: couldn't connect SSH: ssh: handshake failed: ssh: unable to authenticate, attempted methods [none publickey], no supported methods remain
+		- This was happening because of the type of keys. I should generate: ssh-keygen -t ed25519
+		- Solution: add to /etc/ssh/sshd_config: PubkeyAcceptedAlgorithms=+ssh-rsa
+		- I should also add: 
+			PermitRootLogin no
+			PasswordAuthentication no
+
+
 ##############################################################################################################################################################################
 
 
