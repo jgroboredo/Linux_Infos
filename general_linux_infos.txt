@@ -663,6 +663,9 @@ SOME COMMANDS
 	ANNOYING BAR AT TOP
 		- Change picom config: frame-opacity option
 
+	WATCH STREAM
+		- pacman -S yt-dlp
+		- mpv 'link'
 ##############################################################################################################################################################################
 
 
@@ -1978,3 +1981,6 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 	 - lspci | grep net
 	 - lsmod
 	 - sudo ls /etc/netctl/interfaces
+ 
+ 19) Rebuild all yay packages depending on python:
+ 	- yay -S $(pacman -Qoq /usr/lib/python3.9) --answerclean All
