@@ -1826,9 +1826,9 @@ need this):
 
 
 
-##############################################################################################################################################################################
+#############################################################################################################################################################################
  #######################################################################   HDD FORMAT   ####################################################################################
-##############################################################################################################################################################################
+#############################################################################################################################################################################
 
 	sudo fdisk -l
 	
@@ -1855,6 +1855,46 @@ need this):
 ##############################################################################################################################################################################
 
 
+
+#############################################################################################################################################################################
+ #######################################################################   RASPBERRY PI   ###################################################################################
+#############################################################################################################################################################################
+	
+	- Needed to systemctl enable sshd inside chroot (chroot root/@)
+	- p10k configure to configure p10k theme for zsh
+	- For username in zsh prompt: uncomment context line in .p10k file in POWERLEVEL9K_LEFT_PROMPT_ELEMENTS
+	- In order for the systemctl --user to work, need to set UsePAM yes in /etc/ssh/sshd_config
+	- In rebelo script change:
+		- rebelo-pi to goncalo-pi
+		- change also the Disk to avoid potential problems
+	
+	- file /etc/iptables/iptables.rules:
+		*filter
+		:INPUT ACCEPT [0:0]
+		:FORWARD ACCEPT [0:0]
+		:OUTPUT ACCEPT [0:0]
+		COMMIT
+
+	- before finishing formating I need to:
+		- change iptables.rules
+		- change sshd_config (port and pw authentication)
+		- enable sshd service
+
+	- on sdcard, aarch64 did not work. Need to change config/config.sh:
+		- ARCH_CPU_BRAND=armv7h
+		- ARCH-KERNEL=linux-rpi
+
+	- In order to be able to build the packages to arm architecture from arch x86_64 need to install:
+		- qemu-user-static-bin
+		Other dependencies:
+		- arch-install-scripts
+		- uboot-tools
+		- aria2
+		- iwd
+		- gnu-netcat (for nc)
+		- arp-scan
+		- exfatprogs (for mkfs.exfat)
+##############################################################################################################################################################################
 
 
 
@@ -1984,3 +2024,5 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
  
  19) Rebuild all yay packages depending on python:
  	- yay -S $(pacman -Qoq /usr/lib/python3.9) --answerclean All
+
+ 20) nc : install pacman -S gnu-netcat
