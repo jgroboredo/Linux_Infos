@@ -131,6 +131,7 @@ the branch) if I don't want to do it to the default one
 
 USE CURL TO DOWNLOAD GITHUB
 	- curl -LkSs https://api.github.com/repos/jgroboredo/arch_install/tarball -o master.tar.gz 
+	- tar xf master.tar.gz
 --------------------------------------------------
 
 DOWNLOAD A FILE FROM GITHUB
