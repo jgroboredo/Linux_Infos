@@ -1987,6 +1987,11 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 		 - Check services: systemctl --user list-unit-files | grep enabled
 		 - Check services (all): systemctl list-unit-files | grep enabled
 		 - Also, need to add to zshrc a function to load keys, since ssh-add only works for the current session 
+		 - To have a proxy:
+Host 10.0.10.3
+    User goncalo
+    ProxyCommand ssh goncalo@jgroboredo.ddns.net -W %h:%p
+
 
  8) FIREFOX CRASH
   - Seems like it was the gtk theme from popOS that made firefox to crash
