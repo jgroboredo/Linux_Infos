@@ -1888,6 +1888,7 @@ need this):
 				w
 	CRIAR PARTIÇÃO
 			sudo mkfs.vfat /dev/sdX1
+			sudo mkfs.exfat (for SD CARD)
 
 	FORMAT PEN WITH ISO
 		- check where is pen with sudo fdisk --list
