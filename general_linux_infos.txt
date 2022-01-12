@@ -781,6 +781,7 @@ NOTE
 
 	- Latex in impress: pacman -S libreoffice-extension-texmaths
 	- Check extension in Extension Manager inside libreoffice
+	- To install ExpandAnimations go to Tools->ExtensionManager and add there the oxt file
 
 ##############################################################################################################################################################################
 
