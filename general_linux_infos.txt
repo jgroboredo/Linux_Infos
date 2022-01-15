@@ -1276,6 +1276,55 @@ I can launch mathematica from dmenu
 
 
 ##############################################################################################################################################################################
+ #######################################################################   RP MONITOR   ##########################################################################################
+##############################################################################################################################################################################
+	
+	- for the monotoring need 3 docker containers: grafana, influxdb (database), telegraf
+	- the ports on docker-compose need to match the ones in telegraf.conf
+	- In the telegraf conf:
+		- urls: needs to be 127.0.0.1:(port of docker compose)
+		- username and pw must match what I put in influxdb
+		- hostname must be the one on of pi
+	
+	CREATE DATABSE IN INFLUXDB
+		- docker exec -it influxdb bash 
+		- influx
+		- CREATE USER "grafana" WITH PASSWORD 'qwe' (pw configured in grafana)
+		- CREATE USER "telegraf" WITH PASSWORD 'asd' (pw put on config)
+		- CREATE DATABASE "pi"
+		- GRANT ALL ON "pi" TO "grafana"
+		- GRANT ALL ON "pi" TO "telegraf"
+		- SHOW DATABASES
+
+	CONFIG GRAFANA
+		- add data source:
+			- Configuration -> Data Sources:
+			- url: http://influxdb:8086
+			- database: pi
+			- User: grafana (same as defined in influxdb)
+			- Pw: same as defined in influxdb
+		- import dashboard: 
+			- ID: 10578
+			- Select data source added above
+
+
+Notes:
+	- In order to restart a container do docker-compose up container_name (this reloads the yml if it changed); otherwise use docker-compose restart container_name
+	- docker rm -f container_name (deletes container)
+	- docker inspect influxdb | jq ".[0].Config.Volumes"
+	- In telegram.conf I need 127.0.0.1 : nas portas means "bind to all addresses" mas aqui quero mesmo aceder ao localhost
+
+
+##############################################################################################################################################################################
+
+
+
+
+
+
+
+
+##############################################################################################################################################################################
  #######################################################################   DOCKER   ##########################################################################################
 ##############################################################################################################################################################################
 
