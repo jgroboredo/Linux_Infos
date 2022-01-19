@@ -2027,6 +2027,7 @@ need this):
 
 	- In order for the ssh-agent to work, add to /etc/ssh/sshd_config:
 		- UsePAM yes
+	Don't forget systemctl --user cannot be ran with sudo
 	
 	- for docker to work, don't forget to change the UID in everyfile.
 	The error:
