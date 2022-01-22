@@ -1217,6 +1217,18 @@ I can launch mathematica from dmenu
 		- ssh port: blank
 		- To use ssh-agent, leave all the other options blank (and eventually refuse them)
 
+	RCLONE UNION
+	 - [paulo_http_single]
+		 type = http
+		 url = https://joserebelo:PASSWORD@paulo
+
+		 [paulo_http]
+		 type = union
+		 upstreams = paulo_http_single:/:ro /cache/union
+
+	 - The first part on the union config is read-only but /cache/union is not, allowing to add our own stuff
+	 - We need to mount (for the union to work) the [paulo_http] one.
+	 - what we write in the mounted drive will go to /cache/union and reading merges both
 
 	PROBLEM
 		- NewFs: couldn't connect SSH: ssh: handshake failed: ssh: unable to authenticate, attempted methods [none publickey], no supported methods remain
