@@ -1740,6 +1740,7 @@ connect first with barrier only after do this
 		- backup -> boot, system image, data
 		- adb pull /sdcard/Fox -> copy of the backup to pc
 		- adb push zipname.zip /sdcard  (no need to wipe to do this) 
+		- adb reboot bootloader
 		- important partitions to wipe -> system, cache, data
 		- to flash recovery: sudo fastboot flash recovery ficheiro-do-recovery.img
 		- pacman -S android-udev (fastboot has no permissions)
