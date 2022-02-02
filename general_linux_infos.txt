@@ -1815,6 +1815,12 @@ need this):
 		- If you need to access shared storage, then cd into /storage/emulated/0
 		- create symlinks (ln -s) for storage
 
+ PROCESS
+ 		- Boot to recovery
+		- Format system, data, cachr
+		- Reboot to recovery to reload partition table
+		- Install rom, format data, reboot to rom
+
 
 	
 ##############################################################################################################################################################################
