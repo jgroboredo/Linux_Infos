@@ -178,6 +178,9 @@ GIT MERGE "DELETED BY US"
 COMMIT ID AND SHA
 	- git show -s --format=%H -> shows the last commit full id
 	- git show -s --format=%h -> shows the last commit sha
+
+GIT OVER SSH USING SSH CONFIG
+	- git remote set-url origin ssh://pi(here config name)/home/goncalo/HDD/Documents/git_repos/Notes.git(here full path)
  
 ##############################################################################################################################################################################
 
