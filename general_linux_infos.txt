@@ -1256,6 +1256,9 @@ I can launch mathematica from dmenu
 			PermitRootLogin no
 			PasswordAuthentication no
 
+	SYNC
+		- rclone sync /home/goncalo/Documents pi:/home/goncalo/HDD/Documents/Backups/Laptop/Documents --log-file /home/goncalo/.local/my_logs/backup.log -v --exclude lap_dotfiles/ --transfers=8 --progress
+		- -i flag asks question about copying 
 
 ##############################################################################################################################################################################
 
