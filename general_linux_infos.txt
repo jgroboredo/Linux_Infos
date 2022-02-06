@@ -1708,6 +1708,8 @@ connect first with barrier only after do this
 	- flatpak install flathub com.usebottles.bottles
 	- flatpak run com.usebottles.bottles
 
+	- sudo ln -s /var/lib/flatpak/exports/bin/chat.rocket.RocketChat /usr/bin/rocket-chat
+
 ##############################################################################################################################################################################
 
 
