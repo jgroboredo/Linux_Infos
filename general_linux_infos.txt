@@ -1709,7 +1709,7 @@ connect first with barrier only after do this
 	- flatpak run com.usebottles.bottles
 
 	- sudo ln -s /var/lib/flatpak/exports/bin/chat.rocket.RocketChat /usr/bin/rocket-chat
-	- /var/lib/flatpak/app/media.emby.EmbyTheater/current/active/files/share/applications/media.emby.EmbyTheater.desktop
+	- /var/lib/flatpak/app/media.emby.EmbyTheater/current/active/files/share/applications/media.emby.EmbyTheater.desktop to /usr/share/applications/
 
 ##############################################################################################################################################################################
 
