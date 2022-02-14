@@ -1454,6 +1454,47 @@ Notes:
 	BAZARR
 	 - Go to settings -> Languages -> Add New Profile -> Add desired languages -> Below this option, check the boxes Series and Movies and choose the profile just created in the step before
 
+	
+	NGINX
+	 - Need to get nginx.conf and proxy.conf from swag github;
+	 - On the nginx.conf carefull with the following lines:
+	   - include /config/nginx/worker_processes.conf;
+		 - include /config/nginx/resolver.conf;
+	 - /config/nginx/resolver.conf:
+	 	 - resolver  127.0.0.11 valid=30s; (note that the ";" is important in these files
+	 - The configs to reverse proxy can be found in github: linuxserver/reverse-proxy-confs (I want the subfolder ones)
+	 - In order to setup the sonarr, jackett, etc reverse-proxy config, I need to read the config because it asks to change the Base URL, etc
+	 - In order to setup grafana, needed to add to the docker-compose config:
+	 		- environment:
+					- "GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s:%(http_port)s/grafana/"
+	 - The above configs only have the "location" block which goes inside the server block. The default server config can be found in /config/nginx/site-confs/default. There, I should add "include /config/nginx/proxy-confs/.*subfolder.conf;" and comment both "location" blocks there. 
+
+	 - The organizr config has as upstream_port port 80. In docker-compose.yml, organizr has host post 9983 mapped to port 80 on the container. However, nginx bypasses that and goes straight to port 80 on the container -> that's why the reverse proxy config works.
+
+	 - It happened that, when I connected to organizr behind the nginx server, I could not login. This happened because the browser was rejecting cookies. The problem was in proxy.conf file. It assumed it was in https. Only need to comment the lines:
+	 		- proxy_set_header X-Forwarded-Proto https;
+			- proxy_set_header X-Forwarded-Ssl on;
+
+	 - Changed all port mapping in docker-compose.yml to 127.0.0.1:port so it can only be access from pi. Since everything is reverse proxied, it's fine
+	 - The nginx docker-compose config has in port section:
+	 		- 80:80 which defaults to 0.0.0.0:80:80 (that's why I can access nginx from the entire network)
+	 - In order to reverse-proxy emby I commented out the line "network_mode: host" otherwise the reverse-proxy config does not work by default. If I want to use "network_mode: host" I need change the reverse-proxy config: "set $upstream_app emby" -> "set $upstream_app 10.0.10.1". Inside emby, in Network, need to change "Secure connection mode" to "Handled by reverse proxy". One thing I noticed was that UPnP was not working. In order for it to work, in emby, I need to add, in Network -> Lan Networks: 192.168.0.0/24, 10.0.10.0/24  
+
+	 - Couldn't find rclone serve dlna in laptop with firewalld. Use firewall gui, go to options -> change zones of connections -> select my network and put it as home. Then, select my network in connections, in zones tab  select home, then services, and tick upnp-client 
+
+	 - In the media reverse proxy config, the lines: "alias /media" and "facyindex on" are the ones responsible to show the content of the folder /media of the container (folder where I wanna mount the stuff I wanna show). Note that I also need to "git clone https://github.com/alehaa/nginx-fancyindex-flat-theme.git" and 
+	 				sed -i '/<small>/,/<\/small>/d' "$FANCYINDEX_THEME_PATH/layout/footer.html"
+					sed -i "s/File Browser/$(cat /etc/hostname) \| media/g" -i "$FANCYINDEX_THEME_PATH/layout/header.html"
+					sed -i "s/'Home'/''/g" -i "$FANCYINDEX_THEME_PATH/layout/js/breadcrumbs.js"
+ 
+	SOME IMPORTANT CONCEPTS
+		- Docker bypasses iptables
+		- localhost de um container não é o mesmo que de outro (estao isolados)
+		- Can't specify ports with network_mode host
+		- In iptables.rules, the line:
+			":FORWARD DROP [0:0]"
+		blocks all forwarded packets
+
 	UPDATE CONTAINERS
 	 - docker-compose pull 
 	 - docker-compose up
