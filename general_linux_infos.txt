@@ -1494,6 +1494,8 @@ Notes:
 		- In iptables.rules, the line:
 			":FORWARD DROP [0:0]"
 		blocks all forwarded packets
+		- If I want to find the docker ip of a container: docker network inspect -f '{{range .IPAM.Config}}{{.Subnet}}{{end}}' <container_id>
+		- The <container_id> can be found by running "docker ps -a"
 
 	UPDATE CONTAINERS
 	 - docker-compose pull 
