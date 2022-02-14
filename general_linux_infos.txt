@@ -1454,6 +1454,8 @@ Notes:
 	BAZARR
 	 - Go to settings -> Languages -> Add New Profile -> Add desired languages -> Below this option, check the boxes Series and Movies and choose the profile just created in the step before
 
+	ORGANIZR
+	 - In order for qbittorrent to work: Tools -> WebUI -> Untick "Enable clickjacking protection" and "Enable Cross-Site Request Forgery protection"
 	
 	NGINX
 	 - Need to get nginx.conf and proxy.conf from swag github;
