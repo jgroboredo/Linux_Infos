@@ -2267,3 +2267,5 @@ Host 10.0.10.3
  	- yay -S $(pacman -Qoq /usr/lib/python3.9) --answerclean All
 
  20) nc : install pacman -S gnu-netcat
+
+ 21) Can add stuff to path in .xinitrc; a user systemd service needs to have WantedBy=default.target and not multi-user
