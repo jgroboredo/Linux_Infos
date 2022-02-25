@@ -2269,3 +2269,4 @@ Host 10.0.10.3
  20) nc : install pacman -S gnu-netcat
 
  21) Can add stuff to path in .xinitrc; a user systemd service needs to have WantedBy=default.target and not multi-user
+ 		 The rclone command will not work in a user service since systemd doesn't have access to env variables. For that, just add a env.conf file to .config/environment.d/ (check printenv)  
