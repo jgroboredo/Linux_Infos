@@ -2061,6 +2061,15 @@ need this):
 		4) Borg mount (needs pacman -S python-llfuse)
 		  - borg mount path/to/repo::backup/name /mount/point
 
+	MOUNT BACKUP AUTOMATICALLY
+		- Do it with systemd mount: needs a mount and .automount unit; This allows to export environment variables in the mount process;
+		
+		- I'm mounting the backup repo using fstab (I mount it directly because I need the backup user) and then I use that to mount the borg backup through systemd mount; Eventually, this could be avoided if I used umask in borg (in umask the permissions subtract - 0077 results in 700; I probably want 0007)
+		
+		- The systemd units to mount need to have the path where it is going to be mounted in the name. Example:
+			. Path where to mount: /mnt/borg_backup/backup_files -> Systemd unit name: mnt-borg_backup-backup_files.{mount,automount}
+
+		- The entry in fstab doesn't use the env variables specified in the systemd mount unit
 	
 ##############################################################################################################################################################################
 
