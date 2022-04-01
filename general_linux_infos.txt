@@ -2380,3 +2380,5 @@ Host 10.0.10.3
  22) Delay a systemd service:
  		 [Service]
 		 ExecStartPre=/bin/sleep 30 
+
+ 23) DMZ - portas abertas para toda a internet
