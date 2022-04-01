@@ -1187,6 +1187,9 @@ SWAY MY EXPERIENCE
 		- The env variable MOZ_ENABLE_WAYLAND=1 enables to run firefox on wayland mode. 
 		However, it doesn't load the gtk theme this way. Then, I added to .confi/sway/env the
 		flag GTK_THEME=Nordic. Need to change this in accordance to the gtk theme I want
+		
+	FIX CANNOT OPEN DISPLAY
+		- pacman -S xorg-server-xwayland
 
 	
 	MATHEMATICA
