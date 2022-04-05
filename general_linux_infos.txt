@@ -2124,6 +2124,7 @@ need this):
 		- dd if=manjaro.iso of=/dev/sd# status=progress
 		- sync
 		if I want to install windows, use woeusb
+			- sudo woeusb --target-filesystem NTFS --device Win10_20H2_v2_French_x64.iso /dev/sdb	
 
 	
 ##############################################################################################################################################################################
