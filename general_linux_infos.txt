@@ -1359,6 +1359,30 @@ I can launch mathematica from dmenu
 	    - Go to Manage EFI boot option
 			- Check the path to the manjaro boot option
 			- Bcdedit /set {bootmgr} path path\from\above\step (e.g. \EFI\Manjaro\grubx64.efi)
+	
+	FIX WINDOWS BOOTLOADER GONE
+		- shift+f10
+		- diskpart
+		- list disk
+		- select disk X (Where windows was installed)
+		- list volume
+		- select volume Y
+		- assign letter=Z (where Z is the letter you want to "mount")
+		- do the same to efi partition:
+			- list disk
+			- select disk X (Where is the EFI partition)
+			- list volume
+			- select volume volume-number
+			- assign letter=M 
+		- exit diskpart (exit)
+		- run: bcdboot <Letter-Assigned-To-Windows>:\Windows 
+				eg: bcdboot Z:\Windows
+			- optionally: bcdboot Z:\Windows /s M: (/s copies to drive M)
+		- Unmount devices:
+			- diskpart
+			- list volume
+			- select volume VOLUME-NUMBER
+			- remove letter DRIVE_LETTER
 
 
 ##############################################################################################################################################################################
