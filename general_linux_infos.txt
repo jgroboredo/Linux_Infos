@@ -2319,6 +2319,11 @@ and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) al
 Host 10.0.10.3
     User goncalo
     ProxyCommand ssh goncalo@jgroboredo.ddns.net -W %h:%p
+	- If ssh service fails to start with error: Start request repeated too quickly, do the following:
+		- sudo systemctl stop sshd.socket and sshd.service
+		- sudo /usr/bin/sshd -d
+		- If message from above command states a permission issue:
+			- sudo chmod 400 /etc/ssh/ssh*key
 
 
  8) FIREFOX CRASH
