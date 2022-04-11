@@ -2444,3 +2444,5 @@ Host 10.0.10.3
 		 ExecStartPre=/bin/sleep 30 
 
  23) DMZ - portas abertas para toda a internet
+
+ 24) dhcpcd -T eth0 - check dns
