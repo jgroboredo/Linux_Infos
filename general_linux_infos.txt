@@ -1597,6 +1597,12 @@ Notes:
 		blocks all forwarded packets
 		- If I want to find the docker ip of a container: docker network inspect -f '{{range .IPAM.Config}}{{.Subnet}}{{end}}' <container_id>
 		- The <container_id> can be found by running "docker ps -a"
+		- docker inspect <container_name>
+		- docker stop/logs/(rm -f)/restart <container_name>
+		- docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container_id>
+		- docker images -> prints images of containers
+		- docker image inspect <image_id_from_above_step>
+		- docker manifest inspect --verbose <container_name>
 
 	UPDATE CONTAINERS
 	 - docker-compose pull 
