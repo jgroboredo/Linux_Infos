@@ -2002,6 +2002,9 @@ need this):
 		- Reboot to recovery to reload partition table
 		- Install rom, format data, reboot to rom
 
+ APPS ADB
+ 		- adb shell pm list packages
+		- adb uninstall com.example.myapp
 
 	
 ##############################################################################################################################################################################
