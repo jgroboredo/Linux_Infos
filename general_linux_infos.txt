@@ -292,6 +292,7 @@ SEARCH RECURSIVELY IN DIRECTORY
 		language=C++
 		frame=single
 		mathescape=true
+	- syoek --synctex-forward $$n:1:$$t $$o
 
  Ordered bibliography:
   - Use style unsrt and add to preamble: \usepackage{notoccite}
