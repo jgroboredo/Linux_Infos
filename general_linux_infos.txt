@@ -2456,3 +2456,12 @@ Host 10.0.10.3
  23) DMZ - portas abertas para toda a internet
 
  24) dhcpcd -T eth0 - check dns
+
+ 25) PERMISSIONS
+ 	- chown -R root:root /etc
+	- find /etc -type f -exec chmod 644 {} +
+	- find /etc -type d -exec chmod 755 {} +
+	- chmod 755 /etc/init.d/* /etc/rc.local /etc/network/* /etc/cron.*/*
+	- chmod 400 /etc/ssh/ssh*key
+	- check desktop_dotfiles
+
