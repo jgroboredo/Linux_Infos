@@ -1278,6 +1278,10 @@ I can launch mathematica from dmenu
 		- rclone sync /home/goncalo/Documents pi:/home/goncalo/HDD/Documents/Backups/Laptop/Documents --log-file /home/goncalo/.local/my_logs/backup.log -v --exclude lap_dotfiles/ --transfers=8 --progress
 		- -i flag asks question about copying 
 
+	ONEDRIVE
+		- rclone copy UsefulScripts OneDrive:Documents/UsefulScripts (copies the contents of UsefulScripts -> therefore I copy to Documents/UsefulScripts, otherwise would 
+		populate Documents with its contents)
+
 ##############################################################################################################################################################################
 
 
