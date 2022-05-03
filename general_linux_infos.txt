@@ -1780,6 +1780,11 @@ Notes:
 
 	- tar -cvzf - folder | gpg -c > folder.tar.gz.gpg
 	- gpg -d folder.tar.gz.gpg | tar -xvzf -
+	
+	DISABLE PW CACHE:
+	 - ~/.gnupg/gpg-agent.conf : 
+	 	  default-cache-ttl 1
+			max-cache-ttl 1
 
 
 ##############################################################################################################################################################################
