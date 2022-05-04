@@ -2028,6 +2028,7 @@ need this):
 
  APPS ADB
  		- adb shell pm list packages
+		- adb shell pm uninstall -k --user 0 NameOfPackage (get name from app info, advanced)
 		- adb uninstall com.example.myapp
 
 	
