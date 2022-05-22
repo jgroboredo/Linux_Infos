@@ -2405,6 +2405,10 @@ Host 10.0.10.3
 	vscode. It seems like a X11 problem. Moved to sway.
 	- Testing again firefox crashes on i3. For now, uninstalled xf86-video-intel. Since then, no crashes yet.
 
+	- FIREFOX SLOW START:
+		- about:config
+		- set 0 to all widget.use-xdg-desktop-portal
+
 
  9) ARCH NOT BOOTING IN VM
   - On a recent installation of arch on a VM, it did not boot after installing the custom grub-theme. 
