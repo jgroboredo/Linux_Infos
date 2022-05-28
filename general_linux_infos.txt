@@ -456,6 +456,11 @@ lsmod | grep kvm
 			  - change redirect_file to false
 			- Na verdade, isto não funciona porque tenho de mudar o ~/.profile para firefox LOL
 
+	- Can't access file (probably happens cause directory contains hidden folder .local):
+		- set c.ServerApp.use_redirect_file = False in ~/.jupyter/jupyter_server_config.py
+	- Stop server:
+		- lsof -n -i4TCP:[port-number]
+		- kill -9 [PID]
 
 ##############################################################################################################################################################################
 
