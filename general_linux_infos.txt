@@ -2518,3 +2518,4 @@ Host 10.0.10.3
 	- chmod 400 /etc/ssh/ssh*key
 	- check desktop_dotfiles
 
+ 26) Need imagemagick for blurlock
