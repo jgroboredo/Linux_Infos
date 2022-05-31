@@ -2519,3 +2519,5 @@ Host 10.0.10.3
 	- check desktop_dotfiles
 
  26) Need imagemagick for blurlock
+
+ 27) smbclient '//print-server.critical.pt/Drivers/' -U critical/jgroboredo (smbclient '//ip/Directory')
