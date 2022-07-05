@@ -2304,6 +2304,8 @@ need this):
 		- file unpacked-vmlinuz
 	
 	Check current version: ls /usr/lib/modules
+
+	sbctl list-bundles
 	
 	Generate new unified kernel image:
 		sbctl bundle -s -i /boot/intel-ucode.img \
