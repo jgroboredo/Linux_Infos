@@ -1637,6 +1637,22 @@ Notes:
 	 - docker system prune -a (after doing docker-compose up, otherwise deletes images I just pulled)
 
 
+  SOME NOTES BASED ON EXPERIENCE
+   - docker run -it image_name sh -> runs an interactive shell container using the image "image_name"
+     The above command can be necessary because if the container is a one-shot, it will simply die after running: docker run <image_name>
+     However, I can also do "docker run -t -d <image_name> sh" and, even it's an one-shot, it will be kept alive. Then, I can always do a "docker exec -it <container_id> sh" to enter again inside the container
+   - Other ways of starting a container: sudo docker create <image_name>; sudo docker start <container_id_from_previous_command>
+   - docker image history --no-trunc image_name > image_history -> steps in the Dockerfile
+   - docker ps -a -> lists containers and the container id
+   - save the id in a variable: "container_id=$(docker create image_name)"
+   - Extracting a file from an image: docker cp "$container_id:$source_path" "$destination_path"
+   - Pushing a file to an image: docker cp folder/. "<container_id>:/path/in/container"  -> this actually pushes all files inside folder
+   - docker image inspect <image>
+   - docker container prune -> removes all containers
+   - git reset HEAD~1 -> go back one commit before pushing
+   - jenkins scm
+   - https://www.infoq.com/articles/build-a-container-golang/
+
 	 
 ##############################################################################################################################################################################
 
