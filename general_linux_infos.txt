@@ -2624,4 +2624,5 @@ Host 10.0.10.3
 
  28) bluedevil; bluedevil-wizard; systemctl start bluetooth;
      pavucontrol: High Fidelity Playback (A2DP Sink, codec LDAC)
+		 blueberry-tray
 
