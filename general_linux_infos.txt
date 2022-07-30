@@ -2620,3 +2620,6 @@ Host 10.0.10.3
 
  27) smbclient '//print-server.critical.pt/Drivers/' -U critical/jgroboredo (smbclient '//ip/Directory')
 
+ 28) bluedevil; bluedevil-wizard; systemctl start bluetooth;
+     pavucontrol: High Fidelity Playback (A2DP Sink, codec LDAC)
+
