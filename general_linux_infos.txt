@@ -2619,6 +2619,8 @@ Host 10.0.10.3
  26) Need imagemagick for blurlock
 
  27) smbclient '//print-server.critical.pt/Drivers/' -U critical/jgroboredo (smbclient '//ip/Directory')
+     smbclient '\\files.critical.pt/Repository' -U critical/jgroboredo
+    get file
 
  28) bluedevil; bluedevil-wizard; systemctl start bluetooth;
      pavucontrol: High Fidelity Playback (A2DP Sink, codec LDAC)
