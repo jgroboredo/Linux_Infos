@@ -1777,6 +1777,21 @@ Notes:
 			- Add in the [Interface] group the line: "MTU = 1300" (udp2raw doesn't support large packages)
 			- Change endpoint to: "127.0.0.1:5634"
 
+	
+	UPDATED_VPN
+		- In iptables, drop all connections except the ones I want to keep;
+		- These connections are only concerned with the direct access to the raspberry and not the traffic thourgh vpn;
+		- If I want to have a peer with full access to vpn and another with restricted access (this access refers to forwarding traffic through vpn),
+		and I want to be able to access the restricted access peer, I need to include in the iptables.rules the following lines:
+				. -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
+			Basically, the idea is that, the restricted access peer needs to send packets saying the connection is established, for example. Therefore,
+		these packets need to be forward by the vpn... However, this peer isn't allowed to do that by default. However, this rule allows for RELATED
+		packets to be forwarded. The rule
+		    . -A FORWARD -p icmp --icmp-type echo-request -j ACCEPT
+			allows for pings.
+	  - Lastly, on iptables.rules, I need to specifically allow access to each port I want to access, EVEN if I'm already connected to the vpn. The idea seems to be that
+		I have access to the VPN through the VPN port, but this doesn't give me access to the other ports.
+
  
 
 	NOTE:  https://hub.docker.com/r/linuxserver/swag (for nginx server)
