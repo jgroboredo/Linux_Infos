@@ -1792,6 +1792,9 @@ Notes:
 	  - Lastly, on iptables.rules, I need to specifically allow access to each port I want to access, EVEN if I'm already connected to the vpn. The idea seems to be that
 		I have access to the VPN through the VPN port, but this doesn't give me access to the other ports.
 
+		- A container that hasn't network_mode host can't now connect to one that is on the network_mode host. To solve this, allow input from docker interface:
+			. -A INPUT -i br+ -p TCP --dport 32400 -j ACCEPT
+
  
 
 	NOTE:  https://hub.docker.com/r/linuxserver/swag (for nginx server)
