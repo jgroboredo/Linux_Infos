@@ -1795,6 +1795,15 @@ Notes:
 		- A container that hasn't network_mode host can't now connect to one that is on the network_mode host. To solve this, allow input from docker interface:
 			. -A INPUT -i br+ -p TCP --dport 32400 -j ACCEPT
 
+	FIXING ROUTES
+		- When laptop is not connected to VPN but desktop is (both in porto), I could not ping desktop from laptop using the local ip, since the wireguard
+		 priority was lower and the response of the desktop went through the vpn (and laptop was not connected)
+		- changing priorities correctly:
+			-  sudo ifmetric wlp0s20f3 0
+			-  sudo ip route del default
+			-  sudo ip route add default via 192.168.200.254 dev wlp0s20f3 proto dhcp src 192.168.200.67 metric 600
+			- sudo ifmetric wg0 1
+
  
 
 	NOTE:  https://hub.docker.com/r/linuxserver/swag (for nginx server)
