@@ -1488,6 +1488,7 @@ Notes:
 	 - Get image: https://hub.docker.com/r/linuxserver/radarr
 	 - docker ps -a -> check running containers
 	 - To set pw and username on qbittorrent: Tools -> Options -> Connection -> Authentication
+	 - Rebuild image: docker-compose build rclone-extension --no-cache
 	 
 	JACKETT
 	 - http://localhost:9117
@@ -2653,5 +2654,4 @@ Host 10.0.10.3
      pavucontrol: High Fidelity Playback (A2DP Sink, codec LDAC)
 		 blueberry-tray
 
- 29)
- 		sudo lsof -i -P -n | grep LISTEN
+ 29) sudo lsof -i -P -n | grep LISTEN
