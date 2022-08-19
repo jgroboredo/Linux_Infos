@@ -1516,6 +1516,10 @@ Notes:
 	 - old episodes on sonarr must be downloaded manually
 	 - A lupa saca automatico e o boneco deixa escolher o torrent
 	 - If I can't add indexer, I can add one that I know that works and then edit it and substitute the url for the one I want to add.
+	 - Add series on read-only file system:
+	 	 - Mount read-only fs inside container
+		 - Add new series to default path where sonarr can write
+		 - Open sqlitebrowser -> Open Database -> sonardb (inside config folder in container) -> In table, select Series -> find series -> Select Path -> Change on the right
 	
 	SYSTEM SERVICE TO RUN DOCKER
 		/etc/systemd/system/docker-compose.service
