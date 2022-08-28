@@ -1640,6 +1640,8 @@ Notes:
 					The container pulls automatically
 
 	 - docker system prune -a (after doing docker-compose up, otherwise deletes images I just pulled)
+	 - list images: docker images -a
+	 - remove all images: docker rmi $(docker images -a -q)
 
 
   SOME NOTES BASED ON EXPERIENCE
