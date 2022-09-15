@@ -2676,3 +2676,5 @@ Host 10.0.10.3
 		 blueberry-tray
 
  29) sudo lsof -i -P -n | grep LISTEN
+
+ 30) bash gum package
