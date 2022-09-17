@@ -1865,6 +1865,8 @@ Notes:
 	- https://greasyfork.org/en/scripts/789-select-text-inside-a-link-like-opera
 	- https://greasyfork.org/en/scripts/1810-google-tracking-b-gone
 
+	-Tampermonkey allows method GM_cookie
+
 
 ##############################################################################################################################################################################
 
