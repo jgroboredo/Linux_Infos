@@ -2704,3 +2704,6 @@ Host 10.0.10.3
  29) sudo lsof -i -P -n | grep LISTEN
 
  30) bash gum package
+
+ 31) gtk-update-icon-cache -f -t .icons ou (/usr/share/icons/)
+ 		 Add icon field in desktop file - only the name.png
