@@ -24,6 +24,34 @@
   - [3.16. Git merge "Deleted by us"](#316-git-merge-deleted-by-us)
   - [3.17. Commit ID and SHA](#317-commit-id-and-sha)
   - [3.18. Git over ssh using ssh config](#318-git-over-ssh-using-ssh-config)
+- [4. Bash Notes](#4-bash-notes)
+  - [4.1. Bash Note 1](#41-bash-note-1)
+  - [4.2. Bash Note 2](#42-bash-note-2)
+  - [4.3. Bash Note 3](#43-bash-note-3)
+  - [4.4. Bash Note 4 - Compare Files](#44-bash-note-4---compare-files)
+  - [4.5. Bash Note 5 - Use of curly braces](#45-bash-note-5---use-of-curly-braces)
+  - [4.6. Bash Note 6 - Search recursively in directory](#46-bash-note-6---search-recursively-in-directory)
+- [5. Lyx](#5-lyx)
+  - [5.1. Configure lyx](#51-configure-lyx)
+  - [5.2. Kpathsea](#52-kpathsea)
+  - [5.3. Configure minted](#53-configure-minted)
+  - [5.4. Install custom cls](#54-install-custom-cls)
+- [6. Qemu](#6-qemu)
+  - [6.1. Commands](#61-commands)
+  - [6.2. Variables](#62-variables)
+- [7. Inkscape](#7-inkscape)
+- [8. VsCode](#8-vscode)
+- [9. Zathura](#9-zathura)
+- [10. Zsh](#10-zsh)
+- [11. Jupyter](#11-jupyter)
+  - [11.1. Jupyter-Lab](#111-jupyter-lab)
+  - [11.2. Opening browser](#112-opening-browser)
+- [12. Tmux](#12-tmux)
+- [13. Pacman](#13-pacman)
+  - [13.1. Pacman cache](#131-pacman-cache)
+  - [13.2. Install from live usb](#132-install-from-live-usb)
+  - [13.3. Pacman infos](#133-pacman-infos)
+  - [13.4. pacman mirrors](#134-pacman-mirrors)
 
 ## 1.1. Introduction
 
@@ -42,8 +70,14 @@ In this document I include some notes about general stuff I learn and do during 
   - Ctrl + Shift + P -> Pandoc Render
   - Add `"pandoc.pdfOptString": "-t html --css style.css"` to `settings.json` in `.vscode/settings.json` in the work directory containing the markdown project. This `settings.json` overrides the global variables specified in that file. This can also be edited by doing `Ctlr+Shift+P: Preferences: Workspace Settings`. The `style.css` is put in the same folder of the `.md` file
   - `pacman -S pandoc pandoc-crossref wkhtmltopdf
-- Markdown PDF
- 
+- Markdown PDF  
+  We can add to the `setting.json` for vscode workspace to use a specific style to generate the pdf:
+```
+  "markdown-pdf.styles": [
+          "style.css",
+      ],
+```
+
 <div style="page-break-after: always; break-after: page;"></div>
 
 
@@ -265,3 +299,287 @@ git show -s --format=%h -> shows the last commit sha
 ## 3.18. Git over ssh using ssh config  
 
 `git remote set-url origin ssh://pi(here config name)/home/goncalo/HDD/Documents/git_repos/Notes.git` (here full path)
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 4. Bash Notes
+
+## 4.1. Bash Note 1
+- `$#`
+  > number of arguments passed to the shell script
+- `$1, $2`, etc
+  > identify the arguments passed to the script
+
+## 4.2. Bash Note 2
+The code:
+
+```bash
+case $1 in
+  -f|--from) command1; shift ;;
+  *)         command2;;
+  esac
+  shift
+```
+
+will check if the first argument `$1` passed to the script matches `-f` or `--from` or any other cases; The asterisk means that it does command2 if it doesn't match any of the cases above;
+The "shift" command shifts the arguments, i.e., if I have `$1`, `$2` arguments, then `$2` -> `$1`.
+
+## 4.3. Bash Note 3
+The code:
+
+`SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"`
+
+will give you the full directory name of the script no matter where it is being called from.
+
+## 4.4. Bash Note 4 - Compare Files
+
+`grep -F -x -v -f fileA fileB`
+> This works by using each line in `fileA` as a pattern (`-f fileA`) and treating it as a plain string to match (`-F`). You force the match to happen on the whole line `-x` and print out only the lines that don't match (`-v`). Therefore, you are printing out the lines in fileB that don't contain the same data as any line in fileA.
+
+## 4.5. Bash Note 5 - Use of curly braces
+
+1) In the example:
+
+```bash
+  var=10        # Declare variable
+
+  echo "${var}" # One use of the variable
+  echo "$var"   # Another use of the variable
+```
+
+it makes no difference to use curly braces.
+
+2) However, the `{}` in `${}` are useful if you want to expand the variable foo in the string `"${foo}bar"` since "$foobar" would instead expand the variable identified by foobar.
+
+Curly braces are also unconditionally required when:
+
+- expanding array elements, as in `${array[42]}`
+- using parameter expansion operations, as in `${filename%.*}` (remove extension)
+- expanding positional parameters beyond 9: `"$8 $9 ${10} ${11}"`
+
+## 4.6. Bash Note 6 - Search recursively in directory
+
+- `grep -R "stuff"` will search recursively on all files on that directory and look for the word stuff
+- `for i in **/.ipynb_checkpoints` will find recursively all directories with this name
+- `for i in ./pattern` will search for this pattern in current directory
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 5. Lyx
+
+## 5.1. Configure lyx
+
+- Tools-Preferences-File Formats: PDF (pdflatex), shortname: pdf2, Viewer: Custom - zathura
+- Tools-Preferences-Output-PDF command: `zathura --synctex-forward $$n:1:$$t $$o`
+- Tools-Preferences-Shortcuts-New: buffer-view pdf2 and buffer-update pdf2
+- For the spellchecker, might need to install hunspell-en_US and hunspel-pt_pt and enchant
+- For lgrenc.def not found -> install texlive-langgreek
+- To use eps figures in lyx I need ghostscript : try to epstopdf on command line to discover this.
+
+## 5.2. Kpathsea
+
+- Kpathsea is a library for path searching (e.g., for very quickly locating a given .sty file in a set of potentially large TEXMF trees, without doing a recursive directory tree trversal every time a given file is needed. (pse -> pathsea)
+- kpsewhich minted.sy to search efficiently on tex library
+
+## 5.3. Configure minted
+
+```bash
+sudo mkdir "/usr/share/texmf-texlive/tex/latex/minted/"
+sudo cp minted.sty "/usr/share/texmf-texlive/tex/latex/minted/"
+sudo mktexlsr
+```
+
+- Then in lyx, go to Tools/Tex Information, select latex styles and click rescan. minted.sty should appear in the list in lyx, go to "Tools>preferences>file handling>converters" and find the converter from tex to pdflatex. Edit its command line adding the option "-shell-escape" (no quotes) into the Converter field, then click the Modify button next to the list of converters. This is equivalent to going to Documents->Formats->Allow running external programs (is a better solution since it avoids writting a warning message). Then click Apply in lyx, go to Document>Settings and enter "/usepackage{minted}" (no quotes) in the latex preamble in lyx, in the part of your document where you want the highlighted code to appear, go to "Insert>TEX code" to get an Evil Red Text (ERT) box
+- In Document->Settings->Listings, add following options:
+  - language=C++
+  - frame=single
+  - mathescape=true
+  - `syoek --synctex-forward $$n:1:$$t $$o`
+
+- Ordered bibliography: Use style unsrt and add to preamble: \usepackage{notoccite}
+
+## 5.4. Install custom cls
+
+- `latex my_class.ins` -> produces my_class.cls
+- `kpsewhich -var-value=TEXMFHOME` -> prints path where to put cls
+- Regarding the above command, it's good to put the usual path: `$HOME/texmf/tex/latex/commonstuff/`
+- kpsewhich my_class.cls -> to check path of the class
+- Write lyx layout: In order to do this, find the basis class for our new class. For that, inspect my_class.cls and check the line LoadClass. It implies that my_class.cls is a descendent of that class (let's suppose it's dependent on report class). Then, in /usr/share/lyx/layouts copy report.layout, change its name to my_class.layout and edit like this:
+
+```
+  \DeclareLaTeXClass[my_class]{name_of_layout}
+  Input report.layout
+```
+
+- In lyx, reconfigure. Now, name_of_layout is the text we see in Document-Class
+- Default classes: `/usr/share/texmf-dist/latex/elsarticle/elsarticle.cls`
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 6. Qemu
+
+## 6.1. Commands
+
+```bash
+qemu-img create -f qcow2 qemu_image 8G
+qemu-system-x86_64 -smp 6 -m 4G -enable-kvm -cdrom arch.iso -boot order=d qemu_image
+smp (number of cores)
+
+qemu-system-x86_64 -soundhw ac97 -k en-us -vga std -enable-kvm -m 4G  -usbdevice tablet -smp 6 -enable-kvm -boot c qemu_image
+#For no sound
+qemu-system-x86_64 -k en-us -vga std -enable-kvm -m 4G  -usbdevice tablet -smp 6 -boot c qemu_image
+```
+
+## 6.2. Variables
+
+```bash
+-k en-us (keymap)
+-usbdevice tablet
+
+-cpu host
+-smp 6 # number of cores
+-machine type=pc,accel=kvm
+-enable-kvm
+-format=raw ??
+-machine smm=off # bug?
+-soundhw sb16,es1370
+
+#telnet access
+qemu-system-x86_64 -curses -monitor telnet:127.0.0.1:1234,server,nowait -boot c qemu_image
+telnet 127.0.0.1 1234  -- in another terminal
+
+#KVM Quick Check
+zgrep CONFIG_VIRTIO /proc/config.gz
+lsmod | grep kvm
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 7. Inkscape
+
+- If I have problems with eps images, in this case, also need to install ghostscript.
+- Do you have ImageMagick installed? LyX relies on ImageMagick to convert among graphics formats. It also needs Ghostscript installed (IM uses GS when the conversions involve PS, EPS or PDF files).
+- If `textext` package form the AUR gives problem, simply go to **textext** official website and install it from there
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 8. VsCode
+
+- You can format an entire file with Format Document (Ctrl+Shift+I)  or just the current selection with Format Selection (Ctrl+K Ctrl+F) in right-click context menu.
+- F1 -> command pallet
+- SSH : F1 -> Remote-SSH: Connect to Host...
+- Install extension: TabNine
+  
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 9. Zathura
+
+- `pacman -S zahtura-pdf-poppler`
+- make zathura default pdf viewer: `mimeo --ad application/pdf zathura.desktop`
+- to discover the real name of zathura.desktop run `locate zathura.desktop`
+- to check that pdf files have the correct mimetype run `mimeo -m pdf_file.pdf`
+- Clipboard: add `set selection-clipboard clipboard` to `~/.config/zahtura/zathurarc` or `/etc/zathurarc`
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 10. Zsh
+
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh in .zshrc
+mkdir .cache/zsh && touch .cache/zsh/dirs
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 11. Jupyter
+
+## 11.1. Jupyter-Lab
+
+To run over ssh, execute
+
+```bash
+ssh -L 8888(port on local):localhost::8889(port on remote) goncalo@ip jupyter-lab --no-browser --port=(same as before on remote)8889
+```
+
+- To avoid authentication by token: `jupyter server password`
+- To list active sessions: `jupyter lab list`
+- To kill a session: `jupyter lab stop 8888` (for e.g.)
+
+## 11.2. Opening browser
+
+If jupyter doesn't open, do :
+`jupyter lab build`
+If command above gives permission error, do:
+
+```bash
+sudo chown -hR {user} {dir}
+jupyter notebook (lab) --generate-config 
+```
+
+Also, change redirect_file to false
+Na verdade, isto não funciona porque tenho de mudar o `~/.profile` para firefox LOL
+
+---
+
+- Can't access file (probably happens cause directory contains hidden folder .local):
+  - set `c.ServerApp.use_redirect_file = False` in `~/.jupyter jupyter_server_config.py`
+  - Stop server:
+  ```bash
+      lsof -n -i4TCP:[port-number]
+      kill -9 [PID]
+  ```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 12. Tmux
+
+ssh host, tmux, run command, `ctr+b d`, exit. To check the tmux session, run `tmux attach`
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 13. Pacman
+
+- Update pacman mirrors: `reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist`
+- Check recently installed packages: `grep -i installed /var/log/pacman.log`
+
+## 13.1. Pacman cache
+
+```bash
+sudo ls /var/cache/pacman/pkg/ | wc -l # checks cached packages
+du -sh /var/cache/pacman/pkg/ # disk space occupied by cache
+sudo paccache -r # cleans all packages except most recent 3
+sudo paccache -rk 1 # keep only one most recent version
+sudo pacman -Sc # remove all uninstalled packages
+sudo pacman -Scc # remove installed and uninstalled packages from cache
+sudo paccache -ruk0 #**** remove all versions of uninstalled packages
+change /etc/pacman.conf ParallelDownloads=5
+```
+
+## 13.2. Install from live usb
+
+```bash
+mount system: mount /dev/sdax /mnt
+sudo pacman --root /mnt -S package
+sudo pacman -Qkk | grep warning # To verify the presence of the files  installed by a package
+sudo pacman --root /mnt -S $(sudo pacman --root /mnt -Qeq) --noconfirm # reinstalls installed packages
+#If need to remove aur packages:
+sudo pacman --root /mnt -Qeq > packages.txt
+sudo pacman --root /mnt -S $(cat packages.txt) --noconfirm
+```
+
+## 13.3. Pacman infos
+
+```bash
+pacman -Qe # lists explicitly installed packages
+pacman -Rsc # uninstalls (including unneeded dependencies)
+pacman -Qs "query" # search installed packages for keywords
+pacman -Qdt # list unneeded packages
+pacman -Rns $(pacman -Qdtq) # uninstall unneeded packages (nota: quando adicionei isto aos aliases, sempre que abri o terminal pedia-me a pass do sudo (estava a correr o que esta a frente de $)
+```
+
+## 13.4. pacman mirrors
+`sudo pacman-mirrors --fasttrack && pacman -Syyu`
+
+
+
