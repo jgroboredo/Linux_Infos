@@ -71,7 +71,43 @@
   - [20.1. Alternative to xdg:](#201-alternative-to-xdg)
 - [21. Color-Scheme](#21-color-scheme)
 - [22. LibreOffice](#22-libreoffice)
-- [23. Misc](#23-misc)
+- [23. Reflector](#23-reflector)
+- [24. AceStream](#24-acestream)
+- [25. Swig](#25-swig)
+- [26. TTY Login](#26-tty-login)
+  - [26.1. Add Username](#261-add-username)
+  - [26.2. Change startup message](#262-change-startup-message)
+- [27. HPC](#27-hpc)
+  - [27.1. Modules](#271-modules)
+  - [27.2. Some Commands](#272-some-commands)
+- [28. Network](#28-network)
+  - [28.1. Network not connecting at startup](#281-network-not-connecting-at-startup)
+  - [28.2. MAC address](#282-mac-address)
+- [29. Dmenu_ext](#29-dmenu_ext)
+  - [29.1. Not opening paths](#291-not-opening-paths)
+- [30. Nvidia](#30-nvidia)
+  - [30.1. NVIDIA back screen on TTY](#301-nvidia-back-screen-on-tty)
+- [31. CFP Nvidia](#31-cfp-nvidia)
+  - [31.1. VPN access](#311-vpn-access)
+  - [31.2. First steps to config account](#312-first-steps-to-config-account)
+- [32. Awk](#32-awk)
+- [33. Sublime-Text](#33-sublime-text)
+- [34. Config-Printer](#34-config-printer)
+  - [34.1. CUPS](#341-cups)
+  - [34.2. AVAHI](#342-avahi)
+  - [34.3. HP SCANNER](#343-hp-scanner)
+- [35. Sway](#35-sway)
+  - [35.1. Packages to check for base arch install](#351-packages-to-check-for-base-arch-install)
+  - [35.2. Services](#352-services)
+  - [35.3. Sway install from YT:](#353-sway-install-from-yt)
+  - [35.4. Sway my experience](#354-sway-my-experience)
+    - [35.4.1. Packages](#3541-packages)
+    - [35.4.2. Configuration](#3542-configuration)
+    - [35.4.3. Fix cannot open display](#3543-fix-cannot-open-display)
+    - [35.4.4. Mathematica](#3544-mathematica)
+    - [35.4.5. Zoom](#3545-zoom)
+    - [35.4.6. Albert](#3546-albert)
+- [36. Misc](#36-misc)
 
 ## 1.1. Introduction
 
@@ -256,14 +292,15 @@ Or
    ```
   - A branch has a default remote: I only need to specify the remote_name and eventually the branch_name (I can't pull from a non-default remote without specifying the branch) if I don't want to do it to the default one
 
-## 2.12. Use curl to download from github  
+## 3.12. Use curl to download from github  
 
-```curl -LkSs https://api.github.com/repos/jgroboredo/arch_install/tarball -o master.tar.gz
+```bash
+curl -LkSs https://api.github.com/repos/jgroboredo/arch_install/tarball -o master.tar.gz
 tar xf master.tar.gz
 ```
 
 ## 3.12. Download a file from github  
- 
+
 - Go to file, click on raw, copy link
 - `curl -L "link_from_above_step" >> output`
 
@@ -854,7 +891,447 @@ NOTE:
 - Check extension in Extension Manager inside libreoffice
 - To install ExpandAnimations go to Tools->ExtensionManager and add there the oxt file
 
-# 23. Misc
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 23. Reflector
+
+```bash
+reflector --latest 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+reflector --country 'France,Germany' --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 24. AceStream
+
+```bash
+yay -S acestream-engine
+yay -S acestream-launcher
+acestreamid
+acestream-launcher acestream://id -p player 
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 25. Swig
+
+```bash
+g++ -Wall -Wextra -Wpedantic -I/usr/include/python3.9 -I/usr/lib/python3.9/site-packages/numpy/core/include/ -fPIC -shared example_wrap.cxx -o _example.so -lpython3.9   
+the first includes python and the second numpy/arrayobject.h
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 26. TTY Login
+
+## 26.1. Add Username
+
+```bash
+cat /etc/systemd/system/getty@tty1.service.d/override.conf:
+  [Service]
+  ExecStart=
+  ExecStart=-/usr/bin/agetty -n -o <username> %I
+systemctl edit getty@tty1
+```
+
+## 26.2. Change startup message
+
+1) added script to bin folder that re-writes /etc/issue with the correct value of the  baterry. It uses a template situated in issue folder. This template has a PLACEHOLDER  text that is used by sed to substitute with the value of the battery. In order for this to work, I created a systemd service (check systemd_scripts folder) which runs the 
+script. Everything is situated in lap_dotfiles
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 27. HPC
+
+## 27.1. Modules
+
+- To list all currently loaded modules: `module list`
+- To list all available (loadable) modules: `module avail`
+- To load a module: `module load x`
+- To unload a module: `module unload x`
+- To swap a specific module for another: `module switch x y`
+
+## 27.2. Some Commands
+
+```bash
+sinfo
+squeue
+scontrol show partition/node/....
+scancel (process_id)
+# Don't forget to load modules - e.g. -> module load gcc-8.1, module load openmpi/4.0.1
+module avail # to see modules
+srun -n 1 -p partition bash # takes me to a shell inside the node
+```
+
+Launch Script:
+
+```bash
+#!bin/bash
+#SBATCH # instrucoes ao sbatch
+./ficheiro.out
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 28. Network
+
+## 28.1. Network not connecting at startup
+
+- `systemctl restart NetworkManager`
+
+## 28.2. MAC address
+
+- To find the default device -> `ip route list`
+- To find the mac address -> `ifconfig -a`
+- Alternatives:
+  - `ip addr show && ip addr show device`
+  - `ip link show`
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 29. Dmenu_ext
+
+## 29.1. Not opening paths
+
+Add to mimeapps.list: inode/directory=pcmanfm.desktop;
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 30. Nvidia
+
+## 30.1. NVIDIA back screen on TTY
+
+- /etc/modprobe.d/blacklist.conf:
+
+  ```bash
+  install i915 /usr/bin/false
+  install intel_agp /usr/bin/false
+  ```
+  
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 31. CFP Nvidia
+
+## 31.1. VPN access
+
+- Install snx from InfoCiencias
+- create .snxrc file
+- connect by snx
+- disconnect by snx -d
+
+## 31.2. First steps to config account
+
+- To create home directory by default: CREATE_HOME yes in /etc/login.defs
+- On first login had no home:
+  - mkdir /home/username
+  - chown username:username /home/username
+  - cp -rT /etc/skel /home/username -> to populate with default files and folders
+- Generate ssh keys: ssh-keygen
+- Add .pub key to ~/.ssh/authorized_keys
+- The default shell was /bin/sh. So that bash works,
+  - chsh
+    /bin/bash
+- Can check shells by: cat /etc/shells
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 32. Awk
+
+- Print every 3 lines
+
+  ```bash
+  awk 'NR%3==0' file
+  awk 'NR%3==0' file >> tmp && mv tmp file -> saving to file
+  for i in ./file_pattern ; do
+    awk 'NR%3==0' $i >> tmp && mv tmp $i 
+  done
+  # The above cycle iterates over the files in the current directory
+  ```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 33. Sublime-Text
+
+- Go to sublime text webpage, linux repos and find pacman. Follow the commands
+  - Go to preferences -> package control (to install the package manager)
+  - To install a package: Ctrl + Shift + p (command pallet) -> Install -> Package name
+  - Imporant packages to install: (To see packges: Preferences->Package Control->List Packages)
+    - SFTP
+    - C++ Starting Kit
+    - C++NamespaceTool
+    - ClangFormat
+    - Anaconda
+    - C Improved
+    - C++11
+    - SideBarEnhancements
+
+- Define shorcuts for sftp: Preferences->Package Settings->SFTP->Key Bindings
+ and write on the file on the right hand side with the directory:
+.config/...../Packages/User/...
+My first shortcuts were: alt+z(open files) e alt+x(open servers)
+
+- Example file for server setup:
+
+  ```text
+  {
+    // The tab key will cycle through the settings when first created
+    // Visit https://codexns.io/products/sftp_for_subime/settings for help
+
+    // sftp, ftp or ftps
+    "type": "sftp",
+
+    "sync_down_on_open": true,
+    "sync_same_age": true,
+
+    "host": "176.79.187.130",
+    "user": "goncalo",
+    //"password": "",
+    //"port": "22",
+
+    "remote_path": "/home/goncalo/Documents/Optics/NonLinearOptics_Interpolation/",
+    //"file_permissions": "664",
+    //"dir_permissions": "775",
+
+    //"extra_list_connections": 0,
+
+    "connect_timeout": 30,
+    //"keepalive": 120,
+    //"ftp_passive_mode": true,
+    //"ftp_obey_passive_host": false,
+    //"ssh_key_file": "~/.ssh/id_rsa",
+    //"sftp_flags": ["-F", "/path/to/ssh_config"],
+
+    //"preserve_modification_times": false,
+    //"remote_time_offset_in_hours": 0,
+    //"remote_encoding": "utf-8",
+    //"remote_locale": "C",
+    //"allow_config_upload": false,
+  }
+  ```
+
+- To use clang on save:
+  - Install clang (pacman -S clang) and the clang package in sublime
+  - Preferences->Package Settings->Clang Format->Setting-User:
+
+    ```text
+    {
+      "binary": "/usr/bin/clang-format-3.8" (/path/to/your/clang-format/executable/file),
+      "format_on_save": true,
+      "style": "Custom",
+    }
+    ```
+
+  - Preferences->Package Settings->Clang Format->Custom Style-User:
+
+    ```text
+    {
+      "Language": "Cpp",
+      "TabWidth": 4,
+      "AlignTrailingComments": "true",
+      "UseTab": "Never",
+    }
+    or 
+    Language: Cpp
+    BreakBeforeBraces: Attach
+    PointerAlignment: Right
+    TabWidth: 4
+    IndentWidth: 4
+    AccessModifierOffset: 0
+    ColumnLimit: 120
+    NamespaceIndentation: All
+    AlignTrailingComments: true
+    AllowAllParametersOfDeclarationOnNextLine: true
+    AlwaysBreakTemplateDeclarations: true
+    UseTab: Never
+    ```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 34. Config-Printer
+
+## 34.1. CUPS
+
+- Packages to install:
+  - cups, cups-filters, liblouis, qpdf, cups-pdf, python-pycups, python-pycurl, gsfonts
+  - system-config-printer
+
+- Services to activate
+
+  ```bash
+  sudo systemctl enable --now cups.service
+  sudo systemctl enable --now cups.socket
+  sudo systemctl enable --now cups.path
+  ```
+
+- List services:
+  `sudo systemctl -a list-units | grep -i cups`
+- Configuration:
+  - Verify the following user groups are set in file /etc/cups/cups-files.conf
+  `SystemGroup sys root wheel`
+  - Associate a user to the "sys" group by replacing "username" below:
+  `gpasswd -a username sys`
+
+- Add A Printer Using CUPS Web Interface
+  - Open "Manage Printing" or browse to http://localhost:631/
+  - Click on “Administration” at the top of the web page.
+  - Click on “Add Printers”.
+  - Select the desired printer under "Discovered Network Printers" and click the "Continue" button.
+  - Set the "Name", "Description" and "Location" and then clock on the "Continue" button.
+  - Select the "Model" of printer and click the "Add Printer" button.
+  - Select default options and click the "Set Default Options" button.
+- Add A Printer Using Printer Settings
+This utilizes "Printer Settings" (system-config-printer package) a native GUI application.
+  - Open "Printer Settings".
+  - Click on the "Unlock" button.
+  - Click on the "Add" button.
+  - Select the desired printer and click the "Forward" button.
+  - Set the desired "Printer Name", "Description" and "Location".
+  - Click the "Apply" button.
+
+After these steps, it should work. Do not need to go for avahi!!!!
+
+## 34.2. AVAHI
+
+- Packages to install:
+  - avahi, nss-mdns
+- `sudo systemctl enable avahi-daemon.service`
+- edit the file /etc/nsswitch.conf and change the hosts line to include
+`mdns_minimal [NOTFOUND=return]`
+before the word resolve
+- avahi-browse --all --ignore-local --resolve --terminate
+or
+- avahi-discover (needs gtk3, dbus-python and python-gobject)
+
+The question is not avahi or cups but : Do I need/want printer autodiscovery or not ?
+If answer is yes > enable avahi , if answer is no > disable avahi
+Either use cups or cups + avahi
+
+## 34.3. HP SCANNER
+
+- wiki page: SANE/Scanner-specific problems
+- pacman -S sane-airscan ipp-usb
+- pacman -S hplip
+- Go to system-config-printer and now add printer (printing should work from now on).
+  In order to scan:
+  - `hp-makeuri <scanner_ip> / scanimage -L`
+  - `scanimage --device "<hpaio:/net....>" --format=png --resolution 300 >scan.png`
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 35. Sway
+
+## 35.1. Packages to check for base arch install
+
+```bash
+pacman -S grub efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools reflector base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils cups hplip alsa-utils bash-completion openssh rsync reflector acpi acpi_call tlp virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat iptables-nft ipset firewalld flatpak sof-firmware nss-mdns acpid os-prober ntfs-3g terminus-font
+pacman -S xdg-desktop-portal-wlr
+```
+
+## 35.2. Services
+
+```bash
+systemctl enable NetworkManager
+systemctl enable bluetooth
+systemctl enable cups.service
+systemctl enable sshd
+systemctl enable avahi-daemon
+systemctl enable tlp # You can comment this command out if you didn't install tlp, see above
+systemctl enable reflector.timer
+systemctl enable fstrim.timer
+systemctl enable libvirtd
+systemctl enable firewalld
+systemctl enable acpid
+```
+
+## 35.3. Sway install from YT:
+
+`pacman -S sway swaylock swayidle xorg-xwayland ttf-font-awesome`
+
+## 35.4. Sway my experience
+
+### 35.4.1. Packages
+
+```bash
+pacman -S sway swaylock
+pacman -S mako grim
+yay -S grimshot
+pacman -S wl-clipboard
+pacman -S light (manage brightness)
+pacman -S playerctl (waybar config)
+pacman -S waybar
+yay -S swaylock-effects-git
+pacman -S swayidle
+pacman -S xdg-desktop-portal-wlr
+pacman -S dex
+yay -S rambox-bin
+yay -S albert-minimal
+pacman -S pamixer
+pacman -S brightnessctl
+yay -S nordic-theme
+yay -S clipman
+# installed i3-quickterm from github: https://github.com/lbonn/i3-quickterm.git
+```
+
+### 35.4.2. Configuration
+
+- The first config lines are concerned with environment variables needed to make gtk applications launch faster:
+  - exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+  -	exec hash dbus-update-activation-environment 2>/dev/null && \
+  dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+- The keyboard and touchpad are configured in sway config. To get the inputs run: swaymsg -t get_inputs
+- using i3-quickterm to have a dropdown menu. Need to install rofi for it to work but I can also use i3-quickterm shell and then I do not need to install rofi.
+- binding albert in config with exec albert toggle
+- using swaylock-effects-git for sway lock
+- Using "exec grimshot copy area" for screenshots (requires wl-clipboard) 
+- Bind media keys (brightness and volume) on config. Associated icons to notifications. The icons are from Arc-X-D package.
+- If I want to use light, need to add the following line to sudoers: %wheel ALL=(root) NOPASSWD: /usr/bin/light
+- Install playerctl for these controls and waybar.
+- For the autostart applications, need to add the flag --indicator to nm-applet
+- For the dual monitor, check the monitor with swaymsg -t get_outputs
+- Sway doesn't work very well with lightdm -> use lydm -> systemctl enable ly.service -f
+- Instead of using ly, simply use .zprofile to login. For it to work, need whiptail and
+Rebelo's package shiftstate (it is on lap_dotfiles). Ctr+Enter after putting pw on 
+tty takes me to a tui to choose the wm. Shift+Enter takes me to tty login
+- The env variable MOZ_ENABLE_WAYLAND=1 enables to run firefox on wayland mode. 
+However, it doesn't load the gtk theme this way. Then, I added to .confi/sway/env the
+flag GTK_THEME=Nordic. Need to change this in accordance to the gtk theme I want
+
+### 35.4.3. Fix cannot open display
+
+`pacman -S xorg-server-xwayland`
+
+	
+### 35.4.4. Mathematica
+
+- In order to run mathematica: `QT_QPA_PLATFORM="xcb" mathematica &`
+- A better way is to add a folder: $HOME/bin and the following script name mathematica
+(same name as the original in /usr/local/bin):
+  ```bash
+  #!/bin/sh
+  QT_QPA_PLATFORM="xcb" /usr/local/bin/mathematica "$@"
+  ```
+- Then, if in sway, add to the env script in .config/sway the following line:
+	`PATH="${HOME}/bin:${PATH}"`
+The fact that $HOME/bin comes before path overrides the original mathematica script!Now,
+I can launch mathematica from dmenu
+- Although the above steps solve the problem when we call the binary mathematica,
+it doesn't solve the problem when we want to open a mathematica notebook through the
+file manager. To solve that problem I need to change the wolfram-mathematica12.desktop
+file in /usr/share/applications/wolfram-mathematica12.desktop. In the field exec I need
+to put the path to $HOME/bin/mathematica script. I saved the original desktop file in  /usr/share/applications/mathematica.desktop.
+- mathematica was crashing with 3D graphics. Solution: run mathematica with mesa: mathematica -mesa notebook_name.
+
+### 35.4.5. Zoom
+
+- Currently doesn't allow for sreen sharing. Use zoom in firefox and it works fine!
+- Eventually try XGD_CURRENT_DESKTOP=gnome zoom
+
+### 35.4.6. Albert
+
+- albert crashing after search or cancelling search: rm .config/albert/core.db
+
+
+# 36. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).

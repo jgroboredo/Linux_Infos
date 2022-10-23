@@ -480,7 +480,70 @@ code {
 </li>
 <li><a href="#21-color-scheme">21. Color-Scheme</a></li>
 <li><a href="#22-libreoffice">22. LibreOffice</a></li>
-<li><a href="#23-misc">23. Misc</a></li>
+<li><a href="#23-reflector">23. Reflector</a></li>
+<li><a href="#24-acestream">24. AceStream</a></li>
+<li><a href="#25-swig">25. Swig</a></li>
+<li><a href="#26-tty-login">26. TTY Login</a>
+<ul>
+<li><a href="#261-add-username">26.1. Add Username</a></li>
+<li><a href="#262-change-startup-message">26.2. Change startup message</a></li>
+</ul>
+</li>
+<li><a href="#27-hpc">27. HPC</a>
+<ul>
+<li><a href="#271-modules">27.1. Modules</a></li>
+<li><a href="#272-some-commands">27.2. Some Commands</a></li>
+</ul>
+</li>
+<li><a href="#28-network">28. Network</a>
+<ul>
+<li><a href="#281-network-not-connecting-at-startup">28.1. Network not connecting at startup</a></li>
+<li><a href="#282-mac-address">28.2. MAC address</a></li>
+</ul>
+</li>
+<li><a href="#29-dmenu_ext">29. Dmenu_ext</a>
+<ul>
+<li><a href="#291-not-opening-paths">29.1. Not opening paths</a></li>
+</ul>
+</li>
+<li><a href="#30-nvidia">30. Nvidia</a>
+<ul>
+<li><a href="#301-nvidia-back-screen-on-tty">30.1. NVIDIA back screen on TTY</a></li>
+</ul>
+</li>
+<li><a href="#31-cfp-nvidia">31. CFP Nvidia</a>
+<ul>
+<li><a href="#311-vpn-access">31.1. VPN access</a></li>
+<li><a href="#312-first-steps-to-config-account">31.2. First steps to config account</a></li>
+</ul>
+</li>
+<li><a href="#32-awk">32. Awk</a></li>
+<li><a href="#33-sublime-text">33. Sublime-Text</a></li>
+<li><a href="#34-config-printer">34. Config-Printer</a>
+<ul>
+<li><a href="#341-cups">34.1. CUPS</a></li>
+<li><a href="#342-avahi">34.2. AVAHI</a></li>
+<li><a href="#343-hp-scanner">34.3. HP SCANNER</a></li>
+</ul>
+</li>
+<li><a href="#35-sway">35. Sway</a>
+<ul>
+<li><a href="#351-packages-to-check-for-base-arch-install">35.1. Packages to check for base arch install</a></li>
+<li><a href="#352-services">35.2. Services</a></li>
+<li><a href="#353-sway-install-from-yt">35.3. Sway install from YT:</a></li>
+<li><a href="#354-sway-my-experience">35.4. Sway my experience</a>
+<ul>
+<li><a href="#3541-packages">35.4.1. Packages</a></li>
+<li><a href="#3542-configuration">35.4.2. Configuration</a></li>
+<li><a href="#3543-fix-cannot-open-display">35.4.3. Fix cannot open display</a></li>
+<li><a href="#3544-mathematica">35.4.4. Mathematica</a></li>
+<li><a href="#3545-zoom">35.4.5. Zoom</a></li>
+<li><a href="#3546-albert">35.4.6. Albert</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#36-misc">36. Misc</a></li>
 </ul>
 <h2 id="11-introduction">1.1. Introduction</h2>
 <p>In this document I include some notes about general stuff I learn and do during my work/free time.</p>
@@ -659,8 +722,9 @@ We now have a new branch on the remote named &quot;main&quot;.</li>
 </div></code></pre>
 </li>
 </ul>
-<h2 id="212-use-curl-to-download-from-github">2.12. Use curl to download from github</h2>
-<pre class="hljs"><code><div>tar xf master.tar.gz
+<h2 id="312-use-curl-to-download-from-github">3.12. Use curl to download from github</h2>
+<pre class="hljs"><code><div>curl -LkSs https://api.github.com/repos/jgroboredo/arch_install/tarball -o master.tar.gz
+tar xf master.tar.gz
 </div></code></pre>
 <h2 id="312-download-a-file-from-github">3.12. Download a file from github</h2>
 <ul>
@@ -1195,7 +1259,431 @@ If --assoc is not passed then the following paths will be checked for custom ass
 <li>Check extension in Extension Manager inside libreoffice</li>
 <li>To install ExpandAnimations go to Tools-&gt;ExtensionManager and add there the oxt file</li>
 </ul>
-<h1 id="23-misc">23. Misc</h1>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="23-reflector">23. Reflector</h1>
+<pre class="hljs"><code><div>reflector --latest 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+reflector --country <span class="hljs-string">'France,Germany'</span> --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+</div></code></pre>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="24-acestream">24. AceStream</h1>
+<pre class="hljs"><code><div>yay -S acestream-engine
+yay -S acestream-launcher
+acestreamid
+acestream-launcher acestream://id -p player 
+</div></code></pre>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="25-swig">25. Swig</h1>
+<pre class="hljs"><code><div>g++ -Wall -Wextra -Wpedantic -I/usr/include/python3.9 -I/usr/lib/python3.9/site-packages/numpy/core/include/ -fPIC -shared example_wrap.cxx -o _example.so -lpython3.9   
+the first includes python and the second numpy/arrayobject.h
+</div></code></pre>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="26-tty-login">26. TTY Login</h1>
+<h2 id="261-add-username">26.1. Add Username</h2>
+<pre class="hljs"><code><div>cat /etc/systemd/system/getty@tty1.service.d/override.conf:
+  [Service]
+  ExecStart=
+  ExecStart=-/usr/bin/agetty -n -o &lt;username&gt; %I
+systemctl edit getty@tty1
+</div></code></pre>
+<h2 id="262-change-startup-message">26.2. Change startup message</h2>
+<ol>
+<li>added script to bin folder that re-writes /etc/issue with the correct value of the  baterry. It uses a template situated in issue folder. This template has a PLACEHOLDER  text that is used by sed to substitute with the value of the battery. In order for this to work, I created a systemd service (check systemd_scripts folder) which runs the
+script. Everything is situated in lap_dotfiles</li>
+</ol>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="27-hpc">27. HPC</h1>
+<h2 id="271-modules">27.1. Modules</h2>
+<ul>
+<li>To list all currently loaded modules: <code>module list</code></li>
+<li>To list all available (loadable) modules: <code>module avail</code></li>
+<li>To load a module: <code>module load x</code></li>
+<li>To unload a module: <code>module unload x</code></li>
+<li>To swap a specific module for another: <code>module switch x y</code></li>
+</ul>
+<h2 id="272-some-commands">27.2. Some Commands</h2>
+<pre class="hljs"><code><div>sinfo
+squeue
+scontrol show partition/node/....
+scancel (process_id)
+<span class="hljs-comment"># Don't forget to load modules - e.g. -&gt; module load gcc-8.1, module load openmpi/4.0.1</span>
+module avail <span class="hljs-comment"># to see modules</span>
+srun -n 1 -p partition bash <span class="hljs-comment"># takes me to a shell inside the node</span>
+</div></code></pre>
+<p>Launch Script:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">#!bin/bash</span>
+<span class="hljs-comment">#SBATCH # instrucoes ao sbatch</span>
+./ficheiro.out
+</div></code></pre>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="28-network">28. Network</h1>
+<h2 id="281-network-not-connecting-at-startup">28.1. Network not connecting at startup</h2>
+<ul>
+<li><code>systemctl restart NetworkManager</code></li>
+</ul>
+<h2 id="282-mac-address">28.2. MAC address</h2>
+<ul>
+<li>To find the default device -&gt; <code>ip route list</code></li>
+<li>To find the mac address -&gt; <code>ifconfig -a</code></li>
+<li>Alternatives:
+<ul>
+<li><code>ip addr show &amp;&amp; ip addr show device</code></li>
+<li><code>ip link show</code></li>
+</ul>
+</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="29-dmenuext">29. Dmenu_ext</h1>
+<h2 id="291-not-opening-paths">29.1. Not opening paths</h2>
+<p>Add to mimeapps.list: inode/directory=pcmanfm.desktop;</p>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="30-nvidia">30. Nvidia</h1>
+<h2 id="301-nvidia-back-screen-on-tty">30.1. NVIDIA back screen on TTY</h2>
+<ul>
+<li>
+<p>/etc/modprobe.d/blacklist.conf:</p>
+<pre class="hljs"><code><div>install i915 /usr/bin/<span class="hljs-literal">false</span>
+install intel_agp /usr/bin/<span class="hljs-literal">false</span>
+</div></code></pre>
+</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="31-cfp-nvidia">31. CFP Nvidia</h1>
+<h2 id="311-vpn-access">31.1. VPN access</h2>
+<ul>
+<li>Install snx from InfoCiencias</li>
+<li>create .snxrc file</li>
+<li>connect by snx</li>
+<li>disconnect by snx -d</li>
+</ul>
+<h2 id="312-first-steps-to-config-account">31.2. First steps to config account</h2>
+<ul>
+<li>To create home directory by default: CREATE_HOME yes in /etc/login.defs</li>
+<li>On first login had no home:
+<ul>
+<li>mkdir /home/username</li>
+<li>chown username:username /home/username</li>
+<li>cp -rT /etc/skel /home/username -&gt; to populate with default files and folders</li>
+</ul>
+</li>
+<li>Generate ssh keys: ssh-keygen</li>
+<li>Add .pub key to ~/.ssh/authorized_keys</li>
+<li>The default shell was /bin/sh. So that bash works,
+<ul>
+<li>chsh
+/bin/bash</li>
+</ul>
+</li>
+<li>Can check shells by: cat /etc/shells</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="32-awk">32. Awk</h1>
+<ul>
+<li>
+<p>Print every 3 lines</p>
+<pre class="hljs"><code><div>awk <span class="hljs-string">'NR%3==0'</span> file
+awk <span class="hljs-string">'NR%3==0'</span> file &gt;&gt; tmp &amp;&amp; mv tmp file -&gt; saving to file
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> ./file_pattern ; <span class="hljs-keyword">do</span>
+  awk <span class="hljs-string">'NR%3==0'</span> <span class="hljs-variable">$i</span> &gt;&gt; tmp &amp;&amp; mv tmp <span class="hljs-variable">$i</span> 
+<span class="hljs-keyword">done</span>
+<span class="hljs-comment"># The above cycle iterates over the files in the current directory</span>
+</div></code></pre>
+</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="33-sublime-text">33. Sublime-Text</h1>
+<ul>
+<li>
+<p>Go to sublime text webpage, linux repos and find pacman. Follow the commands</p>
+<ul>
+<li>Go to preferences -&gt; package control (to install the package manager)</li>
+<li>To install a package: Ctrl + Shift + p (command pallet) -&gt; Install -&gt; Package name</li>
+<li>Imporant packages to install: (To see packges: Preferences-&gt;Package Control-&gt;List Packages)
+<ul>
+<li>SFTP</li>
+<li>C++ Starting Kit</li>
+<li>C++NamespaceTool</li>
+<li>ClangFormat</li>
+<li>Anaconda</li>
+<li>C Improved</li>
+<li>C++11</li>
+<li>SideBarEnhancements</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Define shorcuts for sftp: Preferences-&gt;Package Settings-&gt;SFTP-&gt;Key Bindings
+and write on the file on the right hand side with the directory:
+.config/...../Packages/User/...
+My first shortcuts were: alt+z(open files) e alt+x(open servers)</p>
+</li>
+<li>
+<p>Example file for server setup:</p>
+<pre class="hljs"><code><div>{
+  // The tab key will cycle through the settings when first created
+  // Visit https://codexns.io/products/sftp_for_subime/settings for help
+
+  // sftp, ftp or ftps
+  &quot;type&quot;: &quot;sftp&quot;,
+
+  &quot;sync_down_on_open&quot;: true,
+  &quot;sync_same_age&quot;: true,
+
+  &quot;host&quot;: &quot;176.79.187.130&quot;,
+  &quot;user&quot;: &quot;goncalo&quot;,
+  //&quot;password&quot;: &quot;&quot;,
+  //&quot;port&quot;: &quot;22&quot;,
+
+  &quot;remote_path&quot;: &quot;/home/goncalo/Documents/Optics/NonLinearOptics_Interpolation/&quot;,
+  //&quot;file_permissions&quot;: &quot;664&quot;,
+  //&quot;dir_permissions&quot;: &quot;775&quot;,
+
+  //&quot;extra_list_connections&quot;: 0,
+
+  &quot;connect_timeout&quot;: 30,
+  //&quot;keepalive&quot;: 120,
+  //&quot;ftp_passive_mode&quot;: true,
+  //&quot;ftp_obey_passive_host&quot;: false,
+  //&quot;ssh_key_file&quot;: &quot;~/.ssh/id_rsa&quot;,
+  //&quot;sftp_flags&quot;: [&quot;-F&quot;, &quot;/path/to/ssh_config&quot;],
+
+  //&quot;preserve_modification_times&quot;: false,
+  //&quot;remote_time_offset_in_hours&quot;: 0,
+  //&quot;remote_encoding&quot;: &quot;utf-8&quot;,
+  //&quot;remote_locale&quot;: &quot;C&quot;,
+  //&quot;allow_config_upload&quot;: false,
+}
+</div></code></pre>
+</li>
+<li>
+<p>To use clang on save:</p>
+<ul>
+<li>
+<p>Install clang (pacman -S clang) and the clang package in sublime</p>
+</li>
+<li>
+<p>Preferences-&gt;Package Settings-&gt;Clang Format-&gt;Setting-User:</p>
+<pre class="hljs"><code><div>{
+  &quot;binary&quot;: &quot;/usr/bin/clang-format-3.8&quot; (/path/to/your/clang-format/executable/file),
+  &quot;format_on_save&quot;: true,
+  &quot;style&quot;: &quot;Custom&quot;,
+}
+</div></code></pre>
+</li>
+<li>
+<p>Preferences-&gt;Package Settings-&gt;Clang Format-&gt;Custom Style-User:</p>
+<pre class="hljs"><code><div>{
+  &quot;Language&quot;: &quot;Cpp&quot;,
+  &quot;TabWidth&quot;: 4,
+  &quot;AlignTrailingComments&quot;: &quot;true&quot;,
+  &quot;UseTab&quot;: &quot;Never&quot;,
+}
+or 
+Language: Cpp
+BreakBeforeBraces: Attach
+PointerAlignment: Right
+TabWidth: 4
+IndentWidth: 4
+AccessModifierOffset: 0
+ColumnLimit: 120
+NamespaceIndentation: All
+AlignTrailingComments: true
+AllowAllParametersOfDeclarationOnNextLine: true
+AlwaysBreakTemplateDeclarations: true
+UseTab: Never
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="34-config-printer">34. Config-Printer</h1>
+<h2 id="341-cups">34.1. CUPS</h2>
+<ul>
+<li>
+<p>Packages to install:</p>
+<ul>
+<li>cups, cups-filters, liblouis, qpdf, cups-pdf, python-pycups, python-pycurl, gsfonts</li>
+<li>system-config-printer</li>
+</ul>
+</li>
+<li>
+<p>Services to activate</p>
+<pre class="hljs"><code><div>sudo systemctl <span class="hljs-built_in">enable</span> --now cups.service
+sudo systemctl <span class="hljs-built_in">enable</span> --now cups.socket
+sudo systemctl <span class="hljs-built_in">enable</span> --now cups.path
+</div></code></pre>
+</li>
+<li>
+<p>List services:
+<code>sudo systemctl -a list-units | grep -i cups</code></p>
+</li>
+<li>
+<p>Configuration:</p>
+<ul>
+<li>Verify the following user groups are set in file /etc/cups/cups-files.conf
+<code>SystemGroup sys root wheel</code></li>
+<li>Associate a user to the &quot;sys&quot; group by replacing &quot;username&quot; below:
+<code>gpasswd -a username sys</code></li>
+</ul>
+</li>
+<li>
+<p>Add A Printer Using CUPS Web Interface</p>
+<ul>
+<li>Open &quot;Manage Printing&quot; or browse to http://localhost:631/</li>
+<li>Click on “Administration” at the top of the web page.</li>
+<li>Click on “Add Printers”.</li>
+<li>Select the desired printer under &quot;Discovered Network Printers&quot; and click the &quot;Continue&quot; button.</li>
+<li>Set the &quot;Name&quot;, &quot;Description&quot; and &quot;Location&quot; and then clock on the &quot;Continue&quot; button.</li>
+<li>Select the &quot;Model&quot; of printer and click the &quot;Add Printer&quot; button.</li>
+<li>Select default options and click the &quot;Set Default Options&quot; button.</li>
+</ul>
+</li>
+<li>
+<p>Add A Printer Using Printer Settings
+This utilizes &quot;Printer Settings&quot; (system-config-printer package) a native GUI application.</p>
+<ul>
+<li>Open &quot;Printer Settings&quot;.</li>
+<li>Click on the &quot;Unlock&quot; button.</li>
+<li>Click on the &quot;Add&quot; button.</li>
+<li>Select the desired printer and click the &quot;Forward&quot; button.</li>
+<li>Set the desired &quot;Printer Name&quot;, &quot;Description&quot; and &quot;Location&quot;.</li>
+<li>Click the &quot;Apply&quot; button.</li>
+</ul>
+</li>
+</ul>
+<p>After these steps, it should work. Do not need to go for avahi!!!!</p>
+<h2 id="342-avahi">34.2. AVAHI</h2>
+<ul>
+<li>Packages to install:
+<ul>
+<li>avahi, nss-mdns</li>
+</ul>
+</li>
+<li><code>sudo systemctl enable avahi-daemon.service</code></li>
+<li>edit the file /etc/nsswitch.conf and change the hosts line to include
+<code>mdns_minimal [NOTFOUND=return]</code>
+before the word resolve</li>
+<li>avahi-browse --all --ignore-local --resolve --terminate
+or</li>
+<li>avahi-discover (needs gtk3, dbus-python and python-gobject)</li>
+</ul>
+<p>The question is not avahi or cups but : Do I need/want printer autodiscovery or not ?
+If answer is yes &gt; enable avahi , if answer is no &gt; disable avahi
+Either use cups or cups + avahi</p>
+<h2 id="343-hp-scanner">34.3. HP SCANNER</h2>
+<ul>
+<li>wiki page: SANE/Scanner-specific problems</li>
+<li>pacman -S sane-airscan ipp-usb</li>
+<li>pacman -S hplip</li>
+<li>Go to system-config-printer and now add printer (printing should work from now on).
+In order to scan:
+<ul>
+<li><code>hp-makeuri &lt;scanner_ip&gt; / scanimage -L</code></li>
+<li><code>scanimage --device &quot;&lt;hpaio:/net....&gt;&quot; --format=png --resolution 300 &gt;scan.png</code></li>
+</ul>
+</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="35-sway">35. Sway</h1>
+<h2 id="351-packages-to-check-for-base-arch-install">35.1. Packages to check for base arch install</h2>
+<pre class="hljs"><code><div>pacman -S grub efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools reflector base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils cups hplip alsa-utils bash-completion openssh rsync reflector acpi acpi_call tlp virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat iptables-nft ipset firewalld flatpak sof-firmware nss-mdns acpid os-prober ntfs-3g terminus-font
+pacman -S xdg-desktop-portal-wlr
+</div></code></pre>
+<h2 id="352-services">35.2. Services</h2>
+<pre class="hljs"><code><div>systemctl <span class="hljs-built_in">enable</span> NetworkManager
+systemctl <span class="hljs-built_in">enable</span> bluetooth
+systemctl <span class="hljs-built_in">enable</span> cups.service
+systemctl <span class="hljs-built_in">enable</span> sshd
+systemctl <span class="hljs-built_in">enable</span> avahi-daemon
+systemctl <span class="hljs-built_in">enable</span> tlp <span class="hljs-comment"># You can comment this command out if you didn't install tlp, see above</span>
+systemctl <span class="hljs-built_in">enable</span> reflector.timer
+systemctl <span class="hljs-built_in">enable</span> fstrim.timer
+systemctl <span class="hljs-built_in">enable</span> libvirtd
+systemctl <span class="hljs-built_in">enable</span> firewalld
+systemctl <span class="hljs-built_in">enable</span> acpid
+</div></code></pre>
+<h2 id="353-sway-install-from-yt">35.3. Sway install from YT:</h2>
+<p><code>pacman -S sway swaylock swayidle xorg-xwayland ttf-font-awesome</code></p>
+<h2 id="354-sway-my-experience">35.4. Sway my experience</h2>
+<h3 id="3541-packages">35.4.1. Packages</h3>
+<pre class="hljs"><code><div>pacman -S sway swaylock
+pacman -S mako grim
+yay -S grimshot
+pacman -S wl-clipboard
+pacman -S light (manage brightness)
+pacman -S playerctl (waybar config)
+pacman -S waybar
+yay -S swaylock-effects-git
+pacman -S swayidle
+pacman -S xdg-desktop-portal-wlr
+pacman -S dex
+yay -S rambox-bin
+yay -S albert-minimal
+pacman -S pamixer
+pacman -S brightnessctl
+yay -S nordic-theme
+yay -S clipman
+<span class="hljs-comment"># installed i3-quickterm from github: https://github.com/lbonn/i3-quickterm.git</span>
+</div></code></pre>
+<h3 id="3542-configuration">35.4.2. Configuration</h3>
+<ul>
+<li>The first config lines are concerned with environment variables needed to make gtk applications launch faster:
+<ul>
+<li>exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK</li>
+<li>exec hash dbus-update-activation-environment 2&gt;/dev/null &amp;&amp; <br>
+dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK</li>
+</ul>
+</li>
+<li>The keyboard and touchpad are configured in sway config. To get the inputs run: swaymsg -t get_inputs</li>
+<li>using i3-quickterm to have a dropdown menu. Need to install rofi for it to work but I can also use i3-quickterm shell and then I do not need to install rofi.</li>
+<li>binding albert in config with exec albert toggle</li>
+<li>using swaylock-effects-git for sway lock</li>
+<li>Using &quot;exec grimshot copy area&quot; for screenshots (requires wl-clipboard)</li>
+<li>Bind media keys (brightness and volume) on config. Associated icons to notifications. The icons are from Arc-X-D package.</li>
+<li>If I want to use light, need to add the following line to sudoers: %wheel ALL=(root) NOPASSWD: /usr/bin/light</li>
+<li>Install playerctl for these controls and waybar.</li>
+<li>For the autostart applications, need to add the flag --indicator to nm-applet</li>
+<li>For the dual monitor, check the monitor with swaymsg -t get_outputs</li>
+<li>Sway doesn't work very well with lightdm -&gt; use lydm -&gt; systemctl enable ly.service -f</li>
+<li>Instead of using ly, simply use .zprofile to login. For it to work, need whiptail and
+Rebelo's package shiftstate (it is on lap_dotfiles). Ctr+Enter after putting pw on
+tty takes me to a tui to choose the wm. Shift+Enter takes me to tty login</li>
+<li>The env variable MOZ_ENABLE_WAYLAND=1 enables to run firefox on wayland mode.
+However, it doesn't load the gtk theme this way. Then, I added to .confi/sway/env the
+flag GTK_THEME=Nordic. Need to change this in accordance to the gtk theme I want</li>
+</ul>
+<h3 id="3543-fix-cannot-open-display">35.4.3. Fix cannot open display</h3>
+<p><code>pacman -S xorg-server-xwayland</code></p>
+<h3 id="3544-mathematica">35.4.4. Mathematica</h3>
+<ul>
+<li>In order to run mathematica: <code>QT_QPA_PLATFORM=&quot;xcb&quot; mathematica &amp;</code></li>
+<li>A better way is to add a folder: $HOME/bin and the following script name mathematica
+(same name as the original in /usr/local/bin):<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/sh</span>
+QT_QPA_PLATFORM=<span class="hljs-string">"xcb"</span> /usr/<span class="hljs-built_in">local</span>/bin/mathematica <span class="hljs-string">"<span class="hljs-variable">$@</span>"</span>
+</div></code></pre>
+</li>
+<li>Then, if in sway, add to the env script in .config/sway the following line:
+<code>PATH=&quot;${HOME}/bin:${PATH}&quot;</code>
+The fact that $HOME/bin comes before path overrides the original mathematica script!Now,
+I can launch mathematica from dmenu</li>
+<li>Although the above steps solve the problem when we call the binary mathematica,
+it doesn't solve the problem when we want to open a mathematica notebook through the
+file manager. To solve that problem I need to change the wolfram-mathematica12.desktop
+file in /usr/share/applications/wolfram-mathematica12.desktop. In the field exec I need
+to put the path to $HOME/bin/mathematica script. I saved the original desktop file in  /usr/share/applications/mathematica.desktop.</li>
+<li>mathematica was crashing with 3D graphics. Solution: run mathematica with mesa: mathematica -mesa notebook_name.</li>
+</ul>
+<h3 id="3545-zoom">35.4.5. Zoom</h3>
+<ul>
+<li>Currently doesn't allow for sreen sharing. Use zoom in firefox and it works fine!</li>
+<li>Eventually try XGD_CURRENT_DESKTOP=gnome zoom</li>
+</ul>
+<h3 id="3546-albert">35.4.6. Albert</h3>
+<ul>
+<li>albert crashing after search or cancelling search: rm .config/albert/core.db</li>
+</ul>
+<h1 id="36-misc">36. Misc</h1>
 <ol>
 <li>
 <p>By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.</p>
