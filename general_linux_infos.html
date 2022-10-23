@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>general_linux_infos.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="1-table-of-contents">1. Table of contents</h1>
+<ul>
+<li><a href="#1-table-of-contents">1. Table of contents</a>
+<ul>
+<li><a href="#11-introduction">1.1. Introduction</a></li>
+</ul>
+</li>
+<li><a href="#2-markdown-notes">2. Markdown Notes</a>
+<ul>
+<li><a href="#21-vscode-extensions">2.1. VsCode extensions</a></li>
+</ul>
+</li>
+<li><a href="#3-git-notes">3. Git notes</a>
+<ul>
+<li><a href="#31-notes-on-creating-a-git-repository-on-github">3.1. Notes on creating a git repository on github</a>
+<ul>
+<li><a href="#311-some-notes-on-the-above-commands">3.1.1. Some notes on the above commands</a></li>
+</ul>
+</li>
+<li><a href="#32-check-previous-commit">3.2. Check previous commit</a></li>
+<li><a href="#33-git-stash-and-log">3.3. Git stash and log</a></li>
+<li><a href="#34-create-local-git-repository">3.4. Create local git repository</a></li>
+<li><a href="#35-change-the-author-name">3.5. Change the author name</a></li>
+<li><a href="#36-remove-tracked-file-that-is-now-in-gitignore">3.6. Remove tracked file that is now in .gitignore</a></li>
+<li><a href="#37-check-last-commit-changes">3.7. Check last commit changes</a></li>
+<li><a href="#38-installing-git-in-live-iso-arch">3.8. Installing git in live ISO arch</a></li>
+<li><a href="#39-change-remote-url">3.9. Change remote URL</a></li>
+<li><a href="#310-add-remote-url">3.10. Add remote URL</a></li>
+<li><a href="#311-different-pushes">3.11. Different Pushes</a></li>
+<li><a href="#312-download-a-file-from-github">3.12. Download a file from github</a></li>
+<li><a href="#313-merge-branches">3.13. Merge branches</a></li>
+<li><a href="#314-check-merge-conflicts">3.14. Check merge conflicts</a></li>
+<li><a href="#315-merge-mistake-you-committed-changes-to-local-master">3.15. Merge mistake (You committed changes to (local) master)</a></li>
+<li><a href="#316-git-merge-deleted-by-us">3.16. Git merge &quot;Deleted by us&quot;</a></li>
+<li><a href="#317-commit-id-and-sha">3.17. Commit ID and SHA</a></li>
+<li><a href="#318-git-over-ssh-using-ssh-config">3.18. Git over ssh using ssh config</a></li>
+</ul>
+</li>
+<li><a href="#4-bash-notes">4. Bash Notes</a>
+<ul>
+<li><a href="#41-bash-note-1">4.1. Bash Note 1</a></li>
+<li><a href="#42-bash-note-2">4.2. Bash Note 2</a></li>
+<li><a href="#43-bash-note-3">4.3. Bash Note 3</a></li>
+<li><a href="#44-bash-note-4---compare-files">4.4. Bash Note 4 - Compare Files</a></li>
+<li><a href="#45-bash-note-5---use-of-curly-braces">4.5. Bash Note 5 - Use of curly braces</a></li>
+<li><a href="#46-bash-note-6---search-recursively-in-directory">4.6. Bash Note 6 - Search recursively in directory</a></li>
+</ul>
+</li>
+<li><a href="#5-lyx">5. Lyx</a>
+<ul>
+<li><a href="#51-configure-lyx">5.1. Configure lyx</a></li>
+<li><a href="#52-kpathsea">5.2. Kpathsea</a></li>
+<li><a href="#53-configure-minted">5.3. Configure minted</a></li>
+<li><a href="#54-install-custom-cls">5.4. Install custom cls</a></li>
+</ul>
+</li>
+<li><a href="#6-qemu">6. Qemu</a>
+<ul>
+<li><a href="#61-commands">6.1. Commands</a></li>
+<li><a href="#62-variables">6.2. Variables</a></li>
+</ul>
+</li>
+<li><a href="#7-inkscape">7. Inkscape</a></li>
+<li><a href="#8-vscode">8. VsCode</a></li>
+<li><a href="#9-zathura">9. Zathura</a></li>
+<li><a href="#10-zsh">10. Zsh</a></li>
+<li><a href="#11-jupyter">11. Jupyter</a>
+<ul>
+<li><a href="#111-jupyter-lab">11.1. Jupyter-Lab</a></li>
+<li><a href="#112-opening-browser">11.2. Opening browser</a></li>
+</ul>
+</li>
+<li><a href="#12-tmux">12. Tmux</a></li>
+<li><a href="#13-pacman">13. Pacman</a>
+<ul>
+<li><a href="#131-pacman-cache">13.1. Pacman cache</a></li>
+<li><a href="#132-install-from-live-usb">13.2. Install from live usb</a></li>
+<li><a href="#133-pacman-infos">13.3. Pacman infos</a></li>
+<li><a href="#134-pacman-mirrors">13.4. pacman mirrors</a></li>
+</ul>
+</li>
+<li><a href="#14-grub">14. Grub</a>
+<ul>
+<li><a href="#141-install-grub-manually-when-manjaro-fails">14.1. Install grub manually when manjaro fails</a></li>
+</ul>
+</li>
+<li><a href="#15-vim">15. Vim</a>
+<ul>
+<li><a href="#151-install-vim-in-cluster">15.1. Install Vim in cluster</a></li>
+<li><a href="#152-vim-snippets">15.2. Vim snippets</a></li>
+<li><a href="#153-manage-tabs">15.3. Manage Tabs</a></li>
+<li><a href="#154-vim-surroundings">15.4. Vim surroundings</a></li>
+<li><a href="#155-some-commands">15.5. Some commands</a></li>
+</ul>
+</li>
+<li><a href="#16-lighdm">16. Lighdm</a></li>
+<li><a href="#17-i3blocks">17. i3Blocks</a></li>
+<li><a href="#18-pcmanfm">18. PcmanFM</a>
+<ul>
+<li><a href="#181-basic-configuration">18.1. Basic Configuration</a></li>
+</ul>
+</li>
+<li><a href="#19-mpv">19. MPV</a>
+<ul>
+<li><a href="#191-annoying-bar-at-the-top">19.1. Annoying bar at the top</a></li>
+<li><a href="#192-watch-stream">19.2. Watch stream</a></li>
+</ul>
+</li>
+<li><a href="#20-mime-types">20. Mime-Types</a>
+<ul>
+<li><a href="#201-alternative-to-xdg">20.1. Alternative to xdg:</a></li>
+</ul>
+</li>
+<li><a href="#21-color-scheme">21. Color-Scheme</a></li>
+<li><a href="#22-libreoffice">22. LibreOffice</a></li>
+<li><a href="#23-misc">23. Misc</a></li>
+</ul>
+<h2 id="11-introduction">1.1. Introduction</h2>
+<p>In this document I include some notes about general stuff I learn and do during my work/free time.</p>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="2-markdown-notes">2. Markdown Notes</h1>
+<h2 id="21-vscode-extensions">2.1. VsCode extensions</h2>
+<ul>
+<li>Markdown all in One
+<ul>
+<li><code>Ctrl + Shift + P: Markdown All in One: section numbers, create table of contents, etc</code></li>
+</ul>
+</li>
+<li>Markdown lint</li>
+<li>vscode-pandoc
+<ul>
+<li>Ctrl + Shift + P -&gt; Pandoc Render</li>
+<li>Add <code>&quot;pandoc.pdfOptString&quot;: &quot;-t html --css style.css&quot;</code> to <code>settings.json</code> in <code>.vscode/settings.json</code> in the work directory containing the markdown project. This <code>settings.json</code> overrides the global variables specified in that file. This can also be edited by doing <code>Ctlr+Shift+P: Preferences: Workspace Settings</code>. The <code>style.css</code> is put in the same folder of the <code>.md</code> file</li>
+<li>`pacman -S pandoc pandoc-crossref wkhtmltopdf</li>
+</ul>
+</li>
+<li>Markdown PDF<br>
+We can add to the <code>setting.json</code> for vscode workspace to use a specific style to generate the pdf:</li>
+</ul>
+<pre class="hljs"><code><div>  &quot;markdown-pdf.styles&quot;: [
+          &quot;style.css&quot;,
+      ],
+</div></code></pre>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="3-git-notes">3. Git notes</h1>
+<h2 id="31-notes-on-creating-a-git-repository-on-github">3.1. Notes on creating a git repository on github</h2>
+<p>On folder do:</p>
+<pre class="hljs"><code><div> git init
+ git commit
+ git branch -M main
+ git remote add origin https://github.com/jgroboredo/test.git
+ git push -u origin main
+</div></code></pre>
+<h3 id="311-some-notes-on-the-above-commands">3.1.1. Some notes on the above commands</h3>
+<ul>
+<li><code>git branch -m master main</code></li>
+</ul>
+<blockquote>
+<p>renames the master branch in local git repository</p>
+</blockquote>
+<ul>
+<li>In the second step, we'll have to create a new branch on the remote named &quot;main&quot; - because Git does not allow to simply &quot;rename&quot; a remote branch. Instead, we'll have to create a new &quot;main&quot; branch and then delete the old &quot;master&quot; branch:
+<code>git push -u origin main</code>
+We now have a new branch on the remote named &quot;main&quot;.</li>
+<li>When you clone a repository with git clone , it automatically creates a remote connection called origin pointing back to the cloned repository.</li>
+<li>When you do a git push origin master, you are saying to git: &quot;Look git, I want to push the current branch I am on to the remote repository named origin, and I want to push to the master branch in that remote.&quot;. By default, the remote repository is named origin. I only need to specify where I want to push if there are more than 1 repositories.</li>
+<li>When you execute the command: git remote add origin &quot;github repo link&quot; you are saying that for the current project, there is a remote repository with the name origin, with the address of &quot;github repo link&quot;</li>
+</ul>
+<h2 id="32-check-previous-commit">3.2. Check previous commit</h2>
+<pre class="hljs"><code><div> git log
+ git checkout &lt;commit_hash&gt; (example: 18e0b6a044a715b04bcacd599061b6b8bd586a7a)
+ git checkout &lt;branch_to_return_to_present_state&gt;
+</div></code></pre>
+<h2 id="33-git-stash-and-log">3.3. Git stash and log</h2>
+<pre class="hljs"><code><div> git log --stat -&gt; see which files were altered in each commit
+ git stash; git stash list; git stash drop
+</div></code></pre>
+<h2 id="34-create-local-git-repository">3.4. Create local git repository</h2>
+<ul>
+<li>Create a folder which is going to be the &quot;server&quot; -&gt; For example, Notes.git</li>
+<li>Inside the repository do: <code>git init --bare</code></li>
+<li>On the same computer do: <code>git clone /path/to/server</code>   -&gt; the repository created this way will be linked to the &quot;server&quot; by an absolute path which only works on this same pc</li>
+<li>On the other computer do: <code>git clone goncalo@ip:/path/to/server</code></li>
+</ul>
+<h2 id="35-change-the-author-name">3.5. Change the author name</h2>
+<p><code>git config --global user.name &quot;John Doe&quot;</code></p>
+<h2 id="36-remove-tracked-file-that-is-now-in-gitignore">3.6. Remove tracked file that is now in .gitignore</h2>
+<p><code>git rm --cached &lt;file&gt;</code></p>
+<h2 id="37-check-last-commit-changes">3.7. Check last commit changes</h2>
+<p><code>git show --name-only</code> -&gt; Lists just the files in the last commit and doesn't give you the entire guts
+<code>git diff HEAD^ HEAD</code> -&gt; HEAD^ identifies last commit</p>
+<h2 id="38-installing-git-in-live-iso-arch">3.8. Installing git in live ISO arch</h2>
+<p>If error in keys: <code>pacman -Sy archlinux-keyring; pacman-key --populate archlinux</code></p>
+<h2 id="39-change-remote-url">3.9. Change remote URL</h2>
+<ul>
+<li><code>git remote -v</code></li>
+</ul>
+<blockquote>
+<p>To check the present remote url</p>
+</blockquote>
+<ul>
+<li><code>git remote set-url origin git@github.com:jgroboredo/Linux_Infos.git</code></li>
+</ul>
+<h2 id="310-add-remote-url">3.10. Add remote URL</h2>
+<ul>
+<li><code>git remote add name_of_remote git@github.com:jgroboredo/Linux_Infos.git</code></li>
+<li><code>git push -u name_of_remote --all</code></li>
+</ul>
+<blockquote>
+<p>Note: this changes the default repository! It also pushes all branches!</p>
+</blockquote>
+<ul>
+<li><code>git config --edit</code></li>
+</ul>
+<blockquote>
+<p>Can use this command to change the default git push</p>
+</blockquote>
+<ul>
+<li><code>git branch --set-upstream-to &lt;remote-name&gt;</code></li>
+</ul>
+<blockquote>
+<p>Set preferred remote for current branch</p>
+</blockquote>
+<ul>
+<li><code>git branch branch_name --set-upstream-to &lt;remote-name&gt;/branch</code></li>
+</ul>
+<blockquote>
+<p>set preferred remote for branch_name</p>
+</blockquote>
+<ul>
+<li><code>git branch -vv</code></li>
+</ul>
+<blockquote>
+<p>shows the default remote for the current branch</p>
+</blockquote>
+<h2 id="311-different-pushes">3.11. Different Pushes</h2>
+<ul>
+<li>To push all branches to all remotes:
+<code>git remote | xargs -L1 git push --all</code></li>
+<li>Push a specific branch to all remotes:
+<code>git remote | xargs -L1 -I R git push R branch_name</code></li>
+<li>To make a git alias for the command:
+<code>git config --global alias.pushall '!git remote | xargs -L1 git push --all'</code></li>
+</ul>
+<p>Or</p>
+<ul>
+<li>Create an all remote with several repo URLs to its name:</li>
+</ul>
+<pre class="hljs"><code><div> git remote add all origin-host:path/proj.git
+ git remote set-url --add all nodester-host:path/proj.git
+ git remote set-url --add all duostack-host:path/proj.git
+ git push all --all
+</div></code></pre>
+<p>Or</p>
+<ul>
+<li>If you want to always push to repo1, repo2, and repo3 but always pull only from repo1, set up the remote 'origin' as:</li>
+</ul>
+<pre class="hljs"><code><div> git remote add origin https://exampleuser@example.com/path/to/repo1
+ git remote set-url --push --add origin https://exampleuser@example.com/path/to/repo1
+ git remote set-url --push --add origin https://exampleuser@example.com/path/to/repo2
+ git remote set-url --push --add origin https://exampleuser@example.com/path/to/repo3
+</div></code></pre>
+<ul>
+<li>If you only want to pull from repo1 but push to repo1 and repo2 for a specific branch specialBranch:</li>
+</ul>
+<pre class="hljs"><code><div>  [remote &quot;origin&quot;]
+     url = ssh://git@aaa.xxx.com:7999/yyy/repo1.git
+     fetch = +refs/heads/*:refs/remotes/origin/*
+     ...
+  [remote &quot;specialRemote&quot;]
+     url = ssh://git@aaa.xxx.com:7999/yyy/repo1.git
+     pushurl = ssh://git@aaa.xxx.com:7999/yyy/repo1.git
+     pushurl = ssh://git@aaa.xxx.com:7999/yyy/repo2.git
+     fetch = +refs/heads/*:refs/remotes/origin/* (Note: Has origin here again, only pulls from origin)
+     ...
+  [branch &quot;specialBranch&quot;]
+     remote = origin
+     pushRemote = specialRemote
+     ...
+</div></code></pre>
+<ul>
+<li>My experience:
+<ul>
+<li>
+<p>I can specify which remote to push or pull from:</p>
+<pre class="hljs"><code><div>git push remote_name branch
+</div></code></pre>
+</li>
+</ul>
+<pre class="hljs"><code><div>- A branch has a default remote: I only need to specify the remote_name and eventually the branch_name (I can't pull from a non-default remote without specifying the branch) if I don't want to do it to the default one
+
+</div></code></pre>
+</li>
+</ul>
+<h2 id="212-use-curl-to-download-from-github">2.12. Use curl to download from github</h2>
+<pre class="hljs"><code><div>tar xf master.tar.gz
+</div></code></pre>
+<h2 id="312-download-a-file-from-github">3.12. Download a file from github</h2>
+<ul>
+<li>Go to file, click on raw, copy link</li>
+<li><code>curl -L &quot;link_from_above_step&quot; &gt;&gt; output</code></li>
+</ul>
+<h2 id="313-merge-branches">3.13. Merge branches</h2>
+<ul>
+<li><code>git checkout master; git merge other_branch_name</code></li>
+<li>Alternative:<code>git merge --no-ff other_branch_name</code> . Using --no-ff allows someone reviewing history to clearly see the branch you checked out to work on.</li>
+<li><code>git branch -d branch_name</code></li>
+</ul>
+<blockquote>
+<p>deletes branch locally</p>
+</blockquote>
+<ul>
+<li><code>git push origin --delete branch_name</code></li>
+</ul>
+<blockquote>
+<p>deletes a branch remotely</p>
+</blockquote>
+<ul>
+<li><code>git fetch -p</code></li>
+</ul>
+<blockquote>
+<p>Synchronize branch listing. After fetching, branches which no longer exist on the remote will be deleted.</p>
+</blockquote>
+<p>If I do a: <code>git pull origin master</code> on another branch, it will merge them.
+After creating a new branch, we need to specify tracking information for the current branch. That means we need to do something like <code>git pull &lt;remote&gt; &lt;branch&gt;</code> for it to work.
+On the other hand, we can simply set tracking information for the current branch by:
+<code>git branch --set-upstream-to=origin/&lt;branch&gt; correction_chapter1</code></p>
+<h2 id="314-check-merge-conflicts">3.14. Check merge conflicts</h2>
+<p><code>git show --name-only [commit sha]</code> on a commit that was a merge containing conflicts and you'll see it as part of the message.</p>
+<h2 id="315-merge-mistake-you-committed-changes-to-local-master">3.15. Merge mistake (You committed changes to (local) master)</h2>
+<pre class="hljs"><code><div>git branch &lt;new-branch&gt;
+git reset HEAD~ --hard
+git checkout new-branch 
+</div></code></pre>
+<p>The first command creates the new branch we want to work with. The second command resets the main branch to just before the last commit, but leaves the changes you just made in the new branch. Finally, we switch to the new branch where your changes await you.
+If you’ve made multiple commits, use <code>git reset HEAD~&lt;n&gt; --hard</code>, where <n> is the number of commits back you want to go.</p>
+<h2 id="316-git-merge-%22deleted-by-us%22">3.16. Git merge &quot;Deleted by us&quot;</h2>
+<p>Resolve all non deleted merge conflicts by hand, which you have to do anyway;
+Type <code>git diff --name-only --diff-filter=U</code> to get a list of all remaining files in conflit. These files must be the ones you want deleted.
+<code>git diff --name-only --diff-filter=U | xargs git rm</code></p>
+<h2 id="317-commit-id-and-sha">3.17. Commit ID and SHA</h2>
+<pre class="hljs"><code><div>git show -s --format=%H -&gt; shows the last commit full id
+git show -s --format=%h -&gt; shows the last commit sha
+</div></code></pre>
+<h2 id="318-git-over-ssh-using-ssh-config">3.18. Git over ssh using ssh config</h2>
+<p><code>git remote set-url origin ssh://pi(here config name)/home/goncalo/HDD/Documents/git_repos/Notes.git</code> (here full path)</p>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="4-bash-notes">4. Bash Notes</h1>
+<h2 id="41-bash-note-1">4.1. Bash Note 1</h2>
+<ul>
+<li><code>$#</code>
+<blockquote>
+<p>number of arguments passed to the shell script</p>
+</blockquote>
+</li>
+<li><code>$1, $2</code>, etc
+<blockquote>
+<p>identify the arguments passed to the script</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="42-bash-note-2">4.2. Bash Note 2</h2>
+<p>The code:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">case</span> <span class="hljs-variable">$1</span> <span class="hljs-keyword">in</span>
+  -f|--from) command1; <span class="hljs-built_in">shift</span> ;;
+  *)         command2;;
+  <span class="hljs-keyword">esac</span>
+  <span class="hljs-built_in">shift</span>
+</div></code></pre>
+<p>will check if the first argument <code>$1</code> passed to the script matches <code>-f</code> or <code>--from</code> or any other cases; The asterisk means that it does command2 if it doesn't match any of the cases above;
+The &quot;shift&quot; command shifts the arguments, i.e., if I have <code>$1</code>, <code>$2</code> arguments, then <code>$2</code> -&gt; <code>$1</code>.</p>
+<h2 id="43-bash-note-3">4.3. Bash Note 3</h2>
+<p>The code:</p>
+<p><code>SCRIPT_DIR=&quot;$( cd &quot;$( dirname &quot;${BASH_SOURCE[0]}&quot; )&quot; &amp;&gt; /dev/null &amp;&amp; pwd )&quot;</code></p>
+<p>will give you the full directory name of the script no matter where it is being called from.</p>
+<h2 id="44-bash-note-4---compare-files">4.4. Bash Note 4 - Compare Files</h2>
+<p><code>grep -F -x -v -f fileA fileB</code></p>
+<blockquote>
+<p>This works by using each line in <code>fileA</code> as a pattern (<code>-f fileA</code>) and treating it as a plain string to match (<code>-F</code>). You force the match to happen on the whole line <code>-x</code> and print out only the lines that don't match (<code>-v</code>). Therefore, you are printing out the lines in fileB that don't contain the same data as any line in fileA.</p>
+</blockquote>
+<h2 id="45-bash-note-5---use-of-curly-braces">4.5. Bash Note 5 - Use of curly braces</h2>
+<ol>
+<li>In the example:</li>
+</ol>
+<pre class="hljs"><code><div>  var=10        <span class="hljs-comment"># Declare variable</span>
+
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">${var}</span>"</span> <span class="hljs-comment"># One use of the variable</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$var</span>"</span>   <span class="hljs-comment"># Another use of the variable</span>
+</div></code></pre>
+<p>it makes no difference to use curly braces.</p>
+<ol start="2">
+<li>However, the <code>{}</code> in <code>${}</code> are useful if you want to expand the variable foo in the string <code>&quot;${foo}bar&quot;</code> since &quot;$foobar&quot; would instead expand the variable identified by foobar.</li>
+</ol>
+<p>Curly braces are also unconditionally required when:</p>
+<ul>
+<li>expanding array elements, as in <code>${array[42]}</code></li>
+<li>using parameter expansion operations, as in <code>${filename%.*}</code> (remove extension)</li>
+<li>expanding positional parameters beyond 9: <code>&quot;$8 $9 ${10} ${11}&quot;</code></li>
+</ul>
+<h2 id="46-bash-note-6---search-recursively-in-directory">4.6. Bash Note 6 - Search recursively in directory</h2>
+<ul>
+<li><code>grep -R &quot;stuff&quot;</code> will search recursively on all files on that directory and look for the word stuff</li>
+<li><code>for i in **/.ipynb_checkpoints</code> will find recursively all directories with this name</li>
+<li><code>for i in ./pattern</code> will search for this pattern in current directory</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="5-lyx">5. Lyx</h1>
+<h2 id="51-configure-lyx">5.1. Configure lyx</h2>
+<ul>
+<li>Tools-Preferences-File Formats: PDF (pdflatex), shortname: pdf2, Viewer: Custom - zathura</li>
+<li>Tools-Preferences-Output-PDF command: <code>zathura --synctex-forward $$n:1:$$t $$o</code></li>
+<li>Tools-Preferences-Shortcuts-New: buffer-view pdf2 and buffer-update pdf2</li>
+<li>For the spellchecker, might need to install hunspell-en_US and hunspel-pt_pt and enchant</li>
+<li>For lgrenc.def not found -&gt; install texlive-langgreek</li>
+<li>To use eps figures in lyx I need ghostscript : try to epstopdf on command line to discover this.</li>
+</ul>
+<h2 id="52-kpathsea">5.2. Kpathsea</h2>
+<ul>
+<li>Kpathsea is a library for path searching (e.g., for very quickly locating a given .sty file in a set of potentially large TEXMF trees, without doing a recursive directory tree trversal every time a given file is needed. (pse -&gt; pathsea)</li>
+<li>kpsewhich minted.sy to search efficiently on tex library</li>
+</ul>
+<h2 id="53-configure-minted">5.3. Configure minted</h2>
+<pre class="hljs"><code><div>sudo mkdir <span class="hljs-string">"/usr/share/texmf-texlive/tex/latex/minted/"</span>
+sudo cp minted.sty <span class="hljs-string">"/usr/share/texmf-texlive/tex/latex/minted/"</span>
+sudo mktexlsr
+</div></code></pre>
+<ul>
+<li>
+<p>Then in lyx, go to Tools/Tex Information, select latex styles and click rescan. minted.sty should appear in the list in lyx, go to &quot;Tools&gt;preferences&gt;file handling&gt;converters&quot; and find the converter from tex to pdflatex. Edit its command line adding the option &quot;-shell-escape&quot; (no quotes) into the Converter field, then click the Modify button next to the list of converters. This is equivalent to going to Documents-&gt;Formats-&gt;Allow running external programs (is a better solution since it avoids writting a warning message). Then click Apply in lyx, go to Document&gt;Settings and enter &quot;/usepackage{minted}&quot; (no quotes) in the latex preamble in lyx, in the part of your document where you want the highlighted code to appear, go to &quot;Insert&gt;TEX code&quot; to get an Evil Red Text (ERT) box</p>
+</li>
+<li>
+<p>In Document-&gt;Settings-&gt;Listings, add following options:</p>
+<ul>
+<li>language=C++</li>
+<li>frame=single</li>
+<li>mathescape=true</li>
+<li><code>syoek --synctex-forward $$n:1:$$t $$o</code></li>
+</ul>
+</li>
+<li>
+<p>Ordered bibliography: Use style unsrt and add to preamble: \usepackage{notoccite}</p>
+</li>
+</ul>
+<h2 id="54-install-custom-cls">5.4. Install custom cls</h2>
+<ul>
+<li><code>latex my_class.ins</code> -&gt; produces my_class.cls</li>
+<li><code>kpsewhich -var-value=TEXMFHOME</code> -&gt; prints path where to put cls</li>
+<li>Regarding the above command, it's good to put the usual path: <code>$HOME/texmf/tex/latex/commonstuff/</code></li>
+<li>kpsewhich my_class.cls -&gt; to check path of the class</li>
+<li>Write lyx layout: In order to do this, find the basis class for our new class. For that, inspect my_class.cls and check the line LoadClass. It implies that my_class.cls is a descendent of that class (let's suppose it's dependent on report class). Then, in /usr/share/lyx/layouts copy report.layout, change its name to my_class.layout and edit like this:</li>
+</ul>
+<pre class="hljs"><code><div>  \DeclareLaTeXClass[my_class]{name_of_layout}
+  Input report.layout
+</div></code></pre>
+<ul>
+<li>In lyx, reconfigure. Now, name_of_layout is the text we see in Document-Class</li>
+<li>Default classes: <code>/usr/share/texmf-dist/latex/elsarticle/elsarticle.cls</code></li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="6-qemu">6. Qemu</h1>
+<h2 id="61-commands">6.1. Commands</h2>
+<pre class="hljs"><code><div>qemu-img create -f qcow2 qemu_image 8G
+qemu-system-x86_64 -smp 6 -m 4G -<span class="hljs-built_in">enable</span>-kvm -cdrom arch.iso -boot order=d qemu_image
+smp (number of cores)
+
+qemu-system-x86_64 -soundhw ac97 -k en-us -vga std -<span class="hljs-built_in">enable</span>-kvm -m 4G  -usbdevice tablet -smp 6 -<span class="hljs-built_in">enable</span>-kvm -boot c qemu_image
+<span class="hljs-comment">#For no sound</span>
+qemu-system-x86_64 -k en-us -vga std -<span class="hljs-built_in">enable</span>-kvm -m 4G  -usbdevice tablet -smp 6 -boot c qemu_image
+</div></code></pre>
+<h2 id="62-variables">6.2. Variables</h2>
+<pre class="hljs"><code><div>-k en-us (keymap)
+-usbdevice tablet
+
+-cpu host
+-smp 6 <span class="hljs-comment"># number of cores</span>
+-machine <span class="hljs-built_in">type</span>=pc,accel=kvm
+-<span class="hljs-built_in">enable</span>-kvm
+-format=raw ??
+-machine smm=off <span class="hljs-comment"># bug?</span>
+-soundhw sb16,es1370
+
+<span class="hljs-comment">#telnet access</span>
+qemu-system-x86_64 -curses -monitor telnet:127.0.0.1:1234,server,nowait -boot c qemu_image
+telnet 127.0.0.1 1234  -- <span class="hljs-keyword">in</span> another terminal
+
+<span class="hljs-comment">#KVM Quick Check</span>
+zgrep CONFIG_VIRTIO /proc/config.gz
+lsmod | grep kvm
+</div></code></pre>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="7-inkscape">7. Inkscape</h1>
+<ul>
+<li>If I have problems with eps images, in this case, also need to install ghostscript.</li>
+<li>Do you have ImageMagick installed? LyX relies on ImageMagick to convert among graphics formats. It also needs Ghostscript installed (IM uses GS when the conversions involve PS, EPS or PDF files).</li>
+<li>If <code>textext</code> package form the AUR gives problem, simply go to <strong>textext</strong> official website and install it from there</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="8-vscode">8. VsCode</h1>
+<ul>
+<li>You can format an entire file with Format Document (Ctrl+Shift+I)  or just the current selection with Format Selection (Ctrl+K Ctrl+F) in right-click context menu.</li>
+<li>F1 -&gt; command pallet</li>
+<li>SSH : F1 -&gt; Remote-SSH: Connect to Host...</li>
+<li>Install extension: TabNine</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="9-zathura">9. Zathura</h1>
+<ul>
+<li><code>pacman -S zahtura-pdf-poppler</code></li>
+<li>make zathura default pdf viewer: <code>mimeo --ad application/pdf zathura.desktop</code></li>
+<li>to discover the real name of zathura.desktop run <code>locate zathura.desktop</code></li>
+<li>to check that pdf files have the correct mimetype run <code>mimeo -m pdf_file.pdf</code></li>
+<li>Clipboard: add <code>set selection-clipboard clipboard</code> to <code>~/.config/zahtura/zathurarc</code> or <code>/etc/zathurarc</code></li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="10-zsh">10. Zsh</h1>
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+<span class="hljs-built_in">source</span> ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh <span class="hljs-keyword">in</span> .zshrc
+mkdir .cache/zsh &amp;&amp; touch .cache/zsh/<span class="hljs-built_in">dirs</span>
+</div></code></pre>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="11-jupyter">11. Jupyter</h1>
+<h2 id="111-jupyter-lab">11.1. Jupyter-Lab</h2>
+<p>To run over ssh, execute</p>
+<pre class="hljs"><code><div>ssh -L 8888(port on <span class="hljs-built_in">local</span>):localhost::8889(port on remote) goncalo@ip jupyter-lab --no-browser --port=(same as before on remote)8889
+</div></code></pre>
+<ul>
+<li>To avoid authentication by token: <code>jupyter server password</code></li>
+<li>To list active sessions: <code>jupyter lab list</code></li>
+<li>To kill a session: <code>jupyter lab stop 8888</code> (for e.g.)</li>
+</ul>
+<h2 id="112-opening-browser">11.2. Opening browser</h2>
+<p>If jupyter doesn't open, do :
+<code>jupyter lab build</code>
+If command above gives permission error, do:</p>
+<pre class="hljs"><code><div>sudo chown -hR {user} {dir}
+jupyter notebook (lab) --generate-config 
+</div></code></pre>
+<p>Also, change redirect_file to false
+Na verdade, isto não funciona porque tenho de mudar o <code>~/.profile</code> para firefox LOL</p>
+<hr>
+<ul>
+<li>Can't access file (probably happens cause directory contains hidden folder .local):
+<ul>
+<li>set <code>c.ServerApp.use_redirect_file = False</code> in <code>~/.jupyter jupyter_server_config.py</code></li>
+<li>Stop server:</li>
+</ul>
+<pre class="hljs"><code><div>    lsof -n -i4TCP:[port-number]
+    <span class="hljs-built_in">kill</span> -9 [PID]
+</div></code></pre>
+</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="12-tmux">12. Tmux</h1>
+<p>ssh host, tmux, run command, <code>ctr+b d</code>, exit. To check the tmux session, run <code>tmux attach</code></p>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="13-pacman">13. Pacman</h1>
+<ul>
+<li>Update pacman mirrors: <code>reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist</code></li>
+<li>Check recently installed packages: <code>grep -i installed /var/log/pacman.log</code></li>
+</ul>
+<h2 id="131-pacman-cache">13.1. Pacman cache</h2>
+<pre class="hljs"><code><div>sudo ls /var/cache/pacman/pkg/ | wc -l <span class="hljs-comment"># checks cached packages</span>
+du -sh /var/cache/pacman/pkg/ <span class="hljs-comment"># disk space occupied by cache</span>
+sudo paccache -r <span class="hljs-comment"># cleans all packages except most recent 3</span>
+sudo paccache -rk 1 <span class="hljs-comment"># keep only one most recent version</span>
+sudo pacman -Sc <span class="hljs-comment"># remove all uninstalled packages</span>
+sudo pacman -Scc <span class="hljs-comment"># remove installed and uninstalled packages from cache</span>
+sudo paccache -ruk0 <span class="hljs-comment">#**** remove all versions of uninstalled packages</span>
+change /etc/pacman.conf ParallelDownloads=5
+</div></code></pre>
+<h2 id="132-install-from-live-usb">13.2. Install from live usb</h2>
+<pre class="hljs"><code><div>mount system: mount /dev/sdax /mnt
+sudo pacman --root /mnt -S package
+sudo pacman -Qkk | grep warning <span class="hljs-comment"># To verify the presence of the files  installed by a package</span>
+sudo pacman --root /mnt -S $(sudo pacman --root /mnt -Qeq) --noconfirm <span class="hljs-comment"># reinstalls installed packages</span>
+<span class="hljs-comment">#If need to remove aur packages:</span>
+sudo pacman --root /mnt -Qeq &gt; packages.txt
+sudo pacman --root /mnt -S $(cat packages.txt) --noconfirm
+</div></code></pre>
+<h2 id="133-pacman-infos">13.3. Pacman infos</h2>
+<pre class="hljs"><code><div>pacman -Qe <span class="hljs-comment"># lists explicitly installed packages</span>
+pacman -Rsc <span class="hljs-comment"># uninstalls (including unneeded dependencies)</span>
+pacman -Qs <span class="hljs-string">"query"</span> <span class="hljs-comment"># search installed packages for keywords</span>
+pacman -Qdt <span class="hljs-comment"># list unneeded packages</span>
+pacman -Rns $(pacman -Qdtq) <span class="hljs-comment"># uninstall unneeded packages (nota: quando adicionei isto aos aliases, sempre que abri o terminal pedia-me a pass do sudo (estava a correr o que esta a frente de $)</span>
+</div></code></pre>
+<h2 id="134-pacman-mirrors">13.4. pacman mirrors</h2>
+<p><code>sudo pacman-mirrors --fasttrack &amp;&amp; pacman -Syyu</code></p>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="14-grub">14. Grub</h1>
+<ul>
+<li>
+<p>If no update-grub command, do:</p>
+<pre class="hljs"><code><div>sudo nano /usr/sbin/update-grub
+<span class="hljs-string">"
+#!/bin/sh
+set -e
+exec grub-mkconfig -o /boot/grub/grub.cfg "</span><span class="hljs-variable">$@</span><span class="hljs-string">" 
+"</span>
+sudo chown root:root /usr/sbin/update-grub
+sudo chmod 755 /usr/sbin/update-grub
+</div></code></pre>
+</li>
+<li>
+<p>If error syntax in grub-customizer:</p>
+<ul>
+<li>View -&gt; Show placeholders</li>
+<li>select entry &quot;script code&quot;</li>
+<li>remove</li>
+</ul>
+</li>
+<li>
+<p>check kernel by <code>uname -r</code></p>
+</li>
+</ul>
+<h2 id="141-install-grub-manually-when-manjaro-fails">14.1. Install grub manually when manjaro fails</h2>
+<ul>
+<li>Deactivate CSM in BIOS</li>
+<li>Quando acaba a instalacao, ver se ele cria a particao em /boot/efi ou /boot</li>
+<li><code>sudo fdisk --list</code> (para ver onde foi instalada a particao no pc)</li>
+<li><code>sudo su</code></li>
+<li><code>mount /dev/sda2 /mnt</code> (em que sda2 era a particao com o linux)</li>
+<li><code>mount /dev/sda1 /mnt/boot/efi</code></li>
+<li><code>grub-install --target=x86_64-efi --efi-directory=/mnt/boot/efi --bootloader-id=manjaro --boot-directory=/mnt/boot --recheck --debug</code></li>
+<li><code>manjaro-chroot -a</code></li>
+<li><code>update-grub</code></li>
+<li><code>umount -R /mnt</code></li>
+</ul>
+<p><a href="https://forum.manjaro.org/t/manjaro-grub-install-error-calamares-and-manual-the-why/125886">Link</a></p>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="15-vim">15. Vim</h1>
+<ul>
+<li><code>yay -S vim-plug-git</code></li>
+<li>add <code>.vimrc</code> with the plugs I want</li>
+<li>add folder <code>~/.vim/plugged/</code></li>
+<li>to install plugs, do <code>:PlugInstall</code></li>
+<li>for fzt pluggin: <code>:Files</code> command</li>
+<li>For the NERDTree plugin to see icon of file, install: <code>yay -S nerd-fonts-complete</code>;
+This font package my screw up font sizes of icons. To correct this, add to i3blocks config the following:</li>
+</ul>
+<pre class="hljs"><code><div>	&lt;span size='small' font_weight='light'&gt; icon &lt;/span&gt; 
+</div></code></pre>
+<p>        And change font on terminal to SauceCodePro Nerd Font Medium</p>
+<ul>
+<li>To open a file in a new tab in nerdtree, press t (or T); to open vertically click s;</li>
+<li>To cycle through windows: C-W-W, C-W-H, C-W-L, C-W-J, C-W-K</li>
+<li>To open file using fzf do:</li>
+<li>CTRL+T to open in new tab</li>
+<li>CTRL+X to open a new split</li>
+<li>CTRL+V to open in a new vertical split</li>
+<li>While in NERDTree, click on &quot;m&quot; to have a menu to do stuff with the file or other things</li>
+<li><code>yay -S vim-youcompleteme-git</code> -&gt; vim autocompletion (Needs to be done separately from the installation of the dotfiles)</li>
+<li>No need to add this plugin (vim-youcompleteme-git) to the <code>.vimrc</code> file</li>
+<li>add: <code>let g:ycm_show_diagnostics_ui = 0</code> to disable error checking by YouCompleteMe</li>
+<li><code>pacman -S python-black</code></li>
+</ul>
+<h2 id="151-install-vim-in-cluster">15.1. Install Vim in cluster</h2>
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/vim/vim.git
+./configure --prefix=<span class="hljs-variable">$HOME</span>/.<span class="hljs-built_in">local</span> &amp;&amp; make &amp;&amp; make install
+<span class="hljs-comment"># More flags: --disable-perlinterp --enable-rubyinterp --enable-multibyte --enable-pythoninterp --with-features=huge</span>
+<span class="hljs-built_in">export</span> PATH=<span class="hljs-string">"/home/youruser/.local/bin:<span class="hljs-variable">$PATH</span>"</span>
+<span class="hljs-comment"># For plugins:</span>
+mkdir .vim/<span class="hljs-built_in">autoload</span>
+curl -fLo ~/.vim/<span class="hljs-built_in">autoload</span>/plug.vim --create-dirs \
+https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+</div></code></pre>
+<p>Place in <code>.vimrc</code> before <code>plug#begin()</code>:</p>
+<pre class="hljs"><code><div>let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+    silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+</div></code></pre>
+<h2 id="152-vim-snippets">15.2. Vim snippets</h2>
+<ul>
+<li><code>:UltiSnipsEdit</code> command opens up a custom snippets file for the current language/filytype</li>
+<li>Don't need the above step if I install vim-snippets plugin</li>
+</ul>
+<h2 id="153-manage-tabs">15.3. Manage Tabs</h2>
+<ul>
+<li>To move tabs -&gt; <code>Alt + arrows</code></li>
+<li>To merge tabs -&gt; <code>Ctr + m</code> or <code>Ctrl + n</code>;</li>
+<li>To exchange position of merged tabs -&gt; <code>&lt;C-w&gt; x</code>;</li>
+<li>To change cursor position -&gt; <code>&lt;C-w&gt; w</code>;</li>
+<li>To rotate windows -&gt; <code>&lt;C-w&gt; &lt;C-r&gt;</code></li>
+</ul>
+<h2 id="154-vim-surroundings">15.4. Vim surroundings</h2>
+<ul>
+<li>cs(atual)(target) -&gt; change surround from &quot;atual&quot; to &quot;target&quot;</li>
+<li>ds&quot;  -&gt; delete surround &quot;</li>
+<li>ysiw[ -&gt; yank surround inner word [ -&gt; puts [ surrounding the word the curson is in</li>
+<li>ysf(smth)[ -&gt; puts [ surrounding current cursor position till smth</li>
+</ul>
+<h2 id="155-some-commands">15.5. Some commands</h2>
+<ul>
+<li>procurar coisas: /searchthing e usa-se n ou N para avançar para as seguintes</li>
+<li>procurar string e substituir:</li>
+</ul>
+<pre class="hljs"><code><div>  :s/search/replace/
+  :8,10 s/search/replace/g procura nas linhas 8 a 10
+  :%s/search/replace/g procura no documento inteiro
+  :%s/search/replace/gc pede confirmação para alterar
+</div></code></pre>
+<ul>
+<li>copiar e colar:
+selecionar o texto, y copia, p cola</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="16-lighdm">16. Lighdm</h1>
+<pre class="hljs"><code><div>pacman -S lightdm-gtk-greeter-settings
+change default greeter: /etc/lightdm/lightdm.conf under [Seat:*]
+pacman -S archlinux-wallpaper
+pacman -S materia-gtk-theme
+yay -S pop-icon-theme-git
+yay -S pop-gtk-theme
+</div></code></pre>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="17-i3blocks">17. i3Blocks</h1>
+<p>For the scripts to work, even if it is .py, need to chmod +x</p>
+<ul>
+<li>https://github.com/vivien/i3blocks-contrib/tree/master/</li>
+<li>For calendar, install yad and xdotool; add:
+<code>for_window [class='Yad'] floating enable</code></li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="18-pcmanfm">18. PcmanFM</h1>
+<h2 id="181-basic-configuration">18.1. Basic Configuration</h2>
+<ul>
+<li>
+<p>Go to edit -&gt; Preferences -&gt; Advanced :</p>
+<ul>
+<li>Set terminal emulator (ex: xfce4-terminal) -&gt; to open directly with vim for example</li>
+<li>Set archiver integration: xarchiver</li>
+</ul>
+</li>
+<li>
+<p>To see thumbnails, install the following packages:</p>
+<ul>
+<li>poppler-glib</li>
+<li>ffmpegthumbnailer</li>
+<li>freetype2</li>
+<li>raw-thumbnailer</li>
+<li>tumbler</li>
+<li>libgsf</li>
+<li>libgepub</li>
+</ul>
+</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="19-mpv">19. MPV</h1>
+<h2 id="191-annoying-bar-at-the-top">19.1. Annoying bar at the top</h2>
+<ul>
+<li>Change picom config: frame-opacity option</li>
+</ul>
+<h2 id="192-watch-stream">19.2. Watch stream</h2>
+<ul>
+<li><code>pacman -S yt-dlp</code></li>
+<li><code>mpv 'link'</code></li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="20-mime-types">20. Mime-Types</h1>
+<h2 id="201-alternative-to-xdg">20.1. Alternative to xdg:</h2>
+<ul>
+<li><code>yay -S mimeo</code></li>
+<li><code>yay -S xdg-utils-mimeo</code></li>
+</ul>
+<p><a href="https://xyne.archlinux.ca/projects/mimeo/">MIMEO COMMANDS</a></p>
+<ul>
+<li>Open files (foo, bar, etc) : <code>mimeo foo bar baz</code></li>
+<li>find Leafpad's desktop file: <code>mimeo --app2desk leafpad</code></li>
+<li>determine &quot;test&quot; file's MIME-type: <code>mimeo -m test</code></li>
+<li>associate &quot;application/x-shellscript&quot; with Leafpad: <code>mimeo --add application/x-shellscript leafpad.desktop</code></li>
+<li>Associate all text files with Medit: <code>mimeo --add 'glob:text/*' medit.desktop</code></li>
+<li>Association File Examples: (mimeo --assoc-help)</li>
+</ul>
+<pre class="hljs"><code><div>vlc --one-instance --playlist-enqueue %U
+    ^https?://(www.)?youtube.com/watch\?.*v=
+
+Open HTTP(S) URLs with Firefox:
+
+/usr/bin/firefox %U   
+    ^https?://
+
+Open various media files in VLC by extension:
+
+/usr/bin/vlc --one-instance --playlist-enqueue %F
+  \.mp3$
+  \.flac$
+  \.avi$
+</div></code></pre>
+<ul>
+<li>CUSTOM ASSOCIATION FILES (mimeo --help, mimeo --filepath-help
+If --assoc is not passed then the following paths will be checked for custom associations, in order:</li>
+</ul>
+<pre class="hljs"><code><div>/home/goncalo/.config/mimeo/associations.txt
+/etc/xdg/mimeo/associations.txt
+</div></code></pre>
+<p>Note: Eventually try mimi! Links:</p>
+<ul>
+<li><a href="https://github.com/taylorchu/mimi">repo</a></li>
+<li><a href="https://aur.archlinux.org/packages.php?ID=56438">aur</a></li>
+</ul>
+<p>Note: eventually take a look at package perl-file-mimeinfo (mimeopen -d )</p>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="21-color-scheme">21. Color-Scheme</h1>
+<ul>
+<li>Install: python-pywal</li>
+<li>Install: <code>yay -S fzwal-git</code></li>
+<li>Run: <code>wal --theme base16-nord</code></li>
+<li>Add to .zshrc: (<code>cat ~/.cache/wal/sequences &amp;</code>)</li>
+<li>Add to .vimrc:
+<ul>
+<li>Plug 'dylanaraps/wal.vim' (install with PlugInstall)</li>
+<li><code>colorscheme wal</code></li>
+<li><code>set background=dark</code></li>
+</ul>
+</li>
+</ul>
+<p>NOTE:</p>
+<ul>
+<li>This pywal thing seems to screw up with other windows. Removed for now!</li>
+<li>It seems like it isn't pywal that messed with firefox -&gt; Firefox stopped crahsing when I disabled the popOS gtk theme!!!</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="22-libreoffice">22. LibreOffice</h1>
+<ul>
+<li>Latex in impress: <code>pacman -S libreoffice-extension-texmaths</code></li>
+<li>Check extension in Extension Manager inside libreoffice</li>
+<li>To install ExpandAnimations go to Tools-&gt;ExtensionManager and add there the oxt file</li>
+</ul>
+<h1 id="23-misc">23. Misc</h1>
+<ol>
+<li>
+<p>By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.</p>
+</li>
+<li>
+<p>It is preferable to have xfce4-notify (initiated in config by running <code>/usr/lib/xfce4/notifyd/xfce4-notifyd</code>) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
+In manjaro, do: <code>sudo mv /usr/share/dbus-1/services/org.knopwob.dunst.service{,.disabled}</code></p>
+</li>
+<li>
+<p>Bluetooth:</p>
+<ul>
+<li>pacman -S pulseaudio-bluetooth</li>
+<li>pulseaudio -k</li>
+<li>yay -S bluez-hciconfig</li>
+<li>hciconfig -&gt; lists bluetooth interfaces</li>
+<li>sudo hciconfig hci1 down -&gt; turn off specific interface</li>
+</ul>
+</li>
+<li>
+<p>Sticky xrandr:</p>
+<ul>
+<li><code>xrandr --output eDP --primary</code></li>
+<li><code>pacman -S autorandr</code></li>
+<li><code>autorandr --save laptop</code></li>
+</ul>
+</li>
+<li>
+<p>FSTAB</p>
+<pre class="hljs"><code><div>sshfs : jose@pi:/ /mnt/rebelo-pi fuse.sshfs noauto,x-systemd.automount,_netdev,user,idmap=user,follow_symlinks,identityfile=/root/.ssh/id_rsa,allow_other,default_permissions,uid=1995,gid=1995,noatime,reconnect,ServerAliveInterval=45,ServerAliveCountMax=2 0 0
+</div></code></pre>
+</li>
+<li>
+<p>SYMBOLIC LINKS</p>
+<ul>
+<li><code>ln -s /complete/path/to/original/file /complete/path/to/target/file</code> (the target file will be a &quot;pointer&quot; to the original file, but it's like the file is in the new target location)</li>
+<li><code>ln -sr /relative/path/to/original/directory /complete/path/to/target/directory</code> (the target directory will be a link to the first; the -r flag means relative)</li>
+<li>The <code>-f</code> flag will force the link, meaning it delets the target file/directory if it exists</li>
+<li>Remember to always use complete paths and not relative paths if the -r flag is not specified</li>
+</ul>
+</li>
+<li>
+<p>SSH</p>
+<ul>
+<li>I can run commands over ssh like this: <code>ssh user@host 'command'</code>
+<ul>
+<li>Example: <code>liplisboacluster 'echo $(hostname)'</code> -&gt; prints hostname</li>
+</ul>
+</li>
+<li>Writting on a remote file:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">'Some Text'</span> | ssh user@remotehost -T <span class="hljs-string">"cat &gt; /remotefile.txt"</span>
+<span class="hljs-comment"># (-T flag fowards stdin local through ssh)</span>
+cat ~/.ssh/id_rsa.pub | ssh user@remote.host <span class="hljs-string">'dd of=.ssh/authorized_keys oflag=append conv=notrunc'</span>
+</div></code></pre>
+<ul>
+<li>In order to have several ssh keys, do:</li>
+</ul>
+<pre class="hljs"><code><div>ssh-keygen -t rsa -b 4096 -C <span class="hljs-string">"your_email@example.com"</span>
+<span class="hljs-built_in">eval</span> $(ssh-agent)
+ssh-add ~/.ssh/id_rsa2 (newly created key)
+</div></code></pre>
+<ul>
+<li>In order to have ssh-agent always running, check ~/.config/systemd and .zshrc</li>
+<li><code>systemctl --user enable ssh-agent.service</code> (probably don't need to do this since I have a backup of .config/systemd)</li>
+<li>Check services: <code>systemctl --user list-unit-files | grep enabled</code></li>
+<li>Check services (all): <code>systemctl list-unit-files | grep enabled</code></li>
+<li>Also, need to add to zshrc a function to load keys, since ssh-add only works for the current session</li>
+<li>To have a proxy:</li>
+</ul>
+<pre class="hljs"><code><div>Host 10.0.10.3
+User goncalo
+ProxyCommand ssh goncalo@jgroboredo.ddns.net -W %h:%p
+</div></code></pre>
+<ul>
+<li>If ssh service fails to start with error: Start request repeated too quickly, do the following:</li>
+</ul>
+<pre class="hljs"><code><div>sudo systemctl stop sshd.socket and sshd.service
+sudo /usr/bin/sshd -d
+<span class="hljs-comment">#If message from above command states a permission issue:</span>
+sudo chmod 400 /etc/ssh/ssh*key
+</div></code></pre>
+</li>
+<li>
+<p>Firefox crash</p>
+<ul>
+<li>
+<p>Seems like it was the gtk theme from popOS that made firefox to crash</p>
+</li>
+<li>
+<p>In sway, if font problems, export GTK_USE_PORTAL=1</p>
+</li>
+<li>
+<p>In what concerns crashes, picom with xrender crashes! Need to use glx</p>
+</li>
+<li>
+<p>Today, 10/08/2021, firefox started crashing. Disabled picom and it did not solve the problem. Updated picom config from arch linux wiki, did not help. Firefox-&gt;Settings-&gt;Performance did not change anything</p>
+</li>
+<li>
+<p>Starting firefox from terminal does not seem to solve the problem. Does not output any errors.</p>
+</li>
+<li>
+<p>Testing launching firefox and terminal from i3 bind with the flag --no-startup-id -&gt; doesnt work</p>
+</li>
+<li>
+<p>Testing google-chrome-stable; disabled guake</p>
+</li>
+<li>
+<p>Google-chrome also crashed; However, it recovered after a few seconds, similar to what previously happened to vscode. It seems like a X11 problem. Moved to sway.</p>
+</li>
+<li>
+<p>Testing again firefox crashes on i3. For now, uninstalled xf86-video-intel. Since then, no crashes yet.</p>
+</li>
+<li>
+<p>FIREFOX SLOW START:</p>
+<ul>
+<li>about:config</li>
+<li>set 0 to all widget.use-xdg-desktop-portal</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>ARCH NOT BOOTING IN VM</p>
+<ul>
+<li>On a recent installation of arch on a VM, it did not boot after installing the custom grub-theme. In order to solve this, either chroot or open a terminal using ctrl+alt+F2. There, delete the grub theme in /usr/share/grub/themes and after that run grub-mkconfig -o /boot/grub/grub.cfg</li>
+<li>The above solution doesn't work. In fact I am very dumb. This was only related with the fact that I have a intel config file in /etc/X11/xorg.d.... DUMBBBB</li>
+</ul>
+</li>
+<li>
+<p>FIND UUID OF DISK</p>
+<ul>
+<li>sudo blkid | grep UUID=</li>
+</ul>
+</li>
+<li>
+<p>FIX YAY</p>
+<ul>
+<li>Error: yay: error while loading shared libraries: libalpm.so.11:  cannot open shared object file: No such file or directory</li>
+<li>Fix: rebuild yay:</li>
+</ul>
+<pre class="hljs"><code><div>cd /tmp &amp;&amp; git clone 'https://aur.archlinux.org/yay.git' 
+    &amp;&amp; cd /tmp/yay &amp;&amp; makepkg -si &amp;&amp; cd ~ &amp;&amp; rm -rf /tmp/yay/
+</div></code></pre>
+</li>
+<li>
+<p>FIX PAMAC</p>
+<ul>
+<li><code>Error: libpamac-aur: /etc/pamac.conf exists in filesystem</code>(owned by pamac-aur)</li>
+<li>Fix: <code>pacman -R pamac-aur &amp;&amp; yay -S pamac-aur</code></li>
+</ul>
+</li>
+<li>
+<p>FIX TIME</p>
+<ul>
+<li><code>sudo ntpd -qg</code></li>
+<li>install ntp</li>
+<li><code>sudo ntpdate pool.ntp.org</code></li>
+<li><code>timedatectl set-ntp true</code></li>
+</ul>
+</li>
+<li>
+<p>CHECK RAM
+<code>sudo dmidecode -t memory</code></p>
+</li>
+<li>
+<p>lxrandr to change monitors</p>
+</li>
+<li>
+<p>CONFIG LINUX ACCOUNT</p>
+<pre class="hljs"><code><div>sudo useradd -m <span class="hljs-built_in">test</span>
+userdel &lt;nome de utilizador <span class="hljs-keyword">do</span> utilizador&gt;
+adduser username sudo
+/etc/ssh/sshd_config <span class="hljs-comment"># Allow pubkey and add authorized_keys file;</span>
+chsh -s $(<span class="hljs-built_in">which</span> zsh)
+sudo service ssh restart
+<span class="hljs-comment"># For redmine: couldn't add repos to redmine: change permissions: </span>
+chmod 775 /path/to/dir
+</div></code></pre>
+</li>
+<li>
+<p>Dmenu-extended</p>
+<ul>
+<li>For apps to open I need desktop files to associate a given mimetype to a binary</li>
+<li>After doing the above step, rebuild cache</li>
+</ul>
+</li>
+<li>
+<p>NetworkManager/Network interface stopped working</p>
+<ul>
+<li>Solution: boot to a pen with manjaro and reboot</li>
+<li>See logs:</li>
+</ul>
+<pre class="hljs"><code><div>find /sys/class/net -follow -maxdepth 2 -name wireless
+cat /proc/net/wireless
+iw dev
+sudo iw dev wlp0s20f3 connect <span class="hljs-string">"ROBOREDO"</span>
+sudo dmesg | grep firmware
+sudo dmesg --level=emerg,alert,crit,err
+lspci | grep net
+lsmod
+sudo ls /etc/netctl/interfaces
+</div></code></pre>
+</li>
+<li>
+<p>Rebuild all yay packages depending on python:
+<code>yay -S $(pacman -Qoq /usr/lib/python3.9) --answerclean All</code></p>
+</li>
+<li>
+<p>nc : install <code>pacman -S gnu-netcat</code></p>
+</li>
+<li>
+<p>Can add stuff to path in .xinitrc; a user systemd service needs to have WantedBy=default.target and not multi-user
+The rclone command will not work in a user service since systemd doesn't have access to env variables. For that, just add a env.conf file to .config/environment.d/ (check printenv)</p>
+</li>
+<li>
+<p>Delay a systemd service:</p>
+<pre class="hljs"><code><div>[Service]
+ExecStartPre=/bin/sleep 30 
+</div></code></pre>
+</li>
+<li>
+<p>DMZ - portas abertas para toda a internet</p>
+</li>
+<li>
+<p><code>dhcpcd -T eth0</code> - check dns</p>
+</li>
+<li>
+<p>PERMISSIONS</p>
+<pre class="hljs"><code><div>chown -R root:root /etc
+find /etc -<span class="hljs-built_in">type</span> f -<span class="hljs-built_in">exec</span> chmod 644 {} +
+find /etc -<span class="hljs-built_in">type</span> d -<span class="hljs-built_in">exec</span> chmod 755 {} +
+chmod 755 /etc/init.d/* /etc/rc.local /etc/network/* /etc/cron.*/*
+chmod 400 /etc/ssh/ssh*key
+check desktop_dotfiles
+</div></code></pre>
+</li>
+<li>
+<p>Need imagemagick for blurlock</p>
+</li>
+<li>
+<p>samba</p>
+<pre class="hljs"><code><div>smbclient <span class="hljs-string">'//print-server.critical.pt/Drivers/'</span> -U critical/jgroboredo (smbclient <span class="hljs-string">'//ip/Directory'</span>)
+smbclient <span class="hljs-string">'\\files.critical.pt/Repository'</span> -U critical/jgroboredo
+get file
+</div></code></pre>
+</li>
+<li>
+<p>bluedevil; bluedevil-wizard; systemctl start bluetooth;
+pavucontrol: High Fidelity Playback (A2DP Sink, codec LDAC)
+blueberry-tray</p>
+</li>
+<li>
+<p><code>sudo lsof -i -P -n | grep LISTEN</code></p>
+</li>
+<li>
+<p>bash gum package</p>
+</li>
+<li>
+<p>gtk-update-icon-cache -f -t .icons ou (/usr/share/icons/)
+Add icon field in desktop file - only the name.png</p>
+</li>
+</ol>
+
+</body>
+</html>

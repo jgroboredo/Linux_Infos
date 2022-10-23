@@ -52,6 +52,26 @@
   - [13.2. Install from live usb](#132-install-from-live-usb)
   - [13.3. Pacman infos](#133-pacman-infos)
   - [13.4. pacman mirrors](#134-pacman-mirrors)
+- [14. Grub](#14-grub)
+  - [14.1. Install grub manually when manjaro fails](#141-install-grub-manually-when-manjaro-fails)
+- [15. Vim](#15-vim)
+  - [15.1. Install Vim in cluster](#151-install-vim-in-cluster)
+  - [15.2. Vim snippets](#152-vim-snippets)
+  - [15.3. Manage Tabs](#153-manage-tabs)
+  - [15.4. Vim surroundings](#154-vim-surroundings)
+  - [15.5. Some commands](#155-some-commands)
+- [16. Lighdm](#16-lighdm)
+- [17. i3Blocks](#17-i3blocks)
+- [18. PcmanFM](#18-pcmanfm)
+  - [18.1. Basic Configuration](#181-basic-configuration)
+- [19. MPV](#19-mpv)
+  - [19.1. Annoying bar at the top](#191-annoying-bar-at-the-top)
+  - [19.2. Watch stream](#192-watch-stream)
+- [20. Mime-Types](#20-mime-types)
+  - [20.1. Alternative to xdg:](#201-alternative-to-xdg)
+- [21. Color-Scheme](#21-color-scheme)
+- [22. LibreOffice](#22-libreoffice)
+- [23. Misc](#23-misc)
 
 ## 1.1. Introduction
 
@@ -581,5 +601,430 @@ pacman -Rns $(pacman -Qdtq) # uninstall unneeded packages (nota: quando adicione
 ## 13.4. pacman mirrors
 `sudo pacman-mirrors --fasttrack && pacman -Syyu`
 
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 14. Grub
+
+- If no update-grub command, do:
+  ```bash
+  sudo nano /usr/sbin/update-grub
+  "
+  #!/bin/sh
+  set -e
+  exec grub-mkconfig -o /boot/grub/grub.cfg "$@" 
+  "
+  sudo chown root:root /usr/sbin/update-grub
+  sudo chmod 755 /usr/sbin/update-grub
+  ```
+
+- If error syntax in grub-customizer:
+  - View -> Show placeholders
+  - select entry "script code"
+  - remove
+- check kernel by `uname -r`
 
 
+## 14.1. Install grub manually when manjaro fails
+- Deactivate CSM in BIOS
+- Quando acaba a instalacao, ver se ele cria a particao em /boot/efi ou /boot
+- `sudo fdisk --list` (para ver onde foi instalada a particao no pc)
+- `sudo su`
+- `mount /dev/sda2 /mnt` (em que sda2 era a particao com o linux)
+- `mount /dev/sda1 /mnt/boot/efi`
+- `grub-install --target=x86_64-efi --efi-directory=/mnt/boot/efi --bootloader-id=manjaro --boot-directory=/mnt/boot --recheck --debug`
+- `manjaro-chroot -a`
+- `update-grub`
+- `umount -R /mnt`
+
+[Link](https://forum.manjaro.org/t/manjaro-grub-install-error-calamares-and-manual-the-why/125886)
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 15. Vim
+
+- `yay -S vim-plug-git`
+- add `.vimrc` with the plugs I want
+- add folder `~/.vim/plugged/`
+- to install plugs, do `:PlugInstall`
+- for fzt pluggin: `:Files` command
+- For the NERDTree plugin to see icon of file, install: `yay -S nerd-fonts-complete`;
+This font package my screw up font sizes of icons. To correct this, add to i3blocks config the following:
+
+```
+	<span size='small' font_weight='light'> icon </span> 
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And change font on terminal to SauceCodePro Nerd Font Medium
+
+- To open a file in a new tab in nerdtree, press t (or T); to open vertically click s;
+- To cycle through windows: C-W-W, C-W-H, C-W-L, C-W-J, C-W-K
+- To open file using fzf do:
+- CTRL+T to open in new tab
+- CTRL+X to open a new split
+- CTRL+V to open in a new vertical split
+- While in NERDTree, click on "m" to have a menu to do stuff with the file or other things
+- `yay -S vim-youcompleteme-git` -> vim autocompletion (Needs to be done separately from the installation of the dotfiles)
+- No need to add this plugin (vim-youcompleteme-git) to the `.vimrc` file
+- add: `let g:ycm_show_diagnostics_ui = 0` to disable error checking by YouCompleteMe
+- `pacman -S python-black`
+
+## 15.1. Install Vim in cluster
+
+```bash
+git clone https://github.com/vim/vim.git
+./configure --prefix=$HOME/.local && make && make install
+# More flags: --disable-perlinterp --enable-rubyinterp --enable-multibyte --enable-pythoninterp --with-features=huge
+export PATH="/home/youruser/.local/bin:$PATH"
+# For plugins:
+mkdir .vim/autoload
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+Place in `.vimrc` before `plug#begin()`:
+
+```
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+    silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+```
+
+## 15.2. Vim snippets
+
+- `:UltiSnipsEdit` command opens up a custom snippets file for the current language/filytype
+- Don't need the above step if I install vim-snippets plugin
+
+## 15.3. Manage Tabs
+- To move tabs -> `Alt + arrows`
+- To merge tabs -> `Ctr + m` or `Ctrl + n`;
+- To exchange position of merged tabs -> `<C-w> x`;
+- To change cursor position -> `<C-w> w`;
+- To rotate windows -> `<C-w> <C-r>`
+
+## 15.4. Vim surroundings
+
+- cs(atual)(target) -> change surround from "atual" to "target"
+- ds"  -> delete surround "
+- ysiw[ -> yank surround inner word [ -> puts [ surrounding the word the curson is in
+- ysf(smth)[ -> puts [ surrounding current cursor position till smth
+
+
+## 15.5. Some commands
+
+- procurar coisas: /searchthing e usa-se n ou N para avançar para as seguintes
+- procurar string e substituir:
+  
+```
+  :s/search/replace/
+  :8,10 s/search/replace/g procura nas linhas 8 a 10
+  :%s/search/replace/g procura no documento inteiro
+  :%s/search/replace/gc pede confirmação para alterar
+```
+
+- copiar e colar:
+selecionar o texto, y copia, p cola
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 16. Lighdm
+
+```text
+pacman -S lightdm-gtk-greeter-settings
+change default greeter: /etc/lightdm/lightdm.conf under [Seat:*]
+pacman -S archlinux-wallpaper
+pacman -S materia-gtk-theme
+yay -S pop-icon-theme-git
+yay -S pop-gtk-theme
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 17. i3Blocks
+
+For the scripts to work, even if it is .py, need to chmod +x
+- https://github.com/vivien/i3blocks-contrib/tree/master/
+- For calendar, install yad and xdotool; add:
+`for_window [class='Yad'] floating enable`
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 18. PcmanFM
+
+## 18.1. Basic Configuration
+- Go to edit -> Preferences -> Advanced :
+  - Set terminal emulator (ex: xfce4-terminal) -> to open directly with vim for example
+  - Set archiver integration: xarchiver
+
+- To see thumbnails, install the following packages:
+  - poppler-glib
+  - ffmpegthumbnailer
+  - freetype2
+  - raw-thumbnailer
+  - tumbler
+  - libgsf
+  - libgepub
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 19. MPV
+
+## 19.1. Annoying bar at the top
+
+- Change picom config: frame-opacity option
+
+## 19.2. Watch stream
+
+- `pacman -S yt-dlp`
+- `mpv 'link'`
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 20. Mime-Types
+
+## 20.1. Alternative to xdg:
+
+- `yay -S mimeo`
+- `yay -S xdg-utils-mimeo` 
+
+[MIMEO COMMANDS](https://xyne.archlinux.ca/projects/mimeo/)
+
+- Open files (foo, bar, etc) : `mimeo foo bar baz`
+- find Leafpad's desktop file: `mimeo --app2desk leafpad`
+- determine "test" file's MIME-type: `mimeo -m test`
+- associate "application/x-shellscript" with Leafpad: `mimeo --add application/x-shellscript leafpad.desktop`
+- Associate all text files with Medit: `mimeo --add 'glob:text/*' medit.desktop`
+- Association File Examples: (mimeo --assoc-help)
+
+```
+vlc --one-instance --playlist-enqueue %U
+    ^https?://(www.)?youtube.com/watch\?.*v=
+
+Open HTTP(S) URLs with Firefox:
+
+/usr/bin/firefox %U   
+    ^https?://
+
+Open various media files in VLC by extension:
+
+/usr/bin/vlc --one-instance --playlist-enqueue %F
+  \.mp3$
+  \.flac$
+  \.avi$
+```
+
+- CUSTOM ASSOCIATION FILES (mimeo --help, mimeo --filepath-help
+If --assoc is not passed then the following paths will be checked for custom associations, in order:
+
+```bash
+/home/goncalo/.config/mimeo/associations.txt
+/etc/xdg/mimeo/associations.txt
+```
+
+Note: Eventually try mimi! Links:
+- [repo](https://github.com/taylorchu/mimi)
+- [aur](https://aur.archlinux.org/packages.php?ID=56438	)
+
+Note: eventually take a look at package perl-file-mimeinfo (mimeopen -d )
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 21. Color-Scheme
+
+- Install: python-pywal
+- Install: `yay -S fzwal-git`
+- Run: `wal --theme base16-nord`
+- Add to .zshrc: (`cat ~/.cache/wal/sequences &`)
+- Add to .vimrc:
+  - Plug 'dylanaraps/wal.vim' (install with PlugInstall)
+  - `colorscheme wal`
+  - `set background=dark`
+
+NOTE:
+
+- This pywal thing seems to screw up with other windows. Removed for now!
+- It seems like it isn't pywal that messed with firefox -> Firefox stopped crahsing when I disabled the popOS gtk theme!!!
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 22. LibreOffice
+
+- Latex in impress: `pacman -S libreoffice-extension-texmaths`
+- Check extension in Extension Manager inside libreoffice
+- To install ExpandAnimations go to Tools->ExtensionManager and add there the oxt file
+
+# 23. Misc
+
+1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
+2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
+In manjaro, do: `sudo mv /usr/share/dbus-1/services/org.knopwob.dunst.service{,.disabled}`
+3) Bluetooth:
+   - pacman -S pulseaudio-bluetooth
+   - pulseaudio -k
+   - yay -S bluez-hciconfig
+   - hciconfig -> lists bluetooth interfaces
+   - sudo hciconfig hci1 down -> turn off specific interface
+4) Sticky xrandr:
+   - `xrandr --output eDP --primary`
+   - `pacman -S autorandr`
+   - `autorandr --save laptop`
+5) FSTAB
+
+    ```
+    sshfs : jose@pi:/ /mnt/rebelo-pi fuse.sshfs noauto,x-systemd.automount,_netdev,user,idmap=user,follow_symlinks,identityfile=/root/.ssh/id_rsa,allow_other,default_permissions,uid=1995,gid=1995,noatime,reconnect,ServerAliveInterval=45,ServerAliveCountMax=2 0 0
+    ```
+6) SYMBOLIC LINKS
+   - `ln -s /complete/path/to/original/file /complete/path/to/target/file` (the target file will be a "pointer" to the original file, but it's like the file is in the new target location)
+   - `ln -sr /relative/path/to/original/directory /complete/path/to/target/directory` (the target directory will be a link to the first; the -r flag means relative)
+   - The `-f` flag will force the link, meaning it delets the target file/directory if it exists
+   - Remember to always use complete paths and not relative paths if the -r flag is not specified
+7) SSH
+   - I can run commands over ssh like this: `ssh user@host 'command'`
+     - Example: `liplisboacluster 'echo $(hostname)'` -> prints hostname
+   - Writting on a remote file:
+
+    ```bash
+    echo 'Some Text' | ssh user@remotehost -T "cat > /remotefile.txt"
+    # (-T flag fowards stdin local through ssh)
+    cat ~/.ssh/id_rsa.pub | ssh user@remote.host 'dd of=.ssh/authorized_keys oflag=append conv=notrunc'
+    ```
+
+   - In order to have several ssh keys, do:
+
+    ```bash
+    ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+    eval $(ssh-agent)
+    ssh-add ~/.ssh/id_rsa2 (newly created key)
+    ```
+
+   - In order to have ssh-agent always running, check ~/.config/systemd and .zshrc
+   - `systemctl --user enable ssh-agent.service` (probably don't need to do this since I have a backup of .config/systemd)
+   - Check services: `systemctl --user list-unit-files | grep enabled`
+   - Check services (all): `systemctl list-unit-files | grep enabled`
+   - Also, need to add to zshrc a function to load keys, since ssh-add only works for the current session
+   - To have a proxy:
+  
+    ```
+    Host 10.0.10.3
+    User goncalo
+    ProxyCommand ssh goncalo@jgroboredo.ddns.net -W %h:%p
+    ```
+
+   - If ssh service fails to start with error: Start request repeated too quickly, do the following:
+  
+    ```bash
+    sudo systemctl stop sshd.socket and sshd.service
+    sudo /usr/bin/sshd -d
+    #If message from above command states a permission issue:
+    sudo chmod 400 /etc/ssh/ssh*key
+    ```
+8) Firefox crash
+   - Seems like it was the gtk theme from popOS that made firefox to crash
+   - In sway, if font problems, export GTK_USE_PORTAL=1
+   - In what concerns crashes, picom with xrender crashes! Need to use glx
+   - Today, 10/08/2021, firefox started crashing. Disabled picom and it did not solve the problem. Updated picom config from arch linux wiki, did not help. Firefox->Settings->Performance did not change anything
+   - Starting firefox from terminal does not seem to solve the problem. Does not output any errors.
+   - Testing launching firefox and terminal from i3 bind with the flag --no-startup-id -> doesnt work
+   - Testing google-chrome-stable; disabled guake
+   - Google-chrome also crashed; However, it recovered after a few seconds, similar to what previously happened to vscode. It seems like a X11 problem. Moved to sway.
+   - Testing again firefox crashes on i3. For now, uninstalled xf86-video-intel. Since then, no crashes yet.
+
+   - FIREFOX SLOW START:
+     - about:config
+     - set 0 to all widget.use-xdg-desktop-portal
+9) ARCH NOT BOOTING IN VM
+   - On a recent installation of arch on a VM, it did not boot after installing the custom grub-theme. In order to solve this, either chroot or open a terminal using ctrl+alt+F2. There, delete the grub theme in /usr/share/grub/themes and after that run grub-mkconfig -o /boot/grub/grub.cfg
+   - The above solution doesn't work. In fact I am very dumb. This was only related with the fact that I have a intel config file in /etc/X11/xorg.d.... DUMBBBB
+10) FIND UUID OF DISK
+    - sudo blkid | grep UUID=
+11) FIX YAY
+    - Error: yay: error while loading shared libraries: libalpm.so.11:  cannot open shared object file: No such file or directory
+    - Fix: rebuild yay:
+
+    ```
+    cd /tmp && git clone 'https://aur.archlinux.org/yay.git' 
+        && cd /tmp/yay && makepkg -si && cd ~ && rm -rf /tmp/yay/
+    ```
+
+12)  FIX PAMAC	
+     - `Error: libpamac-aur: /etc/pamac.conf exists in filesystem`(owned by pamac-aur) 
+     - Fix: `pacman -R pamac-aur && yay -S pamac-aur`
+13) FIX TIME
+    - `sudo ntpd -qg`
+    - install ntp
+    - `sudo ntpdate pool.ntp.org`
+    - `timedatectl set-ntp true`
+14) CHECK RAM
+`sudo dmidecode -t memory`
+15) lxrandr to change monitors
+16) CONFIG LINUX ACCOUNT
+    
+    ```bash
+    sudo useradd -m test
+    userdel <nome de utilizador do utilizador>
+    adduser username sudo
+    /etc/ssh/sshd_config # Allow pubkey and add authorized_keys file;
+    chsh -s $(which zsh)
+    sudo service ssh restart
+    # For redmine: couldn't add repos to redmine: change permissions: 
+    chmod 775 /path/to/dir
+    ```
+
+17) Dmenu-extended
+     - For apps to open I need desktop files to associate a given mimetype to a binary
+     - After doing the above step, rebuild cache
+18) NetworkManager/Network interface stopped working
+    - Solution: boot to a pen with manjaro and reboot
+    - See logs:
+
+    ```bash
+    find /sys/class/net -follow -maxdepth 2 -name wireless
+    cat /proc/net/wireless
+    iw dev
+    sudo iw dev wlp0s20f3 connect "ROBOREDO"
+    sudo dmesg | grep firmware
+    sudo dmesg --level=emerg,alert,crit,err
+    lspci | grep net
+    lsmod
+    sudo ls /etc/netctl/interfaces
+    ```
+
+19) Rebuild all yay packages depending on python:
+  `yay -S $(pacman -Qoq /usr/lib/python3.9) --answerclean All`
+20) nc : install `pacman -S gnu-netcat`
+21)  Can add stuff to path in .xinitrc; a user systemd service needs to have WantedBy=default.target and not multi-user
+The rclone command will not work in a user service since systemd doesn't have access to env variables. For that, just add a env.conf file to .config/environment.d/ (check printenv)  
+22) Delay a systemd service:
+    ```bash
+    [Service]
+    ExecStartPre=/bin/sleep 30 
+    ```
+
+23) DMZ - portas abertas para toda a internet
+24) `dhcpcd -T eth0` - check dns
+25) PERMISSIONS
+    ```bash
+    chown -R root:root /etc
+    find /etc -type f -exec chmod 644 {} +
+    find /etc -type d -exec chmod 755 {} +
+    chmod 755 /etc/init.d/* /etc/rc.local /etc/network/* /etc/cron.*/*
+    chmod 400 /etc/ssh/ssh*key
+    check desktop_dotfiles
+    ```
+26) Need imagemagick for blurlock
+27) samba
+
+    ```bash
+    smbclient '//print-server.critical.pt/Drivers/' -U critical/jgroboredo (smbclient '//ip/Directory')
+    smbclient '\\files.critical.pt/Repository' -U critical/jgroboredo
+    get file
+    ```
+
+28) bluedevil; bluedevil-wizard; systemctl start bluetooth;
+    pavucontrol: High Fidelity Playback (A2DP Sink, codec LDAC)
+    blueberry-tray
+29) `sudo lsof -i -P -n | grep LISTEN`
+30) bash gum package
+31) gtk-update-icon-cache -f -t .icons ou (/usr/share/icons/)
+ 		 Add icon field in desktop file - only the name.png
