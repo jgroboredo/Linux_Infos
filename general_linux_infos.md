@@ -125,8 +125,22 @@
   - [41.1. Create db in influxdb](#411-create-db-in-influxdb)
   - [41.2. CONFIG GRAFANA](#412-config-grafana)
   - [41.3. Notes](#413-notes)
-- [41. Docker](#41-docker)
-- [42. Misc](#42-misc)
+- [42. Docker](#42-docker)
+  - [42.1. Jacket](#421-jacket)
+  - [42.2. Sonarr](#422-sonarr)
+  - [42.3. System service to run docker](#423-system-service-to-run-docker)
+  - [42.4. Rclone DLNA](#424-rclone-dlna)
+  - [42.5. Transdrone](#425-transdrone)
+  - [42.6. JellyFin](#426-jellyfin)
+  - [42.7. QBitTorrent](#427-qbittorrent)
+  - [42.8. Bazarr](#428-bazarr)
+  - [42.9. Organizrr](#429-organizrr)
+  - [42.10. NginX](#4210-nginx)
+  - [42.11. Some Important Concepts](#4211-some-important-concepts)
+  - [42.12. Update Containers](#4212-update-containers)
+  - [42.13. Some notes based on experience](#4213-some-notes-based-on-experience)
+- [43. VPN](#43-vpn)
+- [44. Misc](#44-misc)
 
 ## 1.1. Introduction
 
@@ -1611,7 +1625,7 @@ SHOW DATABASES
   - Add new series to default path where sonarr can write
   - Open sqlitebrowser -> Open Database -> sonardb (inside config folder in container) -> In table, select Series -> find series -> Select Path -> Change on the right
 
-# 43. System service to run docker
+## 42.3. System service to run docker
 
   ```text
   /etc/systemd/system/docker-compose.service
@@ -1635,17 +1649,17 @@ SHOW DATABASES
   WantedBy=multi-user.target
   ```
 
-## 43.1. Rclone DLNA
+## 42.4. Rclone DLNA
 
 - Settings -> Download clients -> Advanced options -> Enable remove imported downloads from download client history
 - This is streaming the /media folder to my network
 - In VLC go to view -> playlist -> local network -> universal plug and play
 
-## 43.2. Transdrone
+## 42.5. Transdrone
 
 Description: App for android to manage torrents
 
-## 43.3. JellyFin
+## 42.6. JellyFin
 
 - drive ntfs -> does not support inotify -> scan manually: Settings -> dashboard -> scan all libraries
 - In order to change folder go to settings -> Dashboard -> Libraries
@@ -1655,19 +1669,19 @@ Description: App for android to manage torrents
 - DNLA
   - add to yml: "network_mode: host" on jellyfin container and remove ports section
 
-## 43.4. QBitTorrent
+## 42.7. QBitTorrent
 
 - In order to stop seeding go to tools -> bittorrent -> seeding limits -> min ratio 0.01 -> max seed time 1 minute (Pause torrent, remove doesnt work)
 
-## 43.5. Bazarr
+## 42.8. Bazarr
 
 - Go to settings -> Languages -> Add New Profile -> Add desired languages -> Below this option, check the boxes Series and Movies and choose the profile just created in the step before
 
-## 43.6. Organizrr
+## 42.9. Organizrr
 
 - In order for qbittorrent to work: Tools -> WebUI -> Untick "Enable clickjacking protection" and "Enable Cross-Site Request Forgery protection"
 
-## 43.7. NginX
+## 42.10. NginX
 
 - Need to get nginx.conf and proxy.conf from swag github;
 - On the nginx.conf carefull with the following lines:
@@ -1701,7 +1715,7 @@ Description: App for android to manage torrents
   sed -i "s/'Home'/''/g" -i "$FANCYINDEX_THEME_PATH/layout/js/breadcrumbs.js"
   ```
 
-## 43.8. Some Important Concepts
+## 42.11. Some Important Concepts
 
 - Docker bypasses iptables
 - localhost de um container não é o mesmo que de outro (estao isolados)
@@ -1719,7 +1733,7 @@ Description: App for android to manage torrents
 - `docker image inspect <image_id_from_above_step>`
 - `docker manifest inspect --verbose <container_name>`
 
-## 43.9. Update Containers
+## 42.12. Update Containers
 
 - `docker-compose pull`
 - `docker-compose up`
@@ -1746,7 +1760,7 @@ Info: --cleanup doesn't leave older version on the computer.
 - list images: `docker images -a`
 - remove all images: `docker rmi $(docker images -a -q)`
 
-## 43.10. Some notes based on experience
+## 42.13. Some notes based on experience
 
 - `docker run -it image_name sh` -> runs an interactive shell container using the image "image_name"
  The above command can be necessary because if the container is a one-shot, it will simply die after running: `docker run <image_name>`
@@ -1765,9 +1779,11 @@ Info: --cleanup doesn't leave older version on the computer.
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 44. VPN
+# 43. VPN
 
-# 45. Misc
+TBD
+
+# 44. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).

@@ -576,8 +576,25 @@ code {
 <li><a href="#413-notes">41.3. Notes</a></li>
 </ul>
 </li>
-<li><a href="#41-docker">41. Docker</a></li>
-<li><a href="#42-misc">42. Misc</a></li>
+<li><a href="#42-docker">42. Docker</a>
+<ul>
+<li><a href="#421-jacket">42.1. Jacket</a></li>
+<li><a href="#422-sonarr">42.2. Sonarr</a></li>
+<li><a href="#423-system-service-to-run-docker">42.3. System service to run docker</a></li>
+<li><a href="#424-rclone-dlna">42.4. Rclone DLNA</a></li>
+<li><a href="#425-transdrone">42.5. Transdrone</a></li>
+<li><a href="#426-jellyfin">42.6. JellyFin</a></li>
+<li><a href="#427-qbittorrent">42.7. QBitTorrent</a></li>
+<li><a href="#428-bazarr">42.8. Bazarr</a></li>
+<li><a href="#429-organizrr">42.9. Organizrr</a></li>
+<li><a href="#4210-nginx">42.10. NginX</a></li>
+<li><a href="#4211-some-important-concepts">42.11. Some Important Concepts</a></li>
+<li><a href="#4212-update-containers">42.12. Update Containers</a></li>
+<li><a href="#4213-some-notes-based-on-experience">42.13. Some notes based on experience</a></li>
+</ul>
+</li>
+<li><a href="#43-vpn">43. VPN</a></li>
+<li><a href="#44-misc">44. Misc</a></li>
 </ul>
 <h2 id="11-introduction">1.1. Introduction</h2>
 <p>In this document I include some notes about general stuff I learn and do during my work/free time.</p>
@@ -2054,7 +2071,7 @@ dns = none
 </ul>
 </li>
 </ul>
-<h1 id="43-system-service-to-run-docker">43. System service to run docker</h1>
+<h2 id="423-system-service-to-run-docker">42.3. System service to run docker</h2>
 <pre class="hljs"><code><div>/etc/systemd/system/docker-compose.service
 
 [Unit]
@@ -2075,15 +2092,15 @@ TimeoutStartSec=0
 [Install]
 WantedBy=multi-user.target
 </div></code></pre>
-<h2 id="431-rclone-dlna">43.1. Rclone DLNA</h2>
+<h2 id="424-rclone-dlna">42.4. Rclone DLNA</h2>
 <ul>
 <li>Settings -&gt; Download clients -&gt; Advanced options -&gt; Enable remove imported downloads from download client history</li>
 <li>This is streaming the /media folder to my network</li>
 <li>In VLC go to view -&gt; playlist -&gt; local network -&gt; universal plug and play</li>
 </ul>
-<h2 id="432-transdrone">43.2. Transdrone</h2>
+<h2 id="425-transdrone">42.5. Transdrone</h2>
 <p>Description: App for android to manage torrents</p>
-<h2 id="433-jellyfin">43.3. JellyFin</h2>
+<h2 id="426-jellyfin">42.6. JellyFin</h2>
 <ul>
 <li>
 <p>drive ntfs -&gt; does not support inotify -&gt; scan manually: Settings -&gt; dashboard -&gt; scan all libraries</p>
@@ -2104,19 +2121,19 @@ WantedBy=multi-user.target
 </ul>
 </li>
 </ul>
-<h2 id="434-qbittorrent">43.4. QBitTorrent</h2>
+<h2 id="427-qbittorrent">42.7. QBitTorrent</h2>
 <ul>
 <li>In order to stop seeding go to tools -&gt; bittorrent -&gt; seeding limits -&gt; min ratio 0.01 -&gt; max seed time 1 minute (Pause torrent, remove doesnt work)</li>
 </ul>
-<h2 id="435-bazarr">43.5. Bazarr</h2>
+<h2 id="428-bazarr">42.8. Bazarr</h2>
 <ul>
 <li>Go to settings -&gt; Languages -&gt; Add New Profile -&gt; Add desired languages -&gt; Below this option, check the boxes Series and Movies and choose the profile just created in the step before</li>
 </ul>
-<h2 id="436-organizrr">43.6. Organizrr</h2>
+<h2 id="429-organizrr">42.9. Organizrr</h2>
 <ul>
 <li>In order for qbittorrent to work: Tools -&gt; WebUI -&gt; Untick &quot;Enable clickjacking protection&quot; and &quot;Enable Cross-Site Request Forgery protection&quot;</li>
 </ul>
-<h2 id="437-nginx">43.7. NginX</h2>
+<h2 id="4210-nginx">42.10. NginX</h2>
 <ul>
 <li>
 <p>Need to get nginx.conf and proxy.conf from swag github;</p>
@@ -2186,7 +2203,7 @@ sed -i &quot;s/'Home'/''/g&quot; -i &quot;$FANCYINDEX_THEME_PATH/layout/js/bread
 </div></code></pre>
 </li>
 </ul>
-<h2 id="438-some-important-concepts">43.8. Some Important Concepts</h2>
+<h2 id="4211-some-important-concepts">42.11. Some Important Concepts</h2>
 <ul>
 <li>
 <p>Docker bypasses iptables</p>
@@ -2227,7 +2244,7 @@ sed -i &quot;s/'Home'/''/g&quot; -i &quot;$FANCYINDEX_THEME_PATH/layout/js/bread
 <p><code>docker manifest inspect --verbose &lt;container_name&gt;</code></p>
 </li>
 </ul>
-<h2 id="439-update-containers">43.9. Update Containers</h2>
+<h2 id="4212-update-containers">42.12. Update Containers</h2>
 <ul>
 <li>
 <p><code>docker-compose pull</code></p>
@@ -2257,7 +2274,7 @@ The container pulls automatically</p>
 <li>list images: <code>docker images -a</code></li>
 <li>remove all images: <code>docker rmi $(docker images -a -q)</code></li>
 </ul>
-<h2 id="4310-some-notes-based-on-experience">43.10. Some notes based on experience</h2>
+<h2 id="4213-some-notes-based-on-experience">42.13. Some notes based on experience</h2>
 <ul>
 <li><code>docker run -it image_name sh</code> -&gt; runs an interactive shell container using the image &quot;image_name&quot;
 The above command can be necessary because if the container is a one-shot, it will simply die after running: <code>docker run &lt;image_name&gt;</code>
@@ -2275,8 +2292,9 @@ However, I can also do <code>docker run -t -d &lt;image_name&gt; sh</code> and, 
 <li>https://www.infoq.com/articles/build-a-container-golang/</li>
 </ul>
 <div style="page-break-after: always; break-after: page;"></div>
-<h1 id="44-vpn">44. VPN</h1>
-<h1 id="45-misc">45. Misc</h1>
+<h1 id="43-vpn">43. VPN</h1>
+<p>TBD</p>
+<h1 id="44-misc">44. Misc</h1>
 <ol>
 <li>
 <p>By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.</p>
