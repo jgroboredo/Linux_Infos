@@ -107,7 +107,26 @@
     - [35.4.4. Mathematica](#3544-mathematica)
     - [35.4.5. Zoom](#3545-zoom)
     - [35.4.6. Albert](#3546-albert)
-- [36. Misc](#36-misc)
+- [36. Rclone](#36-rclone)
+  - [36.1. Config](#361-config)
+  - [36.2. Rclone union](#362-rclone-union)
+  - [36.3. Problem](#363-problem)
+  - [36.4. Sync](#364-sync)
+  - [36.5. OneDrive](#365-onedrive)
+- [37. Pipewire](#37-pipewire)
+- [38. Fail2Ban](#38-fail2ban)
+  - [38.1. Configuration](#381-configuration)
+- [39. Systemd-Resolved](#39-systemd-resolved)
+  - [39.1. Activate Service:](#391-activate-service)
+- [40. Dual Boot](#40-dual-boot)
+  - [40.1. Windows After Linux](#401-windows-after-linux)
+  - [40.2. Fix Windows bootloader Gone](#402-fix-windows-bootloader-gone)
+- [41. RP Monitor](#41-rp-monitor)
+  - [41.1. Create db in influxdb](#411-create-db-in-influxdb)
+  - [41.2. CONFIG GRAFANA](#412-config-grafana)
+  - [41.3. Notes](#413-notes)
+- [41. Docker](#41-docker)
+- [42. Misc](#42-misc)
 
 ## 1.1. Introduction
 
@@ -1330,8 +1349,425 @@ to put the path to $HOME/bin/mathematica script. I saved the original desktop fi
 
 - albert crashing after search or cancelling search: rm .config/albert/core.db
 
+<div style="page-break-after: always; break-after: page;"></div>
 
-# 36. Misc
+# 36. Rclone
+
+## 36.1. Config
+
+- rclone is best configured using ssh-agent:
+  - rclone config
+- new remote
+- Storage > sftp
+- host: 192.168.1.64 (e.g)
+- user: goncalo (e.g)
+- ssh port: blank
+- To use ssh-agent, leave all the other options blank (and eventually refuse them)
+
+## 36.2. Rclone union
+
+```text
+[paulo_http_single]
+type = http
+url = https://joserebelo:PASSWORD@paulo
+
+[paulo_http]
+type = union
+upstreams = paulo_http_single:/:ro /cache/union
+```
+
+- The first part on the union config is read-only but `/cache/union` is not, allowing to add our own stuff
+- We need to mount (for the union to work) the `[paulo_http]` one.
+- what we write in the mounted drive will go to /cache/union and reading merges both
+
+## 36.3. Problem
+
+- NewFs: couldn't connect SSH: ssh: handshake failed: ssh: unable to authenticate, attempted methods [none publickey], no supported methods remain
+- This was happening because of the type of keys. I should generate: ssh-keygen -t ed25519
+- Solution: add to /etc/ssh/sshd_config: PubkeyAcceptedAlgorithms=+ssh-rsa
+- I should also add:
+  
+  ```text
+  PermitRootLogin no
+  PasswordAuthentication no
+  ```
+
+## 36.4. Sync
+
+- `rclone sync /home/goncalo/Documents pi:/home/goncalo/HDD/Documents/Backups/Laptop/Documents --log-file /home/goncalo/.local/my_logs/backup.log -v --exclude lap_dotfiles/ --transfers=8 --progress`
+- -i flag asks question about copying 
+
+## 36.5. OneDrive
+
+- `rclone copy UsefulScripts OneDrive:Documents/UsefulScripts` (copies the contents of UsefulScripts -> therefore I copy to Documents/UsefulScripts, otherwise would populate Documents with its contents)
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 37. Pipewire
+
+- `pacman -S pipewire`
+- `pacman -S pipewire-pulse`. Remove pulseaudio and pulseaudio-bluetooth
+- It automatically creates symlink `/etc/systemd/user/sockets.target.wants/pipewire-pulse.socket → /usr/lib/systemd/user/pipewire-pulse.socket`
+- Disable pulseaudio on sway config
+- `pacman -S libpulse` (comes with pulseaudio)
+- `pacman -Qo pactl`
+- bluetooth should not be affected by this
+- pacmd used by volume-script no longer works. Need to use amixer (which comes with alsa-utils) to check if muted or not.
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 38. Fail2Ban
+
+- `pacman -S fail2ban`
+- enable/start fail2ban.service
+
+## 38.1. Configuration
+Edit file /etc/fail2ban/jail.local:
+
+```text
+[DEFAULT]
+bantime = -1
+findtime = 1d
+maxretry = 5
+
+[sshd]
+enabled = true
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 39. Systemd-Resolved
+
+`/etc/systemd/resolved.conf`: 
+```text
+[Resolve]
+DNS=1.1.1.1#cloudflare-dns.com 9.9.9.9#dns.quad9.net
+FallbackDNS=1.0.0.1#cloudflare-dns.com 9.9.9.10#dns.quad9.net
+DNSSEC=yes
+DNSOverTLS=yes
+Cache=yes
+CacheFromLocalhost=no
+DNSStubListener=yes
+ReadEtcHosts=yes
+```
+
+`/etc/resolv.conf`:
+
+`ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf`
+
+`/etc/NetworkManager/NetworkManager.conf`:
+
+```text
+[main]
+# Ignore network-provided dns
+dns = none
+```
+
+## 39.1. Activate Service:
+`systemctl enable systemd-resolved.service`
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 40. Dual Boot
+
+## 40.1. Windows After Linux
+
+- Install windows;
+- Boot live iso; mount disk with linux:
+  - `mount /dev/sdX2 /mnt`
+  - `mount /dev/sdX1 /mnt/boot/efi`
+  - `manjaro-chroot /mnt`
+  - `update-grub`
+- If windows keeps changing boot entry order:
+  - Install EasyUefi (easyuefi.com)
+    - Go to Manage EFI boot option
+  - Check the path to the manjaro boot option
+  - `Bcdedit /set {bootmgr} path path\from\above\step` (e.g. \EFI\Manjaro\grubx64.efi)
+
+## 40.2. Fix Windows bootloader Gone
+
+- shift+f10
+- diskpart
+- list disk
+- select disk X (Where windows was installed)
+- list volume
+- select volume Y
+- assign letter=Z (where Z is the letter you want to "mount")
+- do the same to efi partition:
+  - list disk
+  - select disk X (Where is the EFI partition)
+  - list volume
+  - select volume volume-number
+  - assign letter=M 
+- exit diskpart (exit)
+- run: `bcdboot <Letter-Assigned-To-Windows>:\Windows`
+  eg: bcdboot Z:\Windows
+  - optionally: `bcdboot Z:\Windows /s M:` (/s copies to drive M)
+- Unmount devices:
+  - diskpart
+  - list volume
+  - select volume VOLUME-NUMBER
+  - remove letter DRIVE_LETTER
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 41. RP Monitor
+
+- for the monotoring need 3 docker containers: grafana, influxdb (database), telegraf
+  - the ports on docker-compose need to match the ones in telegraf.conf
+  - In the telegraf conf:
+    - urls: needs to be 127.0.0.1:(port of docker compose)
+    - username and pw must match what I put in influxdb
+    - hostname must be the one on of pi
+
+## 41.1. Create db in influxdb
+
+```bash
+docker exec -it influxdb bash 
+influx
+CREATE USER "grafana" WITH PASSWORD 'qwe' (pw configured in grafana)
+CREATE USER "telegraf" WITH PASSWORD 'asd' (pw put on config)
+CREATE DATABASE "pi"
+GRANT ALL ON "pi" TO "grafana"
+GRANT ALL ON "pi" TO "telegraf"
+SHOW DATABASES
+```
+
+## 41.2. CONFIG GRAFANA
+
+- add data source:
+  - Configuration -> Data Sources:
+  - url: http://influxdb:8086
+  - database: pi
+  - User: grafana (same as defined in influxdb)
+  - Pw: same as defined in influxdb
+- import dashboard:
+  - ID: 10578
+  - Select data source added above
+
+## 41.3. Notes
+
+- In order to restart a container do docker-compose up container_name (this reloads the yml if it changed); otherwise use docker-compose restart container_name
+- `docker rm -f container_name` (deletes container)
+- `docker inspect influxdb | jq ".[0].Config.Volumes"`
+- In telegram.conf I need 127.0.0.1 : nas portas means "bind to all addresses" mas aqui quero mesmo aceder ao localhost
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 42. Docker
+
+- `pacman -S docker docker-compose`
+- `systemctl enble docker.service`
+- docker info; `sudo chmod 666 /var/run/docker.sock`
+- On folder, run: `docker-compose up -d`
+- To access things on the web, check the port on .yml file and: http://localhost:8080
+- To access using any device on the network, substitute 127.0.0.1 to 0.0.0.0 in all containers in the .yml file
+  Then, only need to do ip(192.168.1.64):port on any device and it will work.
+- Login on web: admin, pw: adminadmin
+- On qbittorrent, tools->options->default save path: /downloads/
+
+  Notes on the downloads folder:
+  - It is important that this folder is mounted to some directory on my computer (check docker-compose) and that this mount point is the same in radarr/sonarr. Radarr/sonarr will check the download folder in the qbittorrent settings (which is /downloads) and will therefore look in the directory /downloads. Therefore, /downloads must be a volume in docker-compose and should point to the same folder as in qbittorrent.
+- On qbittorrent, tools->options->(under automatically add torrents from) Monitored Folder -> /blackhole
+- Get image: https://hub.docker.com/r/linuxserver/radarr
+- `docker ps -a` -> check running containers
+- To set pw and username on qbittorrent: Tools -> Options -> Connection -> Authentication
+- Rebuild image: docker-compose build rclone-extension --no-cache
+
+## 42.1. Jacket
+
+- http://localhost:9117
+- Add indexer -> RARBG and 1337x;
+
+## 42.2. Sonarr
+
+- Download clients -> Clicl + -> Select qbittorrent -> host é qbittorrent (you can access containers by name)
+- Port: 8080
+- Username and Pw : same as qbittorrent login (admin, adminadmin)
+- We can access a container from the terminal: docker exec -it qbittorrent bash
+- Go to Indexers -> Select Torznab -> In URL paste the Torznab feed from jackett (and change localhost to jackett in the URL)
+- Add API key from jackett (on top of the page)
+- If this doesn't work, change dns:
+  - `vim /etc/resolv.conf`
+  - `nameserver 1.1.1.2`
+- vim /etc/NetworkManager/NetworkManager.conf
+  
+  ```text
+  [main]
+  # Ignore network-provided dns
+  dns = none
+  ```
+
+- check if I can ping from jackett: `docker exec -it jackett bash; curl 1337x.to`
+- `systemctl restart docker`
+- `docker-compose up -d`
+- When adding series, the root folder should be: /media -> this is mapped to a volume outside the container
+- qbittorrent downloads to /downloads and sonarr moves it to /media
+- old episodes on sonarr must be downloaded manually
+- A lupa saca automatico e o boneco deixa escolher o torrent
+- If I can't add indexer, I can add one that I know that works and then edit it and substitute the url for the one I want to add.
+- Add series on read-only file system:
+  - Mount read-only fs inside container
+  - Add new series to default path where sonarr can write
+  - Open sqlitebrowser -> Open Database -> sonardb (inside config folder in container) -> In table, select Series -> find series -> Select Path -> Change on the right
+
+# 43. System service to run docker
+
+  ```text
+  /etc/systemd/system/docker-compose.service
+
+  [Unit]
+  Description=Docker Compose Service
+  Requires=docker.service
+  After=docker.service
+  After=network-online.target
+  Wants=network-online.target
+
+  [Service]
+  Type=oneshot
+  RemainAfterExit=yes
+  WorkingDirectory=/home/jose/dotfiles/pi
+  ExecStart=/usr/sbin/docker-compose up -d
+  ExecStop=/usr/sbin/docker-compose down
+  TimeoutStartSec=0
+
+  [Install]
+  WantedBy=multi-user.target
+  ```
+
+## 43.1. Rclone DLNA
+
+- Settings -> Download clients -> Advanced options -> Enable remove imported downloads from download client history
+- This is streaming the /media folder to my network
+- In VLC go to view -> playlist -> local network -> universal plug and play
+
+## 43.2. Transdrone
+
+Description: App for android to manage torrents
+
+## 43.3. JellyFin
+
+- drive ntfs -> does not support inotify -> scan manually: Settings -> dashboard -> scan all libraries
+- In order to change folder go to settings -> Dashboard -> Libraries
+- If informations are not correct, select movie or series and click identify
+- Do not watch jellyfin on browser. Instead, yay -S jellyfin-media-player
+
+- DNLA
+  - add to yml: "network_mode: host" on jellyfin container and remove ports section
+
+## 43.4. QBitTorrent
+
+- In order to stop seeding go to tools -> bittorrent -> seeding limits -> min ratio 0.01 -> max seed time 1 minute (Pause torrent, remove doesnt work)
+
+## 43.5. Bazarr
+
+- Go to settings -> Languages -> Add New Profile -> Add desired languages -> Below this option, check the boxes Series and Movies and choose the profile just created in the step before
+
+## 43.6. Organizrr
+
+- In order for qbittorrent to work: Tools -> WebUI -> Untick "Enable clickjacking protection" and "Enable Cross-Site Request Forgery protection"
+
+## 43.7. NginX
+
+- Need to get nginx.conf and proxy.conf from swag github;
+- On the nginx.conf carefull with the following lines:
+  - include /config/nginx/worker_processes.conf;
+  - include /config/nginx/resolver.conf;
+- /config/nginx/resolver.conf:
+  - `resolver  127.0.0.11 valid=30s;` (note that the ";" is important in these files
+- The configs to reverse proxy can be found in github: linuxserver/reverse-proxy-confs (I want the subfolder ones)
+- In order to setup the sonarr, jackett, etc reverse-proxy config, I need to read the config because it asks to change the Base URL, etc
+- In order to setup grafana, needed to add to the docker-compose config:
+  - environment:
+    - "GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s:%(http_port)s/grafana/"
+- The above configs only have the "location" block which goes inside the server block. The default server config can be found in /config/nginx/site-confs/default. There, I should add "include /config/nginx/proxy-confs/.*subfolder.conf;" and comment both "location" blocks there.
+- The organizr config has as upstream_port port 80. In docker-compose.yml, organizr has host post 9983 mapped to port 80 on the container. However, nginx bypasses that and goes straight to port 80 on the container -> that's why the reverse proxy config works.
+- It happened that, when I connected to organizr behind the nginx server, I could not login. This happened because the browser was rejecting cookies. The problem was in proxy.conf file. It assumed it was in https. Only need to comment the lines:
+  - `proxy_set_header X-Forwarded-Proto https;`
+  - `proxy_set_header X-Forwarded-Ssl on;`
+
+- Changed all port mapping in docker-compose.yml to 127.0.0.1:port so it can only be access from pi. Since everything is reverse proxied, it's fine
+- The nginx docker-compose config has in port section:
+  - 80:80 which defaults to 0.0.0.0:80:80 (that's why I can access nginx from the entire network)
+- In order to reverse-proxy emby I commented out the line "network_mode: host" otherwise the reverse-proxy config does not work by default. If I want to use "network_mode: host" I need change the reverse-proxy config: "set $upstream_app emby" -> "set $upstream_app 10.0.10.1". Inside emby, in Network, need to change "Secure connection mode" to "Handled by reverse proxy". One thing I noticed was that UPnP was not working. In order for it to work, in emby, I need to add, in Network -> Lan Networks: 192.168.0.0/24, 10.0.10.0/24  
+
+- Couldn't find rclone serve dlna in laptop with firewalld. Use firewall gui, go to options -> change zones of connections -> select my network and put it as home. Then, select my network in connections, in zones tab  select home, then services, and tick upnp-client
+
+- In the media reverse proxy config, the lines: "alias /media" and "facyindex on" are the ones responsible to show the content of the folder /media of the container (folder where I wanna mount the stuff I wanna show). Note that I also need to "git clone https://github.com/alehaa/nginx-fancyindex-flat-theme.git" and
+  
+  ```text
+  sed -i '/<small>/,/<\/small>/d' "$FANCYINDEX_THEME_PATH/layout/footer.html"
+  sed -i "s/File Browser/$(cat /etc/hostname) \| media/g" -i "$FANCYINDEX_THEME_PATH/layout/header.html"
+  sed -i "s/'Home'/''/g" -i "$FANCYINDEX_THEME_PATH/layout/js/breadcrumbs.js"
+  ```
+
+## 43.8. Some Important Concepts
+
+- Docker bypasses iptables
+- localhost de um container não é o mesmo que de outro (estao isolados)
+- Can't specify ports with network_mode host
+- In iptables.rules, the line:
+  `":FORWARD DROP [0:0]"`
+
+  blocks all forwarded packets
+- If I want to find the docker ip of a container: `docker network inspect -f '{{range .IPAM.Config}}{{.Subnet}}{{end}}' <container_id>`
+- The `<container_id>` can be found by running `docker ps -a`
+- `docker inspect <container_name>`
+- `docker stop/logs/(rm -f)/restart <container_name>`
+- `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container_id>`
+- `docker images -> prints images of containers`
+- `docker image inspect <image_id_from_above_step>`
+- `docker manifest inspect --verbose <container_name>`
+
+## 43.9. Update Containers
+
+- `docker-compose pull`
+- `docker-compose up`
+
+- Container to update containers
+
+  ```text
+    watchtower:
+      container_name: watchtower
+      image: containrrr/watchtower:latest
+      networks:
+        - monitoring
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+      command: >-
+        --cleanup --rolling-restart --schedule "0 0 4 * * *"
+  ```
+
+Info: --cleanup doesn't leave older version on the computer.
+      --rolling-restart restarts the containers one by one (important to deal with dependencies)
+      The container pulls automatically
+
+- `docker system prune -a` (after doing docker-compose up, otherwise deletes images I just pulled)
+- list images: `docker images -a`
+- remove all images: `docker rmi $(docker images -a -q)`
+
+## 43.10. Some notes based on experience
+
+- `docker run -it image_name sh` -> runs an interactive shell container using the image "image_name"
+ The above command can be necessary because if the container is a one-shot, it will simply die after running: `docker run <image_name>`
+ However, I can also do `docker run -t -d <image_name> sh` and, even it's an one-shot, it will be kept alive. Then, I can always do a `docker exec -it <container_id> sh` to enter again inside the container
+- Other ways of starting a container: `sudo docker create <image_name>; sudo docker start <container_id_from_previous_command>`
+- `docker image history --no-trunc image_name > image_history` -> steps in the Dockerfile
+- `docker ps -a` -> lists containers and the container id
+- save the id in a variable: `container_id=$(docker create image_name)`
+- Extracting a file from an image: `docker cp "$container_id:$source_path" "$destination_path"`
+- Pushing a file to an image: `docker cp folder/. "<container_id>:/path/in/container"`  -> this actually pushes all files inside folder
+- `docker image inspect <image>`
+- `docker container prune` -> removes all containers
+- `git reset HEAD~1` -> go back one commit before pushing
+- jenkins scm
+- https://www.infoq.com/articles/build-a-container-golang/
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 44. VPN
+
+# 45. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
