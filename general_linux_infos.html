@@ -593,8 +593,60 @@ code {
 <li><a href="#4213-some-notes-based-on-experience">42.13. Some notes based on experience</a></li>
 </ul>
 </li>
-<li><a href="#43-vpn">43. VPN</a></li>
-<li><a href="#44-misc">44. Misc</a></li>
+<li><a href="#43-vpn">43. VPN</a>
+<ul>
+<li><a href="#431-configuration">43.1. Configuration</a></li>
+<li><a href="#432-notes">43.2. Notes</a></li>
+<li><a href="#433-viseu">43.3. Viseu</a></li>
+<li><a href="#434-check-ports">43.4. Check Ports</a></li>
+<li><a href="#435-fix-connection-problem">43.5. Fix connection problem</a></li>
+<li><a href="#436-connect-to-rebelo">43.6. Connect to Rebelo</a></li>
+<li><a href="#437-udp2raw">43.7. UDP2RAW</a></li>
+<li><a href="#438-updated-vpn">43.8. Updated VPN</a></li>
+<li><a href="#439-fixing-routes">43.9. Fixing routes</a></li>
+</ul>
+</li>
+<li><a href="#44-ddns">44. DDNS</a></li>
+<li><a href="#45-encrypt-dir">45. Encrypt dir</a>
+<ul>
+<li><a href="#451-disable-password-cache">45.1. Disable password cache</a></li>
+</ul>
+</li>
+<li><a href="#46-violent-monkey">46. Violent Monkey</a></li>
+<li><a href="#47-wireshark">47. Wireshark</a></li>
+<li><a href="#48-telegram">48. Telegram</a>
+<ul>
+<li><a href="#481-botfather">48.1. BotFather</a></li>
+<li><a href="#482-find-bot-chat-id">48.2. Find bot chat ID</a></li>
+<li><a href="#483-add-sonarr-and-radarr-to-telegram">48.3. Add sonarr and radarr to telegram</a></li>
+</ul>
+</li>
+<li><a href="#49-barrier">49. Barrier</a></li>
+<li><a href="#50-teamviewer">50. TeamViewer</a></li>
+<li><a href="#51-flatpak">51. Flatpak</a>
+<ul>
+<li><a href="#511-firefox">51.1. Firefox</a></li>
+</ul>
+</li>
+<li><a href="#52-vm">52. VM</a>
+<ul>
+<li><a href="#521-fix-resolution">52.1. Fix Resolution</a></li>
+<li><a href="#522-sdcard-on-vm">52.2. SDcard on VM</a></li>
+</ul>
+</li>
+<li><a href="#53-latex">53. Latex</a></li>
+<li><a href="#54-plex">54. Plex</a></li>
+<li><a href="#55-format-phone">55. Format phone</a>
+<ul>
+<li><a href="#551-formatting">55.1. Formatting</a></li>
+<li><a href="#552-connecting-to-pc">55.2. Connecting to PC</a></li>
+<li><a href="#553-arch-linux-in-termux">55.3. ARCH LINUX IN TERMUX</a></li>
+<li><a href="#554-process-to-format">55.4. Process to format</a></li>
+<li><a href="#555-apps-adb">55.5. Apps ADB</a></li>
+</ul>
+</li>
+<li><a href="#56-conky-desktop">56. Conky Desktop</a></li>
+<li><a href="#57-misc">57. Misc</a></li>
 </ul>
 <h2 id="11-introduction">1.1. Introduction</h2>
 <p>In this document I include some notes about general stuff I learn and do during my work/free time.</p>
@@ -2293,8 +2345,533 @@ However, I can also do <code>docker run -t -d &lt;image_name&gt; sh</code> and, 
 </ul>
 <div style="page-break-after: always; break-after: page;"></div>
 <h1 id="43-vpn">43. VPN</h1>
-<p>TBD</p>
-<h1 id="44-misc">44. Misc</h1>
+<h2 id="431-configuration">43.1. Configuration</h2>
+<ul>
+<li>
+<p><code>pacman -S wireguard-tools</code> (wireguard-dkms, headers)</p>
+</li>
+<li>
+<p>script wgg from rebelo:</p>
+<ul>
+<li><code>WG_PEERS</code>: names of  the devices I want connected to the VPN</li>
+<li><code>NODE_URL</code> is the public ip</li>
+<li><code>WG_NODE_ADDRESS</code> is the desktop's ip inside the VPN</li>
+<li><code>WG_VPN_LAN</code> is the VPN network (which must match the IP chosen in the above line)</li>
+<li>The <code>WG_NODE_INTERFACE</code> can be seen running: ip addr show</li>
+<li>The script may be run again in order to add devices (the configurations before won't be altered)</li>
+</ul>
+</li>
+<li>
+<p>Open port on router:</p>
+<ul>
+<li>Go to games and apps, configuration, and remove all the ports there;</li>
+<li>Protocol: UDP</li>
+<li>Log and CONE unchecked (like everything else really)</li>
+<li>Port: 57278</li>
+</ul>
+</li>
+<li>
+<p>In order to show a qrcode for the wireguard app on cell phone: qrencode -t ansiutf8 -r /etc/wireguard/peers/telemovel.conf</p>
+</li>
+<li>
+<p>Give wireguard on cellphone root privileges</p>
+</li>
+<li>
+<p>On phone's wireguard, tunnel name can be anything I want</p>
+</li>
+<li>
+<p>To turn vpn on: <code>sudo wg-quick up wg1</code></p>
+</li>
+<li>
+<p>Startup: <code>sudo systemctl enable wg-quick@wg1</code></p>
+</li>
+<li>
+<p>To check hand shakes: <code>sudo wg show wg1 latest-handshakes</code></p>
+</li>
+<li>
+<p>In order to fix the problem of the VPN not starting with systemctl service, a possible cause might be fail2ban. Then:</p>
+<ul>
+<li>vim <code>/usr/lib/systemd/system/fail2ban.service</code>
+Append to &quot;After= :&quot; the following: wg-quick@wg1.service</li>
+</ul>
+</li>
+<li>
+<p>On laptop: <code>pacman -S wireguard-tools</code></p>
+</li>
+<li>
+<p>Copy <code>/etc/wireguard/peers/laptop.conf</code> to <code>/etc/wireguard/wg0.conf</code></p>
+</li>
+<li>
+<p><code>sudo wg-quick up wg0</code></p>
+</li>
+<li>
+<p>ip r show show the routes</p>
+</li>
+</ul>
+<h2 id="432-notes">43.2. Notes</h2>
+<ul>
+<li>Each computer needs an individual ip and key</li>
+<li>For example, if I copy my laptop's file and put it in another computer, changing the ip, it won't
+work if both connect since the key is the same</li>
+<li>IPS have 32 bits</li>
+<li>With A.B.C.D/X we mean that the X most significant digits are considered: 192.168.1.0/24 -&gt; 192.168.0.x with x between 0 to 255</li>
+<li>192.168.0.0/16 -&gt; 192.168.0.0 to 192.168.255.255</li>
+</ul>
+<h2 id="433-viseu">43.3. Viseu</h2>
+<ul>
+<li>na config do desktop do porto, tens lá uma entrada para cada peer</li>
+<li>no peer de viseu, para alem de 10.0.10.4/32, adicionavas 192.168.20.0/24</li>
+<li>e nos peer/*.conf também</li>
+<li>ou seja, de qualquer lado, o teu telemóvel sabia que, para chegar à rede 192.168.20.0/24, tem que enviar pacotes para o desktop do porto</li>
+<li>e o desktop do porto sabe que, para chegar a essa mesma rede, tem que enviar pacotes para o peer de viseu</li>
+<li>tinhas que adicionar a 192.168.20.0/24 no peer de viseu em wg1 no desktop do porto</li>
+<li>e nos peers tinha de adicionar  192.168.20.0/24 para cada um dos peers saber que, pelo desktop do porto, consegue chegar a viseu</li>
+</ul>
+<h2 id="434-check-ports">43.4. Check Ports</h2>
+<ul>
+<li>sudo nmap -sU -p- ip (UDP)</li>
+<li>sudo nmap -sT -p- ip (TCP)</li>
+</ul>
+<h2 id="435-fix-connection-problem">43.5. Fix connection problem</h2>
+<ul>
+<li>On laptop:
+<ul>
+<li>ip route add 192.168.1.64/32 via 192.168.1.254 dev (interface, ex: wlp0s20f3)</li>
+<li>nmcli connection show</li>
+<li>nmcli connection modify CONNECTION_NAME (ex: ROBOREDO) +ipv4.routes &quot;192.168.1.0/24 192.168.1.254&quot;</li>
+</ul>
+</li>
+<li>Apparently, this fix isn't permanent</li>
+</ul>
+<h2 id="436-connect-to-rebelo">43.6. Connect to Rebelo</h2>
+<ul>
+<li>
+<p>Add wg2.conf in /etc/wireguard (note: can have both vpns up)</p>
+</li>
+<li>
+<p>Alternatively, I can add the <code>[Peer]</code> section to wg1 and, then, I don't need wg2 and this works best.</p>
+</li>
+<li>
+<p>Some notes if I didn't include the <code>[Peer]</code> section inside wg1:</p>
+<ul>
+<li>When I added the AllowedIPs on phone, I couldn't connect to Rebelo-pi. This happened because the reply from Rebelo wasn't being forwarded to phone. I would need to add something like: <code>iptables -A FORWARD -i wg2 -o wg1 -j ACCEPT</code> in wg1 config.</li>
+<li><code>sudo iptables -A FORWARD -j ACCEPT</code> also makes it work (this allows all trafic)</li>
+<li><code>sudo iptables -D FORWARD -j ACCEPT</code> reverts the above command</li>
+</ul>
+</li>
+<li>
+<p>Add 10.0.1.0/24 in AllowedIPs of peers</p>
+</li>
+<li>
+<p><code>wg show wg1 latest-handshakes</code> -&gt; to check if connection is successful</p>
+</li>
+<li>
+<p><code>echo &quot;your_private_key&quot; | wg pubkey</code> -&gt; generates public key using private key</p>
+</li>
+<li>
+<p>This connection only works when connected to vpn, even if I'm on my LAN!!!</p>
+</li>
+<li>
+<p><code>tcpdump -i any icmp</code> (icmp are the type of packages, the ones used by ping command. This command listens to packages being sent through
+my computer)</p>
+</li>
+</ul>
+<h2 id="437-udp2raw">43.7. UDP2RAW</h2>
+<ul>
+<li>
+<p><code>pacman -S udp2raw-tunnel</code></p>
+</li>
+<li>
+<p>Open tcp port on router for udp2raw (e.g: 58374)</p>
+</li>
+<li>
+<p>I can still have a direct port for wireguard (e.g. 57278). This is also the ListenPort in wg1.conf</p>
+</li>
+<li>
+<p>On server, run: <code>udp2raw -s -l &quot;0.0.0.0:58374&quot; -r &quot;127.0.0.1:57278&quot; -k &quot;tgbyhnrfv&quot; --raw-mode faketcp -a</code> :</p>
+<ul>
+<li>&quot;0.0.0.0:58374&quot; -&gt; this means traffic can come from anywhere (0.0.0.0) and udp2raw listens on port 58374, which I specifically openned in router</li>
+<li>&quot;127.0.0.1:57278&quot; -&gt; this means that traffic coming from port 58374 is going to be sent to port 57278, which is wireguard's port</li>
+<li>Example udp2raw.service:</li>
+</ul>
+<pre class="hljs"><code><div>[Unit]
+Description=udp2raw-tunnel client service
+ConditionFileIsExecutable=/usr/bin/udp2raw
+After=network-online.target
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+ExecStart=/usr/bin/udp2raw -s -l &quot;0.0.0.0:58374&quot; -r &quot;127.0.0.1:57278&quot; -k &quot;tgbyhnrfv&quot; --raw-mode faketcp -a
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</div></code></pre>
+</li>
+<li>
+<p>On client: <code>sudo udp2raw -c -l &quot;127.0.0.1:5634&quot; -r &quot;$(ssh goncalo@jgroboredo.ddns.net 'curl -s ifconfig.me'):58374&quot; -k &quot;tgbyhnrfv&quot; --raw-mode faketcp -a</code></p>
+<ul>
+<li>&quot;127.0.0.1:5634&quot; -&gt; local traffic to port 5634</li>
+<li>&quot;$(ssh goncalo@jgroboredo.ddns.net 'curl -s ifconfig.me'):58374&quot; -&gt; target is my ipv4 ip and the port where upd2raw is listening on server, meaning in this case 58374</li>
+</ul>
+</li>
+<li>
+<p>The only thing left is to change wireguard config in the client:</p>
+<ul>
+<li>For this, simply create a new config;</li>
+<li>Add in the <code>[Interface]</code> group the line: &quot;MTU = 1300&quot; (udp2raw doesn't support large packages)</li>
+<li>Change endpoint to: &quot;127.0.0.1:5634&quot;</li>
+</ul>
+</li>
+</ul>
+<h2 id="438-updated-vpn">43.8. Updated VPN</h2>
+<ul>
+<li>In iptables, drop all connections except the ones I want to keep;</li>
+<li>These connections are only concerned with the direct access to the raspberry and not the traffic thourgh vpn;</li>
+<li>If I want to have a peer with full access to vpn and another with restricted access (this access refers to forwarding traffic through vpn),
+and I want to be able to access the restricted access peer, I need to include in the iptables.rules the following lines:
+<ul>
+<li>
+<p><code>-A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT</code>
+Basically, the idea is that, the restricted access peer needs to send packets saying the connection is established, for example. Therefore, these packets need to be forward by the vpn... However, this peer isn't allowed to do that by default. However, this rule allows for RELATED packets to be forwarded. The similar rule existent in the wg config isn't enough probably because the packets don't go through eth0. The rule</p>
+</li>
+<li>
+<p><code>-A FORWARD -p icmp --icmp-type echo-request -j ACCEPT</code> allows for pings.</p>
+</li>
+<li>
+<p>Lastly, on iptables.rules, I need to specifically allow access to each port I want to access, EVEN if I'm already connected to the vpn. The idea seems to be that
+I have access to the VPN through the VPN port, but this doesn't give me access to the other ports.</p>
+</li>
+<li>
+<p>A container that hasn't network_mode host can't now connect to one that is on the network_mode host. To solve this, allow input from docker interface:</p>
+<ul>
+<li><code>-A INPUT -i br+ -p TCP --dport 32400 -j ACCEPT</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="439-fixing-routes">43.9. Fixing routes</h2>
+<ul>
+<li>When laptop is not connected to VPN but desktop is (both in porto), I could not ping desktop from laptop using the local ip, since the wireguard
+priority was lower and the response of the desktop went through the vpn (and laptop was not connected)</li>
+<li>changing priorities correctly:
+<ul>
+<li><code>sudo ifmetric wlp0s20f3 0</code></li>
+<li><code>sudo ip route del default</code></li>
+<li><code>sudo ip route add default via 192.168.200.254 dev wlp0s20f3 proto dhcp src 192.168.200.67 metric 600</code></li>
+<li><code>sudo ifmetric wg0 1</code></li>
+</ul>
+</li>
+</ul>
+<p>NOTE:  <a href="https://hub.docker.com/r/linuxserver/swag">Nginx Server</a></p>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="44-ddns">44. DDNS</h1>
+<p>ON ROUTER:</p>
+<ul>
+<li>Go to dynamic ddns;</li>
+<li>Configure -&gt; Activate -&gt; Username: email of no-ip account -&gt; Password: pw of no-ip account;
+Service: No-IP -&gt; Host: hostname chosen in no-ip account (--.ddns.net)</li>
+<li>Do not forget to change router's account pw to something different from default (currently, it is my usual pw)</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="45-encrypt-dir">45. Encrypt dir</h1>
+<ul>
+<li>tar -cvzf - folder | gpg -c &gt; folder.tar.gz.gpg
+<ul>
+<li>gpg -d folder.tar.gz.gpg | tar -xvzf -</li>
+</ul>
+</li>
+</ul>
+<h2 id="451-disable-password-cache">45.1. Disable password cache</h2>
+<ul>
+<li>
+<p>Edit <code>~/.gnupg/gpg-agent.conf</code></p>
+<pre class="hljs"><code><div>  default-cache-ttl 1
+  max-cache-ttl 1
+</div></code></pre>
+</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="46-violent-monkey">46. Violent Monkey</h1>
+<ul>
+<li>
+<p>https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/</p>
+</li>
+<li>
+<p>https://github.com/Purfview/IMDb-Scout-Mod</p>
+<ul>
+<li>Go to script in github, raw -&gt; ViolentMonkey will prompt to install</li>
+<li>Go to imdb page of some movie/show, violentmonkey IMDB scout mod settings, search for sonnar and radarr and set it up (the root folder is the folder inside radarr and sonarr where I keep movies/tvshows).</li>
+<li>Don't forget to enable them at the very end of the file</li>
+</ul>
+</li>
+<li>
+<p>https://greasyfork.org/en/scripts/789-select-text-inside-a-link-like-opera</p>
+</li>
+<li>
+<p>https://greasyfork.org/en/scripts/1810-google-tracking-b-gone</p>
+</li>
+<li>
+<p>Tampermonkey allows method GM_cookie</p>
+</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="47-wireshark">47. Wireshark</h1>
+<ul>
+<li>Dissectors: .local/lib/wireshark/plugins</li>
+<li>For rfcomm dlci: file -&gt; export -&gt; export as json</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="48-telegram">48. Telegram</h1>
+<h2 id="481-botfather">48.1. BotFather</h2>
+<pre class="hljs"><code><div>/newbot
+BotName
+botusername_bot
+/setuserpic
+@botusername_bot (note: this doesn't work without the &quot;@&quot;)
+</div></code></pre>
+<h2 id="482-find-bot-chat-id">48.2. Find bot chat ID</h2>
+<ul>
+<li>On telegram, search by: @botusername_bot</li>
+<li><code>https://api.telegram.org/bot&lt;bot_token_here&gt;/getUpdates</code></li>
+<li>Send message to bot in telegram and update this page</li>
+<li>Another option is to add @RawDataBot to my group (do not forget to kick it after)</li>
+</ul>
+<h2 id="483-add-sonarr-and-radarr-to-telegram">48.3. Add sonarr and radarr to telegram</h2>
+<ul>
+<li>Go to settings -&gt; Connect -&gt; Telegram</li>
+<li>In name, just put Telegram</li>
+<li>Add bot token and chat id</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="49-barrier">49. Barrier</h1>
+<p>Connect first with barrier only after do this:</p>
+<ul>
+<li>Edit <code>sudo vim /etc/systemd/system/barrier.service</code></li>
+</ul>
+<pre class="hljs"><code><div>[Unit]
+Description=Barrier Client mouse/keyboard share
+Requires=display-manager.service
+After=display-manager.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/barrierc --no-restart --name raspberrypi (name I want for the client to be known) --enable-crypto 192.168.0.109 (ip of server)
+Restart=always
+RestartSec=10
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+</div></code></pre>
+<p>And do:</p>
+<pre class="hljs"><code><div>sudo systemctl daemon-reload
+systemctl start barrier.service
+systemctl status barrier.service
+systemctl <span class="hljs-built_in">enable</span> barrier.service
+</div></code></pre>
+<p>so that the service doesn't run when I go to openbox, since I want to play cs, add to /etc/sudoers : <code>goncalo ALL = NOPASSWD: /bin/systemctl stop barrier.service</code>
+and add <code>sudo systemctl stop barrier.service</code> to autostart</p>
+<p>Barrier does not work on wayland</p>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="50-teamviewer">50. TeamViewer</h1>
+<p>Start teamviewer service: <code>systemctl start teamviewerd.service</code></p>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="51-flatpak">51. Flatpak</h1>
+<pre class="hljs"><code><div>pacman -S flatpak
+flatpak install flathub com.usebottles.bottles
+flatpak run com.usebottles.bottles
+
+sudo ln -s /var/lib/flatpak/exports/bin/chat.rocket.RocketChat /usr/bin/rocket-chat
+cp /var/lib/flatpak/app/media.emby.EmbyTheater/current/active/files/share/applications/media.emby.EmbyTheater.desktop  /usr/share/applications/
+</div></code></pre>
+<h2 id="511-firefox">51.1. Firefox</h2>
+<pre class="hljs"><code><div>flatpak install flathub org.mozilla.firefox
+flatpak list to list apps
+flatpak update &lt;Application-ID&gt; <span class="hljs-comment">#(app-ID found in previous step)</span>
+<span class="hljs-comment"># Added systemd service to update automatically flatpak apps (from arch wiki flatpak)</span>
+systemd-analyze --system unit-paths
+</div></code></pre>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="52-vm">52. VM</h1>
+<h2 id="521-fix-resolution">52.1. Fix Resolution</h2>
+<ul>
+<li>go to /etc/default/grub</li>
+<li>GRUB_GFXMODE=1024x768x32</li>
+<li>GRUB_GFXPAYLOAD_LINUX=keep</li>
+<li>grub-mkconfig -o /boot/grub/grub.cfg</li>
+</ul>
+<h2 id="522-sdcard-on-vm">52.2. SDcard on VM</h2>
+<ul>
+<li>check with <code>fdisk -l</code> where is the sdcard (/dev/mmcblk0)</li>
+<li>unmount if mounted</li>
+<li><code>VBoxManage internalcommands createrawvmdk -filename /path/to/file.vmdk -rawdisk /dev/mmcblk0</code></li>
+<li>Go to the storage settings of the VM, add hard disk and select the .vmdk file created above</li>
+<li><code>sudo usermod -a -G vboxusers goncalo</code></li>
+<li><code>sudo usermod -a -G disk goncalo</code></li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="53-latex">53. Latex</h1>
+<pre class="hljs"><code><div>/usr/share/texmf-dist/tex/latex/local
+which mktexlsr
+sudo path/to/mktexlsr or sudo $(which mktexlsr)---&gt; update latex
+</div></code></pre>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="54-plex">54. Plex</h1>
+<pre class="hljs"><code><div>docker stop plex
+sqlite3 &quot;config_docker/plex/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.library.db&quot;
+PRAGMA default_cache_size = 20000; (com o ponto e virgula)
+ctrl-D
+docker start plex
+</div></code></pre>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="55-format-phone">55. Format phone</h1>
+<h2 id="551-formatting">55.1. Formatting</h2>
+<ul>
+<li><code>pacman -S android-tools</code></li>
+<li><code>adb shell - cd /data/adb/modules/quick* - find . -name &quot;*.apk&quot;</code></li>
+<li>backup -&gt; boot, system image, data</li>
+<li><code>adb pull /sdcard/Fox</code> -&gt; copy of the backup to pc</li>
+<li><code>adb push zipname.zip /sdcard</code>  (no need to wipe to do this)</li>
+<li><code>adb reboot bootloader</code></li>
+<li>important partitions to wipe -&gt; system, cache, data</li>
+<li>to flash recovery: <code>sudo fastboot flash recovery ficheiro-do-recovery.img</code></li>
+<li><code>pacman -S android-udev</code> (fastboot has no permissions)</li>
+<li><code>treble check</code></li>
+<li><code>fastboot getvar all | grep “slot”</code></li>
+<li>If there's any problem, I can always flash xiaomi rom (bookmarks)</li>
+<li>with command: <code>bash flash_all.sh</code> (only need to connect phone in fastboot mode)</li>
+<li>flash gapps after flahsing rom</li>
+<li>update firmware before new rom! Flashing the same way as the others</li>
+<li>Maybe need to really format data partition</li>
+<li>To update recovery, I can do it inside recover, flashing the zip</li>
+<li>To install, for example, Orange Fox, from TWRP, I can simply flash it from TWRP</li>
+<li>Installing lavender with gapps did not work... Need MindTheGapps</li>
+</ul>
+<h2 id="552-connecting-to-pc">55.2. Connecting to PC</h2>
+<ul>
+<li>
+<p>Primeiro instalar termux</p>
+<ul>
+<li>install fdroid and install termux from  there</li>
+</ul>
+</li>
+<li>
+<p><code>pkg upgrade</code></p>
+</li>
+<li>
+<p><code>pkg install openssh</code></p>
+</li>
+<li>
+<p><code>touch ~/.ssh/authorized_keys</code></p>
+</li>
+<li>
+<p><code>chmod 600 ~/.ssh/authorized_keys</code></p>
+</li>
+<li>
+<p><code>chmod 700 ~/.ssh</code></p>
+</li>
+<li>
+<p>copy key from pc to phone</p>
+</li>
+<li>
+<p><code>cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</code></p>
+</li>
+<li>
+<p><code>chmod 600 ~/.ssh/authorized_keys</code></p>
+</li>
+<li>
+<p>run ssh: sshd</p>
+</li>
+<li>
+<p>kill ssh: pkill sshd</p>
+</li>
+<li>
+<p><code>apt update &amp;&amp; apt upgrade</code></p>
+</li>
+<li>
+<p>port: 8022</p>
+</li>
+<li>
+<p>termux-setup-storage: (creates folder ~/storage)
+-shared: phone internal memory directory
+-external: sdcard (on sdcard: android-data-com.termux: Symlink external-1 points to a private Termux directory on external sdcard, i.e. /storage/XXXX-XXXX/Android/data/com.termux/files)</p>
+</li>
+<li>
+<p>pkg install tsu - using magisk this will give termux super user sudo</p>
+</li>
+<li>
+<p>After installing tsu, I can sudo chown /storage/XXXX-XXXX to be able to write on sdcard directly</p>
+</li>
+<li>
+<p>install jupyter-notebook:</p>
+<ul>
+<li><code>apt install clang python fftw libzmq freetype libpng pkg-config libcrypt</code></li>
+<li><code>LDFLAGS=&quot;-lm -lcompiler_rt&quot; pip install jupyter</code></li>
+<li><code>pip install numpy</code> (ou pkg)</li>
+<li><code>pip install matplotlib</code></li>
+<li>run: <code>jupyter notebook</code></li>
+</ul>
+</li>
+<li>
+<p>install termux-sudo-master : file in phone format folder (after installing tsu, dont
+need this):</p>
+<pre class="hljs"><code><div>pkg install ncurses-utils
+change to extraction directory of termux-sudo-master
+cat sudo &gt; /data/data/com.termux/files/usr/bin/sudo
+chmod 700 /data/data/com.termux/files/usr/bin/sudo
+sudo su [-] -&gt; gets me to root shell
+sudo &lt;comand&gt;
+</div></code></pre>
+</li>
+</ul>
+<h2 id="553-arch-linux-in-termux">55.3. ARCH LINUX IN TERMUX</h2>
+<pre class="hljs"><code><div>pkg update
+pkg install curl bsdtar
+curl -OL https://raw.githubusercontent.com/TermuxArch/TermuxArch/master/setupTermuxArch.bash
+bash setupTermuxArch.bash
+<span class="hljs-built_in">exit</span>
+pkg install vim
+touch .bashrc
+~/arch/startarch <span class="hljs-comment"># at the bash prompt</span>
+pacman -Syyu sudo wget curl
+sudo chown root:root /etc/resolv.conf
+sudo chmod 644 /etc/resolv.conf
+sudo passwd root
+addauser &lt;user&gt;
+<span class="hljs-built_in">exit</span>
+sudo passwd &lt;user&gt;
+visudo
+<span class="hljs-comment"># And add your user's privileges under root's in the "User privilege specification" section: </span>
+&lt;user&gt; ALL=(ALL) ALL
+su - &lt;user&gt;
+wget --no-check-certificate <span class="hljs-string">'https://docs.google.com/uc?export=download&amp;id=107Fh0l_p0ItVkUufOhP9to-OU_6KYhPW'</span> -O fresharch.sh &amp;&amp; chmod +x fresharch.sh &amp;&amp; sudo bash fresharch.sh
+add su - &lt;user&gt; to bash
+<span class="hljs-comment"># If you need to access shared storage, then cd into /storage/emulated/0</span>
+<span class="hljs-comment"># create symlinks (ln -s) for storage</span>
+</div></code></pre>
+<h2 id="554-process-to-format">55.4. Process to format</h2>
+<ul>
+<li>Boot to recovery</li>
+<li>Format system, data, cachr</li>
+<li>Reboot to recovery to reload partition table</li>
+<li>Install rom, format data, reboot to rom</li>
+</ul>
+<h2 id="555-apps-adb">55.5. Apps ADB</h2>
+<pre class="hljs"><code><div>adb shell pm list packages
+adb shell pm uninstall -k --user 0 NameOfPackage <span class="hljs-comment">#(get name from app info, advanced)</span>
+adb uninstall com.example.myapp
+adb shell content query --uri content://com.android.contacts/contacts
+adb shell content delete --uri content://com.android.contacts/contacts/437413
+adb shell content query --uri content://contacts/phones/  --projection display_name:number:notes
+</div></code></pre>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="56-conky-desktop">56. Conky Desktop</h1>
+<p>TBC</p>
+<h1 id="57-misc">57. Misc</h1>
 <ol>
 <li>
 <p>By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.</p>
