@@ -645,8 +645,13 @@ code {
 <li><a href="#555-apps-adb">55.5. Apps ADB</a></li>
 </ul>
 </li>
-<li><a href="#56-conky-desktop">56. Conky Desktop</a></li>
-<li><a href="#57-misc">57. Misc</a></li>
+<li><a href="#56-find-command">56. Find Command</a>
+<ul>
+<li><a href="#561-error-with-mv-command">56.1. Error with mv command</a></li>
+</ul>
+</li>
+<li><a href="#57-conky-desktop">57. Conky Desktop</a></li>
+<li><a href="#58-misc">58. Misc</a></li>
 </ul>
 <h2 id="11-introduction">1.1. Introduction</h2>
 <p>In this document I include some notes about general stuff I learn and do during my work/free time.</p>
@@ -2869,9 +2874,24 @@ adb shell content delete --uri content://com.android.contacts/contacts/437413
 adb shell content query --uri content://contacts/phones/  --projection display_name:number:notes
 </div></code></pre>
 <div style="page-break-after: always; break-after: page;"></div>
-<h1 id="56-conky-desktop">56. Conky Desktop</h1>
+<h1 id="56-find-command">56. Find Command</h1>
+<h2 id="561-error-with-mv-command">56.1. Error with mv command</h2>
+<p>By running the following command:</p>
+<p><code>find . -type f -name '*2019*' -exec mv {} ./backup_2019 \;</code></p>
+<p>I obtain the following errors:</p>
+<pre class="hljs"><code><div>mv: ‘./backup_2019/2019-A.txt’ and ‘backup_2019/2019-A.txt’ are the same file
+mv: ‘./backup_2019/2019-B.txt’ and ‘backup_2019/2019-B.txt’ are the same file
+mv: ‘./backup_2019/2019-C.txt’ and ‘backup_2019/2019-C.txt’ are the same file
+</div></code></pre>
+<p>This happens because I am not ignoring the target directory to where I am moving the file.</p>
+<p>The command:</p>
+<p><code>find . -path './backup_2019' -prune -o -type f -name '*2019*' -exec mv {} ./backup_2019 \;</code></p>
+<p>solves this issue.</p>
+<p>Using the option <code>-maxdepth 1</code> should also solve the issue.</p>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="57-conky-desktop">57. Conky Desktop</h1>
 <p>TBC</p>
-<h1 id="57-misc">57. Misc</h1>
+<h1 id="58-misc">58. Misc</h1>
 <ol>
 <li>
 <p>By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.</p>

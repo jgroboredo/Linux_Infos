@@ -173,8 +173,10 @@
   - [55.3. ARCH LINUX IN TERMUX](#553-arch-linux-in-termux)
   - [55.4. Process to format](#554-process-to-format)
   - [55.5. Apps ADB](#555-apps-adb)
-- [56. Conky Desktop](#56-conky-desktop)
-- [57. Misc](#57-misc)
+- [56. Find Command](#56-find-command)
+  - [56.1. Error with mv command](#561-error-with-mv-command)
+- [57. Conky Desktop](#57-conky-desktop)
+- [58. Misc](#58-misc)
 
 ## 1.1. Introduction
 
@@ -2253,14 +2255,42 @@ adb shell content query --uri content://com.android.contacts/contacts
 adb shell content delete --uri content://com.android.contacts/contacts/437413
 adb shell content query --uri content://contacts/phones/  --projection display_name:number:notes
 ```
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 56. Find Command
+
+## 56.1. Error with mv command
+
+By running the following command:
+
+`find . -type f -name '*2019*' -exec mv {} ./backup_2019 \;`
+
+I obtain the following errors:
+
+```text
+mv: ‘./backup_2019/2019-A.txt’ and ‘backup_2019/2019-A.txt’ are the same file
+mv: ‘./backup_2019/2019-B.txt’ and ‘backup_2019/2019-B.txt’ are the same file
+mv: ‘./backup_2019/2019-C.txt’ and ‘backup_2019/2019-C.txt’ are the same file
+```
+
+This happens because I am not ignoring the target directory to where I am moving the file.
+
+The command:
+
+`find . -path './backup_2019' -prune -o -type f -name '*2019*' -exec mv {} ./backup_2019 \;`
+
+solves this issue.
+
+Using the option `-maxdepth 1` should also solve the issue.
+
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 56. Conky Desktop
+# 57. Conky Desktop
 
 TBC
 
-# 57. Misc
+# 58. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
