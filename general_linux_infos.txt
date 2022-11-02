@@ -2384,23 +2384,23 @@ need this):
  ##################################################################   PROBLEM: Unknown fs type vfat   ####################################################################################
 #############################################################################################################################################################################
 
-	Issue: Booted and got an error while mounting /efi during boot: /efi, unknown file system type vfat
-	What is happening: booting a different kernel from what is on /
+Issue: Booted and got an error while mounting /efi during boot: /efi, unknown file system type vfat
+What is happening: booting a different kernel from what is on /
 
-	Unpack unified kernel image to check kernel version:
-		- objcopy -O binary --only-section=.linux linux.efi unpacked-vmlinuz
-		- file unpacked-vmlinuz
-	
-	Check current version: ls /usr/lib/modules
+Unpack unified kernel image to check kernel version:
+	- objcopy -O binary --only-section=.linux linux.efi unpacked-vmlinuz
+	- file unpacked-vmlinuz
 
-	sbctl list-bundles
-	
-	Generate new unified kernel image:
-		sbctl bundle -s -i /boot/intel-ucode.img \
-    	-l /usr/share/systemd/bootctl/splash-arch.bmp \
-    	-k /boot/vmlinuz-linux \
-    	-f /boot/initramfs-linux.img \
-    	/efi/EFI/Linux/linux.efi
+Check current version: ls /usr/lib/modules
+
+sbctl list-bundles
+
+Generate new unified kernel image:
+	sbctl bundle -s -i /boot/intel-ucode.img \
+	-l /usr/share/systemd/bootctl/splash-arch.bmp \
+	-k /boot/vmlinuz-linux \
+	-f /boot/initramfs-linux.img \
+	/efi/EFI/Linux/linux.efi
 
 /etc/mkinitcpio.d/linux.preset:
 
@@ -2419,20 +2419,20 @@ efi_microcode=(/boot/*-ucode.img)
 efi_efi_image="/efi/EFI/Linux/linux.efi"
 
 
-	SOME NOTES:
-		- initramfs is the / before the actual / is mounted (it is mounted in ram)
-			and provides basic utillities + systemd
-			It also includes some base kernel modules -> need to rebuild initramfs after kernel update
-		
-		- systemd-bootx64.efi is just the bootloader
+SOME NOTES:
+- initramfs is the / before the actual / is mounted (it is mounted in ram)
+	and provides basic utillities + systemd
+	It also includes some base kernel modules -> need to rebuild initramfs after kernel update
 
-		- efibootmgr writes on the motherboard directly
+- systemd-bootx64.efi is just the bootloader
 
-		- linux.efi is an unified kernel image - contains kernel, initramfs, kernel arguments, ucode
+- efibootmgr writes on the motherboard directly
 
-		- mkinitcpio gera o initramfs e depois produz o linux.efi
+- linux.efi is an unified kernel image - contains kernel, initramfs, kernel arguments, ucode
 
-		- vmlinuz-linux is the actual kernel
+- mkinitcpio gera o initramfs e depois produz o linux.efi
+
+- vmlinuz-linux is the actual kernel
 
 
 
@@ -2464,63 +2464,63 @@ efi_efi_image="/efi/EFI/Linux/linux.efi"
  #######################################################################   RASPBERRY PI   ###################################################################################
 #############################################################################################################################################################################
 	
-	- Needed to systemctl enable sshd inside chroot (chroot root/@)
-	- p10k configure to configure p10k theme for zsh
-	- For username in zsh prompt: uncomment context line in .p10k file in POWERLEVEL9K_LEFT_PROMPT_ELEMENTS
-	- In order for the systemctl --user to work, need to set UsePAM yes in /etc/ssh/sshd_config
-	- In rebelo script change:
-		- rebelo-pi to goncalo-pi
-		- change also the Disk to avoid potential problems
-	
-	- file /etc/iptables/iptables.rules:
-		*filter
-		:INPUT ACCEPT [0:0]
-		:FORWARD ACCEPT [0:0]
-		:OUTPUT ACCEPT [0:0]
-		COMMIT
+- Needed to systemctl enable sshd inside chroot (chroot root/@)
+- p10k configure to configure p10k theme for zsh
+- For username in zsh prompt: uncomment context line in .p10k file in POWERLEVEL9K_LEFT_PROMPT_ELEMENTS
+- In order for the systemctl --user to work, need to set UsePAM yes in /etc/ssh/sshd_config
+- In rebelo script change:
+	- rebelo-pi to goncalo-pi
+	- change also the Disk to avoid potential problems
 
-	- before finishing formating I need to:
-		- change iptables.rules
-		- change sshd_config (port and pw authentication)
-		- enable sshd service
+- file /etc/iptables/iptables.rules:
+	*filter
+	:INPUT ACCEPT [0:0]
+	:FORWARD ACCEPT [0:0]
+	:OUTPUT ACCEPT [0:0]
+	COMMIT
 
-	- on sdcard, aarch64 did not work. Need to change config/config.sh:
-		- ARCH_CPU_BRAND=armv7h
-		- ARCH-KERNEL=linux-rpi
+- before finishing formating I need to:
+	- change iptables.rules
+	- change sshd_config (port and pw authentication)
+	- enable sshd service
 
-	- In order to be able to build the packages to arm architecture from arch x86_64 need to install:
-		- qemu-user-static-bin
-		Other dependencies:
-		- arch-install-scripts
-		- uboot-tools
-		- aria2
-		- iwd
-		- gnu-netcat (for nc)
-		- arp-scan
-		- exfatprogs (for mkfs.exfat)
+- on sdcard, aarch64 did not work. Need to change config/config.sh:
+	- ARCH_CPU_BRAND=armv7h
+	- ARCH-KERNEL=linux-rpi
 
-	- /boot/config.txt -> for overclock
-		enable_uart=1 (this screws up the OC)
-		over_voltage=6
-		arm_freq=2000
+- In order to be able to build the packages to arm architecture from arch x86_64 need to install:
+	- qemu-user-static-bin
+	Other dependencies:
+	- arch-install-scripts
+	- uboot-tools
+	- aria2
+	- iwd
+	- gnu-netcat (for nc)
+	- arp-scan
+	- exfatprogs (for mkfs.exfat)
 
-	- In order for the ssh-agent to work, add to /etc/ssh/sshd_config:
-		- UsePAM yes
-	Don't forget systemctl --user cannot be ran with sudo
-	
-	- for docker to work, don't forget to change the UID in everyfile.
-	The error:
-		Failed to load config file "/run/secrets/rclone_conf": open /run/secrets/rclone_conf: permission denied
-	was because I did not change the UID in the image for rclone Docker
-		Final step: docker-compose build
+- /boot/config.txt -> for overclock
+	enable_uart=1 (this screws up the OC)
+	over_voltage=6
+	arm_freq=2000
 
-	- stress test: stress -c 4 -t 900s
+- In order for the ssh-agent to work, add to /etc/ssh/sshd_config:
+	- UsePAM yes
+Don't forget systemctl --user cannot be ran with sudo
 
-	- https://healthchecks.io/
+- for docker to work, don't forget to change the UID in everyfile.
+The error:
+	Failed to load config file "/run/secrets/rclone_conf": open /run/secrets/rclone_conf: permission denied
+was because I did not change the UID in the image for rclone Docker
+	Final step: docker-compose build
 
-	- To update firmware: pacman -S rpi-eeprom:
-		- rpi-eeprom-update (checks version)
-		- rpi-eeprom-update -a (updates)
+- stress test: stress -c 4 -t 900s
+
+- https://healthchecks.io/
+
+- To update firmware: pacman -S rpi-eeprom:
+	- rpi-eeprom-update (checks version)
+	- rpi-eeprom-update -a (updates)
 
 ##############################################################################################################################################################################
 

@@ -650,8 +650,56 @@ code {
 <li><a href="#561-error-with-mv-command">56.1. Error with mv command</a></li>
 </ul>
 </li>
-<li><a href="#57-conky-desktop">57. Conky Desktop</a></li>
-<li><a href="#58-misc">58. Misc</a></li>
+<li><a href="#57-conky-desktop">57. Conky Desktop</a>
+<ul>
+<li><a href="#571-install-conky-manager">57.1. Install conky-manager</a></li>
+</ul>
+</li>
+<li><a href="#58-endeavouros-stuff">58. EndeavourOS Stuff</a>
+<ul>
+<li><a href="#581-relativamente-ao-barrier">58.1. Relativamente ao barrier</a></li>
+</ul>
+</li>
+<li><a href="#59-map-keyboard-keys">59. Map Keyboard Keys</a></li>
+<li><a href="#60-format-pen">60. Format Pen</a>
+<ul>
+<li><a href="#601-apagar-parti%C3%A7%C3%B5es">60.1. Apagar partições</a></li>
+<li><a href="#602-criar-parti%C3%A7%C3%A3o">60.2. Criar Partição</a></li>
+<li><a href="#603-format-pen-with-iso">60.3. Format pen with ISO</a></li>
+</ul>
+</li>
+<li><a href="#61-borg-backup">61. Borg Backup</a>
+<ul>
+<li><a href="#611-setup-steps">61.1. Setup Steps</a></li>
+<li><a href="#612-mount-backup-automatically">61.2. MOUNT BACKUP AUTOMATICALLY</a></li>
+</ul>
+</li>
+<li><a href="#62-hdd-format">62. HDD Format</a>
+<ul>
+<li><a href="#621-delete-partitions">62.1. Delete Partitions</a></li>
+<li><a href="#622-create-new-gpt-partition-table">62.2. Create New GPT partition table</a></li>
+<li><a href="#623-format-disk">62.3. Format Disk</a></li>
+<li><a href="#624-find-uuid-and-check-type">62.4. Find UUID and check type</a></li>
+<li><a href="#625-fstab">62.5. Fstab</a></li>
+</ul>
+</li>
+<li><a href="#63-ubuntu">63. Ubuntu</a>
+<ul>
+<li><a href="#631-fix-ethernet-unavailable">63.1. Fix ethernet unavailable</a></li>
+</ul>
+</li>
+<li><a href="#64-problem-unknown-fs-type-vfat">64. PROBLEM: Unknown fs type vfat</a>
+<ul>
+<li><a href="#641-some-notes">64.1. Some notes</a></li>
+</ul>
+</li>
+<li><a href="#65-permissions">65. Permissions</a>
+<ul>
+<li><a href="#651-fix-permissions">65.1. Fix permissions</a></li>
+</ul>
+</li>
+<li><a href="#66-raspberry-pi">66. Raspberry Pi</a></li>
+<li><a href="#67-misc">67. Misc</a></li>
 </ul>
 <h2 id="11-introduction">1.1. Introduction</h2>
 <p>In this document I include some notes about general stuff I learn and do during my work/free time.</p>
@@ -2890,8 +2938,354 @@ mv: ‘./backup_2019/2019-C.txt’ and ‘backup_2019/2019-C.txt’ are the same
 <p>Using the option <code>-maxdepth 1</code> should also solve the issue.</p>
 <div style="page-break-after: always; break-after: page;"></div>
 <h1 id="57-conky-desktop">57. Conky Desktop</h1>
-<p>TBC</p>
-<h1 id="58-misc">58. Misc</h1>
+<p><code>/usr/share/conky conky_maia</code> is the file I want. I have it saved in Linux backup.</p>
+<h2 id="571-install-conky-manager">57.1. Install conky-manager</h2>
+<p>Change in config:</p>
+<pre class="hljs"><code><div>own_window yes
+own_window_class Conky
+own_window_type override
+background yes
+</div></code></pre>
+<ul>
+<li>To use the conky-manager, comment on config the line with: <code>exec --no-startup-id start_conky_maia</code></li>
+<li>check for driver: lspci -k</li>
+<li>ifconfig: install net-tools : this allows to see the name of the device in use (eg. wlan0)</li>
+<li>add the files in conky-startup.sh like: <code>conky -c /path/to/file</code></li>
+<li>add conky-startup to config</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="58-endeavouros-stuff">58. EndeavourOS Stuff</h1>
+<ul>
+<li>
+<p>Might need to connect to network:</p>
+<pre class="hljs"><code><div>nmcli d -&gt; to determine the name of the wifi interface
+nmcli r wifi on
+nmcli d wifi list
+nmcli d wifi connect my_wifi password &lt;password&gt;
+</div></code></pre>
+</li>
+<li>
+<p>Check wlan interface: <code>iw dev</code></p>
+</li>
+<li>
+<p>Script photo nationalgeographic: <code>pacman -S python-pillow</code></p>
+</li>
+<li>
+<p>Put touchpad file in <code>/etc/X11/xorg.conf.d</code> with:</p>
+<pre class="hljs"><code><div>NaturalScrolling off
+AccelProfile -1
+</div></code></pre>
+</li>
+<li>
+<p>Nao consigo obter em lyx o output por causa de ficheiros eps: <code>pacman -S ghostscript</code></p>
+</li>
+<li>
+<p>Ao instalar o Mathematica, o script não gostou que o path tivesse um espaco</p>
+</li>
+</ul>
+<h2 id="581-relativamente-ao-barrier">58.1. Relativamente ao barrier</h2>
+<ul>
+<li>
+<p>O nome dos dois pcs nao pode ser o mesmo;</p>
+</li>
+<li>
+<p>No ficheiro <code>/etc/systemd/system/barrier.service</code> tenho de ter:</p>
+<pre class="hljs"><code><div>[Unit]
+Description=Barrier Client mouse/keyboard share
+Requires=display-manager.service
+After=display-manager.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/barrierc --no-restart --name raspberrypi --enable-crypto 192.168.0.109
+Restart=always
+RestartSec=10
+User=pi
+
+[Install]		
+WantedBy=multi-user.target
+</div></code></pre>
+<p>O important é em <code>--name</code> ter o nome do pc que eu pus no servidor (exemplo: no servidor, disse que o monitor se chamava goncalo-desktop... Entao, este é o nome que tenho de usar)</p>
+</li>
+</ul>
+<p>Note: Adicionar à config do i3 workspace_auto_back_and_forth yes</p>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="59-map-keyboard-keys">59. Map Keyboard Keys</h1>
+<ul>
+<li>
+<p>Search for keycode:</p>
+<ul>
+<li><code>xmodmap -pk</code></li>
+</ul>
+</li>
+<li>
+<p>Go to i3 config, add command: <code>exec_always --no-startup-id xmodmap -e &quot;keycode 106 = backslash&quot;</code></p>
+</li>
+<li>
+<p>Note:</p>
+<ul>
+<li>In the command above, keycode 106 is the key to be altered; backslash is the name of the the name of the key (In this example, it is backslash) and the keycode of the key I want to replace (which also has a name associated with it, in this case it was <code>KP_Divide</code>)</li>
+</ul>
+</li>
+<li>
+<p>Example:</p>
+<ul>
+<li><code>xmodmap -e &quot;keycode 38 = a A aacute Aacute ae AE ae&quot;</code></li>
+<li>Then:</li>
+</ul>
+<ol>
+<li>a: normal a</li>
+<li>A: shift + a</li>
+<li>á: altgr + a</li>
+<li>Á: shift + altgr + a</li>
+</ol>
+</li>
+</ul>
+<p>Using the example above, I can do: <code>exec_always --no-startup-id xmodmap -e &quot;keycode 106 = backslash bar&quot;</code></p>
+<p>This will include the | in the key when doing shift+key</p>
+<p>On my keyboard, ç -&gt; alt + ,</p>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="60-format-pen">60. Format Pen</h1>
+<h2 id="601-apagar-parti%C3%A7%C3%B5es">60.1. Apagar partições</h2>
+<pre class="hljs"><code><div>sudo fdisk -l -&gt; para ver qual é a pen
+sudo gdisk /dev/sdX -&gt; em que X é o que encontro em cima
+  o, enter
+  n, enter, enter, enter
+  0700
+  w
+</div></code></pre>
+<h2 id="602-criar-parti%C3%A7%C3%A3o">60.2. Criar Partição</h2>
+<pre class="hljs"><code><div>sudo mkfs.vfat /dev/sdX1
+sudo mkfs.exfat <span class="hljs-comment"># (for SD CARD)</span>
+</div></code></pre>
+<h2 id="603-format-pen-with-iso">60.3. Format pen with ISO</h2>
+<pre class="hljs"><code><div>sudo fdisk --list
+dd if=manjaro.iso of=/dev/sd# status=progress
+sync
+</div></code></pre>
+<p>If I want to install windows, use woeusb: <code>sudo woeusb --target-filesystem NTFS --device Win10_20H2_v2_French_x64.iso /dev/sdb</code></p>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="61-borg-backup">61. Borg Backup</h1>
+<h2 id="611-setup-steps">61.1. Setup Steps</h2>
+<ol>
+<li>Create backup user in pi (do not add user no any groups):</li>
+</ol>
+<pre class="hljs"><code><div>sudo useradd -m &lt;username&gt;
+passwd &lt;username&gt;
+ssh-keygent -t ed25519
+touch ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+</div></code></pre>
+<ol start="2">
+<li>Prepare repo directory:</li>
+</ol>
+<pre class="hljs"><code><div>btrfs subvolume create /home/goncalo/HDD/@backups (btrfs subvolume create /path/to/mount/point)
+Add entry to fstab to mount this subvolume
+mkdir /mnt/backups/repo/name
+sudo chown &lt;backup-user&gt;:&lt;backup-user&gt; /mnt/backups/repo/name
+sudo chmod 770 /mnt/backups/repo/name
+</div></code></pre>
+<ol start="3">
+<li>Init borg backup</li>
+</ol>
+<p><code>borg init --encryption=keyfile ssh://backup-user@pi/mnt/backups/repo/name</code></p>
+<ol start="4">
+<li>Borg mount (needs <code>pacman -S python-llfuse</code>)</li>
+</ol>
+<p><code>borg mount path/to/repo::backup/name /mount/point</code></p>
+<h2 id="612-mount-backup-automatically">61.2. MOUNT BACKUP AUTOMATICALLY</h2>
+<ul>
+<li>
+<p>Do it with systemd mount: needs a mount and .automount unit; This allows to export environment variables in the mount process;</p>
+</li>
+<li>
+<p>I'm mounting the backup repo using fstab (I mount it directly because I need the backup user) and then I use that to mount the borg backup through systemd mount; Eventually, this could be avoided if I used umask in borg (in umask the permissions subtract - 0077 results in 700; I probably want 0007)</p>
+</li>
+<li>
+<p>The systemd units to mount need to have the path where it is going to be mounted in the name. Example:
+. Path where to mount: /mnt/borg_backup/backup_files -&gt; Systemd unit name: mnt-borg_backup-backup_files.{mount,automount}</p>
+</li>
+<li>
+<p>The entry in fstab doesn't use the env variables specified in the systemd mount unit</p>
+</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="62-hdd-format">62. HDD Format</h1>
+<p><code>sudo fdisk -l</code></p>
+<h2 id="621-delete-partitions">62.1. Delete Partitions</h2>
+<p><code>sudo gdisk /dev/sdX</code> (where X is found from the previous step) and then select <code>d</code> and <code>w</code></p>
+<h2 id="622-create-new-gpt-partition-table">62.2. Create New GPT partition table</h2>
+<pre class="hljs"><code><div>sudo gdisk /dev/sdX
+  - n
+  - enter
+  - enter
+  - enter
+  - w
+</div></code></pre>
+<h2 id="623-format-disk">62.3. Format Disk</h2>
+<p><code>sudo mkfs.btrs -f /dev/sdX1</code></p>
+<h2 id="624-find-uuid-and-check-type">62.4. Find UUID and check type</h2>
+<p><code>sudo blkid</code></p>
+<h2 id="625-fstab">62.5. Fstab</h2>
+<pre class="hljs"><code><div>UUID=d1e18a1a-1c64-458e-9aa3-e59cd9b8bd51       /home/goncalo/HDD2            btrfs   defaults,nofail,noatime   0       0
+</div></code></pre>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="63-ubuntu">63. Ubuntu</h1>
+<h2 id="631-fix-ethernet-unavailable">63.1. Fix ethernet unavailable</h2>
+<pre class="hljs"><code><div>[ifupdown]
+managed=true
+</div></code></pre>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="64-problem-unknown-fs-type-vfat">64. PROBLEM: Unknown fs type vfat</h1>
+<p>Issue: Booted and got an error while mounting /efi during boot: /efi, unknown file system type vfat
+What is happening: booting a different kernel from what is on /</p>
+<p>Unpack unified kernel image to check kernel version:</p>
+<ul>
+<li><code>objcopy -O binary --only-section=.linux linux.efi unpacked-vmlinuz</code></li>
+<li><code>file unpacked-vmlinuz</code></li>
+</ul>
+<p>Check current version: <code>ls /usr/lib/modules</code></p>
+<p><code>sbctl list-bundles</code></p>
+<p>Generate new unified kernel image:</p>
+<pre class="hljs"><code><div>sbctl bundle -s -i /boot/intel-ucode.img \
+-l /usr/share/systemd/bootctl/splash-arch.bmp \
+-k /boot/vmlinuz-linux \
+-f /boot/initramfs-linux.img \
+/efi/EFI/Linux/linux.efi
+</div></code></pre>
+<p>Edit <code>/etc/mkinitcpio.d/linux.preset</code>:</p>
+<pre class="hljs"><code><div>ALL_config=&quot;/etc/mkinitcpio.conf&quot;
+ALL_kver=&quot;/boot/vmlinuz-linux&quot;
+
+PRESETS=('efi')
+
+# BIOS
+bios_image=&quot;/boot/initramfs-linux.img&quot;
+
+# EFI
+efi_image=&quot;/boot/initramfs-linux.img&quot;
+#efi_options=&quot;--splash /usr/share/systemd/bootctl/splash-arch.bmp&quot;
+efi_microcode=(/boot/*-ucode.img)
+efi_efi_image=&quot;/efi/EFI/Linux/linux.efi&quot;
+</div></code></pre>
+<h2 id="641-some-notes">64.1. Some notes</h2>
+<ul>
+<li>initramfs is the / before the actual / is mounted (it is mounted in ram) and provides basic utillities + systemd. It also includes some base kernel modules -&gt; need to rebuild initramfs after kernel update</li>
+<li>systemd-bootx64.efi is just the bootloader</li>
+<li>efibootmgr writes on the motherboard directly</li>
+<li>linux.efi is an unified kernel image - contains kernel, initramfs, kernel arguments, ucode</li>
+<li>mkinitcpio gera o initramfs e depois produz o linux.efi</li>
+<li>vmlinuz-linux is the actual kernel</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="65-permissions">65. Permissions</h1>
+<h2 id="651-fix-permissions">65.1. Fix permissions</h2>
+<ul>
+<li><code>sudo pacman-fix-permissions</code></li>
+<li>check ssh to fix key permissions</li>
+<li><code>stat -c &quot;%a %n&quot; /etc/ssh/*</code> -&gt; outputs permissions in numbers</li>
+</ul>
+<p>I have made a script with a file which has the correct permissions which I got from alex pc</p>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="66-raspberry-pi">66. Raspberry Pi</h1>
+<ul>
+<li>
+<p>Needed to systemctl enable sshd inside chroot (chroot root/@)</p>
+</li>
+<li>
+<p>p10k configure to configure p10k theme for zsh</p>
+</li>
+<li>
+<p>For username in zsh prompt: uncomment context line in .p10k file in POWERLEVEL9K_LEFT_PROMPT_ELEMENTS</p>
+</li>
+<li>
+<p>In order for the systemctl --user to work, need to set UsePAM yes in /etc/ssh/sshd_config</p>
+</li>
+<li>
+<p>In rebelo script change:</p>
+<ul>
+<li>rebelo-pi to goncalo-pi</li>
+<li>change also the Disk to avoid potential problems</li>
+</ul>
+</li>
+<li>
+<p>file <code>/etc/iptables/iptables.rules</code>:</p>
+<pre class="hljs"><code><div>  *filter
+  :INPUT ACCEPT [0:0]
+  :FORWARD ACCEPT [0:0]
+  :OUTPUT ACCEPT [0:0]
+  COMMIT
+</div></code></pre>
+</li>
+<li>
+<p>before finishing formating I need to:</p>
+<ul>
+<li>change iptables.rules</li>
+<li>change sshd_config (port and pw authentication)</li>
+<li>enable sshd service</li>
+</ul>
+</li>
+<li>
+<p>on sdcard, aarch64 did not work. Need to change config/config.sh:</p>
+<ul>
+<li>ARCH_CPU_BRAND=armv7h</li>
+<li>ARCH-KERNEL=linux-rpi</li>
+</ul>
+</li>
+<li>
+<p>In order to be able to build the packages to arm architecture from arch x86_64 need to install:</p>
+<ul>
+<li>qemu-user-static-bin</li>
+<li>Other dependencies:
+<ul>
+<li>arch-install-scripts</li>
+<li>uboot-tools</li>
+<li>aria2</li>
+<li>iwd</li>
+<li>gnu-netcat (for nc)</li>
+<li>arp-scan</li>
+<li>exfatprogs (for mkfs.exfat)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Edit <code>/boot/config.txt</code> for overclock</p>
+<pre class="hljs"><code><div>  enable_uart=1 (this screws up the OC)
+  over_voltage=6
+  arm_freq=2000
+</div></code></pre>
+</li>
+<li>
+<p>In order for the ssh-agent to work, add to /etc/ssh/sshd_config:</p>
+<ul>
+<li>UsePAM yes</li>
+</ul>
+</li>
+</ul>
+<p>Don't forget systemctl --user cannot be ran with sudo</p>
+<p>For docker to work, don't forget to change the UID in everyfile.
+The error:</p>
+<p><code>Failed to load config file &quot;/run/secrets/rclone_conf&quot;: open /run/secrets/rclone_conf: permission denied</code></p>
+<p>was because I did not change the UID in the image for rclone Docker</p>
+<p>Final step: <code>docker-compose build</code></p>
+<ul>
+<li>
+<p>stress test: stress -c 4 -t 900s</p>
+</li>
+<li>
+<p>https://healthchecks.io/</p>
+</li>
+<li>
+<p>To update firmware: pacman -S rpi-eeprom:</p>
+<ul>
+<li>rpi-eeprom-update (checks version)</li>
+<li>rpi-eeprom-update -a (updates)</li>
+</ul>
+</li>
+</ul>
+<h1 id="67-misc">67. Misc</h1>
 <ol>
 <li>
 <p>By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.</p>

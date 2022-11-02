@@ -176,7 +176,31 @@
 - [56. Find Command](#56-find-command)
   - [56.1. Error with mv command](#561-error-with-mv-command)
 - [57. Conky Desktop](#57-conky-desktop)
-- [58. Misc](#58-misc)
+  - [57.1. Install conky-manager](#571-install-conky-manager)
+- [58. EndeavourOS Stuff](#58-endeavouros-stuff)
+  - [58.1. Relativamente ao barrier](#581-relativamente-ao-barrier)
+- [59. Map Keyboard Keys](#59-map-keyboard-keys)
+- [60. Format Pen](#60-format-pen)
+  - [60.1. Apagar partições](#601-apagar-partições)
+  - [60.2. Criar Partição](#602-criar-partição)
+  - [60.3. Format pen with ISO](#603-format-pen-with-iso)
+- [61. Borg Backup](#61-borg-backup)
+  - [61.1. Setup Steps](#611-setup-steps)
+  - [61.2. MOUNT BACKUP AUTOMATICALLY](#612-mount-backup-automatically)
+- [62. HDD Format](#62-hdd-format)
+  - [62.1. Delete Partitions](#621-delete-partitions)
+  - [62.2. Create New GPT partition table](#622-create-new-gpt-partition-table)
+  - [62.3. Format Disk](#623-format-disk)
+  - [62.4. Find UUID and check type](#624-find-uuid-and-check-type)
+  - [62.5. Fstab](#625-fstab)
+- [63. Ubuntu](#63-ubuntu)
+  - [63.1. Fix ethernet unavailable](#631-fix-ethernet-unavailable)
+- [64. PROBLEM: Unknown fs type vfat](#64-problem-unknown-fs-type-vfat)
+  - [64.1. Some notes](#641-some-notes)
+- [65. Permissions](#65-permissions)
+  - [65.1. Fix permissions](#651-fix-permissions)
+- [66. Raspberry Pi](#66-raspberry-pi)
+- [67. Misc](#67-misc)
 
 ## 1.1. Introduction
 
@@ -2255,6 +2279,7 @@ adb shell content query --uri content://com.android.contacts/contacts
 adb shell content delete --uri content://com.android.contacts/contacts/437413
 adb shell content query --uri content://contacts/phones/  --projection display_name:number:notes
 ```
+
 <div style="page-break-after: always; break-after: page;"></div>
 
 # 56. Find Command
@@ -2288,9 +2313,361 @@ Using the option `-maxdepth 1` should also solve the issue.
 
 # 57. Conky Desktop
 
-TBC
+`/usr/share/conky conky_maia` is the file I want. I have it saved in Linux backup.
 
-# 58. Misc
+## 57.1. Install conky-manager
+
+Change in config:
+
+```text
+own_window yes
+own_window_class Conky
+own_window_type override
+background yes
+```
+
+- To use the conky-manager, comment on config the line with: `exec --no-startup-id start_conky_maia`
+- check for driver: lspci -k
+- ifconfig: install net-tools : this allows to see the name of the device in use (eg. wlan0)
+- add the files in conky-startup.sh like: `conky -c /path/to/file`
+- add conky-startup to config
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 58. EndeavourOS Stuff
+
+- Might need to connect to network:
+
+  ```bash
+  nmcli d -> to determine the name of the wifi interface
+  nmcli r wifi on
+  nmcli d wifi list
+  nmcli d wifi connect my_wifi password <password>
+  ```
+
+- Check wlan interface: `iw dev`
+- Script photo nationalgeographic: `pacman -S python-pillow`
+- Put touchpad file in `/etc/X11/xorg.conf.d` with:
+
+  ```bash
+  NaturalScrolling off
+  AccelProfile -1
+  ```
+
+- Nao consigo obter em lyx o output por causa de ficheiros eps: `pacman -S ghostscript`
+- Ao instalar o Mathematica, o script não gostou que o path tivesse um espaco
+
+## 58.1. Relativamente ao barrier
+
+- O nome dos dois pcs nao pode ser o mesmo;
+- No ficheiro `/etc/systemd/system/barrier.service` tenho de ter:
+
+  ```text
+  [Unit]
+  Description=Barrier Client mouse/keyboard share
+  Requires=display-manager.service
+  After=display-manager.service
+  StartLimitIntervalSec=0
+
+  [Service]
+  Type=forking
+  ExecStart=/usr/bin/barrierc --no-restart --name raspberrypi --enable-crypto 192.168.0.109
+  Restart=always
+  RestartSec=10
+  User=pi
+
+  [Install]		
+  WantedBy=multi-user.target
+  ```
+
+  O important é em `--name` ter o nome do pc que eu pus no servidor (exemplo: no servidor, disse que o monitor se chamava goncalo-desktop... Entao, este é o nome que tenho de usar)
+
+Note: Adicionar à config do i3 workspace_auto_back_and_forth yes
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 59. Map Keyboard Keys
+
+- Search for keycode:
+  - `xmodmap -pk`
+- Go to i3 config, add command: `exec_always --no-startup-id xmodmap -e "keycode 106 = backslash"`
+- Note:
+  - In the command above, keycode 106 is the key to be altered; backslash is the name of the the name of the key (In this example, it is backslash) and the keycode of the key I want to replace (which also has a name associated with it, in this case it was `KP_Divide`)
+
+- Example:
+  - `xmodmap -e "keycode 38 = a A aacute Aacute ae AE ae"`
+  - Then:
+  1. a: normal a
+  2. A: shift + a
+  3. á: altgr + a
+  4. Á: shift + altgr + a
+
+Using the example above, I can do: `exec_always --no-startup-id xmodmap -e "keycode 106 = backslash bar"`
+
+This will include the | in the key when doing shift+key
+
+On my keyboard, ç -> alt + ,
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 60. Format Pen
+
+## 60.1. Apagar partições
+
+```bash
+sudo fdisk -l -> para ver qual é a pen
+sudo gdisk /dev/sdX -> em que X é o que encontro em cima
+  o, enter
+  n, enter, enter, enter
+  0700
+  w
+```
+
+## 60.2. Criar Partição
+
+```bash
+sudo mkfs.vfat /dev/sdX1
+sudo mkfs.exfat # (for SD CARD)
+```
+
+## 60.3. Format pen with ISO
+
+```text
+sudo fdisk --list
+dd if=manjaro.iso of=/dev/sd# status=progress
+sync
+```
+
+If I want to install windows, use woeusb: `sudo woeusb --target-filesystem NTFS --device Win10_20H2_v2_French_x64.iso /dev/sdb`
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 61. Borg Backup
+
+## 61.1. Setup Steps
+
+1) Create backup user in pi (do not add user no any groups):
+
+  ```bash
+  sudo useradd -m <username>
+  passwd <username>
+  ssh-keygent -t ed25519
+  touch ~/.ssh/authorized_keys
+  chmod 600 ~/.ssh/authorized_keys
+  ```
+
+2) Prepare repo directory:
+
+  ```bash
+  btrfs subvolume create /home/goncalo/HDD/@backups (btrfs subvolume create /path/to/mount/point)
+  Add entry to fstab to mount this subvolume
+  mkdir /mnt/backups/repo/name
+  sudo chown <backup-user>:<backup-user> /mnt/backups/repo/name
+  sudo chmod 770 /mnt/backups/repo/name
+  ```
+
+3) Init borg backup
+
+  `borg init --encryption=keyfile ssh://backup-user@pi/mnt/backups/repo/name`
+
+4) Borg mount (needs `pacman -S python-llfuse`)
+
+  `borg mount path/to/repo::backup/name /mount/point`
+
+## 61.2. MOUNT BACKUP AUTOMATICALLY
+
+- Do it with systemd mount: needs a mount and .automount unit; This allows to export environment variables in the mount process;
+
+- I'm mounting the backup repo using fstab (I mount it directly because I need the backup user) and then I use that to mount the borg backup through systemd mount; Eventually, this could be avoided if I used umask in borg (in umask the permissions subtract - 0077 results in 700; I probably want 0007)
+
+- The systemd units to mount need to have the path where it is going to be mounted in the name. Example:
+. Path where to mount: /mnt/borg_backup/backup_files -> Systemd unit name: mnt-borg_backup-backup_files.{mount,automount}
+
+- The entry in fstab doesn't use the env variables specified in the systemd mount unit
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 62. HDD Format
+
+`sudo fdisk -l`
+
+## 62.1. Delete Partitions
+
+`sudo gdisk /dev/sdX` (where X is found from the previous step) and then select `d` and `w`
+
+## 62.2. Create New GPT partition table
+
+```text
+sudo gdisk /dev/sdX
+  - n
+  - enter
+  - enter
+  - enter
+  - w
+```
+
+## 62.3. Format Disk
+
+`sudo mkfs.btrs -f /dev/sdX1`
+
+## 62.4. Find UUID and check type
+
+`sudo blkid`
+
+## 62.5. Fstab
+
+```text
+UUID=d1e18a1a-1c64-458e-9aa3-e59cd9b8bd51       /home/goncalo/HDD2            btrfs   defaults,nofail,noatime   0       0
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 63. Ubuntu
+
+## 63.1. Fix ethernet unavailable
+
+```text
+[ifupdown]
+managed=true
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 64. PROBLEM: Unknown fs type vfat
+
+Issue: Booted and got an error while mounting /efi during boot: /efi, unknown file system type vfat
+What is happening: booting a different kernel from what is on /
+
+Unpack unified kernel image to check kernel version:
+- `objcopy -O binary --only-section=.linux linux.efi unpacked-vmlinuz`
+- `file unpacked-vmlinuz`
+
+Check current version: `ls /usr/lib/modules`
+
+`sbctl list-bundles`
+
+Generate new unified kernel image:
+
+```text
+sbctl bundle -s -i /boot/intel-ucode.img \
+-l /usr/share/systemd/bootctl/splash-arch.bmp \
+-k /boot/vmlinuz-linux \
+-f /boot/initramfs-linux.img \
+/efi/EFI/Linux/linux.efi
+```
+
+Edit `/etc/mkinitcpio.d/linux.preset`:
+
+```text
+ALL_config="/etc/mkinitcpio.conf"
+ALL_kver="/boot/vmlinuz-linux"
+
+PRESETS=('efi')
+
+# BIOS
+bios_image="/boot/initramfs-linux.img"
+
+# EFI
+efi_image="/boot/initramfs-linux.img"
+#efi_options="--splash /usr/share/systemd/bootctl/splash-arch.bmp"
+efi_microcode=(/boot/*-ucode.img)
+efi_efi_image="/efi/EFI/Linux/linux.efi"
+```
+
+## 64.1. Some notes
+
+- initramfs is the / before the actual / is mounted (it is mounted in ram) and provides basic utillities + systemd. It also includes some base kernel modules -> need to rebuild initramfs after kernel update
+- systemd-bootx64.efi is just the bootloader
+- efibootmgr writes on the motherboard directly
+- linux.efi is an unified kernel image - contains kernel, initramfs, kernel arguments, ucode
+- mkinitcpio gera o initramfs e depois produz o linux.efi
+- vmlinuz-linux is the actual kernel
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 65. Permissions
+
+## 65.1. Fix permissions
+
+- `sudo pacman-fix-permissions`
+- check ssh to fix key permissions
+- `stat -c "%a %n" /etc/ssh/*` -> outputs permissions in numbers
+
+I have made a script with a file which has the correct permissions which I got from alex pc
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 66. Raspberry Pi
+
+- Needed to systemctl enable sshd inside chroot (chroot root/@)
+- p10k configure to configure p10k theme for zsh
+- For username in zsh prompt: uncomment context line in .p10k file in POWERLEVEL9K_LEFT_PROMPT_ELEMENTS
+- In order for the systemctl --user to work, need to set UsePAM yes in /etc/ssh/sshd_config
+- In rebelo script change:
+  - rebelo-pi to goncalo-pi
+  - change also the Disk to avoid potential problems
+
+- file `/etc/iptables/iptables.rules`:
+
+  ```text
+    *filter
+    :INPUT ACCEPT [0:0]
+    :FORWARD ACCEPT [0:0]
+    :OUTPUT ACCEPT [0:0]
+    COMMIT
+  ```
+
+- before finishing formating I need to:
+  - change iptables.rules
+  - change sshd_config (port and pw authentication)
+  - enable sshd service
+
+- on sdcard, aarch64 did not work. Need to change config/config.sh:
+  - ARCH_CPU_BRAND=armv7h
+  - ARCH-KERNEL=linux-rpi
+
+- In order to be able to build the packages to arm architecture from arch x86_64 need to install:
+  - qemu-user-static-bin
+  - Other dependencies:
+    - arch-install-scripts
+    - uboot-tools
+    - aria2
+    - iwd
+    - gnu-netcat (for nc)
+    - arp-scan
+    - exfatprogs (for mkfs.exfat)
+
+- Edit `/boot/config.txt` for overclock
+
+  ```text
+    enable_uart=1 (this screws up the OC)
+    over_voltage=6
+    arm_freq=2000
+  ```
+
+- In order for the ssh-agent to work, add to /etc/ssh/sshd_config:
+  - UsePAM yes
+
+Don't forget systemctl --user cannot be ran with sudo
+
+For docker to work, don't forget to change the UID in everyfile.
+The error:
+
+`Failed to load config file "/run/secrets/rclone_conf": open /run/secrets/rclone_conf: permission denied`
+
+was because I did not change the UID in the image for rclone Docker
+
+Final step: `docker-compose build`
+
+- stress test: stress -c 4 -t 900s
+
+- https://healthchecks.io/
+
+- To update firmware: pacman -S rpi-eeprom:
+  - rpi-eeprom-update (checks version)
+  - rpi-eeprom-update -a (updates)
+
+# 67. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
