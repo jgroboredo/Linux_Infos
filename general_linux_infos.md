@@ -2327,6 +2327,12 @@ The command:
 
 `find . -path './backup_2019' -prune -o -type f -name '*2019*' -exec mv {} ./backup_2019 \;`
 
+More ways of pruning:
+
+`find . -maxdepth 1 \( -path "./Linux" \) -prune -o -type d -print`
+
+`find . -mindepth 1 -maxdepth 1 \( -path "Some/Path" -o -path "./Linux" \) -prune -o -type d -print`
+
 solves this issue.
 
 Using the option `-maxdepth 1` should also solve the issue.

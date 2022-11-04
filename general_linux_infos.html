@@ -2948,6 +2948,9 @@ mv: ‘./backup_2019/2019-C.txt’ and ‘backup_2019/2019-C.txt’ are the same
 <p>This happens because I am not ignoring the target directory to where I am moving the file.</p>
 <p>The command:</p>
 <p><code>find . -path './backup_2019' -prune -o -type f -name '*2019*' -exec mv {} ./backup_2019 \;</code></p>
+<p>More ways of pruning:</p>
+<p><code>find . -maxdepth 1 \( -path &quot;./Linux&quot; \) -prune -o -type d -print</code></p>
+<p><code>find . -mindepth 1 -maxdepth 1 \( -path &quot;Some/Path&quot; -o -path &quot;./Linux&quot; \) -prune -o -type d -print</code></p>
 <p>solves this issue.</p>
 <p>Using the option <code>-maxdepth 1</code> should also solve the issue.</p>
 <div style="page-break-after: always; break-after: page;"></div>
