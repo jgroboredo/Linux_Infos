@@ -24,6 +24,7 @@
   - [3.16. Git merge "Deleted by us"](#316-git-merge-deleted-by-us)
   - [3.17. Commit ID and SHA](#317-commit-id-and-sha)
   - [3.18. Git over ssh using ssh config](#318-git-over-ssh-using-ssh-config)
+  - [3.19. Sparse Checkout](#319-sparse-checkout)
 - [4. Bash Notes](#4-bash-notes)
   - [4.1. Bash Note 1](#41-bash-note-1)
   - [4.2. Bash Note 2](#42-bash-note-2)
@@ -230,7 +231,7 @@ In this document I include some notes about general stuff I learn and do during 
 <div style="page-break-after: always; break-after: page;"></div>
 
 
-# 3. Git notes  
+# 3. Git notes
 
 ## 3.1. Notes on creating a git repository on github  
 
@@ -441,9 +442,9 @@ Type `git diff --name-only --diff-filter=U` to get a list of all remaining files
 
 ## 3.17. Commit ID and SHA  
 
-```
-git show -s --format=%H -> shows the last commit full id
-git show -s --format=%h -> shows the last commit sha
+```bash
+git show -s --format=%H # shows the last commit full id
+git show -s --format=%h # shows the last commit sha
 ```
 
 ## 3.18. Git over ssh using ssh config  
@@ -451,6 +452,28 @@ git show -s --format=%h -> shows the last commit sha
 `git remote set-url origin ssh://pi(here config name)/home/goncalo/HDD/Documents/git_repos/Notes.git` (here full path)
 
 <div style="page-break-after: always; break-after: page;"></div>
+
+## 3.19. Sparse Checkout
+
+```bash
+mkdir <repo>
+cd <repo>
+git init
+git remote add -f origin <url>
+```
+
+This creates an empty repository with your remote, and fetches all objects but doesn't check them out.
+
+Then: `git config core.sparseCheckout true`
+
+Now we define which files/folders we want to check out by editing `.git/info/sparse-checkout`:
+
+```bash
+echo "some/dir/" >> .git/info/sparse-checkout
+echo "another/sub/tree" >> .git/info/sparse-checkout
+```
+
+Finally, just update the repo: `git pull origin master`
 
 # 4. Bash Notes
 

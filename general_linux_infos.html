@@ -401,6 +401,7 @@ code {
 <li><a href="#316-git-merge-deleted-by-us">3.16. Git merge &quot;Deleted by us&quot;</a></li>
 <li><a href="#317-commit-id-and-sha">3.17. Commit ID and SHA</a></li>
 <li><a href="#318-git-over-ssh-using-ssh-config">3.18. Git over ssh using ssh config</a></li>
+<li><a href="#319-sparse-checkout">3.19. Sparse Checkout</a></li>
 </ul>
 </li>
 <li><a href="#4-bash-notes">4. Bash Notes</a>
@@ -926,12 +927,25 @@ If you’ve made multiple commits, use <code>git reset HEAD~&lt;n&gt; --hard</co
 Type <code>git diff --name-only --diff-filter=U</code> to get a list of all remaining files in conflit. These files must be the ones you want deleted.
 <code>git diff --name-only --diff-filter=U | xargs git rm</code></p>
 <h2 id="317-commit-id-and-sha">3.17. Commit ID and SHA</h2>
-<pre class="hljs"><code><div>git show -s --format=%H -&gt; shows the last commit full id
-git show -s --format=%h -&gt; shows the last commit sha
+<pre class="hljs"><code><div>git show -s --format=%H <span class="hljs-comment"># shows the last commit full id</span>
+git show -s --format=%h <span class="hljs-comment"># shows the last commit sha</span>
 </div></code></pre>
 <h2 id="318-git-over-ssh-using-ssh-config">3.18. Git over ssh using ssh config</h2>
 <p><code>git remote set-url origin ssh://pi(here config name)/home/goncalo/HDD/Documents/git_repos/Notes.git</code> (here full path)</p>
 <div style="page-break-after: always; break-after: page;"></div>
+<h2 id="319-sparse-checkout">3.19. Sparse Checkout</h2>
+<pre class="hljs"><code><div>mkdir &lt;repo&gt;
+<span class="hljs-built_in">cd</span> &lt;repo&gt;
+git init
+git remote add -f origin &lt;url&gt;
+</div></code></pre>
+<p>This creates an empty repository with your remote, and fetches all objects but doesn't check them out.</p>
+<p>Then: <code>git config core.sparseCheckout true</code></p>
+<p>Now we define which files/folders we want to check out by editing <code>.git/info/sparse-checkout</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">echo</span> <span class="hljs-string">"some/dir/"</span> &gt;&gt; .git/info/sparse-checkout
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"another/sub/tree"</span> &gt;&gt; .git/info/sparse-checkout
+</div></code></pre>
+<p>Finally, just update the repo: <code>git pull origin master</code></p>
 <h1 id="4-bash-notes">4. Bash Notes</h1>
 <h2 id="41-bash-note-1">4.1. Bash Note 1</h2>
 <ul>
