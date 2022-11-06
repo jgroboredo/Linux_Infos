@@ -201,7 +201,10 @@
 - [65. Permissions](#65-permissions)
   - [65.1. Fix permissions](#651-fix-permissions)
 - [66. Raspberry Pi](#66-raspberry-pi)
-- [67. Misc](#67-misc)
+- [67. Plasma](#67-plasma)
+  - [67.1. Packages](#671-packages)
+  - [67.2. Launch](#672-launch)
+- [68. Misc](#68-misc)
 
 ## 1.1. Introduction
 
@@ -2696,7 +2699,44 @@ Final step: `docker-compose build`
   - rpi-eeprom-update (checks version)
   - rpi-eeprom-update -a (updates)
 
-# 67. Misc
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 67. Plasma
+
+## 67.1. Packages
+
+```text
+plasma-desktop
+plasma-wayland-session
+plasma-workspace-wallpapers
+plasma-systemmonitor
+plasma-nm
+plasma-pa
+plasma-browser-integration
+powerdevil
+bluedevil
+kdialog  # for native dialogs in some apps
+breeze breeze-gtk
+kwrited
+phonon-qt5-gstreamer
+kde-gtk-config
+xdg-desktop-portal xdg-desktop-portal-kde xdg-desktop-portal-gtk
+khotkeys
+```
+
+## 67.2. Launch
+
+```bash
+# Wayland
+export MOZ_ENABLE_WAYLAND=1
+export XDG_SESSION_TYPE=wayland
+exec startplasma-wayland
+
+# X11 
+exec sx startplasma-x11
+```
+
+# 68. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
