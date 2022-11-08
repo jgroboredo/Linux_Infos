@@ -402,6 +402,16 @@ code {
 <li><a href="#317-commit-id-and-sha">3.17. Commit ID and SHA</a></li>
 <li><a href="#318-git-over-ssh-using-ssh-config">3.18. Git over ssh using ssh config</a></li>
 <li><a href="#319-sparse-checkout">3.19. Sparse Checkout</a></li>
+<li><a href="#320-git-submodules">3.20. Git submodules</a>
+<ul>
+<li><a href="#3201-add-submodule">3.20.1. Add submodule</a></li>
+<li><a href="#3202-clone-repo-with-submodule">3.20.2. Clone repo with submodule</a></li>
+<li><a href="#3203-pulling-in-upstream-changes-from-the-submodule-remote">3.20.3. Pulling in Upstream Changes from the Submodule Remote</a></li>
+<li><a href="#3204-pulling-upstream-changes-from-the-project-remote">3.20.4. Pulling Upstream Changes from the Project Remote</a></li>
+<li><a href="#3205-upstream-repository-changed-url-of-the-submodule">3.20.5. Upstream repository changed url of the submodule</a></li>
+<li><a href="#3206-switching-from-subdirectories-to-submodules">3.20.6. Switching from subdirectories to submodules</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#4-bash-notes">4. Bash Notes</a>
@@ -938,7 +948,6 @@ git show -s --format=%h <span class="hljs-comment"># shows the last commit sha</
 </div></code></pre>
 <h2 id="318-git-over-ssh-using-ssh-config">3.18. Git over ssh using ssh config</h2>
 <p><code>git remote set-url origin ssh://pi(here config name)/home/goncalo/HDD/Documents/git_repos/Notes.git</code> (here full path)</p>
-<div style="page-break-after: always; break-after: page;"></div>
 <h2 id="319-sparse-checkout">3.19. Sparse Checkout</h2>
 <pre class="hljs"><code><div>mkdir &lt;repo&gt;
 <span class="hljs-built_in">cd</span> &lt;repo&gt;
@@ -952,6 +961,82 @@ git remote add -f origin &lt;url&gt;
 <span class="hljs-built_in">echo</span> <span class="hljs-string">"another/sub/tree"</span> &gt;&gt; .git/info/sparse-checkout
 </div></code></pre>
 <p>Finally, just update the repo: <code>git pull origin master</code></p>
+<h2 id="320-git-submodules">3.20. Git submodules</h2>
+<h3 id="3201-add-submodule">3.20.1. Add submodule</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Add submodule to repository</span>
+<span class="hljs-comment"># By default, submodules will add the subproject </span>
+<span class="hljs-comment"># into a directory named the same as the repository</span>
+
+git submodule add &lt;link_to_submodule&gt; &lt;optional_path&gt;
+
+<span class="hljs-comment"># Although the submodule is a subdirectory in your working directory,</span>
+<span class="hljs-comment"># Git sees it as a submodule and doesn’t track its </span>
+<span class="hljs-comment"># contents when you’re not in that directory</span>
+
+git diff --cached --submodule
+</div></code></pre>
+<h3 id="3202-clone-repo-with-submodule">3.20.2. Clone repo with submodule</h3>
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> &lt;main_project_link&gt;
+git submodule init <span class="hljs-comment"># initializes local config file</span>
+git submodule update <span class="hljs-comment"># fetch all the data from that project</span>
+
+<span class="hljs-comment"># or</span>
+
+git <span class="hljs-built_in">clone</span> --recurse-submodules
+
+<span class="hljs-comment"># or</span>
+git <span class="hljs-built_in">clone</span> &lt;main_project_link&gt;
+git submodule update --init
+</div></code></pre>
+<h3 id="3203-pulling-in-upstream-changes-from-the-submodule-remote">3.20.3. Pulling in Upstream Changes from the Submodule Remote</h3>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> &lt;git_submodule_dir&gt;
+git fecth
+git merge
+
+<span class="hljs-comment"># or</span>
+
+git submodule update --remote &lt;submodule_name&gt;
+
+<span class="hljs-built_in">cd</span> &lt;main_project&gt;
+git diff --submodule <span class="hljs-comment">#  get a list of commits that were added to the submodule</span>
+git config --global diff.submodule <span class="hljs-built_in">log</span> <span class="hljs-comment"># to avoid the need to write --submodule in every git diff</span>
+
+<span class="hljs-comment"># If you commit at this point then you will lock the submodule </span>
+<span class="hljs-comment"># into having the new code when other people update.</span>
+
+git config -f .gitmodules submodule.DbConnector.branch stable <span class="hljs-comment"># in order to track other branch</span>
+
+<span class="hljs-comment"># if we leave off -f .gitmodules it will only make the change locally</span>
+
+git config status.submodulesummary 1 <span class="hljs-comment"># to see a summary of changes to the submodules</span>
+</div></code></pre>
+<h3 id="3204-pulling-upstream-changes-from-the-project-remote">3.20.4. Pulling Upstream Changes from the Project Remote</h3>
+<p>Now the perspective of the colaborator that cloned the Main Project.</p>
+<p>Simply executing <code>git pull</code> is not enough.
+By default, the git pull command recursively fetches submodules changes. However, it does not update the submodules.</p>
+<pre class="hljs"><code><div>git submodule update --init --recursive
+
+<span class="hljs-comment"># --init flag: MainProject might have added new submodules</span>
+<span class="hljs-comment"># --recursive flag: if submodules have nested submodules</span>
+
+<span class="hljs-comment"># or </span>
+
+git pull --recurse-submodules
+</div></code></pre>
+<h3 id="3205-upstream-repository-changed-url-of-the-submodule">3.20.5. Upstream repository changed url of the submodule</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># copy the new URL to your local config</span>
+$ git submodule sync --recursive
+<span class="hljs-comment"># update the submodule from the new URL</span>
+$ git submodule update --init --recursive
+</div></code></pre>
+<h3 id="3206-switching-from-subdirectories-to-submodules">3.20.6. Switching from subdirectories to submodules</h3>
+<p>Problem:  we have been tracking files in our project and want to move them out into a submodule.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">#First unstage</span>
+git rm -r SubDir
+<span class="hljs-comment"># Then Add</span>
+git submodule add &lt;submodule_link&gt;
+</div></code></pre>
+<div style="page-break-after: always; break-after: page;"></div>
 <h1 id="4-bash-notes">4. Bash Notes</h1>
 <h2 id="41-bash-note-1">4.1. Bash Note 1</h2>
 <ul>
