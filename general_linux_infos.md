@@ -204,6 +204,10 @@
 - [67. Plasma](#67-plasma)
   - [67.1. Packages](#671-packages)
   - [67.2. Launch](#672-launch)
+  - [67.3. Autostart](#673-autostart)
+  - [67.4. XDG Autostart directories](#674-xdg-autostart-directories)
+  - [67.5. Autostart Manager](#675-autostart-manager)
+  - [67.6. Disable kdeconnect](#676-disable-kdeconnect)
 - [68. Misc](#68-misc)
 
 ## 1.1. Introduction
@@ -2735,6 +2739,70 @@ exec startplasma-wayland
 # X11 
 exec sx startplasma-x11
 ```
+
+## 67.3. Autostart
+
+Check the following paths
+
+```text
+~/.kde/Autostart
+~/.kde/share/autostart
+~/.config/autostart
+~/.local/share/autostart
+/etc/xdg/autostart
+/usr/share/autostart
+```
+
+## 67.4. XDG Autostart directories
+
+Place Desktop entries (i.e. .desktop files) in the appropriate **XDG Autostart directory**:
+
+- user-specific: `$XDG_CONFIG_HOME/autostart` (~/.config/autostart by default)
+- system-wide: `$XDG_CONFIG_DIRS/autostart` (/etc/xdg/autostart by default)
+
+To disable a system-wide entry, create an overriding entry containing `Hidden=true`.
+
+## 67.5. Autostart Manager
+
+The program scans `$HOME/.config/autostart/` for applications and login scripts, `$HOME/.config/plasma-workspace/env` for pre-startup scripts and `$HOME/.config/plasma-workspace/shutdown` for logout scripts to check what programs and scripts are already there and displays them. However, applications in `/etc/xdg/autostart` are also launched.
+
+To autostart an application, navigate to System Settings > Startup and Shutdown > Autostart and add the program or shell script of your choice. For applications, a .desktop file will be created, for login scripts, a .desktop file launching the script will be created.
+
+If a desktop file under `$HOME/.config/autostart/` has `OnlyShowIn=XFCE;`, then it will not be autostarted.
+
+## 67.6. Disable kdeconnect
+
+First we need to avoid kdedconnect to autostart:
+
+`cp /etc/xdg/autostart/org.kde.kdeconnect.daemon.desktop ~/.config/autostart/`
+
+Now edit the file `~/.config/autostart/org.kde.kdeconnect.daemon.desktop` and add `Hidden=true`. Actually you can even remove everything else, because only the file name has to be identically so it's "overriden". So it looks like:
+
+```text
+[Desktop Entry]
+Hidden=true
+```
+
+Now the autostart service is disabled, but this isn't enough. We also need to "disable" the d-bus service:
+
+```bash
+mkdir -p ~/.local/share/dbus-1/services/
+cp /usr/share/dbus-1/services/org.kde.kdeconnect.service ~/.local/share/dbus-1/services/
+```
+
+Edit the file `~/.local/share/dbus-1/services/org.kde.kdeconnect.service`  and change Exec to `/usr/bin/false` so the file looks like:
+
+```text
+[D-BUS Service]
+Name=org.kde.kdeconnect
+Exec=/usr/bin/false
+```
+
+`/usr/bin/false` will return with a "error" return code (because it returns with 1 and not 0), so your logs (via journalctl) may display the process couldn't start or failed. But that shouldn't matter.
+
+Now kdeconnectd should not run anymore after you logout and login again.
+
+<div style="page-break-after: always; break-after: page;"></div>
 
 # 68. Misc
 
