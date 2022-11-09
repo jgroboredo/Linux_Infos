@@ -25,6 +25,13 @@
   - [3.17. Commit ID and SHA](#317-commit-id-and-sha)
   - [3.18. Git over ssh using ssh config](#318-git-over-ssh-using-ssh-config)
   - [3.19. Sparse Checkout](#319-sparse-checkout)
+  - [3.20. Git submodules](#320-git-submodules)
+    - [3.20.1. Add submodule](#3201-add-submodule)
+    - [3.20.2. Clone repo with submodule](#3202-clone-repo-with-submodule)
+    - [3.20.3. Pulling in Upstream Changes from the Submodule Remote](#3203-pulling-in-upstream-changes-from-the-submodule-remote)
+    - [3.20.4. Pulling Upstream Changes from the Project Remote](#3204-pulling-upstream-changes-from-the-project-remote)
+    - [3.20.5. Upstream repository changed url of the submodule](#3205-upstream-repository-changed-url-of-the-submodule)
+    - [3.20.6. Switching from subdirectories to submodules](#3206-switching-from-subdirectories-to-submodules)
 - [4. Bash Notes](#4-bash-notes)
   - [4.1. Bash Note 1](#41-bash-note-1)
   - [4.2. Bash Note 2](#42-bash-note-2)
@@ -458,8 +465,6 @@ git show -s --format=%h # shows the last commit sha
 
 `git remote set-url origin ssh://pi(here config name)/home/goncalo/HDD/Documents/git_repos/Notes.git` (here full path)
 
-<div style="page-break-after: always; break-after: page;"></div>
-
 ## 3.19. Sparse Checkout
 
 ```bash
@@ -481,6 +486,104 @@ echo "another/sub/tree" >> .git/info/sparse-checkout
 ```
 
 Finally, just update the repo: `git pull origin master`
+
+## 3.20. Git submodules
+
+### 3.20.1. Add submodule
+
+```bash
+# Add submodule to repository
+# By default, submodules will add the subproject 
+# into a directory named the same as the repository
+
+git submodule add <link_to_submodule> <optional_path>
+
+# Although the submodule is a subdirectory in your working directory,
+# Git sees it as a submodule and doesn’t track its 
+# contents when you’re not in that directory
+
+git diff --cached --submodule
+```
+
+### 3.20.2. Clone repo with submodule
+
+```bash
+git clone <main_project_link>
+git submodule init # initializes local config file
+git submodule update # fetch all the data from that project
+
+# or
+
+git clone --recurse-submodules
+
+# or
+git clone <main_project_link>
+git submodule update --init
+```
+### 3.20.3. Pulling in Upstream Changes from the Submodule Remote
+
+```bash
+cd <git_submodule_dir>
+git fecth
+git merge
+
+# or
+
+git submodule update --remote <submodule_name>
+
+cd <main_project>
+git diff --submodule #  get a list of commits that were added to the submodule
+git config --global diff.submodule log # to avoid the need to write --submodule in every git diff
+
+# If you commit at this point then you will lock the submodule 
+# into having the new code when other people update.
+
+git config -f .gitmodules submodule.DbConnector.branch stable # in order to track other branch
+
+# if we leave off -f .gitmodules it will only make the change locally
+
+git config status.submodulesummary 1 # to see a summary of changes to the submodules
+```
+
+### 3.20.4. Pulling Upstream Changes from the Project Remote
+
+Now the perspective of the colaborator that cloned the Main Project.
+
+Simply executing `git pull` is not enough. 
+By default, the git pull command recursively fetches submodules changes. However, it does not update the submodules. 
+
+```bash
+git submodule update --init --recursive
+
+# --init flag: MainProject might have added new submodules
+# --recursive flag: if submodules have nested submodules
+
+# or 
+
+git pull --recurse-submodules
+```
+
+### 3.20.5. Upstream repository changed url of the submodule
+
+```bash
+# copy the new URL to your local config
+$ git submodule sync --recursive
+# update the submodule from the new URL
+$ git submodule update --init --recursive
+```
+
+### 3.20.6. Switching from subdirectories to submodules
+
+Problem:  we have been tracking files in our project and want to move them out into a submodule.
+
+```bash
+#First unstage
+git rm -r SubDir
+# Then Add
+git submodule add <submodule_link>
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
 
 # 4. Bash Notes
 
