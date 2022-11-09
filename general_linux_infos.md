@@ -215,6 +215,7 @@
   - [67.4. XDG Autostart directories](#674-xdg-autostart-directories)
   - [67.5. Autostart Manager](#675-autostart-manager)
   - [67.6. Disable kdeconnect](#676-disable-kdeconnect)
+  - [67.7. Shortcuts](#677-shortcuts)
 - [68. Misc](#68-misc)
 
 ## 1.1. Introduction
@@ -2904,6 +2905,10 @@ Exec=/usr/bin/false
 `/usr/bin/false` will return with a "error" return code (because it returns with 1 and not 0), so your logs (via journalctl) may display the process couldn't start or failed. But that shouldn't matter.
 
 Now kdeconnectd should not run anymore after you logout and login again.
+
+## 67.7. Shortcuts
+
+"Switch to Next Screen" shortcut to work: you need to check "Separate screen focus" option first from System settings → Window behavior → Window Behavior (on the left side) → Separate screen focus
 
 <div style="page-break-after: always; break-after: page;"></div>
 
