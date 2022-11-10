@@ -216,6 +216,11 @@
   - [67.5. Autostart Manager](#675-autostart-manager)
   - [67.6. Disable kdeconnect](#676-disable-kdeconnect)
   - [67.7. Shortcuts](#677-shortcuts)
+  - [67.8. Config](#678-config)
+    - [67.8.1. Startup and Shutdown → Background Services](#6781-startup-and-shutdown--background-services)
+    - [67.8.2. Startup and Shutdown → Desktop Session](#6782-startup-and-shutdown--desktop-session)
+    - [67.8.3. Power Management → Energy Saving](#6783-power-management--energy-saving)
+    - [67.8.4. Display and Monitor → Night Color](#6784-display-and-monitor--night-color)
 - [68. Misc](#68-misc)
 
 ## 1.1. Introduction
@@ -2908,7 +2913,31 @@ Now kdeconnectd should not run anymore after you logout and login again.
 
 ## 67.7. Shortcuts
 
-"Switch to Next Screen" shortcut to work: you need to check "Separate screen focus" option first from System settings → Window behavior → Window Behavior (on the left side) → Separate screen focus
+- "Switch to Next Screen" shortcut to work: you need to check "Separate screen focus" option first from System settings → Window behavior → Window Behavior (on the left side) → Separate screen focus
+- Logout Menu: Shortcuts → Session Management → Logout (default: ctrl+alt_del)
+- Screen Lock: Workspace Behavior → Sreen Locking (also, disable automatic screen lock here)
+
+## 67.8. Config
+
+### 67.8.1. Startup and Shutdown → Background Services
+
+- Remove Search Folder Updater (also go to Search → File Search and untick `Enable File Search`)
+
+### 67.8.2. Startup and Shutdown → Desktop Session
+
+- [x] Start with an empty session
+- [x] Confirm Logout
+- [x] Offer Shutdown Options
+- [x] End Current Session
+
+### 67.8.3. Power Management → Energy Saving
+
+- Untick Screen Energy Saving
+
+### 67.8.4. Display and Monitor → Night Color
+
+- Activate
+
 
 <div style="page-break-after: always; break-after: page;"></div>
 
