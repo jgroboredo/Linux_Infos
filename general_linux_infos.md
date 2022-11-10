@@ -221,6 +221,7 @@
     - [67.8.2. Startup and Shutdown → Desktop Session](#6782-startup-and-shutdown--desktop-session)
     - [67.8.3. Power Management → Energy Saving](#6783-power-management--energy-saving)
     - [67.8.4. Display and Monitor → Night Color](#6784-display-and-monitor--night-color)
+    - [67.8.5. Window Management → Task Switcher](#6785-window-management--task-switcher)
 - [68. Misc](#68-misc)
 
 ## 1.1. Introduction
@@ -2916,6 +2917,10 @@ Now kdeconnectd should not run anymore after you logout and login again.
 - "Switch to Next Screen" shortcut to work: you need to check "Separate screen focus" option first from System settings → Window behavior → Window Behavior (on the left side) → Separate screen focus
 - Logout Menu: Shortcuts → Session Management → Logout (default: ctrl+alt_del)
 - Screen Lock: Workspace Behavior → Sreen Locking (also, disable automatic screen lock here)
+- "Switch to Next Screen": Meta+Ctrl+Right
+- "Switch to Previous Screen": Meta+Ctrl+Left
+- "Switch to Window to the Left": Meta+Alt+Left
+- "Switch to Window to the Right": Meta+Alt+Right
 
 ## 67.8. Config
 
@@ -2938,6 +2943,9 @@ Now kdeconnectd should not run anymore after you logout and login again.
 
 - Activate
 
+### 67.8.5. Window Management → Task Switcher
+
+- Filter Windows by: Virtual desktops and Screens (**current** in both)
 
 <div style="page-break-after: always; break-after: page;"></div>
 
