@@ -719,13 +719,15 @@ code {
 <li><a href="#675-autostart-manager">67.5. Autostart Manager</a></li>
 <li><a href="#676-disable-kdeconnect">67.6. Disable kdeconnect</a></li>
 <li><a href="#677-shortcuts">67.7. Shortcuts</a></li>
-<li><a href="#678-config">67.8. Config</a>
+<li><a href="#678-fixing-hanging-service-on-shutdown">67.8. Fixing hanging service on shutdown</a></li>
+<li><a href="#679-config">67.9. Config</a>
 <ul>
-<li><a href="#6781-startup-and-shutdown--background-services">67.8.1. Startup and Shutdown → Background Services</a></li>
-<li><a href="#6782-startup-and-shutdown--desktop-session">67.8.2. Startup and Shutdown → Desktop Session</a></li>
-<li><a href="#6783-power-management--energy-saving">67.8.3. Power Management → Energy Saving</a></li>
-<li><a href="#6784-display-and-monitor--night-color">67.8.4. Display and Monitor → Night Color</a></li>
-<li><a href="#6785-window-management--task-switcher">67.8.5. Window Management → Task Switcher</a></li>
+<li><a href="#6791-startup-and-shutdown--background-services">67.9.1. Startup and Shutdown → Background Services</a></li>
+<li><a href="#6792-startup-and-shutdown--desktop-session">67.9.2. Startup and Shutdown → Desktop Session</a></li>
+<li><a href="#6793-power-management--energy-saving">67.9.3. Power Management → Energy Saving</a></li>
+<li><a href="#6794-display-and-monitor--night-color">67.9.4. Display and Monitor → Night Color</a></li>
+<li><a href="#6795-window-management--task-switcher">67.9.5. Window Management → Task Switcher</a></li>
+<li><a href="#6796-flameshot">67.9.6. FlameShot</a></li>
 </ul>
 </li>
 </ul>
@@ -3484,29 +3486,41 @@ Exec=/usr/bin/false
 <li>&quot;Switch to Window to the Left&quot;: Meta+Alt+Left</li>
 <li>&quot;Switch to Window to the Right&quot;: Meta+Alt+Right</li>
 </ul>
-<h2 id="678-config">67.8. Config</h2>
-<h3 id="6781-startup-and-shutdown-%E2%86%92-background-services">67.8.1. Startup and Shutdown → Background Services</h3>
+<h2 id="678-fixing-hanging-service-on-shutdown">67.8. Fixing hanging service on shutdown</h2>
+<p>First atempt: <code>sudo rm /usr/share/dbus-1/accessibility-services/org.a11y.*</code></p>
+<p>Add:</p>
+<p><code>NoExtract = usr/share/dbus-1/accessibility-services/org.a11y.*</code></p>
+<p>to makepkg.conf.</p>
+<h2 id="679-config">67.9. Config</h2>
+<h3 id="6791-startup-and-shutdown-%E2%86%92-background-services">67.9.1. Startup and Shutdown → Background Services</h3>
 <ul>
 <li>Remove Search Folder Updater (also go to Search → File Search and untick <code>Enable File Search</code>)</li>
 </ul>
-<h3 id="6782-startup-and-shutdown-%E2%86%92-desktop-session">67.8.2. Startup and Shutdown → Desktop Session</h3>
+<h3 id="6792-startup-and-shutdown-%E2%86%92-desktop-session">67.9.2. Startup and Shutdown → Desktop Session</h3>
 <ul>
 <li><input type="checkbox" id="checkbox0" checked="true"><label for="checkbox0">Start with an empty session</label></li>
 <li><input type="checkbox" id="checkbox1" checked="true"><label for="checkbox1">Confirm Logout</label></li>
 <li><input type="checkbox" id="checkbox2" checked="true"><label for="checkbox2">Offer Shutdown Options</label></li>
 <li><input type="checkbox" id="checkbox3" checked="true"><label for="checkbox3">End Current Session</label></li>
 </ul>
-<h3 id="6783-power-management-%E2%86%92-energy-saving">67.8.3. Power Management → Energy Saving</h3>
+<h3 id="6793-power-management-%E2%86%92-energy-saving">67.9.3. Power Management → Energy Saving</h3>
 <ul>
 <li>Untick Screen Energy Saving</li>
 </ul>
-<h3 id="6784-display-and-monitor-%E2%86%92-night-color">67.8.4. Display and Monitor → Night Color</h3>
+<h3 id="6794-display-and-monitor-%E2%86%92-night-color">67.9.4. Display and Monitor → Night Color</h3>
 <ul>
 <li>Activate</li>
 </ul>
-<h3 id="6785-window-management-%E2%86%92-task-switcher">67.8.5. Window Management → Task Switcher</h3>
+<h3 id="6795-window-management-%E2%86%92-task-switcher">67.9.5. Window Management → Task Switcher</h3>
 <ul>
 <li>Filter Windows by: Virtual desktops and Screens (<strong>current</strong> in both)</li>
+</ul>
+<h3 id="6796-flameshot">67.9.6. FlameShot</h3>
+<p>I should not use the shortcut option for flameshot that comes by default. Instead do:</p>
+<ul>
+<li>Go to Settings &gt; Shortcuts &gt; Custom Shortcuts</li>
+<li>Right click &gt; New &gt; Global Shortcut &gt; Command/Url</li>
+<li>Select trigger and Command/Url to <code>/usr/bin/flameshot gui</code></li>
 </ul>
 <div style="page-break-after: always; break-after: page;"></div>
 <h1 id="68-misc">68. Misc</h1>

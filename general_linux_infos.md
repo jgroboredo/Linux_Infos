@@ -216,12 +216,14 @@
   - [67.5. Autostart Manager](#675-autostart-manager)
   - [67.6. Disable kdeconnect](#676-disable-kdeconnect)
   - [67.7. Shortcuts](#677-shortcuts)
-  - [67.8. Config](#678-config)
-    - [67.8.1. Startup and Shutdown → Background Services](#6781-startup-and-shutdown--background-services)
-    - [67.8.2. Startup and Shutdown → Desktop Session](#6782-startup-and-shutdown--desktop-session)
-    - [67.8.3. Power Management → Energy Saving](#6783-power-management--energy-saving)
-    - [67.8.4. Display and Monitor → Night Color](#6784-display-and-monitor--night-color)
-    - [67.8.5. Window Management → Task Switcher](#6785-window-management--task-switcher)
+  - [67.8. Fixing hanging service on shutdown](#678-fixing-hanging-service-on-shutdown)
+  - [67.9. Config](#679-config)
+    - [67.9.1. Startup and Shutdown → Background Services](#6791-startup-and-shutdown--background-services)
+    - [67.9.2. Startup and Shutdown → Desktop Session](#6792-startup-and-shutdown--desktop-session)
+    - [67.9.3. Power Management → Energy Saving](#6793-power-management--energy-saving)
+    - [67.9.4. Display and Monitor → Night Color](#6794-display-and-monitor--night-color)
+    - [67.9.5. Window Management → Task Switcher](#6795-window-management--task-switcher)
+    - [67.9.6. FlameShot](#6796-flameshot)
 - [68. Misc](#68-misc)
 
 ## 1.1. Introduction
@@ -2922,30 +2924,48 @@ Now kdeconnectd should not run anymore after you logout and login again.
 - "Switch to Window to the Left": Meta+Alt+Left
 - "Switch to Window to the Right": Meta+Alt+Right
 
-## 67.8. Config
+## 67.8. Fixing hanging service on shutdown
 
-### 67.8.1. Startup and Shutdown → Background Services
+First atempt: `sudo rm /usr/share/dbus-1/accessibility-services/org.a11y.*`
+
+Add:
+
+`NoExtract = usr/share/dbus-1/accessibility-services/org.a11y.*`
+
+to makepkg.conf.
+
+## 67.9. Config
+
+### 67.9.1. Startup and Shutdown → Background Services
 
 - Remove Search Folder Updater (also go to Search → File Search and untick `Enable File Search`)
 
-### 67.8.2. Startup and Shutdown → Desktop Session
+### 67.9.2. Startup and Shutdown → Desktop Session
 
 - [x] Start with an empty session
 - [x] Confirm Logout
 - [x] Offer Shutdown Options
 - [x] End Current Session
 
-### 67.8.3. Power Management → Energy Saving
+### 67.9.3. Power Management → Energy Saving
 
 - Untick Screen Energy Saving
 
-### 67.8.4. Display and Monitor → Night Color
+### 67.9.4. Display and Monitor → Night Color
 
 - Activate
 
-### 67.8.5. Window Management → Task Switcher
+### 67.9.5. Window Management → Task Switcher
 
 - Filter Windows by: Virtual desktops and Screens (**current** in both)
+
+### 67.9.6. FlameShot
+
+I should not use the shortcut option for flameshot that comes by default. Instead do:
+
+- Go to Settings > Shortcuts > Custom Shortcuts
+- Right click > New > Global Shortcut > Command/Url
+- Select trigger and Command/Url to `/usr/bin/flameshot gui`
 
 <div style="page-break-after: always; break-after: page;"></div>
 
