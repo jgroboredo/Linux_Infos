@@ -157,6 +157,7 @@
   - [43.7. UDP2RAW](#437-udp2raw)
   - [43.8. Updated VPN](#438-updated-vpn)
   - [43.9. Fixing routes](#439-fixing-routes)
+  - [43.10. Rebelo's Jellyfin](#4310-rebelos-jellyfin)
 - [44. DDNS](#44-ddns)
 - [45. Encrypt dir](#45-encrypt-dir)
   - [45.1. Disable password cache](#451-disable-password-cache)
@@ -2123,6 +2124,24 @@ and I want to be able to access the restricted access peer, I need to include in
   - `sudo ifmetric wg0 1`
 
  NOTE:  [Nginx Server](https://hub.docker.com/r/linuxserver/swag)
+
+## 43.10. Rebelo's Jellyfin
+
+I need to foward the traffic in order for a peer to have access to Rebelo's Jellyfin. If the peer has full access, everything will work. If the peer has limited access and I want to maintain it like that, I need to add the following lines:
+
+```text
+PostUp   = iptables -A FORWARD -i %i -s 10.0.10.5 -d 10.0.0.0/24 -p tcp --dport 80  -j ACCEPT
+PostDown = iptables -D FORWARD -i %i -s 10.0.10.5 -d 10.0.0.0/24 -p tcp --dport 80  -j ACCEPT
+PostUp   = iptables -A FORWARD -i %i -s 10.0.10.5 -d 10.0.0.0/24 -p tcp --dport 443  -j ACCEPT
+PostDown = iptables -D FORWARD -i %i -s 10.0.10.5 -d 10.0.0.0/24 -p tcp --dport 443  -j ACCEPT
+
+PostUp   = iptables -A FORWARD -i %i -s 10.0.10.5 -d 10.0.1.0/24 -p tcp --dport 80  -j ACCEPT
+PostDown = iptables -D FORWARD -i %i -s 10.0.10.5 -d 10.0.1.0/24 -p tcp --dport 80  -j ACCEPT
+PostUp   = iptables -A FORWARD -i %i -s 10.0.10.5 -d 10.0.1.0/24 -p tcp --dport 443  -j ACCEPT
+PostDown = iptables -D FORWARD -i %i -s 10.0.10.5 -d 10.0.1.0/24 -p tcp --dport 443  -j ACCEPT
+```
+
+Note: the `-d <ip>` only affects traffic that goes specifically to that ip. I am basically saying: allow fowarding to that destination.
 
 <div style="page-break-after: always; break-after: page;"></div>
 
