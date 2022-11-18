@@ -226,7 +226,8 @@
     - [67.9.5. Window Management → Task Switcher](#6795-window-management--task-switcher)
     - [67.9.6. FlameShot](#6796-flameshot)
 - [68. Regex](#68-regex)
-- [69. Misc](#69-misc)
+- [69. Compare files](#69-compare-files)
+- [70. Misc](#70-misc)
 
 ## 1.1. Introduction
 
@@ -2999,7 +3000,16 @@ sed -n 's/.*\(FOR-ICU-[0-9]\+\).*/\1/p' List_Of_Reqs.txt
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 69. Misc
+# 69. Compare files
+
+```bash
+# This command will output lines unique to file_2. So, if output is empty, then all file_2 lines are contained in the file_1.
+comm -13 <(sort -u file_1) <(sort -u file_2)
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 70. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
