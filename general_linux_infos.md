@@ -225,7 +225,8 @@
     - [67.9.4. Display and Monitor → Night Color](#6794-display-and-monitor--night-color)
     - [67.9.5. Window Management → Task Switcher](#6795-window-management--task-switcher)
     - [67.9.6. FlameShot](#6796-flameshot)
-- [68. Misc](#68-misc)
+- [68. Regex](#68-regex)
+- [69. Misc](#69-misc)
 
 ## 1.1. Introduction
 
@@ -2988,7 +2989,17 @@ I should not use the shortcut option for flameshot that comes by default. Instea
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 68. Misc
+# 68. Regex
+
+```bash
+# Lessons: need -n flag which disables automatic printing
+# Need to escape the plus sign
+sed -n 's/.*\(FOR-ICU-[0-9]\+\).*/\1/p' List_Of_Reqs.txt 
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 69. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
