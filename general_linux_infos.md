@@ -227,7 +227,8 @@
     - [67.9.6. FlameShot](#6796-flameshot)
 - [68. Regex](#68-regex)
 - [69. Compare files](#69-compare-files)
-- [70. Misc](#70-misc)
+- [70. Fiddler](#70-fiddler)
+- [71. Misc](#71-misc)
 
 ## 1.1. Introduction
 
@@ -3009,7 +3010,47 @@ comm -13 <(sort -u file_1) <(sort -u file_2)
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 70. Misc
+# 70. Fiddler
+
+First, you should enable the Allow remote computers to connect setting in Fiddler
+
+1. Open Fiddler and select Tools -> Options
+2. Choose the Connections tab
+3. Select the Allow remote computers to connect checkbox to enable the setting
+4. Restart Fiddler in order the changes to take effect
+
+Fiddler is now listening on port 8888 (this is the default port, you can change it from the setting above).
+
+Once Fiddler is listening, we should use it as a proxy in Android.
+
+1. Open the WiFi menu.
+2. Tap and hold on your current network to show the network details
+3. Choose the Manage network settings option
+4. Check Show advanced options checkbox
+5. Choose Manual from the Proxy dropdown list
+6. Type your IP address in the Proxy host name field
+7. NOTE: You can check your IP address by hovering over the Network Connection icon in the Fiddler toolbar.
+8. Type the Fiddler listening port (8888 by default) in the Proxy port field
+9. Click Save to apply changes
+
+With the current setup you should be able to capture HTTP traffic. However, if you try to open any HTTPS website, you’ll get the This site’s security certificate is not trusted! error. To fix this, you should trust the Fiddler root certificate.
+
+NOTE: By default, Fiddler-generated certificate is valid for 5 years. However, this can cause ERR_CERT_VALIDITY_TOO_LONG error in Chrome on Android. To fix this:
+
+1. Run about:config in Fiddler QuickExec.
+2. Create new variable fiddler.certmaker.ValidDays with value 820
+
+Then, you can proceed with installing the Fiddler Root certificate as follow:
+
+1. In your browser, navigate to http://ipv4.fiddler:8888
+2. Download the Fiddler root certificate.
+3. Install the certificate on your device.
+
+Now you should be able to capture HTTPS traffic too.
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 71. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).

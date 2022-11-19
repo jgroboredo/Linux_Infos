@@ -735,7 +735,8 @@ code {
 </li>
 <li><a href="#68-regex">68. Regex</a></li>
 <li><a href="#69-compare-files">69. Compare files</a></li>
-<li><a href="#70-misc">70. Misc</a></li>
+<li><a href="#70-fiddler">70. Fiddler</a></li>
+<li><a href="#71-misc">71. Misc</a></li>
 </ul>
 <h2 id="11-introduction">1.1. Introduction</h2>
 <p>In this document I include some notes about general stuff I learn and do during my work/free time.</p>
@@ -3550,7 +3551,42 @@ sed -n <span class="hljs-string">'s/.*\(FOR-ICU-[0-9]\+\).*/\1/p'</span> List_Of
 comm -13 &lt;(sort -u file_1) &lt;(sort -u file_2)
 </div></code></pre>
 <div style="page-break-after: always; break-after: page;"></div>
-<h1 id="70-misc">70. Misc</h1>
+<h1 id="70-fiddler">70. Fiddler</h1>
+<p>First, you should enable the Allow remote computers to connect setting in Fiddler</p>
+<ol>
+<li>Open Fiddler and select Tools -&gt; Options</li>
+<li>Choose the Connections tab</li>
+<li>Select the Allow remote computers to connect checkbox to enable the setting</li>
+<li>Restart Fiddler in order the changes to take effect</li>
+</ol>
+<p>Fiddler is now listening on port 8888 (this is the default port, you can change it from the setting above).</p>
+<p>Once Fiddler is listening, we should use it as a proxy in Android.</p>
+<ol>
+<li>Open the WiFi menu.</li>
+<li>Tap and hold on your current network to show the network details</li>
+<li>Choose the Manage network settings option</li>
+<li>Check Show advanced options checkbox</li>
+<li>Choose Manual from the Proxy dropdown list</li>
+<li>Type your IP address in the Proxy host name field</li>
+<li>NOTE: You can check your IP address by hovering over the Network Connection icon in the Fiddler toolbar.</li>
+<li>Type the Fiddler listening port (8888 by default) in the Proxy port field</li>
+<li>Click Save to apply changes</li>
+</ol>
+<p>With the current setup you should be able to capture HTTP traffic. However, if you try to open any HTTPS website, you’ll get the This site’s security certificate is not trusted! error. To fix this, you should trust the Fiddler root certificate.</p>
+<p>NOTE: By default, Fiddler-generated certificate is valid for 5 years. However, this can cause ERR_CERT_VALIDITY_TOO_LONG error in Chrome on Android. To fix this:</p>
+<ol>
+<li>Run about:config in Fiddler QuickExec.</li>
+<li>Create new variable fiddler.certmaker.ValidDays with value 820</li>
+</ol>
+<p>Then, you can proceed with installing the Fiddler Root certificate as follow:</p>
+<ol>
+<li>In your browser, navigate to http://ipv4.fiddler:8888</li>
+<li>Download the Fiddler root certificate.</li>
+<li>Install the certificate on your device.</li>
+</ol>
+<p>Now you should be able to capture HTTPS traffic too.</p>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="71-misc">71. Misc</h1>
 <ol>
 <li>
 <p>By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.</p>
