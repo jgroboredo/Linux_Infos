@@ -2941,8 +2941,8 @@ Now kdeconnectd should not run anymore after you logout and login again.
 - "Switch to Next Screen" shortcut to work: you need to check "Separate screen focus" option first from System settings → Window behavior → Window Behavior (on the left side) → Separate screen focus
 - Logout Menu: Shortcuts → Session Management → Logout (default: ctrl+alt_del)
 - Screen Lock: Workspace Behavior → Sreen Locking (also, disable automatic screen lock here)
-- "Switch to Next Screen": Meta+Ctrl+Right
-- "Switch to Previous Screen": Meta+Ctrl+Left
+- "Switch to Screen 0": Meta+Ctrl+Right
+- "Switch to Screen 1": Meta+Ctrl+Left
 - "Switch to Window to the Left": Meta+Alt+Left
 - "Switch to Window to the Right": Meta+Alt+Right
 
