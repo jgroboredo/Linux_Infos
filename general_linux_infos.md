@@ -91,7 +91,7 @@
 - [28. Network](#28-network)
   - [28.1. Network not connecting at startup](#281-network-not-connecting-at-startup)
   - [28.2. MAC address](#282-mac-address)
-- [29. Dmenu_ext](#29-dmenu_ext)
+- [29. Dmenu\_ext](#29-dmenu_ext)
   - [29.1. Not opening paths](#291-not-opening-paths)
 - [30. Nvidia](#30-nvidia)
   - [30.1. NVIDIA back screen on TTY](#301-nvidia-back-screen-on-tty)
@@ -225,6 +225,7 @@
     - [67.9.4. Display and Monitor → Night Color](#6794-display-and-monitor--night-color)
     - [67.9.5. Window Management → Task Switcher](#6795-window-management--task-switcher)
     - [67.9.6. FlameShot](#6796-flameshot)
+    - [67.9.7. Task Bar](#6797-task-bar)
 - [68. Regex](#68-regex)
 - [69. Compare files](#69-compare-files)
 - [70. Fiddler](#70-fiddler)
@@ -2989,6 +2990,12 @@ I should not use the shortcut option for flameshot that comes by default. Instea
 - Right click > New > Global Shortcut > Command/Url
 - Select trigger and Command/Url to `/usr/bin/flameshot gui`
 
+### 67.9.7. Task Bar
+
+- Add "Task Manager" widget to each panel
+- Right-click on an item in Task Manager -> Configure Task Manager
+- Behavior tab -> Filter: Show only tasks from the current screen
+  
 <div style="page-break-after: always; break-after: page;"></div>
 
 # 68. Regex
