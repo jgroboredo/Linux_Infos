@@ -737,7 +737,13 @@ code {
 <li><a href="#68-regex">68. Regex</a></li>
 <li><a href="#69-compare-files">69. Compare files</a></li>
 <li><a href="#70-fiddler">70. Fiddler</a></li>
-<li><a href="#71-misc">71. Misc</a></li>
+<li><a href="#71-termux">71. Termux</a>
+<ul>
+<li><a href="#711-termux-brightness">71.1. Termux Brightness</a></li>
+<li><a href="#712-tv-url-opener">71.2. TV url opener</a></li>
+</ul>
+</li>
+<li><a href="#72-misc">72. Misc</a></li>
 </ul>
 <h2 id="11-introduction">1.1. Introduction</h2>
 <p>In this document I include some notes about general stuff I learn and do during my work/free time.</p>
@@ -3593,7 +3599,30 @@ comm -13 &lt;(sort -u file_1) &lt;(sort -u file_2)
 </ol>
 <p>Now you should be able to capture HTTPS traffic too.</p>
 <div style="page-break-after: always; break-after: page;"></div>
-<h1 id="71-misc">71. Misc</h1>
+<h1 id="71-termux">71. Termux</h1>
+<p>Termux should be installed from F-Droid, both in TV and phone.</p>
+<p>Besides termux, install (also using F-Droid) Termux:API, Termux:Boot, Termux:Widgets.</p>
+<p>In terms of permissions, both in TV and Phone, allow termux to <code>Display Over Other Apps</code>.
+In TV, in order to get this setting, go to settings -&gt; Apps -&gt; Termux and it should be there.</p>
+<p>Note: In TV, in order to have wireless debug, need to allow USB debugging in developer options and then allow the connection with the pc.</p>
+<h2 id="711-termux-brightness">71.1. Termux Brightness</h2>
+<p>This needs termux:api. Termux:Api should be allowed to <code>Modify system settings</code>.</p>
+<p>With termux:widgets, all scripts placed under <code>~/.shortcuts</code> will be able to be selected as a shortcut with termux:Widget.</p>
+<p>Then, in order to control brightness use <code>termux-brightness</code>. Example:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> [[ <span class="hljs-string">"<span class="hljs-variable">$(uname -o)</span>"</span> == <span class="hljs-string">"Android"</span> ]]; <span class="hljs-keyword">then</span>
+  termux-brightness 255
+  <span class="hljs-built_in">trap</span> <span class="hljs-string">"termux-brightness 40; exit"</span> SIGINT
+<span class="hljs-keyword">fi</span>
+</div></code></pre>
+<h2 id="712-tv-url-opener">71.2. TV url opener</h2>
+<p>Use Termux:Boot in order to start sshd server.</p>
+<p>Create script under <code>~/bin/</code> name <code>termux-url-opener</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/data/data/com.termux/files/usr/bin/sh
+</span>
+ssh 192.168.200.70 -p 8022 termux-open-url <span class="hljs-string">"<span class="hljs-variable">$1</span>"</span>
+</div></code></pre>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="72-misc">72. Misc</h1>
 <ol>
 <li>
 <p>By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.</p>

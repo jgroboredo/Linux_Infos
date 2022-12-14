@@ -229,7 +229,10 @@
 - [68. Regex](#68-regex)
 - [69. Compare files](#69-compare-files)
 - [70. Fiddler](#70-fiddler)
-- [71. Misc](#71-misc)
+- [71. Termux](#71-termux)
+  - [71.1. Termux Brightness](#711-termux-brightness)
+  - [71.2. TV url opener](#712-tv-url-opener)
+- [72. Misc](#72-misc)
 
 ## 1.1. Introduction
 
@@ -3057,7 +3060,47 @@ Now you should be able to capture HTTPS traffic too.
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 71. Misc
+# 71. Termux
+
+Termux should be installed from F-Droid, both in TV and phone.
+
+Besides termux, install (also using F-Droid) Termux:API, Termux:Boot, Termux:Widgets.
+
+In terms of permissions, both in TV and Phone, allow termux to `Display Over Other Apps`.
+In TV, in order to get this setting, go to settings -> Apps -> Termux and it should be there.
+
+Note: In TV, in order to have wireless debug, need to allow USB debugging in developer options and then allow the connection with the pc.
+
+## 71.1. Termux Brightness
+
+This needs termux:api. Termux:Api should be allowed to `Modify system settings`.
+
+With termux:widgets, all scripts placed under `~/.shortcuts` will be able to be selected as a shortcut with termux:Widget. 
+
+Then, in order to control brightness use `termux-brightness`. Example:
+
+```bash
+if [[ "$(uname -o)" == "Android" ]]; then
+  termux-brightness 255
+  trap "termux-brightness 40; exit" SIGINT
+fi
+```
+
+## 71.2. TV url opener
+
+Use Termux:Boot in order to start sshd server.
+
+Create script under `~/bin/` name `termux-url-opener`:
+
+```bash
+#!/data/data/com.termux/files/usr/bin/sh
+
+ssh 192.168.200.70 -p 8022 termux-open-url "$1"
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 72. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
