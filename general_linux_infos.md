@@ -232,7 +232,8 @@
 - [71. Termux](#71-termux)
   - [71.1. Termux Brightness](#711-termux-brightness)
   - [71.2. TV url opener](#712-tv-url-opener)
-- [72. Misc](#72-misc)
+- [72. VPN Critical](#72-vpn-critical)
+- [73. Misc](#73-misc)
 
 ## 1.1. Introduction
 
@@ -3100,7 +3101,30 @@ ssh 192.168.200.70 -p 8022 termux-open-url "$1"
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 72. Misc
+# 72. VPN Critical
+
+Some commands: 
+
+```bash
+nslookup
+ > server <Server_IP>
+ > name.company.com
+
+resolvectl query name.company.com
+
+nmcli device show wlp1s0 | grep DNS
+```
+
+On Ubuntu: `/etc/NetworkManager/NetworkManager.conf` append the following lines:
+
+```text
+[keyfile]
+unmanaged-devices=interface-name:vpn*,except:interface-name:enp0s3;interface-name:wlan*
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 73. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
