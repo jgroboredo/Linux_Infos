@@ -233,7 +233,9 @@
   - [71.1. Termux Brightness](#711-termux-brightness)
   - [71.2. TV url opener](#712-tv-url-opener)
 - [72. VPN Critical](#72-vpn-critical)
-- [73. Misc](#73-misc)
+- [73. Secure Boot](#73-secure-boot)
+  - [73.1. Steps for secure boot](#731-steps-for-secure-boot)
+- [74. Misc](#74-misc)
 
 ## 1.1. Introduction
 
@@ -262,14 +264,13 @@ In this document I include some notes about general stuff I learn and do during 
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-
 # 3. Git notes
 
 ## 3.1. Notes on creating a git repository on github  
 
 On folder do:
 
-```
+```bash
  git init
  git commit
  git branch -M main
@@ -413,9 +414,11 @@ Or
 - My experience:
   - I can specify which remote to push or pull from:
 
-      ```git pull remote_name branch
+      ```bash
+      git pull remote_name branch
       git push remote_name branch
    ```
+
   - A branch has a default remote: I only need to specify the remote_name and eventually the branch_name (I can't pull from a non-default remote without specifying the branch) if I don't want to do it to the default one
 
 ## 3.12. Use curl to download from github  
@@ -3124,7 +3127,54 @@ unmanaged-devices=interface-name:vpn*,except:interface-name:enp0s3;interface-nam
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 73. Misc
+# 73. Secure Boot
+
+## 73.1. Steps for secure boot
+
+1) Setup motherboard in setup mode. In order to do that, go to `Secure boot options` and `Delete all Signatures`;
+2) Install booster: `pacman -S booster`
+3) Check `sbctl status` and see if `Setup Mode` is `Enabled`
+4) After, create keys
+
+  ```bash
+  sbctl create-keys
+  chmod 600 /usr/share/secureboot/keys/**/*.key
+  ```
+
+5) If `Setup Mode` is Enabled, then enroll keys:
+
+   ```bash
+   sbctl enroll-keys --microsoft
+   ```
+
+6) Keep the keys in the efi partition for easy re-enrollment: `mkdir -p /efi/keys; cp /usr/share/secureboot/keys/**/*.pem /efi/keys`
+7) `mkdir -p /efi/EFI/Linux`
+8) Finally,
+
+```bash
+# Bundle and sign kernel
+sbctl bundle -s \
+    -i "/boot/$ARCH_CPU_BRAND-ucode.img" \
+    -k "/boot/vmlinuz-$ARCH_KERNEL" \
+    -f "/boot/booster-$ARCH_KERNEL.img" \
+    "/efi/EFI/Linux/booster-$ARCH_KERNEL.efi"
+
+# Sign systemd-boot
+sbctl sign -s "/efi/EFI/systemd/systemd-bootx64.efi"
+
+# Re-generate all
+sbctl sign-all -g
+```
+
+9) Don't forget to have the same keys in the main system and in the recovery system
+10) After doing this, remove `mkinitcpio`- I should only remove it after, otherwise something might go wrong
+11) On recovery, if it wasn't setup like this, copy first the keys to the recovery partition; install booster (note that I need `arch-chroot` - it mounts necessary stuff for the chroot comparing to `chroot`) and run the `sbctl bundle` command (where the efi needs to be renamed, careful!!!!!) and then `sbctl sign-all -g` (although I think this last sign is not necessary). Note that do not need to sign the bootloader again.
+
+Note: If I already had windows installed, this would work out of the box because of the `--microfost` flag.
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 74. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
