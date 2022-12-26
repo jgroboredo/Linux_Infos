@@ -749,7 +749,12 @@ code {
 <li><a href="#731-steps-for-secure-boot">73.1. Steps for secure boot</a></li>
 </ul>
 </li>
-<li><a href="#74-misc">74. Misc</a></li>
+<li><a href="#74-helix">74. Helix</a>
+<ul>
+<li><a href="#741-some-commands">74.1. Some commands</a></li>
+</ul>
+</li>
+<li><a href="#75-misc">75. Misc</a></li>
 </ul>
 <h2 id="11-introduction">1.1. Introduction</h2>
 <p>In this document I include some notes about general stuff I learn and do during my work/free time.</p>
@@ -3692,7 +3697,38 @@ sbctl sign-all -g
 </ol>
 <p>Note: If I already had windows installed, this would work out of the box because of the <code>--microfost</code> flag.</p>
 <div style="page-break-after: always; break-after: page;"></div>
-<h1 id="74-misc">74. Misc</h1>
+<h1 id="74-helix">74. Helix</h1>
+<p>The helix mindset is that we always highlight something before performing an action.</p>
+<p>To install md preview, run <code>cargo install --git https://github.com/euclio/mdpls</code> and then add to <code>languages.toml</code>:</p>
+<pre class="hljs"><code><div>[[language]]
+name = &quot;markdown&quot;
+language-server = { command = &quot;/path/to/mdpls&quot; }
+config = { markdown.preview.auto = true, markdown.preview.browser = &quot;firefox&quot; }
+</div></code></pre>
+<h2 id="741-some-commands">74.1. Some commands</h2>
+<ol>
+<li>Modes: insert, visual, normal, space, go-to, match</li>
+<li>File picker: space mode -&gt; f</li>
+<li>While in file picker, to open in a vertical split: Highlight target file and press Ctrl + V</li>
+<li>Alt + . do redo a command</li>
+<li>In order to remove a highlight, press &quot;;&quot;</li>
+<li>Press &quot;C&quot; to delete a highlighted section and start writing</li>
+<li>&quot;s&quot; (select) is basically a search within the selected text. If we do this and then press &quot;c&quot;, we can do a find a replace</li>
+<li>Use &quot;,&quot; to get rid of multiple cursors</li>
+<li>Use &quot;x&quot; to highlight an entire line, in normal mode. Subsequent presses of &quot;x&quot; will highlight subsequent lines</li>
+<li>&quot;]+f&quot; will highlight an entire function</li>
+<li>&quot;[+c&quot; will go to the previous class/struct</li>
+<li>&quot;]+a&quot; to cycle through all function parameters</li>
+<li>In space mode, press &quot;s&quot; to open a symbol picker and &quot;S&quot; for the entire workspace</li>
+<li>&quot;Space + r&quot; to rename a symbol</li>
+<li>&quot;Space + a&quot; to get code actions</li>
+<li>&quot;g+d&quot; to go to definition. Here, it helps to do &quot;Crtl + i&quot; and &quot;Ctrl + o&quot; to go back to where we came from</li>
+<li>&quot;g+r&quot; will show all places where something is referenced</li>
+<li>&quot;Shift+r&quot; will replace the current highlight with what we yanked before</li>
+<li>Pressing <code>&quot;</code> allows to select the register to which we want to yank something. Then, press the letter to save to and yank</li>
+</ol>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="75-misc">75. Misc</h1>
 <ol>
 <li>
 <p>By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.</p>

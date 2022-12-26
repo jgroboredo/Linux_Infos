@@ -235,7 +235,9 @@
 - [72. VPN Critical](#72-vpn-critical)
 - [73. Secure Boot](#73-secure-boot)
   - [73.1. Steps for secure boot](#731-steps-for-secure-boot)
-- [74. Misc](#74-misc)
+- [74. Helix](#74-helix)
+  - [74.1. Some commands](#741-some-commands)
+- [75. Misc](#75-misc)
 
 ## 1.1. Introduction
 
@@ -3174,7 +3176,44 @@ Note: If I already had windows installed, this would work out of the box because
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 74. Misc
+# 74. Helix
+
+The helix mindset is that we always highlight something before performing an action.
+
+To install md preview, run `cargo install --git https://github.com/euclio/mdpls` and then add to `languages.toml`:
+
+```text
+[[language]]
+name = "markdown"
+language-server = { command = "/path/to/mdpls" }
+config = { markdown.preview.auto = true, markdown.preview.browser = "firefox" }
+```
+
+## 74.1. Some commands
+
+1) Modes: insert, visual, normal, space, go-to, match
+2) File picker: space mode -> f
+3) While in file picker, to open in a vertical split: Highlight target file and press Ctrl + V
+4) Alt + . do redo a command
+5) In order to remove a highlight, press ";" 
+6) Press "C" to delete a highlighted section and start writing
+7) "s" (select) is basically a search within the selected text. If we do this and then press "c", we can do a find a replace
+8) Use "," to get rid of multiple cursors
+9) Use "x" to highlight an entire line, in normal mode. Subsequent presses of "x" will highlight subsequent lines
+10) "]+f" will highlight an entire function
+11) "[+c" will go to the previous class/struct
+12) "]+a" to cycle through all function parameters
+13) In space mode, press "s" to open a symbol picker and "S" for the entire workspace  
+14) "Space + r" to rename a symbol
+15) "Space + a" to get code actions
+16) "g+d" to go to definition. Here, it helps to do "Crtl + i" and "Ctrl + o" to go back to where we came from
+17) "g+r" will show all places where something is referenced
+18) "Shift+r" will replace the current highlight with what we yanked before
+19) Pressing `"` allows to select the register to which we want to yank something. Then, press the letter to save to and yank
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 75. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
