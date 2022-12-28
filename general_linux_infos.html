@@ -612,10 +612,11 @@ code {
 <li><a href="#434-check-ports">43.4. Check Ports</a></li>
 <li><a href="#435-fix-connection-problem">43.5. Fix connection problem</a></li>
 <li><a href="#436-connect-to-rebelo">43.6. Connect to Rebelo</a></li>
-<li><a href="#437-udp2raw">43.7. UDP2RAW</a></li>
-<li><a href="#438-updated-vpn">43.8. Updated VPN</a></li>
-<li><a href="#439-fixing-routes">43.9. Fixing routes</a></li>
-<li><a href="#4310-rebelos-jellyfin">43.10. Rebelo's Jellyfin</a></li>
+<li><a href="#437-allow-access-to-my-vpn-on-another-vpn">43.7. Allow access to my VPN on another VPN</a></li>
+<li><a href="#438-udp2raw">43.8. UDP2RAW</a></li>
+<li><a href="#439-updated-vpn">43.9. Updated VPN</a></li>
+<li><a href="#4310-fixing-routes">43.10. Fixing routes</a></li>
+<li><a href="#4311-rebelos-jellyfin">43.11. Rebelo's Jellyfin</a></li>
 </ul>
 </li>
 <li><a href="#44-ddns">44. DDNS</a></li>
@@ -2674,7 +2675,23 @@ work if both connect since the key is the same</li>
 my computer)</p>
 </li>
 </ul>
-<h2 id="437-udp2raw">43.7. UDP2RAW</h2>
+<h2 id="437-allow-access-to-my-vpn-on-another-vpn">43.7. Allow access to my VPN on another VPN</h2>
+<ul>
+<li>
+<p>Create another peer. In the allowed IPs of this peer in the config of my server, it should be:</p>
+<pre class="hljs"><code><div>AllowedIPs = &lt;IP on my network&gt;/32, &lt;IPs on the other network, for e.g., 10.0.20.0&gt;/24  
+</div></code></pre>
+<p>What this means is that, on my network, the traffic for this peer can come from these different ips.</p>
+</li>
+<li>
+<p>On the server config of the other VPN, they should add the <code>[PEER]</code> section of the config that I provided them. Also, their peers need to have in the <code>Allowed IPs</code> the range of IPs of my network.</p>
+<p>What this means is that, when they try to connect to my VPN from one of their peers, the IPs of my network are in the config of their VPN. Then, their server has a route for my VPN through the <code>[PEER]</code> section provided on the config of their server. However, since now it's their server connecting to mine, I need the public key of the server and not the public key associated with the config that I gave them. For this reason, read last point.</p>
+</li>
+<li>
+<p>Finally, I need to change the public key of the peer that I created for them and put the public key of their server.</p>
+</li>
+</ul>
+<h2 id="438-udp2raw">43.8. UDP2RAW</h2>
 <ul>
 <li>
 <p><code>pacman -S udp2raw-tunnel</code></p>
@@ -2723,7 +2740,7 @@ WantedBy=multi-user.target
 </ul>
 </li>
 </ul>
-<h2 id="438-updated-vpn">43.8. Updated VPN</h2>
+<h2 id="439-updated-vpn">43.9. Updated VPN</h2>
 <ul>
 <li>In iptables, drop all connections except the ones I want to keep;</li>
 <li>These connections are only concerned with the direct access to the raspberry and not the traffic thourgh vpn;</li>
@@ -2750,7 +2767,7 @@ I have access to the VPN through the VPN port, but this doesn't give me access t
 </ul>
 </li>
 </ul>
-<h2 id="439-fixing-routes">43.9. Fixing routes</h2>
+<h2 id="4310-fixing-routes">43.10. Fixing routes</h2>
 <ul>
 <li>When laptop is not connected to VPN but desktop is (both in porto), I could not ping desktop from laptop using the local ip, since the wireguard
 priority was lower and the response of the desktop went through the vpn (and laptop was not connected)</li>
@@ -2764,7 +2781,7 @@ priority was lower and the response of the desktop went through the vpn (and lap
 </li>
 </ul>
 <p>NOTE:  <a href="https://hub.docker.com/r/linuxserver/swag">Nginx Server</a></p>
-<h2 id="4310-rebelos-jellyfin">43.10. Rebelo's Jellyfin</h2>
+<h2 id="4311-rebelos-jellyfin">43.11. Rebelo's Jellyfin</h2>
 <p>I need to foward the traffic in order for a peer to have access to Rebelo's Jellyfin. If the peer has full access, everything will work. If the peer has limited access and I want to maintain it like that, I need to add the following lines:</p>
 <pre class="hljs"><code><div>PostUp   = iptables -A FORWARD -i %i -s 10.0.10.5 -d 10.0.0.0/24 -p tcp --dport 80  -j ACCEPT
 PostDown = iptables -D FORWARD -i %i -s 10.0.10.5 -d 10.0.0.0/24 -p tcp --dport 80  -j ACCEPT

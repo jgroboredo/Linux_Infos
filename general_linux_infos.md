@@ -154,10 +154,11 @@
   - [43.4. Check Ports](#434-check-ports)
   - [43.5. Fix connection problem](#435-fix-connection-problem)
   - [43.6. Connect to Rebelo](#436-connect-to-rebelo)
-  - [43.7. UDP2RAW](#437-udp2raw)
-  - [43.8. Updated VPN](#438-updated-vpn)
-  - [43.9. Fixing routes](#439-fixing-routes)
-  - [43.10. Rebelo's Jellyfin](#4310-rebelos-jellyfin)
+  - [43.7. Allow access to my VPN on another VPN](#437-allow-access-to-my-vpn-on-another-vpn)
+  - [43.8. UDP2RAW](#438-udp2raw)
+  - [43.9. Updated VPN](#439-updated-vpn)
+  - [43.10. Fixing routes](#4310-fixing-routes)
+  - [43.11. Rebelo's Jellyfin](#4311-rebelos-jellyfin)
 - [44. DDNS](#44-ddns)
 - [45. Encrypt dir](#45-encrypt-dir)
   - [45.1. Disable password cache](#451-disable-password-cache)
@@ -2059,7 +2060,6 @@ work if both connect since the key is the same
   - nmcli connection modify CONNECTION_NAME (ex: ROBOREDO) +ipv4.routes "192.168.1.0/24 192.168.1.254"
 - Apparently, this fix isn't permanent
 
-  
 ## 43.6. Connect to Rebelo
 
 - Add wg2.conf in /etc/wireguard (note: can have both vpns up)
@@ -2077,7 +2077,22 @@ work if both connect since the key is the same
 - `tcpdump -i any icmp` (icmp are the type of packages, the ones used by ping command. This command listens to packages being sent through
 my computer)
 
-## 43.7. UDP2RAW
+## 43.7. Allow access to my VPN on another VPN
+
+- Create another peer. In the allowed IPs of this peer in the config of my server, it should be:
+
+  ```text
+  AllowedIPs = <IP on my network>/32, <IPs on the other network, for e.g., 10.0.20.0>/24  
+  ```
+
+  What this means is that, on my network, the traffic for this peer can come from these different ips.
+
+- On the server config of the other VPN, they should add the `[PEER]` section of the config that I provided them. Also, their peers need to have in the `Allowed IPs` the range of IPs of my network.
+
+  What this means is that, when they try to connect to my VPN from one of their peers, the IPs of my network are in the config of their VPN. Then, their server has a route for my VPN through the `[PEER]` section provided on the config of their server. However, since now it's their server connecting to mine, I need the public key of the server and not the public key associated with the config that I gave them. For this reason, read last point.
+- Finally, I need to change the public key of the peer that I created for them and put the public key of their server.
+
+## 43.8. UDP2RAW
 
 - `pacman -S udp2raw-tunnel`
 - Open tcp port on router for udp2raw (e.g: 58374)
@@ -2111,7 +2126,7 @@ my computer)
   - Add in the `[Interface]` group the line: "MTU = 1300" (udp2raw doesn't support large packages)
   - Change endpoint to: "127.0.0.1:5634"
 
-## 43.8. Updated VPN
+## 43.9. Updated VPN
 
 - In iptables, drop all connections except the ones I want to keep;
 - These connections are only concerned with the direct access to the raspberry and not the traffic thourgh vpn;
@@ -2126,7 +2141,7 @@ and I want to be able to access the restricted access peer, I need to include in
   - A container that hasn't network_mode host can't now connect to one that is on the network_mode host. To solve this, allow input from docker interface:
     - `-A INPUT -i br+ -p TCP --dport 32400 -j ACCEPT`
 
-## 43.9. Fixing routes
+## 43.10. Fixing routes
 
 - When laptop is not connected to VPN but desktop is (both in porto), I could not ping desktop from laptop using the local ip, since the wireguard
  priority was lower and the response of the desktop went through the vpn (and laptop was not connected)
@@ -2138,7 +2153,7 @@ and I want to be able to access the restricted access peer, I need to include in
 
  NOTE:  [Nginx Server](https://hub.docker.com/r/linuxserver/swag)
 
-## 43.10. Rebelo's Jellyfin
+## 43.11. Rebelo's Jellyfin
 
 I need to foward the traffic in order for a peer to have access to Rebelo's Jellyfin. If the peer has full access, everything will work. If the peer has limited access and I want to maintain it like that, I need to add the following lines:
 
