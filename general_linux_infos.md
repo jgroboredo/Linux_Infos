@@ -126,6 +126,7 @@
   - [38.1. Configuration](#381-configuration)
 - [39. Systemd-Resolved](#39-systemd-resolved)
   - [39.1. Activate Service:](#391-activate-service)
+  - [39.2. systemd-networkd](#392-systemd-networkd)
 - [40. Dual Boot](#40-dual-boot)
   - [40.1. Windows After Linux](#401-windows-after-linux)
   - [40.2. Fix Windows bootloader Gone](#402-fix-windows-bootloader-gone)
@@ -1696,6 +1697,26 @@ dns = none
 
 ## 39.1. Activate Service:
 `systemctl enable systemd-resolved.service`
+
+## 39.2. systemd-networkd
+
+I can force the dns of a given interface like this:
+
+```text
+Edit sudo cat /etc/systemd/network/vpn.network
+
+[Match]
+Name=vpn*
+
+[Network]
+DHCP=yes
+DNS=10.0.1.2
+Domains=~critical.pt
+```
+
+where `Name` needs to match the name of the interface.
+
+Then, simply: `systemctl start systemd-networkd`.
 
 <div style="page-break-after: always; break-after: page;"></div>
 

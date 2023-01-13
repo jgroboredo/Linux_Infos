@@ -572,6 +572,7 @@ code {
 <li><a href="#39-systemd-resolved">39. Systemd-Resolved</a>
 <ul>
 <li><a href="#391-activate-service">39.1. Activate Service:</a></li>
+<li><a href="#392-systemd-networkd">39.2. systemd-networkd</a></li>
 </ul>
 </li>
 <li><a href="#40-dual-boot">40. Dual Boot</a>
@@ -2092,6 +2093,20 @@ dns = none
 </div></code></pre>
 <h2 id="391-activate-service">39.1. Activate Service:</h2>
 <p><code>systemctl enable systemd-resolved.service</code></p>
+<h2 id="392-systemd-networkd">39.2. systemd-networkd</h2>
+<p>I can force the dns of a given interface like this:</p>
+<pre class="hljs"><code><div>Edit sudo cat /etc/systemd/network/vpn.network
+
+[Match]
+Name=vpn*
+
+[Network]
+DHCP=yes
+DNS=10.0.1.2
+Domains=~critical.pt
+</div></code></pre>
+<p>where <code>Name</code> needs to match the name of the interface.</p>
+<p>Then, simply: <code>systemctl start systemd-networkd</code>.</p>
 <div style="page-break-after: always; break-after: page;"></div>
 <h1 id="40-dual-boot">40. Dual Boot</h1>
 <h2 id="401-windows-after-linux">40.1. Windows After Linux</h2>
