@@ -592,7 +592,11 @@ code {
 <li><a href="#43-docker">43. Docker</a>
 <ul>
 <li><a href="#431-jacket">43.1. Jacket</a></li>
-<li><a href="#432-sonarr">43.2. Sonarr</a></li>
+<li><a href="#432-sonarr">43.2. Sonarr</a>
+<ul>
+<li><a href="#4321-add-manually-downloaded-season">43.2.1. Add manually downloaded season</a></li>
+</ul>
+</li>
 <li><a href="#433-system-service-to-run-docker">43.3. System service to run docker</a></li>
 <li><a href="#434-rclone-dlna">43.4. Rclone DLNA</a></li>
 <li><a href="#435-transdrone">43.5. Transdrone</a></li>
@@ -2352,6 +2356,13 @@ dns = none
 <li>Open sqlitebrowser -&gt; Open Database -&gt; sonardb (inside config folder in container) -&gt; In table, select Series -&gt; find series -&gt; Select Path -&gt; Change on the right</li>
 </ul>
 </li>
+</ul>
+<h3 id="4321-add-manually-downloaded-season">43.2.1. Add manually downloaded season</h3>
+<ul>
+<li>Go to Wanted on the meny on the left</li>
+<li>Manual Import</li>
+<li>Select Folder with manually downloaded season</li>
+<li>Move automatically</li>
 </ul>
 <h2 id="433-system-service-to-run-docker">43.3. System service to run docker</h2>
 <pre class="hljs"><code><div>/etc/systemd/system/docker-compose.service

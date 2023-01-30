@@ -138,6 +138,7 @@
 - [43. Docker](#43-docker)
   - [43.1. Jacket](#431-jacket)
   - [43.2. Sonarr](#432-sonarr)
+    - [43.2.1. Add manually downloaded season](#4321-add-manually-downloaded-season)
   - [43.3. System service to run docker](#433-system-service-to-run-docker)
   - [43.4. Rclone DLNA](#434-rclone-dlna)
   - [43.5. Transdrone](#435-transdrone)
@@ -1881,6 +1882,13 @@ SHOW DATABASES
   - Mount read-only fs inside container
   - Add new series to default path where sonarr can write
   - Open sqlitebrowser -> Open Database -> sonardb (inside config folder in container) -> In table, select Series -> find series -> Select Path -> Change on the right
+
+### 43.2.1. Add manually downloaded season
+
+- Go to Wanted on the meny on the left
+- Manual Import
+- Select Folder with manually downloaded season
+- Move automatically
 
 ## 43.3. System service to run docker
 
