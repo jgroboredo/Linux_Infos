@@ -766,7 +766,17 @@ code {
 <li><a href="#761-configuration">76.1. Configuration</a></li>
 </ul>
 </li>
-<li><a href="#77-misc">77. Misc</a></li>
+<li><a href="#77-thunderbird">77. Thunderbird</a>
+<ul>
+<li><a href="#771-critical-account">77.1. Critical Account</a>
+<ul>
+<li><a href="#7711-configure">77.1.1. Configure</a></li>
+<li><a href="#7712-calendar">77.1.2. Calendar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#78-misc">78. Misc</a></li>
 </ul>
 <h2 id="11-introduction">1.1. Introduction</h2>
 <p>In this document I include some notes about general stuff I learn and do during my work/free time.</p>
@@ -3809,7 +3819,33 @@ nameserver 100.100.100.100
 search taildbd36.ts.net
 </div></code></pre>
 <div style="page-break-after: always; break-after: page;"></div>
-<h1 id="77-misc">77. Misc</h1>
+<h1 id="77-thunderbird">77. Thunderbird</h1>
+<h2 id="771-critical-account">77.1. Critical Account</h2>
+<h3 id="7711-configure">77.1.1. Configure</h3>
+<p>Incoming:</p>
+<ul>
+<li>IMAP</li>
+<li>Server hostname: outlook.office365.com</li>
+<li>Port: 993</li>
+<li>SSL: SSL/TLS</li>
+<li>Authentication: Oauth2</li>
+</ul>
+<p>Outgoing:</p>
+<ul>
+<li>Server hostname: smtp.office365.com</li>
+<li>Port: 587</li>
+<li>SSL: STARTTLS</li>
+<li>Authentication: Oauth2</li>
+</ul>
+<p>Username (Incoming and Outgoing): email</p>
+<h3 id="7712-calendar">77.1.2. Calendar</h3>
+<ul>
+<li>Install TBSync extension</li>
+<li>Install Provider for Exchange ActiveSync</li>
+<li>In TBSync, add account (exchange) and sync calendar</li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="78-misc">78. Misc</h1>
 <ol>
 <li>
 <p>By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.</p>

@@ -243,7 +243,11 @@
   - [75.1. Some commands](#751-some-commands)
 - [76. Pihole](#76-pihole)
   - [76.1. Configuration](#761-configuration)
-- [77. Misc](#77-misc)
+- [77. Thunderbird](#77-thunderbird)
+  - [77.1. Critical Account](#771-critical-account)
+    - [77.1.1. Configure](#7711-configure)
+    - [77.1.2. Calendar](#7712-calendar)
+- [78. Misc](#78-misc)
 
 ## 1.1. Introduction
 
@@ -3308,7 +3312,38 @@ search taildbd36.ts.net
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 77. Misc
+# 77. Thunderbird
+
+## 77.1. Critical Account
+
+### 77.1.1. Configure
+
+Incoming:
+
+- IMAP
+- Server hostname: outlook.office365.com
+- Port: 993
+- SSL: SSL/TLS
+- Authentication: Oauth2
+
+Outgoing:
+
+- Server hostname: smtp.office365.com
+- Port: 587
+- SSL: STARTTLS
+- Authentication: Oauth2
+
+Username (Incoming and Outgoing): email
+
+### 77.1.2. Calendar 
+
+- Install TBSync extension
+- Install Provider for Exchange ActiveSync
+- In TBSync, add account (exchange) and sync calendar
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 78. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
