@@ -412,6 +412,7 @@ code {
 <li><a href="#3206-switching-from-subdirectories-to-submodules">3.20.6. Switching from subdirectories to submodules</a></li>
 </ul>
 </li>
+<li><a href="#321-migrate-part-of-git-repository">3.21. Migrate part of git repository</a></li>
 </ul>
 </li>
 <li><a href="#4-bash-notes">4. Bash Notes</a>
@@ -1097,6 +1098,25 @@ $ git submodule update --init --recursive
 git rm -r SubDir
 <span class="hljs-comment"># Then Add</span>
 git submodule add &lt;submodule_link&gt;
+</div></code></pre>
+<h2 id="321-migrate-part-of-git-repository">3.21. Migrate part of git repository</h2>
+<p>After a fresh clone of the repository to migrate, do:</p>
+<pre class="hljs"><code><div>git-filter-repo --prune-degenerate always --prune-empty always --path /path/to/keep/1 --path /path/to/keep/2 
+
+<span class="hljs-comment"># Eventually rename things</span>
+<span class="hljs-comment"># Put everything in root</span>
+git-filter-repo --path-rename /previous/path/:
+
+<span class="hljs-comment"># Change name</span>
+git-filter-repo --path-rename /previous/path/:/new/path
+
+<span class="hljs-comment"># migrate to new repo</span>
+<span class="hljs-built_in">cd</span> new_repo
+git init
+git remote add old-repo ../myrepo
+git pull old-repo master --allow-unrelated-histories
+git remote remove old-repo
+git add origin &lt;new/origin&gt;
 </div></code></pre>
 <div style="page-break-after: always; break-after: page;"></div>
 <h1 id="4-bash-notes">4. Bash Notes</h1>

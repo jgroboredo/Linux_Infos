@@ -32,6 +32,7 @@
     - [3.20.4. Pulling Upstream Changes from the Project Remote](#3204-pulling-upstream-changes-from-the-project-remote)
     - [3.20.5. Upstream repository changed url of the submodule](#3205-upstream-repository-changed-url-of-the-submodule)
     - [3.20.6. Switching from subdirectories to submodules](#3206-switching-from-subdirectories-to-submodules)
+  - [3.21. Migrate part of git repository](#321-migrate-part-of-git-repository)
 - [4. Bash Notes](#4-bash-notes)
   - [4.1. Bash Note 1](#41-bash-note-1)
   - [4.2. Bash Note 2](#42-bash-note-2)
@@ -614,6 +615,29 @@ Problem:  we have been tracking files in our project and want to move them out i
 git rm -r SubDir
 # Then Add
 git submodule add <submodule_link>
+```
+
+## 3.21. Migrate part of git repository
+
+After a fresh clone of the repository to migrate, do:
+
+```bash
+git-filter-repo --prune-degenerate always --prune-empty always --path /path/to/keep/1 --path /path/to/keep/2 
+
+# Eventually rename things
+# Put everything in root
+git-filter-repo --path-rename /previous/path/:
+
+# Change name
+git-filter-repo --path-rename /previous/path/:/new/path
+
+# migrate to new repo
+cd new_repo
+git init
+git remote add old-repo ../myrepo
+git pull old-repo master --allow-unrelated-histories
+git remote remove old-repo
+git add origin <new/origin>
 ```
 
 <div style="page-break-after: always; break-after: page;"></div>
