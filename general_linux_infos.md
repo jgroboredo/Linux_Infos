@@ -3373,6 +3373,7 @@ Username (Incoming and Outgoing): email
 Fix applications taking long to on startup:
 
 - Install xdg-desktop-portal-gtk: `pacman -S xdg-desktop-portal-gtk`
+- Uninstall xdg-desktop-portal-wlr: `pacman -R xdg-desktop-portal-wlr`
 - Add i3 to `UsrIn=gnome;i3` in `/usr/share/xdg-desktop-portal/portals/gtk.portal`
 
 Also add to .zprofile the following exports:
