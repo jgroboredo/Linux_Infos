@@ -248,7 +248,8 @@
   - [77.1. Critical Account](#771-critical-account)
     - [77.1.1. Configure](#7711-configure)
     - [77.1.2. Calendar](#7712-calendar)
-- [78. Misc](#78-misc)
+- [78. XDG-DESKTOP-PORTAL](#78-xdg-desktop-portal)
+- [79. Misc](#79-misc)
 
 ## 1.1. Introduction
 
@@ -3359,7 +3360,7 @@ Outgoing:
 
 Username (Incoming and Outgoing): email
 
-### 77.1.2. Calendar 
+### 77.1.2. Calendar
 
 - Install TBSync extension
 - Install Provider for Exchange ActiveSync
@@ -3367,7 +3368,24 @@ Username (Incoming and Outgoing): email
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 78. Misc
+# 78. XDG-DESKTOP-PORTAL
+
+Fix applications taking long to on startup:
+
+- Install xdg-desktop-portal-gtk: `pacman -S xdg-desktop-portal-gtk`
+- Add i3 to `UsrIn=gnome;i3` in `/usr/share/xdg-desktop-portal/portals/gtk.portal`
+
+Also add to .zprofile the following exports:
+
+```bash
+export XDG_SESSION_TYPE=x11
+export XDG_CURRENT_DESKTOP=i3
+export GDK_BACKEND=x11
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 79. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
