@@ -249,7 +249,10 @@
     - [77.1.1. Configure](#7711-configure)
     - [77.1.2. Calendar](#7712-calendar)
 - [78. XDG-DESKTOP-PORTAL](#78-xdg-desktop-portal)
-- [79. Misc](#79-misc)
+- [79. Parsec](#79-parsec)
+  - [79.1. Wake on lan](#791-wake-on-lan)
+  - [79.2. Wake PC](#792-wake-pc)
+- [80. Misc](#80-misc)
 
 ## 1.1. Introduction
 
@@ -3386,7 +3389,20 @@ export GDK_BACKEND=x11
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 79. Misc
+# 79. Parsec
+
+## 79.1. Wake on lan
+
+For wake on lan to work, check: `ethtool interface | grep Wake-on`. The output should be `g` and it is required for `WoL` to work. It can be set with `ethtool -s interface wol g`. If using `NetworkManager`, this can be made persistent by going into the ethernet configuration inside network manager and enabling the magic packet.
+
+## 79.2. Wake PC
+
+- ssh to rpi and run: `wol -v bc:5f:f4:83:32:cc`.
+- In desktop, `systemctl reboot --boot-loader-entry=auto-windows`
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 80. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).

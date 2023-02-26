@@ -778,7 +778,13 @@ code {
 </ul>
 </li>
 <li><a href="#78-xdg-desktop-portal">78. XDG-DESKTOP-PORTAL</a></li>
-<li><a href="#79-misc">79. Misc</a></li>
+<li><a href="#79-parsec">79. Parsec</a>
+<ul>
+<li><a href="#791-wake-on-lan">79.1. Wake on lan</a></li>
+<li><a href="#792-wake-pc">79.2. Wake PC</a></li>
+</ul>
+</li>
+<li><a href="#80-misc">80. Misc</a></li>
 </ul>
 <h2 id="11-introduction">1.1. Introduction</h2>
 <p>In this document I include some notes about general stuff I learn and do during my work/free time.</p>
@@ -3879,7 +3885,16 @@ search taildbd36.ts.net
 <span class="hljs-built_in">export</span> GDK_BACKEND=x11
 </div></code></pre>
 <div style="page-break-after: always; break-after: page;"></div>
-<h1 id="79-misc">79. Misc</h1>
+<h1 id="79-parsec">79. Parsec</h1>
+<h2 id="791-wake-on-lan">79.1. Wake on lan</h2>
+<p>For wake on lan to work, check: <code>ethtool interface | grep Wake-on</code>. The output should be <code>g</code> and it is required for <code>WoL</code> to work. It can be set with <code>ethtool -s interface wol g</code>. If using <code>NetworkManager</code>, this can be made persistent by going into the ethernet configuration inside network manager and enabling the magic packet.</p>
+<h2 id="792-wake-pc">79.2. Wake PC</h2>
+<ul>
+<li>ssh to rpi and run: <code>wol -v bc:5f:f4:83:32:cc</code>.</li>
+<li>In desktop, <code>systemctl reboot --boot-loader-entry=auto-windows</code></li>
+</ul>
+<div style="page-break-after: always; break-after: page;"></div>
+<h1 id="80-misc">80. Misc</h1>
 <ol>
 <li>
 <p>By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.</p>
