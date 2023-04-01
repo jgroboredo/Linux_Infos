@@ -140,6 +140,7 @@
   - [43.1. Jacket](#431-jacket)
   - [43.2. Sonarr](#432-sonarr)
     - [43.2.1. Add manually downloaded season](#4321-add-manually-downloaded-season)
+    - [43.2.2. Add manually downloaded movie (Radarr)](#4322-add-manually-downloaded-movie-radarr)
   - [43.3. System service to run docker](#433-system-service-to-run-docker)
   - [43.4. Rclone DLNA](#434-rclone-dlna)
   - [43.5. Transdrone](#435-transdrone)
@@ -1922,6 +1923,13 @@ SHOW DATABASES
 - Go to Wanted on the meny on the left
 - Manual Import
 - Select Folder with manually downloaded season
+- Move automatically
+
+### 43.2.2. Add manually downloaded movie (Radarr)
+
+- Go to movies main section (where all movies are)
+- Manual Import (at the top bar)
+- Select movie to import
 - Move automatically
 
 ## 43.3. System service to run docker
