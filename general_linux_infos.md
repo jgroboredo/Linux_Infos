@@ -253,7 +253,11 @@
 - [79. Parsec](#79-parsec)
   - [79.1. Wake on lan](#791-wake-on-lan)
   - [79.2. Wake PC](#792-wake-pc)
-- [80. Misc](#80-misc)
+- [80. Calendar](#80-calendar)
+  - [80.1. Share Microsoft Calendar](#801-share-microsoft-calendar)
+  - [80.2. Add microsoft calendar to google](#802-add-microsoft-calendar-to-google)
+  - [80.3. gcalcli](#803-gcalcli)
+- [81. Misc](#81-misc)
 
 ## 1.1. Introduction
 
@@ -3410,7 +3414,63 @@ For wake on lan to work, check: `ethtool interface | grep Wake-on`. The output s
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 80. Misc
+# 80. Calendar
+
+## 80.1. Share Microsoft Calendar
+
+1) Go to [outlook](outlook.office365.com);
+2) Settings -> View All Outlook Settings;
+3) Calendar -> Shared calendars;
+4) Publish a calendar -> Can view all details
+5) Grab the ICS link
+
+## 80.2. Add microsoft calendar to google
+
+Microsoft calendar doesn't sync well in google. Therefore, use a google script to update the calendar for me:
+
+1) Go to [google scripts](script.google.com)
+2) Add this [project](https://github.com/derekantrican/GAS-ICS-Sync)
+3) Follow installation instructions
+
+My current settings are the following:
+
+```javascript
+var sourceCalendars = [                // The ics/ical urls that you want to get events from along with their target calendars (list a new row for each mapping of ICS url to Google Calendar)
+                                       // For instance: ["https://p24-calendars.icloud.com/holidays/us_en.ics", "US Holidays"]
+                                       // Or with colors following mapping https://developers.google.com/apps-script/reference/calendar/event-color, 
+                                       // for instance: ["https://p24-calendars.icloud.com/holidays/us_en.ics", "US Holidays", "11"]
+  ["https://outlook.office365.com/owa/calendar/401c00bd235044d38e439e7352416c0e@criticalsoftware.com/e46fa34441d4423db0ac4cd9b55cfc3a13335818381581453928/calendar.ics", "Calendar"]
+  
+];
+
+var howFrequent = 15;                  // What interval (minutes) to run this script on to check for new events
+var onlyFutureEvents = false;          // If you turn this to "true", past events will not be synced (this will also removed past events from the target calendar if removeEventsFromCalendar is true)
+var addEventsToCalendar = true;        // If you turn this to "false", you can check the log (View > Logs) to make sure your events are being read correctly before turning this on
+var modifyExistingEvents = true;       // If you turn this to "false", any event in the feed that was modified after being added to the calendar will not update
+var removeEventsFromCalendar = true;   // If you turn this to "true", any event created by the script that is not found in the feed will be removed.
+var addAlerts = "yes";                 // Whether to add the ics/ical alerts as notifications on the Google Calendar events or revert to the calendar's default reminders ("yes", "no", "default").
+var addOrganizerToTitle = false;       // Whether to prefix the event name with the event organiser for further clarity
+var descriptionAsTitles = false;       // Whether to use the ics/ical descriptions as titles (true) or to use the normal titles as titles (false)
+var addCalToTitle = false;             // Whether to add the source calendar to title
+var addAttendees = false;              // Whether to add the attendee list. If true, duplicate events will be automatically added to the attendees' calendar.
+var defaultAllDayReminder = -1;        // Default reminder for all day events in minutes before the day of the event (-1 = no reminder, the value has to be between 0 and 40320)
+                                       // See https://github.com/derekantrican/GAS-ICS-Sync/issues/75 for why this is neccessary.
+var overrideVisibility = "";           // Changes the visibility of the event ("default", "public", "private", "confidential"). Anything else will revert to the class value of the ICAL event.
+var addTasks = false;
+
+var emailSummary = false;              // Will email you when an event is added/modified/removed to your calendar
+var email = "";                        // OPTIONAL: If "emailSummary" is set to true or you want to receive update notifications, you will need to provide your email address
+```
+
+## 80.3. gcalcli
+
+Finally, integrate this with [gcalcli](https://github.com/insanum/gcalcli)
+
+>*Remark*: Do not forget to use the `--nocache` flag, otherwise the calendar is not updated.
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 81. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
