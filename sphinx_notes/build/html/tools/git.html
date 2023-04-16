@@ -1,0 +1,592 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="Sphinx tricks" href="sphinx.html" />
+
+    <!-- Generated with Sphinx 6.1.3 and Furo 2023.03.27 -->
+        <title>Git infos - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Gonçalo's Personal Notes 0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Gonçalo's Personal Notes 0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx tricks</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Git infos</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="git-infos">
+<span id="id1"></span><h1>Git infos<a class="headerlink" href="#git-infos" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>Git is a free and open source distributed version control system designed to handle  everything from small to very large projects with speed and efficiency.</p>
+</div></blockquote>
+<section id="notes-on-creating-a-git-repository-on-github">
+<h2>Notes on creating a git repository on github<a class="headerlink" href="#notes-on-creating-a-git-repository-on-github" title="Permalink to this heading">#</a></h2>
+<p>On folder do:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git init</span>
+<span class="go">git commit</span>
+<span class="go">git branch -M main</span>
+<span class="go">git remote add origin https://github.com/jgroboredo/test.git</span>
+<span class="go">git push -u origin main</span>
+</pre></div>
+</div>
+<section id="some-notes-on-the-above-commands">
+<h3>Some notes on the above commands<a class="headerlink" href="#some-notes-on-the-above-commands" title="Permalink to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-m</span> <span class="pre">master</span> <span class="pre">main</span></code> : renames the master branch in local git repository</p></li>
+<li><p>In the second step, we’ll have to create a new branch on the remote named “main” -
+because Git does not allow to simply “rename” a remote branch. Instead,
+we’ll have to create a new “main” branch and then delete the old “master” branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">main</span>
+</pre></div>
+</div>
+<p>We now have a new branch on the remote named “main”.</p>
+</li>
+<li><p>When you clone a repository with git clone , it automatically creates a remote connection called origin pointing back to the cloned repository.</p></li>
+<li><p>When you do a git push origin master, you are saying to git: “Look git, I want to push the current branch I am on to the remote repository named origin, and I want to push to the master branch in that remote.”. By default, the remote repository is named origin. I only need to specify where I want to push if there are more than 1 repositories.</p></li>
+<li><p>When you execute the command: git remote add origin “github repo link” you are saying that for the current project, there is a remote repository with the name origin, with the address of “github repo link”</p></li>
+</ul>
+</section>
+</section>
+<section id="check-previous-commit">
+<h2>Check previous commit<a class="headerlink" href="#check-previous-commit" title="Permalink to this heading">#</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git log</span>
+<span class="go">git checkout &lt;commit_hash&gt; (example: 18e0b6a044a715b04bcacd599061b6b8bd586a7a)</span>
+<span class="go">git checkout &lt;branch_to_return_to_present_state&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="git-stash-and-log">
+<h2>Git stash and log<a class="headerlink" href="#git-stash-and-log" title="Permalink to this heading">#</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git log --stat # see which files were altered in each commit</span>
+<span class="go">git stash; git stash list; git stash drop</span>
+</pre></div>
+</div>
+</section>
+<section id="create-local-git-repository">
+<h2>Create local git repository<a class="headerlink" href="#create-local-git-repository" title="Permalink to this heading">#</a></h2>
+<p><a href="#id2"><span class="problematic" id="id3">*</span></a>Create a folder which is going to be the “server” -&gt; For example, Notes.git
+<a href="#id4"><span class="problematic" id="id5">*</span></a>Inside the repository do: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span> <span class="pre">--bare</span></code>
+<a href="#id6"><span class="problematic" id="id7">*</span></a>On the same computer do: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">/path/to/server</span></code>   -&gt; the repository created this way will be linked to the “server” by an absolute path which only works on this same pc
+<a href="#id8"><span class="problematic" id="id9">*</span></a>On the other computer do: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">goncalo&#64;ip:/path/to/server</span></code></p>
+</section>
+<section id="change-the-author-name">
+<h2>Change the author name<a class="headerlink" href="#change-the-author-name" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.name</span> <span class="pre">&quot;John</span> <span class="pre">Doe&quot;`</span></code></p>
+</section>
+<section id="remove-tracked-file-that-is-now-in-gitignore">
+<h2>Remove tracked file that is now in .gitignore<a class="headerlink" href="#remove-tracked-file-that-is-now-in-gitignore" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rm</span> <span class="pre">--cached</span> <span class="pre">&lt;file&gt;</span></code></p>
+<p>## 3.7. Check last commit changes</p>
+<blockquote>
+<div><p><cite>git show –name-only</cite> -&gt; Lists just the files in the last commit and doesn’t give you the entire guts</p>
+</div></blockquote>
+<p><cite>git diff HEAD^ HEAD</cite> -&gt; HEAD^ identifies last commit</p>
+<p>## 3.8. Installing git in live ISO arch</p>
+<blockquote>
+<div><p>If error in keys: <cite>pacman -Sy archlinux-keyring; pacman-key –populate archlinux</cite></p>
+</div></blockquote>
+<p>## 3.9. Change remote URL</p>
+<ul class="simple">
+<li><p><cite>git remote -v</cite></p></li>
+</ul>
+<p>&gt; To check the present remote url</p>
+<ul class="simple">
+<li><p><cite>git remote set-url origin git&#64;github.com:jgroboredo/Linux_Infos.git</cite></p></li>
+</ul>
+<p>## 3.10. Add remote URL</p>
+<ul class="simple">
+<li><p><cite>git remote add name_of_remote git&#64;github.com:jgroboredo/Linux_Infos.git</cite></p></li>
+<li><p><cite>git push -u name_of_remote –all</cite></p></li>
+</ul>
+<p>&gt; Note: this changes the default repository! It also pushes all branches!</p>
+<ul class="simple">
+<li><p><cite>git config –edit</cite></p></li>
+</ul>
+<p>&gt; Can use this command to change the default git push</p>
+<ul class="simple">
+<li><p><cite>git branch –set-upstream-to &lt;remote-name&gt;</cite></p></li>
+</ul>
+<p>&gt; Set preferred remote for current branch</p>
+<ul class="simple">
+<li><p><cite>git branch branch_name –set-upstream-to &lt;remote-name&gt;/branch</cite></p></li>
+</ul>
+<p>&gt; set preferred remote for branch_name</p>
+<ul class="simple">
+<li><p><cite>git branch -vv</cite></p></li>
+</ul>
+<p>&gt; shows the default remote for the current branch</p>
+<p>## 3.11. Different Pushes</p>
+<ul class="simple">
+<li><p>To push all branches to all remotes:
+<cite>git remote | xargs -L1 git push –all</cite></p></li>
+<li><p>Push a specific branch to all remotes:
+<cite>git remote | xargs -L1 -I R git push R branch_name</cite></p></li>
+<li><p>To make a git alias for the command:
+<cite>git config –global alias.pushall ‘!git remote | xargs -L1 git push –all’</cite></p></li>
+</ul>
+<p>Or</p>
+<ul class="simple">
+<li><p>Create an all remote with several repo URLs to its name:</p></li>
+</ul>
+<dl class="simple">
+<dt><a href="#id10"><span class="problematic" id="id11">``</span></a><a href="#id12"><span class="problematic" id="id13">`</span></a></dt><dd><p>git remote add all origin-host:path/proj.git
+git remote set-url –add all nodester-host:path/proj.git
+git remote set-url –add all duostack-host:path/proj.git
+git push all –all</p>
+</dd>
+</dl>
+<p><a href="#id14"><span class="problematic" id="id15">``</span></a><a href="#id16"><span class="problematic" id="id17">`</span></a></p>
+<p>Or</p>
+<ul class="simple">
+<li><p>If you want to always push to repo1, repo2, and repo3 but always pull only from repo1, set up the remote ‘origin’ as:</p></li>
+</ul>
+<dl class="simple">
+<dt><a href="#id18"><span class="problematic" id="id19">``</span></a><a href="#id20"><span class="problematic" id="id21">`</span></a></dt><dd><p>git remote add origin <a class="reference external" href="https://exampleuser&#64;example.com/path/to/repo1">https://exampleuser&#64;example.com/path/to/repo1</a>
+git remote set-url –push –add origin <a class="reference external" href="https://exampleuser&#64;example.com/path/to/repo1">https://exampleuser&#64;example.com/path/to/repo1</a>
+git remote set-url –push –add origin <a class="reference external" href="https://exampleuser&#64;example.com/path/to/repo2">https://exampleuser&#64;example.com/path/to/repo2</a>
+git remote set-url –push –add origin <a class="reference external" href="https://exampleuser&#64;example.com/path/to/repo3">https://exampleuser&#64;example.com/path/to/repo3</a></p>
+</dd>
+</dl>
+<p><a href="#id22"><span class="problematic" id="id23">``</span></a><a href="#id24"><span class="problematic" id="id25">`</span></a></p>
+<ul class="simple">
+<li><p>If you only want to pull from repo1 but push to repo1 and repo2 for a specific branch specialBranch:</p></li>
+</ul>
+<dl class="simple">
+<dt><a href="#id26"><span class="problematic" id="id27">``</span></a><a href="#id28"><span class="problematic" id="id29">`</span></a></dt><dd><dl class="simple">
+<dt>[remote “origin”]</dt><dd><p>url = <a class="reference external" href="ssh://git&#64;aaa.xxx.com:7999/yyy/repo1.git">ssh://git&#64;aaa.xxx.com:7999/yyy/repo1.git</a>
+fetch = +refs/heads/<em>:refs/remotes/origin/</em>
+…</p>
+</dd>
+<dt>[remote “specialRemote”]</dt><dd><p>url = <a class="reference external" href="ssh://git&#64;aaa.xxx.com:7999/yyy/repo1.git">ssh://git&#64;aaa.xxx.com:7999/yyy/repo1.git</a>
+pushurl = <a class="reference external" href="ssh://git&#64;aaa.xxx.com:7999/yyy/repo1.git">ssh://git&#64;aaa.xxx.com:7999/yyy/repo1.git</a>
+pushurl = <a class="reference external" href="ssh://git&#64;aaa.xxx.com:7999/yyy/repo2.git">ssh://git&#64;aaa.xxx.com:7999/yyy/repo2.git</a>
+fetch = +refs/heads/<em>:refs/remotes/origin/</em> (Note: Has origin here again, only pulls from origin)
+…</p>
+</dd>
+<dt>[branch “specialBranch”]</dt><dd><p>remote = origin
+pushRemote = specialRemote
+…</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><a href="#id30"><span class="problematic" id="id31">``</span></a><a href="#id32"><span class="problematic" id="id33">`</span></a></p>
+<ul>
+<li><p>My experience:
+- I can specify which remote to push or pull from:</p>
+<blockquote>
+<div><blockquote>
+<div><p><a href="#id34"><span class="problematic" id="id35">``</span></a><a href="#id36"><span class="problematic" id="id37">`</span></a>bash
+git pull remote_name branch
+git push remote_name branch</p>
+</div></blockquote>
+<p><a href="#id38"><span class="problematic" id="id39">``</span></a><a href="#id40"><span class="problematic" id="id41">`</span></a></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>A branch has a default remote: I only need to specify the remote_name and eventually the branch_name (I can’t pull from a non-default remote without specifying the branch) if I don’t want to do it to the default one</p></li>
+</ul>
+</li>
+</ul>
+<p>## 3.12. Use curl to download from github</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">curl</span> <span class="pre">-LkSs</span> <span class="pre">https://api.github.com/repos/jgroboredo/arch_install/tarball</span> <span class="pre">-o</span> <span class="pre">master.tar.gz</span>
+<span class="pre">tar</span> <span class="pre">xf</span> <span class="pre">master.tar.gz</span>
+<span class="pre">`</span></code></p>
+<p>## 3.12. Download a file from github</p>
+<ul class="simple">
+<li><p>Go to file, click on raw, copy link</p></li>
+<li><p><cite>curl -L “link_from_above_step” &gt;&gt; output</cite></p></li>
+</ul>
+<p>## 3.13. Merge branches</p>
+<ul class="simple">
+<li><p><cite>git checkout master; git merge other_branch_name</cite></p></li>
+<li><p>Alternative:<cite>git merge –no-ff other_branch_name</cite> . Using –no-ff allows someone reviewing history to clearly see the branch you checked out to work on.</p></li>
+<li><p><cite>git branch -d branch_name</cite></p></li>
+</ul>
+<p>&gt; deletes branch locally</p>
+<ul class="simple">
+<li><p><cite>git push origin –delete branch_name</cite></p></li>
+</ul>
+<p>&gt; deletes a branch remotely</p>
+<ul class="simple">
+<li><p><cite>git fetch -p</cite></p></li>
+</ul>
+<p>&gt; Synchronize branch listing. After fetching, branches which no longer exist on the remote will be deleted.</p>
+<p>If I do a: <cite>git pull origin master</cite> on another branch, it will merge them.
+After creating a new branch, we need to specify tracking information for the current branch. That means we need to do something like <cite>git pull &lt;remote&gt; &lt;branch&gt;</cite> for it to work.
+On the other hand, we can simply set tracking information for the current branch by:
+<cite>git branch –set-upstream-to=origin/&lt;branch&gt; correction_chapter1</cite></p>
+<p>## 3.14. Check merge conflicts</p>
+<p><cite>git show –name-only [commit sha]</cite> on a commit that was a merge containing conflicts and you’ll see it as part of the message.</p>
+<p>## 3.15. Merge mistake (You committed changes to (local) master)</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">git</span> <span class="pre">branch</span> <span class="pre">&lt;new-branch&gt;</span>
+<span class="pre">git</span> <span class="pre">reset</span> <span class="pre">HEAD~</span> <span class="pre">--hard</span>
+<span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">new-branch</span>
+<span class="pre">`</span></code></p>
+<p>The first command creates the new branch we want to work with. The second command resets the main branch to just before the last commit, but leaves the changes you just made in the new branch. Finally, we switch to the new branch where your changes await you.
+If you’ve made multiple commits, use <cite>git reset HEAD~&lt;n&gt; –hard</cite>, where &lt;n&gt; is the number of commits back you want to go.</p>
+<p>## 3.16. Git merge “Deleted by us”</p>
+<p>Resolve all non deleted merge conflicts by hand, which you have to do anyway;
+Type <cite>git diff –name-only –diff-filter=U</cite> to get a list of all remaining files in conflit. These files must be the ones you want deleted.
+<cite>git diff –name-only –diff-filter=U | xargs git rm</cite></p>
+<p>## 3.17. Commit ID and SHA</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">git</span> <span class="pre">show</span> <span class="pre">-s</span> <span class="pre">--format=%H</span> <span class="pre">#</span> <span class="pre">shows</span> <span class="pre">the</span> <span class="pre">last</span> <span class="pre">commit</span> <span class="pre">full</span> <span class="pre">id</span>
+<span class="pre">git</span> <span class="pre">show</span> <span class="pre">-s</span> <span class="pre">--format=%h</span> <span class="pre">#</span> <span class="pre">shows</span> <span class="pre">the</span> <span class="pre">last</span> <span class="pre">commit</span> <span class="pre">sha</span>
+<span class="pre">`</span></code></p>
+<p>## 3.18. Git over ssh using ssh config</p>
+<p><cite>git remote set-url origin ssh://pi(here config name)/home/goncalo/HDD/Documents/git_repos/Notes.git</cite> (here full path)</p>
+<p>## 3.19. Sparse Checkout</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">mkdir</span> <span class="pre">&lt;repo&gt;</span>
+<span class="pre">cd</span> <span class="pre">&lt;repo&gt;</span>
+<span class="pre">git</span> <span class="pre">init</span>
+<span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">-f</span> <span class="pre">origin</span> <span class="pre">&lt;url&gt;</span>
+<span class="pre">`</span></code></p>
+<p>This creates an empty repository with your remote, and fetches all objects but doesn’t check them out.</p>
+<p>Then: <cite>git config core.sparseCheckout true</cite></p>
+<p>Now we define which files/folders we want to check out by editing <cite>.git/info/sparse-checkout</cite>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">echo</span> <span class="pre">&quot;some/dir/&quot;</span> <span class="pre">&gt;&gt;</span> <span class="pre">.git/info/sparse-checkout</span>
+<span class="pre">echo</span> <span class="pre">&quot;another/sub/tree&quot;</span> <span class="pre">&gt;&gt;</span> <span class="pre">.git/info/sparse-checkout</span>
+<span class="pre">`</span></code></p>
+<p>Finally, just update the repo: <cite>git pull origin master</cite></p>
+<p>## 3.20. Git submodules</p>
+<p>### 3.20.1. Add submodule</p>
+<p><a href="#id42"><span class="problematic" id="id43">``</span></a><a href="#id44"><span class="problematic" id="id45">`</span></a>bash
+# Add submodule to repository
+# By default, submodules will add the subproject
+# into a directory named the same as the repository</p>
+<p>git submodule add &lt;link_to_submodule&gt; &lt;optional_path&gt;</p>
+<p># Although the submodule is a subdirectory in your working directory,
+# Git sees it as a submodule and doesn’t track its
+# contents when you’re not in that directory</p>
+<p>git diff –cached –submodule
+<a href="#id46"><span class="problematic" id="id47">``</span></a><a href="#id48"><span class="problematic" id="id49">`</span></a></p>
+<p>### 3.20.2. Clone repo with submodule</p>
+<p><a href="#id50"><span class="problematic" id="id51">``</span></a><a href="#id52"><span class="problematic" id="id53">`</span></a>bash
+git clone &lt;main_project_link&gt;
+git submodule init # initializes local config file
+git submodule update # fetch all the data from that project</p>
+<p># or</p>
+<p>git clone –recurse-submodules</p>
+<p># or
+git clone &lt;main_project_link&gt;
+git submodule update –init
+<a href="#id54"><span class="problematic" id="id55">``</span></a>`
+### 3.20.3. Pulling in Upstream Changes from the Submodule Remote</p>
+<p><a href="#id56"><span class="problematic" id="id57">``</span></a><a href="#id58"><span class="problematic" id="id59">`</span></a>bash
+cd &lt;git_submodule_dir&gt;
+git fecth
+git merge</p>
+<p># or</p>
+<p>git submodule update –remote &lt;submodule_name&gt;</p>
+<p>cd &lt;main_project&gt;
+git diff –submodule #  get a list of commits that were added to the submodule
+git config –global diff.submodule log # to avoid the need to write –submodule in every git diff</p>
+<p># If you commit at this point then you will lock the submodule
+# into having the new code when other people update.</p>
+<p>git config -f .gitmodules submodule.DbConnector.branch stable # in order to track other branch</p>
+<p># if we leave off -f .gitmodules it will only make the change locally</p>
+<p>git config status.submodulesummary 1 # to see a summary of changes to the submodules
+<a href="#id60"><span class="problematic" id="id61">``</span></a><a href="#id62"><span class="problematic" id="id63">`</span></a></p>
+<p>### 3.20.4. Pulling Upstream Changes from the Project Remote</p>
+<p>Now the perspective of the colaborator that cloned the Main Project.</p>
+<p>Simply executing <cite>git pull</cite> is not enough.
+By default, the git pull command recursively fetches submodules changes. However, it does not update the submodules.</p>
+<p><a href="#id64"><span class="problematic" id="id65">``</span></a><a href="#id66"><span class="problematic" id="id67">`</span></a>bash
+git submodule update –init –recursive</p>
+<p># –init flag: MainProject might have added new submodules
+# –recursive flag: if submodules have nested submodules</p>
+<p># or</p>
+<p>git pull –recurse-submodules
+<a href="#id68"><span class="problematic" id="id69">``</span></a><a href="#id70"><span class="problematic" id="id71">`</span></a></p>
+<p>### 3.20.5. Upstream repository changed url of the submodule</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">#</span> <span class="pre">copy</span> <span class="pre">the</span> <span class="pre">new</span> <span class="pre">URL</span> <span class="pre">to</span> <span class="pre">your</span> <span class="pre">local</span> <span class="pre">config</span>
+<span class="pre">$</span> <span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">sync</span> <span class="pre">--recursive</span>
+<span class="pre">#</span> <span class="pre">update</span> <span class="pre">the</span> <span class="pre">submodule</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">new</span> <span class="pre">URL</span>
+<span class="pre">$</span> <span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span> <span class="pre">--init</span> <span class="pre">--recursive</span>
+<span class="pre">`</span></code></p>
+<p>### 3.20.6. Switching from subdirectories to submodules</p>
+<p>Problem:  we have been tracking files in our project and want to move them out into a submodule.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">#First</span> <span class="pre">unstage</span>
+<span class="pre">git</span> <span class="pre">rm</span> <span class="pre">-r</span> <span class="pre">SubDir</span>
+<span class="pre">#</span> <span class="pre">Then</span> <span class="pre">Add</span>
+<span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">add</span> <span class="pre">&lt;submodule_link&gt;</span>
+<span class="pre">`</span></code></p>
+<p>## 3.21. Migrate part of git repository</p>
+<p>After a fresh clone of the repository to migrate, do:</p>
+<p><a href="#id72"><span class="problematic" id="id73">``</span></a><a href="#id74"><span class="problematic" id="id75">`</span></a>bash
+git-filter-repo –prune-degenerate always –prune-empty always –path /path/to/keep/1 –path /path/to/keep/2</p>
+<p># Eventually rename things
+# Put everything in root
+git-filter-repo –path-rename /previous/path/:</p>
+<p># Change name
+git-filter-repo –path-rename /previous/path/:/new/path</p>
+<p># migrate to new repo
+cd new_repo
+git init
+git remote add old-repo ../myrepo
+git pull old-repo master –allow-unrelated-histories
+git remote remove old-repo
+git add origin &lt;new/origin&gt;
+<a href="#id76"><span class="problematic" id="id77">``</span></a><a href="#id78"><span class="problematic" id="id79">`</span></a></p>
+<p>&lt;div style=”page-break-after: always; break-after: page;”&gt;&lt;/div&gt;</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="sphinx.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Sphinx tricks</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Gonçalo Roboredo
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Git infos</a><ul>
+<li><a class="reference internal" href="#notes-on-creating-a-git-repository-on-github">Notes on creating a git repository on github</a><ul>
+<li><a class="reference internal" href="#some-notes-on-the-above-commands">Some notes on the above commands</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#check-previous-commit">Check previous commit</a></li>
+<li><a class="reference internal" href="#git-stash-and-log">Git stash and log</a></li>
+<li><a class="reference internal" href="#create-local-git-repository">Create local git repository</a></li>
+<li><a class="reference internal" href="#change-the-author-name">Change the author name</a></li>
+<li><a class="reference internal" href="#remove-tracked-file-that-is-now-in-gitignore">Remove tracked file that is now in .gitignore</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    </body>
+</html>
