@@ -1,3 +1,6 @@
 Here I put what I learn about bash and general programs and their configurations.
 
 The dot files and packages installed in each version of my system will be in different folders/repositories
+
+pandoc general_linux_infos.md --template toc-sidebar.html --toc -B nav -o general_linux_infos.html
+pandoc -s general_linux_infos.md --toc -o general_linux_infos.html --css=style_gpt.css
