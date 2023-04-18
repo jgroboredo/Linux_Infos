@@ -33,6 +33,7 @@
     - [3.20.5. Upstream repository changed url of the submodule](#3205-upstream-repository-changed-url-of-the-submodule)
     - [3.20.6. Switching from subdirectories to submodules](#3206-switching-from-subdirectories-to-submodules)
   - [3.21. Migrate part of git repository](#321-migrate-part-of-git-repository)
+  - [3.22. Git reverse patch](#322-git-reverse-patch)
 - [4. Bash Notes](#4-bash-notes)
   - [4.1. Bash Note 1](#41-bash-note-1)
   - [4.2. Bash Note 2](#42-bash-note-2)
@@ -647,6 +648,17 @@ git remote add old-repo ../myrepo
 git pull old-repo master --allow-unrelated-histories
 git remote remove old-repo
 git add origin <new/origin>
+```
+
+## 3.22. Git reverse patch
+
+```bash
+git fsck --no-reflog | awk '/dangling commit/ {print $3}'
+
+# create patch 
+
+git diff > my_patch.patch
+git apply --reject --whitespace=fix --reverse my_patch.patch
 ```
 
 <div style="page-break-after: always; break-after: page;"></div>
