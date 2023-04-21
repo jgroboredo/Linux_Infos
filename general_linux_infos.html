@@ -504,7 +504,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li><a href="#add-microsoft-calendar-to-google">80.2. Add microsoft calendar to google</a></li>
           <li><a href="#gcalcli">80.3. gcalcli</a></li>
           </ul></li>
-          <li><a href="#misc">81. Misc</a></li>
+          <li><a href="#gnome-desktop">81. Gnome-desktop</a>
+          <ul>
+          <li><a href="#desktop-icons">81.1. Desktop icons</a></li>
+          </ul></li>
+          <li><a href="#misc">82. Misc</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -881,7 +885,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#802-add-microsoft-calendar-to-google">80.2. Add microsoft calendar to google</a></li>
 <li><a href="#803-gcalcli">80.3. gcalcli</a></li>
 </ul></li>
-<li><a href="#81-misc">81. Misc</a></li>
+<li><a href="#81-gnome-desktop">81. Gnome-desktop</a>
+<ul>
+<li><a href="#811-desktop-icons">81.1. Desktop icons</a></li>
+</ul></li>
+<li><a href="#82-misc">82. Misc</a></li>
 </ul>
 <h2 id="introduction">1.1. Introduction</h2>
 <p>In this document I include some notes about general stuff I learn and do during my work/free time.</p>
@@ -3601,7 +3609,20 @@ search taildbd36.ts.net</code></pre>
 <div style="page-break-after: always; break-after: page;">
 
 </div>
-<h1 id="misc">81. Misc</h1>
+<h1 id="gnome-desktop">81. Gnome-desktop</h1>
+<h2 id="desktop-icons">81.1. Desktop icons</h2>
+<p><code>gnome-desktop</code> no longer ships with desktop icons. One easy way to fix this is by doing the following:</p>
+<ol type="1">
+<li><code>sudo apt install gnome-shell-extension-desktop-icons-ng &amp;&amp; sudo apt install gnome-shell-extension-prefs</code></li>
+<li>The above step doesn’t seem to work (there might be something missing, keep it here anyway);</li>
+<li>Go to <a href="https://extensions.gnome.org/">Gnome shell extensions website</a></li>
+<li>Click on “Click here to install browser extension” (GNOME Shell Integration)</li>
+<li>Install addon: <a href="https://extensions.gnome.org/extension/2087/desktop-icons-ng-ding/">NG Ding desktop icons</a></li>
+</ol>
+<div style="page-break-after: always; break-after: page;">
+
+</div>
+<h1 id="misc">82. Misc</h1>
 <ol type="1">
 <li><p>By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.</p></li>
 <li><p>It is preferable to have xfce4-notify (initiated in config by running <code>/usr/lib/xfce4/notifyd/xfce4-notifyd</code>) than dunst… Better notifications. Check i3 config and uninstall dunst (in endeavour). In manjaro, do: <code>sudo mv /usr/share/dbus-1/services/org.knopwob.dunst.service{,.disabled}</code></p></li>

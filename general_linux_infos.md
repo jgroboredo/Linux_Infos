@@ -258,7 +258,9 @@
   - [80.1. Share Microsoft Calendar](#801-share-microsoft-calendar)
   - [80.2. Add microsoft calendar to google](#802-add-microsoft-calendar-to-google)
   - [80.3. gcalcli](#803-gcalcli)
-- [81. Misc](#81-misc)
+- [81. Gnome-desktop](#81-gnome-desktop)
+  - [81.1. Desktop icons](#811-desktop-icons)
+- [82. Misc](#82-misc)
 
 ## 1.1. Introduction
 
@@ -3482,7 +3484,21 @@ Finally, integrate this with [gcalcli](https://github.com/insanum/gcalcli)
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 81. Misc
+# 81. Gnome-desktop
+
+## 81.1. Desktop icons
+
+`gnome-desktop` no longer ships with desktop icons. One easy way to fix this is by doing the following:
+
+1) `sudo apt install gnome-shell-extension-desktop-icons-ng && sudo apt install gnome-shell-extension-prefs`
+2) The above step doesn't seem to work (there might be something missing, keep it here anyway);
+3) Go to [Gnome shell extensions website](https://extensions.gnome.org/)
+4) Click on "Click here to install browser extension" (GNOME Shell Integration)
+5) Install addon: [NG Ding desktop icons](https://extensions.gnome.org/extension/2087/desktop-icons-ng-ding/)
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# 82. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
