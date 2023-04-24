@@ -60,52 +60,74 @@ Git stash and log
 Create local git repository  
 ---------------------------
 
-*Create a folder which is going to be the "server" -> For example, Notes.git
-*Inside the repository do: ``git init --bare``
-*On the same computer do: ``git clone /path/to/server``   -> the repository created this way will be linked to the "server" by an absolute path which only works on this same pc
-*On the other computer do: ``git clone goncalo@ip:/path/to/server``
+- Create a folder which is going to be the "server" -> For example, Notes.git
+- Inside the repository do: ``git init --bare``
+- On the same computer do: ``git clone /path/to/server``   -> the repository created this way will be linked to the "server" by an absolute path which only works on this same pc
+- On the other computer do: ``git clone goncalo@ip:/path/to/server``
 
 ----------------------
 Change the author name  
 ----------------------
 
-``git config --global user.name "John Doe"```
+.. code-block:: console
+
+  git config --global user.name "John Doe"
 
 ---------------------------------------------
 Remove tracked file that is now in .gitignore  
 ---------------------------------------------
 
-``git rm --cached <file>``
+.. code-block:: console
 
-## 3.7. Check last commit changes  
+  git rm --cached <file>
 
- `git show --name-only` -> Lists just the files in the last commit and doesn't give you the entire guts
-`git diff HEAD^ HEAD` -> HEAD^ identifies last commit
+-------------------------
+Check last commit changes  
+-------------------------
 
-## 3.8. Installing git in live ISO arch  
+.. code-block:: bash
 
- If error in keys: `pacman -Sy archlinux-keyring; pacman-key --populate archlinux`
+  git show --name-only # Lists just the files in the last commit and doesn't give you the entire guts
+  git diff HEAD^ HEAD # HEAD^ identifies last commit
 
-## 3.9. Change remote URL  
+---------------------------------
+Installing git in live ISO arch  
+---------------------------------
 
-- `git remote -v`
+If error in keys: 
 
-> To check the present remote url
+.. code-block:: bash
 
-- `git remote set-url origin git@github.com:jgroboredo/Linux_Infos.git`
+  pacman -Sy archlinux-keyring; pacman-key --populate archlinux
 
-## 3.10. Add remote URL  
+-------------------
+Change remote URL  
+-------------------
 
-- `git remote add name_of_remote git@github.com:jgroboredo/Linux_Infos.git`
-- `git push -u name_of_remote --all`
+.. code-block:: bash
 
-> Note: this changes the default repository! It also pushes all branches!
+  git remote -v # To check the present remote url
+  git remote set-url origin <url>
 
-- `git config --edit`
+----------------
+Add remote URL  
+----------------
 
-> Can use this command to change the default git push
+.. code-block:: bash
 
-- `git branch --set-upstream-to <remote-name>`
+  git remote add name_of_remote <url>
+  git push -u name_of_remote --all
+
+.. note::
+  This changes the default repository! It also pushes all branches!
+
+- Can use this command to change the default git push: ::
+
+   git config --edit
+
+- Can use this command to change the default git push: ::
+
+   git branch --set-upstream-to <remote-name>
 
 > Set preferred remote for current branch
 
@@ -384,3 +406,14 @@ git add origin <new/origin>
 ```
 
 <div style="page-break-after: always; break-after: page;"></div>
+
+## 3.22. Git reverse patch
+
+```bash
+git fsck --no-reflog | awk '/dangling commit/ {print $3}'
+
+# create patch 
+
+git diff > my_patch.patch
+git apply --reject --whitespace=fix --reverse my_patch.patch
+```

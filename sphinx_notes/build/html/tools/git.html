@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="Sphinx tricks" href="sphinx.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="1. Sphinx tricks" href="sphinx.html" />
 
     <!-- Generated with Sphinx 6.1.3 and Furo 2023.03.27 -->
-        <title>Git infos - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
+        <title>2. Git infos - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -156,8 +156,8 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx tricks</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Git infos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">1. Sphinx tricks</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">2. Git infos</a></li>
 </ul>
 
 </div>
@@ -193,12 +193,12 @@
         </div>
         <article role="main">
           <section id="git-infos">
-<span id="id1"></span><h1>Git infos<a class="headerlink" href="#git-infos" title="Permalink to this heading">#</a></h1>
+<span id="id1"></span><h1><span class="section-number">2. </span>Git infos<a class="headerlink" href="#git-infos" title="Permalink to this heading">#</a></h1>
 <blockquote class="epigraph">
 <div><p>Git is a free and open source distributed version control system designed to handle  everything from small to very large projects with speed and efficiency.</p>
 </div></blockquote>
 <section id="notes-on-creating-a-git-repository-on-github">
-<h2>Notes on creating a git repository on github<a class="headerlink" href="#notes-on-creating-a-git-repository-on-github" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.1. </span>Notes on creating a git repository on github<a class="headerlink" href="#notes-on-creating-a-git-repository-on-github" title="Permalink to this heading">#</a></h2>
 <p>On folder do:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git init</span>
 <span class="go">git commit</span>
@@ -208,7 +208,7 @@
 </pre></div>
 </div>
 <section id="some-notes-on-the-above-commands">
-<h3>Some notes on the above commands<a class="headerlink" href="#some-notes-on-the-above-commands" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.1.1. </span>Some notes on the above commands<a class="headerlink" href="#some-notes-on-the-above-commands" title="Permalink to this heading">#</a></h3>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-m</span> <span class="pre">master</span> <span class="pre">main</span></code> : renames the master branch in local git repository</p></li>
 <li><p>In the second step, we’ll have to create a new branch on the remote named “main” -
@@ -226,7 +226,7 @@ we’ll have to create a new “main” branch and then delete the old “master
 </section>
 </section>
 <section id="check-previous-commit">
-<h2>Check previous commit<a class="headerlink" href="#check-previous-commit" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.2. </span>Check previous commit<a class="headerlink" href="#check-previous-commit" title="Permalink to this heading">#</a></h2>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git log</span>
 <span class="go">git checkout &lt;commit_hash&gt; (example: 18e0b6a044a715b04bcacd599061b6b8bd586a7a)</span>
 <span class="go">git checkout &lt;branch_to_return_to_present_state&gt;</span>
@@ -234,55 +234,75 @@ we’ll have to create a new “main” branch and then delete the old “master
 </div>
 </section>
 <section id="git-stash-and-log">
-<h2>Git stash and log<a class="headerlink" href="#git-stash-and-log" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.3. </span>Git stash and log<a class="headerlink" href="#git-stash-and-log" title="Permalink to this heading">#</a></h2>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git log --stat # see which files were altered in each commit</span>
 <span class="go">git stash; git stash list; git stash drop</span>
 </pre></div>
 </div>
 </section>
 <section id="create-local-git-repository">
-<h2>Create local git repository<a class="headerlink" href="#create-local-git-repository" title="Permalink to this heading">#</a></h2>
-<p><a href="#id2"><span class="problematic" id="id3">*</span></a>Create a folder which is going to be the “server” -&gt; For example, Notes.git
-<a href="#id4"><span class="problematic" id="id5">*</span></a>Inside the repository do: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span> <span class="pre">--bare</span></code>
-<a href="#id6"><span class="problematic" id="id7">*</span></a>On the same computer do: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">/path/to/server</span></code>   -&gt; the repository created this way will be linked to the “server” by an absolute path which only works on this same pc
-<a href="#id8"><span class="problematic" id="id9">*</span></a>On the other computer do: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">goncalo&#64;ip:/path/to/server</span></code></p>
+<h2><span class="section-number">2.4. </span>Create local git repository<a class="headerlink" href="#create-local-git-repository" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Create a folder which is going to be the “server” -&gt; For example, Notes.git</p></li>
+<li><p>Inside the repository do: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span> <span class="pre">--bare</span></code></p></li>
+<li><p>On the same computer do: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">/path/to/server</span></code>   -&gt; the repository created this way will be linked to the “server” by an absolute path which only works on this same pc</p></li>
+<li><p>On the other computer do: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">goncalo&#64;ip:/path/to/server</span></code></p></li>
+</ul>
 </section>
 <section id="change-the-author-name">
-<h2>Change the author name<a class="headerlink" href="#change-the-author-name" title="Permalink to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.name</span> <span class="pre">&quot;John</span> <span class="pre">Doe&quot;`</span></code></p>
+<h2><span class="section-number">2.5. </span>Change the author name<a class="headerlink" href="#change-the-author-name" title="Permalink to this heading">#</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git config --global user.name &quot;John Doe&quot;</span>
+</pre></div>
+</div>
 </section>
 <section id="remove-tracked-file-that-is-now-in-gitignore">
-<h2>Remove tracked file that is now in .gitignore<a class="headerlink" href="#remove-tracked-file-that-is-now-in-gitignore" title="Permalink to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rm</span> <span class="pre">--cached</span> <span class="pre">&lt;file&gt;</span></code></p>
-<p>## 3.7. Check last commit changes</p>
-<blockquote>
-<div><p><cite>git show –name-only</cite> -&gt; Lists just the files in the last commit and doesn’t give you the entire guts</p>
-</div></blockquote>
-<p><cite>git diff HEAD^ HEAD</cite> -&gt; HEAD^ identifies last commit</p>
-<p>## 3.8. Installing git in live ISO arch</p>
-<blockquote>
-<div><p>If error in keys: <cite>pacman -Sy archlinux-keyring; pacman-key –populate archlinux</cite></p>
-</div></blockquote>
-<p>## 3.9. Change remote URL</p>
-<ul class="simple">
-<li><p><cite>git remote -v</cite></p></li>
-</ul>
-<p>&gt; To check the present remote url</p>
-<ul class="simple">
-<li><p><cite>git remote set-url origin git&#64;github.com:jgroboredo/Linux_Infos.git</cite></p></li>
-</ul>
-<p>## 3.10. Add remote URL</p>
-<ul class="simple">
-<li><p><cite>git remote add name_of_remote git&#64;github.com:jgroboredo/Linux_Infos.git</cite></p></li>
-<li><p><cite>git push -u name_of_remote –all</cite></p></li>
-</ul>
-<p>&gt; Note: this changes the default repository! It also pushes all branches!</p>
-<ul class="simple">
-<li><p><cite>git config –edit</cite></p></li>
-</ul>
-<p>&gt; Can use this command to change the default git push</p>
-<ul class="simple">
-<li><p><cite>git branch –set-upstream-to &lt;remote-name&gt;</cite></p></li>
+<h2><span class="section-number">2.6. </span>Remove tracked file that is now in .gitignore<a class="headerlink" href="#remove-tracked-file-that-is-now-in-gitignore" title="Permalink to this heading">#</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git rm --cached &lt;file&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="check-last-commit-changes">
+<h2><span class="section-number">2.7. </span>Check last commit changes<a class="headerlink" href="#check-last-commit-changes" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git show --name-only <span class="c1"># Lists just the files in the last commit and doesn&#39;t give you the entire guts</span>
+git diff HEAD^ HEAD <span class="c1"># HEAD^ identifies last commit</span>
+</pre></div>
+</div>
+</section>
+<section id="installing-git-in-live-iso-arch">
+<h2><span class="section-number">2.8. </span>Installing git in live ISO arch<a class="headerlink" href="#installing-git-in-live-iso-arch" title="Permalink to this heading">#</a></h2>
+<p>If error in keys:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pacman -Sy archlinux-keyring<span class="p">;</span> pacman-key --populate archlinux
+</pre></div>
+</div>
+</section>
+<section id="change-remote-url">
+<h2><span class="section-number">2.9. </span>Change remote URL<a class="headerlink" href="#change-remote-url" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git remote -v <span class="c1"># To check the present remote url</span>
+git remote set-url origin &lt;url&gt;
+</pre></div>
+</div>
+</section>
+<section id="add-remote-url">
+<h2><span class="section-number">2.10. </span>Add remote URL<a class="headerlink" href="#add-remote-url" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git remote add name_of_remote &lt;url&gt;
+git push -u name_of_remote --all
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This changes the default repository! It also pushes all branches!</p>
+</div>
+<ul>
+<li><p>Can use this command to change the default git push:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">edit</span>
+</pre></div>
+</div>
+</li>
+<li><p>Can use this command to change the default git push:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">branch</span> <span class="o">--</span><span class="nb">set</span><span class="o">-</span><span class="n">upstream</span><span class="o">-</span><span class="n">to</span> <span class="o">&lt;</span><span class="n">remote</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
 </ul>
 <p>&gt; Set preferred remote for current branch</p>
 <ul class="simple">
@@ -307,30 +327,30 @@ we’ll have to create a new “main” branch and then delete the old “master
 <li><p>Create an all remote with several repo URLs to its name:</p></li>
 </ul>
 <dl class="simple">
-<dt><a href="#id10"><span class="problematic" id="id11">``</span></a><a href="#id12"><span class="problematic" id="id13">`</span></a></dt><dd><p>git remote add all origin-host:path/proj.git
+<dt><a href="#id2"><span class="problematic" id="id3">``</span></a><a href="#id4"><span class="problematic" id="id5">`</span></a></dt><dd><p>git remote add all origin-host:path/proj.git
 git remote set-url –add all nodester-host:path/proj.git
 git remote set-url –add all duostack-host:path/proj.git
 git push all –all</p>
 </dd>
 </dl>
-<p><a href="#id14"><span class="problematic" id="id15">``</span></a><a href="#id16"><span class="problematic" id="id17">`</span></a></p>
+<p><a href="#id6"><span class="problematic" id="id7">``</span></a><a href="#id8"><span class="problematic" id="id9">`</span></a></p>
 <p>Or</p>
 <ul class="simple">
 <li><p>If you want to always push to repo1, repo2, and repo3 but always pull only from repo1, set up the remote ‘origin’ as:</p></li>
 </ul>
 <dl class="simple">
-<dt><a href="#id18"><span class="problematic" id="id19">``</span></a><a href="#id20"><span class="problematic" id="id21">`</span></a></dt><dd><p>git remote add origin <a class="reference external" href="https://exampleuser&#64;example.com/path/to/repo1">https://exampleuser&#64;example.com/path/to/repo1</a>
+<dt><a href="#id10"><span class="problematic" id="id11">``</span></a><a href="#id12"><span class="problematic" id="id13">`</span></a></dt><dd><p>git remote add origin <a class="reference external" href="https://exampleuser&#64;example.com/path/to/repo1">https://exampleuser&#64;example.com/path/to/repo1</a>
 git remote set-url –push –add origin <a class="reference external" href="https://exampleuser&#64;example.com/path/to/repo1">https://exampleuser&#64;example.com/path/to/repo1</a>
 git remote set-url –push –add origin <a class="reference external" href="https://exampleuser&#64;example.com/path/to/repo2">https://exampleuser&#64;example.com/path/to/repo2</a>
 git remote set-url –push –add origin <a class="reference external" href="https://exampleuser&#64;example.com/path/to/repo3">https://exampleuser&#64;example.com/path/to/repo3</a></p>
 </dd>
 </dl>
-<p><a href="#id22"><span class="problematic" id="id23">``</span></a><a href="#id24"><span class="problematic" id="id25">`</span></a></p>
+<p><a href="#id14"><span class="problematic" id="id15">``</span></a><a href="#id16"><span class="problematic" id="id17">`</span></a></p>
 <ul class="simple">
 <li><p>If you only want to pull from repo1 but push to repo1 and repo2 for a specific branch specialBranch:</p></li>
 </ul>
 <dl class="simple">
-<dt><a href="#id26"><span class="problematic" id="id27">``</span></a><a href="#id28"><span class="problematic" id="id29">`</span></a></dt><dd><dl class="simple">
+<dt><a href="#id18"><span class="problematic" id="id19">``</span></a><a href="#id20"><span class="problematic" id="id21">`</span></a></dt><dd><dl class="simple">
 <dt>[remote “origin”]</dt><dd><p>url = <a class="reference external" href="ssh://git&#64;aaa.xxx.com:7999/yyy/repo1.git">ssh://git&#64;aaa.xxx.com:7999/yyy/repo1.git</a>
 fetch = +refs/heads/<em>:refs/remotes/origin/</em>
 …</p>
@@ -348,17 +368,17 @@ pushRemote = specialRemote
 </dl>
 </dd>
 </dl>
-<p><a href="#id30"><span class="problematic" id="id31">``</span></a><a href="#id32"><span class="problematic" id="id33">`</span></a></p>
+<p><a href="#id22"><span class="problematic" id="id23">``</span></a><a href="#id24"><span class="problematic" id="id25">`</span></a></p>
 <ul>
 <li><p>My experience:
 - I can specify which remote to push or pull from:</p>
 <blockquote>
 <div><blockquote>
-<div><p><a href="#id34"><span class="problematic" id="id35">``</span></a><a href="#id36"><span class="problematic" id="id37">`</span></a>bash
+<div><p><a href="#id26"><span class="problematic" id="id27">``</span></a><a href="#id28"><span class="problematic" id="id29">`</span></a>bash
 git pull remote_name branch
 git push remote_name branch</p>
 </div></blockquote>
-<p><a href="#id38"><span class="problematic" id="id39">``</span></a><a href="#id40"><span class="problematic" id="id41">`</span></a></p>
+<p><a href="#id30"><span class="problematic" id="id31">``</span></a><a href="#id32"><span class="problematic" id="id33">`</span></a></p>
 </div></blockquote>
 <ul class="simple">
 <li><p>A branch has a default remote: I only need to specify the remote_name and eventually the branch_name (I can’t pull from a non-default remote without specifying the branch) if I don’t want to do it to the default one</p></li>
@@ -432,7 +452,7 @@ Type <cite>git diff –name-only –diff-filter=U</cite> to get a list of all re
 <p>Finally, just update the repo: <cite>git pull origin master</cite></p>
 <p>## 3.20. Git submodules</p>
 <p>### 3.20.1. Add submodule</p>
-<p><a href="#id42"><span class="problematic" id="id43">``</span></a><a href="#id44"><span class="problematic" id="id45">`</span></a>bash
+<p><a href="#id34"><span class="problematic" id="id35">``</span></a><a href="#id36"><span class="problematic" id="id37">`</span></a>bash
 # Add submodule to repository
 # By default, submodules will add the subproject
 # into a directory named the same as the repository</p>
@@ -441,9 +461,9 @@ Type <cite>git diff –name-only –diff-filter=U</cite> to get a list of all re
 # Git sees it as a submodule and doesn’t track its
 # contents when you’re not in that directory</p>
 <p>git diff –cached –submodule
-<a href="#id46"><span class="problematic" id="id47">``</span></a><a href="#id48"><span class="problematic" id="id49">`</span></a></p>
+<a href="#id38"><span class="problematic" id="id39">``</span></a><a href="#id40"><span class="problematic" id="id41">`</span></a></p>
 <p>### 3.20.2. Clone repo with submodule</p>
-<p><a href="#id50"><span class="problematic" id="id51">``</span></a><a href="#id52"><span class="problematic" id="id53">`</span></a>bash
+<p><a href="#id42"><span class="problematic" id="id43">``</span></a><a href="#id44"><span class="problematic" id="id45">`</span></a>bash
 git clone &lt;main_project_link&gt;
 git submodule init # initializes local config file
 git submodule update # fetch all the data from that project</p>
@@ -452,9 +472,9 @@ git submodule update # fetch all the data from that project</p>
 <p># or
 git clone &lt;main_project_link&gt;
 git submodule update –init
-<a href="#id54"><span class="problematic" id="id55">``</span></a>`
+<a href="#id46"><span class="problematic" id="id47">``</span></a>`
 ### 3.20.3. Pulling in Upstream Changes from the Submodule Remote</p>
-<p><a href="#id56"><span class="problematic" id="id57">``</span></a><a href="#id58"><span class="problematic" id="id59">`</span></a>bash
+<p><a href="#id48"><span class="problematic" id="id49">``</span></a><a href="#id50"><span class="problematic" id="id51">`</span></a>bash
 cd &lt;git_submodule_dir&gt;
 git fecth
 git merge</p>
@@ -468,18 +488,18 @@ git config –global diff.submodule log # to avoid the need to write –submodul
 <p>git config -f .gitmodules submodule.DbConnector.branch stable # in order to track other branch</p>
 <p># if we leave off -f .gitmodules it will only make the change locally</p>
 <p>git config status.submodulesummary 1 # to see a summary of changes to the submodules
-<a href="#id60"><span class="problematic" id="id61">``</span></a><a href="#id62"><span class="problematic" id="id63">`</span></a></p>
+<a href="#id52"><span class="problematic" id="id53">``</span></a><a href="#id54"><span class="problematic" id="id55">`</span></a></p>
 <p>### 3.20.4. Pulling Upstream Changes from the Project Remote</p>
 <p>Now the perspective of the colaborator that cloned the Main Project.</p>
 <p>Simply executing <cite>git pull</cite> is not enough.
 By default, the git pull command recursively fetches submodules changes. However, it does not update the submodules.</p>
-<p><a href="#id64"><span class="problematic" id="id65">``</span></a><a href="#id66"><span class="problematic" id="id67">`</span></a>bash
+<p><a href="#id56"><span class="problematic" id="id57">``</span></a><a href="#id58"><span class="problematic" id="id59">`</span></a>bash
 git submodule update –init –recursive</p>
 <p># –init flag: MainProject might have added new submodules
 # –recursive flag: if submodules have nested submodules</p>
 <p># or</p>
 <p>git pull –recurse-submodules
-<a href="#id68"><span class="problematic" id="id69">``</span></a><a href="#id70"><span class="problematic" id="id71">`</span></a></p>
+<a href="#id60"><span class="problematic" id="id61">``</span></a><a href="#id62"><span class="problematic" id="id63">`</span></a></p>
 <p>### 3.20.5. Upstream repository changed url of the submodule</p>
 <p><code class="docutils literal notranslate"><span class="pre">`bash</span>
 <span class="pre">#</span> <span class="pre">copy</span> <span class="pre">the</span> <span class="pre">new</span> <span class="pre">URL</span> <span class="pre">to</span> <span class="pre">your</span> <span class="pre">local</span> <span class="pre">config</span>
@@ -497,7 +517,7 @@ git submodule update –init –recursive</p>
 <span class="pre">`</span></code></p>
 <p>## 3.21. Migrate part of git repository</p>
 <p>After a fresh clone of the repository to migrate, do:</p>
-<p><a href="#id72"><span class="problematic" id="id73">``</span></a><a href="#id74"><span class="problematic" id="id75">`</span></a>bash
+<p><a href="#id64"><span class="problematic" id="id65">``</span></a><a href="#id66"><span class="problematic" id="id67">`</span></a>bash
 git-filter-repo –prune-degenerate always –prune-empty always –path /path/to/keep/1 –path /path/to/keep/2</p>
 <p># Eventually rename things
 # Put everything in root
@@ -511,8 +531,15 @@ git remote add old-repo ../myrepo
 git pull old-repo master –allow-unrelated-histories
 git remote remove old-repo
 git add origin &lt;new/origin&gt;
-<a href="#id76"><span class="problematic" id="id77">``</span></a><a href="#id78"><span class="problematic" id="id79">`</span></a></p>
+<a href="#id68"><span class="problematic" id="id69">``</span></a><a href="#id70"><span class="problematic" id="id71">`</span></a></p>
 <p>&lt;div style=”page-break-after: always; break-after: page;”&gt;&lt;/div&gt;</p>
+<p>## 3.22. Git reverse patch</p>
+<p><a href="#id72"><span class="problematic" id="id73">``</span></a><a href="#id74"><span class="problematic" id="id75">`</span></a>bash
+git fsck –no-reflog | awk ‘/dangling commit/ {print $3}’</p>
+<p># create patch</p>
+<p>git diff &gt; my_patch.patch
+git apply –reject –whitespace=fix –reverse my_patch.patch
+<a href="#id76"><span class="problematic" id="id77">``</span></a><a href="#id78"><span class="problematic" id="id79">`</span></a></p>
 </section>
 </section>
 
@@ -529,7 +556,7 @@ git add origin &lt;new/origin&gt;
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Sphinx tricks</div>
+                <div class="title"><span class="section-number">1. </span>Sphinx tricks</div>
                 
               </div>
             </a>
@@ -563,16 +590,20 @@ git add origin &lt;new/origin&gt;
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Git infos</a><ul>
-<li><a class="reference internal" href="#notes-on-creating-a-git-repository-on-github">Notes on creating a git repository on github</a><ul>
-<li><a class="reference internal" href="#some-notes-on-the-above-commands">Some notes on the above commands</a></li>
+<li><a class="reference internal" href="#">2. Git infos</a><ul>
+<li><a class="reference internal" href="#notes-on-creating-a-git-repository-on-github">2.1. Notes on creating a git repository on github</a><ul>
+<li><a class="reference internal" href="#some-notes-on-the-above-commands">2.1.1. Some notes on the above commands</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#check-previous-commit">Check previous commit</a></li>
-<li><a class="reference internal" href="#git-stash-and-log">Git stash and log</a></li>
-<li><a class="reference internal" href="#create-local-git-repository">Create local git repository</a></li>
-<li><a class="reference internal" href="#change-the-author-name">Change the author name</a></li>
-<li><a class="reference internal" href="#remove-tracked-file-that-is-now-in-gitignore">Remove tracked file that is now in .gitignore</a></li>
+<li><a class="reference internal" href="#check-previous-commit">2.2. Check previous commit</a></li>
+<li><a class="reference internal" href="#git-stash-and-log">2.3. Git stash and log</a></li>
+<li><a class="reference internal" href="#create-local-git-repository">2.4. Create local git repository</a></li>
+<li><a class="reference internal" href="#change-the-author-name">2.5. Change the author name</a></li>
+<li><a class="reference internal" href="#remove-tracked-file-that-is-now-in-gitignore">2.6. Remove tracked file that is now in .gitignore</a></li>
+<li><a class="reference internal" href="#check-last-commit-changes">2.7. Check last commit changes</a></li>
+<li><a class="reference internal" href="#installing-git-in-live-iso-arch">2.8. Installing git in live ISO arch</a></li>
+<li><a class="reference internal" href="#change-remote-url">2.9. Change remote URL</a></li>
+<li><a class="reference internal" href="#add-remote-url">2.10. Add remote URL</a></li>
 </ul>
 </li>
 </ul>

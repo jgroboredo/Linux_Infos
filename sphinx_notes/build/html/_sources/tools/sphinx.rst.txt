@@ -83,3 +83,23 @@ then inserts a link to https://github.com/sphinx-doc/sphinx/issues/123.
 As you can see, the target given in the role is substituted in the *base URL*
 in the place of ``%s``.
 
+------------------------
+Sphinx Numbered Sections
+------------------------
+
+In order to have numbered sections in sphinx, check this `link <https://sphinx-multitoc-numbering.readthedocs.io/en/latest/>`_.
+
+The steps for installation are the following:
+
+1. ``git clone https://github.com/executablebooks/sphinx-multitoc-numbering``
+2. and install using the following commands: ::
+
+    cd sphinx-multitoc-numbering
+    sudo python setup.py install
+
+3. Add this to the extensions list in the sphinx ``conf.py``: ::
+
+    extensions = ["sphinx_multitoc_numbering"]
+
+4. Finally, use ``:numbered:`` option in toctrees. 
+

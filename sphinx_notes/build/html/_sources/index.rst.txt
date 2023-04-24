@@ -17,6 +17,7 @@ Contents
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   :numbered:
 
    tools/sphinx
    tools/git
