@@ -27,3 +27,5 @@ Contents
 
    tools/sphinx
    tools/git
+   tools/bash
+   tools/lyx

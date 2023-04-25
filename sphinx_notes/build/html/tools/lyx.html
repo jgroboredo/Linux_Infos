@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="2. Git infos" href="git.html" /><link rel="prev" title="Welcome to Gonçalo’s Personal Notes’s!" href="../index.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="3. Bash Notes" href="bash.html" />
 
     <!-- Generated with Sphinx 6.1.3 and Furo 2023.03.27 -->
-        <title>1. Sphinx tricks - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
+        <title>4. LyX Notes - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -156,10 +156,10 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">1. Sphinx tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">1. Sphinx tricks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">2. Git infos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bash.html">3. Bash Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lyx.html">4. LyX Notes</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">4. LyX Notes</a></li>
 </ul>
 
 </div>
@@ -194,105 +194,73 @@
           </label>
         </div>
         <article role="main">
-          <section id="sphinx-tricks">
-<span id="id1"></span><h1><span class="section-number">1. </span>Sphinx tricks<a class="headerlink" href="#sphinx-tricks" title="Permalink to this heading">#</a></h1>
-<section id="nested-blocks">
-<h2><span class="section-number">1.1. </span>Nested Blocks<a class="headerlink" href="#nested-blocks" title="Permalink to this heading">#</a></h2>
-<p>Consider the following example:</p>
-<ul>
-<li><p>List item 1</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="n">sample</span>
-</pre></div>
-</div>
-<ul>
-<li><p>List item 2</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="n">sample</span>
-</pre></div>
-</div>
-</li>
-</ul>
-</li>
-</ul>
-<p>In terms of code:</p>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="m">-</span> List item 1 ::
-
-   code sample 1
-
-  <span class="m">-</span> List item 2 ::
-
-     code sample 2
-</pre></div>
-</div>
-<p>Basically, in this example, the “code sample 1” is indented in respect to “List item 1”
-(i.e., there are 3 spaces to the beginning of the line). On the other hand, the “code sample 2”
-is indented with respect to “List item 2” (i.e, there are 3 spaces with respect to the second
-indentation level, which is the hyphen where “List item 2” starts)</p>
-<ul>
-<li><p>List item 1</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="n">block</span>
-</pre></div>
-</div>
-<ul>
-<li><p>List item 2</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="n">block</span>
-</pre></div>
-</div>
-</li>
-</ul>
-</li>
-</ul>
-<p>Apparently I can simply tab the code blocks to indent. I just need to be careful where the
-nested item starts (the hyphen needs to be right under the first letter of “List item 1”).</p>
-</section>
-<section id="sphinx-doc-extlinks">
-<h2><span class="section-number">1.2. </span>Sphinx Doc -  extlinks<a class="headerlink" href="#sphinx-doc-extlinks" title="Permalink to this heading">#</a></h2>
-<p>In sphinx documentation, they have the following in the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
-<blockquote>
-<div><p>extlinks = {‘duref’: (’<a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/">https://docutils.sourceforge.io/docs/ref/rst/</a>’…}</p>
+          <section id="lyx-notes">
+<span id="id1"></span><h1><span class="section-number">4. </span>LyX Notes<a class="headerlink" href="#lyx-notes" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>LyX is a document processor that encourages an approach to writing based on the structure of your documents and not simply their appearance.
+LyX combines the power and flexibility of TeX/LaTeX with the ease of use of a graphical interface. Read more in <a class="reference external" href="https://www.lyx.org/">lyx.org</a>.</p>
 </div></blockquote>
-<p>Then, they can use, for e.g., <code class="docutils literal notranslate"><span class="pre">(:duref:`ref</span> <span class="pre">&lt;paragraphs&gt;`)</span></code> to link to a reference
-created in the documents in the link provided (in this case, with the name paragraphs).</p>
-<p>This extension is meant to help with the common pattern of having many external
-links that point to URLs on one and the same site, e.g. links to bug trackers,
-version control web interfaces, or simply subpages in other websites.  It does
-so by providing aliases to base URLs, so that you only need to give the subpage
-name when creating a link.</p>
-<p>Let’s assume that you want to include many links to issues at the Sphinx
-tracker, at <code class="samp docutils literal notranslate"><span class="pre">https://github.com/sphinx-doc/sphinx/issues/</span><em><span class="pre">num</span></em></code>.  Typing
-this URL again and again is tedious, so you can use <code class="xref py py-mod docutils literal notranslate"><span class="pre">extlinks</span></code>
-to avoid repeating yourself.</p>
-<p>The extension adds a config value:</p>
-<p>This config value must be a dictionary of external sites, mapping unique
-short alias names to a <em>base URL</em> and a <em>caption</em>.  For example, to create an
-alias for the above mentioned issues, you would add</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">extlinks</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;issue&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;https://github.com/sphinx-doc/sphinx/issues/</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;issue </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">)}</span>
-</pre></div>
-</div>
-<p>Now, you can use the alias name as a new role, e.g. <code class="docutils literal notranslate"><span class="pre">:issue:`123`</span></code>.  This
-then inserts a link to <a class="reference external" href="https://github.com/sphinx-doc/sphinx/issues/123">https://github.com/sphinx-doc/sphinx/issues/123</a>.
-As you can see, the target given in the role is substituted in the <em>base URL</em>
-in the place of <code class="docutils literal notranslate"><span class="pre">%s</span></code>.</p>
+<section id="configure-lyx">
+<h2><span class="section-number">4.1. </span>Configure lyx<a class="headerlink" href="#configure-lyx" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Tools-Preferences-File Formats: PDF (pdflatex), shortname: pdf2, Viewer: Custom - zathura</p></li>
+<li><p>Tools-Preferences-Output-PDF command: <code class="docutils literal notranslate"><span class="pre">zathura</span> <span class="pre">--synctex-forward</span> <span class="pre">$$n:1:$$t</span> <span class="pre">$$o</span></code></p></li>
+<li><p>Tools-Preferences-Shortcuts-New: buffer-view pdf2 and buffer-update pdf2</p></li>
+<li><p>For the spellchecker, might need to install <code class="docutils literal notranslate"><span class="pre">hunspell-en_US</span></code> and <code class="docutils literal notranslate"><span class="pre">hunspel-pt_pt</span></code> and <code class="docutils literal notranslate"><span class="pre">enchant</span></code></p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">lgrenc.def</span> <span class="pre">not</span> <span class="pre">found</span></code> -&gt; install <code class="docutils literal notranslate"><span class="pre">texlive-langgreek</span></code></p></li>
+<li><p>To use eps figures in lyx I need <code class="docutils literal notranslate"><span class="pre">ghostscript</span></code> : try to <code class="docutils literal notranslate"><span class="pre">epstopdf</span></code> on command line to discover this.</p></li>
+</ul>
 </section>
-<section id="sphinx-numbered-sections">
-<span id="id2"></span><h2><span class="section-number">1.3. </span>Sphinx Numbered Sections<a class="headerlink" href="#sphinx-numbered-sections" title="Permalink to this heading">#</a></h2>
-<p>In order to have numbered sections in sphinx, check this <a class="reference external" href="https://sphinx-multitoc-numbering.readthedocs.io/en/latest/">link</a>.</p>
-<p>The steps for installation are the following:</p>
-<ol class="arabic">
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/executablebooks/sphinx-multitoc-numbering</span></code></p></li>
-<li><p>and install using the following commands:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">multitoc</span><span class="o">-</span><span class="n">numbering</span>
-<span class="n">sudo</span> <span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+<section id="kpathsea">
+<h2><span class="section-number">4.2. </span>Kpathsea<a class="headerlink" href="#kpathsea" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Kpathsea</span></code> is a library for path searching (e.g., for very quickly locating a given .sty file in a set of potentially large TEXMF trees,
+without doing a recursive directory tree traversal every time a given file is needed. (pse -&gt; pathsea)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpsewhich</span> <span class="pre">minted.sy</span></code> to search efficiently on tex library</p></li>
+</ul>
+</section>
+<section id="configure-minted">
+<h2><span class="section-number">4.3. </span>Configure minted<a class="headerlink" href="#configure-minted" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mkdir <span class="s2">&quot;/usr/share/texmf-texlive/tex/latex/minted/&quot;</span>
+sudo cp minted.sty <span class="s2">&quot;/usr/share/texmf-texlive/tex/latex/minted/&quot;</span>
+sudo mktexlsr
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Then in lyx, go to Tools/Tex Information, select latex styles and click rescan. minted.sty should appear in the list in lyx, go to “Tools&gt;preferences&gt;file handling&gt;converters” and
+find the converter from tex to pdflatex. Edit its command line adding the option “-shell-escape” (no quotes) into the Converter field, then click the Modify button next to the list
+of converters. This is equivalent to going to Documents-&gt;Formats-&gt;Allow running external programs (is a better solution since it avoids writting a warning message).
+Then click Apply in lyx, go to Document&gt;Settings and enter “/usepackage{minted}” (no quotes) in the latex preamble in lyx, in the part of your document where you want
+the highlighted code to appear, go to “Insert&gt;TEX code” to get an Evil Red Text (ERT) box</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">Document-&gt;Settings-&gt;Listings</span></code>, add following options:</p>
+<ul>
+<li><p>language=C++</p></li>
+<li><p>frame=single</p></li>
+<li><p>mathescape=true</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">syoek</span> <span class="pre">--synctex-forward</span> <span class="pre">$$n:1:$$t</span> <span class="pre">$$o</span></code></p></li>
+</ul>
+</li>
+<li><p>Ordered bibliography: Use style <code class="docutils literal notranslate"><span class="pre">unsrt</span></code> and add to preamble: <code class="docutils literal notranslate"><span class="pre">\usepackage{notoccite}</span></code></p></li>
+</ul>
+</section>
+<section id="install-custom-cls">
+<h2><span class="section-number">4.4. </span>Install custom cls<a class="headerlink" href="#install-custom-cls" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">latex</span> <span class="pre">my_class.ins</span></code> -&gt; produces my_class.cls</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpsewhich</span> <span class="pre">-var-value=TEXMFHOME</span></code> -&gt; prints path where to put cls</p></li>
+<li><p>Regarding the above command, it’s good to put the usual path: <code class="docutils literal notranslate"><span class="pre">$HOME/texmf/tex/latex/commonstuff/</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpsewhich</span> <span class="pre">my_class.cls</span></code> -&gt; to check path of the class</p></li>
+<li><p>Write lyx layout: In order to do this, find the basis class for our new class. For that, inspect my_class.cls and check the line LoadClass.
+It implies that my_class.cls is a descendent of that class (let’s suppose it’s dependent on report class). Then, in /usr/share/lyx/layouts copy report.layout,
+change its name to my_class.layout and edit like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="se">\D</span>eclareLaTeXClass<span class="o">[</span>my_class<span class="o">]{</span>name_of_layout<span class="o">}</span>
+Input report.layout
 </pre></div>
 </div>
 </li>
-<li><p>Add this to the extensions list in the sphinx <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinx_multitoc_numbering&quot;</span><span class="p">]</span>
-</pre></div>
-</div>
-</li>
-<li><p>Finally, use <code class="docutils literal notranslate"><span class="pre">:numbered:</span></code> option in toctrees.</p></li>
-</ol>
+<li><p>In lyx, reconfigure. Now, name_of_layout is the text we see in Document-Class</p></li>
+<li><p>Default classes: <code class="docutils literal notranslate"><span class="pre">/usr/share/texmf-dist/latex/elsarticle/elsarticle.cls</span></code></p></li>
+</ul>
 </section>
 </section>
 
@@ -301,23 +269,15 @@ in the place of <code class="docutils literal notranslate"><span class="pre">%s<
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="git.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title"><span class="section-number">2. </span>Git infos</div>
-              </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="../index.html">
+          
+          <a class="prev-page" href="bash.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Home</div>
+                <div class="title"><span class="section-number">3. </span>Bash Notes</div>
                 
               </div>
             </a>
@@ -351,10 +311,11 @@ in the place of <code class="docutils literal notranslate"><span class="pre">%s<
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">1. Sphinx tricks</a><ul>
-<li><a class="reference internal" href="#nested-blocks">1.1. Nested Blocks</a></li>
-<li><a class="reference internal" href="#sphinx-doc-extlinks">1.2. Sphinx Doc -  extlinks</a></li>
-<li><a class="reference internal" href="#sphinx-numbered-sections">1.3. Sphinx Numbered Sections</a></li>
+<li><a class="reference internal" href="#">4. LyX Notes</a><ul>
+<li><a class="reference internal" href="#configure-lyx">4.1. Configure lyx</a></li>
+<li><a class="reference internal" href="#kpathsea">4.2. Kpathsea</a></li>
+<li><a class="reference internal" href="#configure-minted">4.3. Configure minted</a></li>
+<li><a class="reference internal" href="#install-custom-cls">4.4. Install custom cls</a></li>
 </ul>
 </li>
 </ul>
