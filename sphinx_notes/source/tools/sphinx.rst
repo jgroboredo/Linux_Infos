@@ -83,6 +83,8 @@ then inserts a link to https://github.com/sphinx-doc/sphinx/issues/123.
 As you can see, the target given in the role is substituted in the *base URL*
 in the place of ``%s``.
 
+.. _sphinx-numbered-sections:
+
 ------------------------
 Sphinx Numbered Sections
 ------------------------

@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="1. Sphinx tricks" href="sphinx.html" />
 
-    <!-- Generated with Sphinx 6.1.3 and Furo 2023.03.27 -->
+    <!-- Generated with Sphinx 6.2.1 and Furo 2023.03.27 -->
         <title>2. Git infos - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
@@ -263,29 +263,29 @@ we’ll have to create a new “main” branch and then delete the old “master
 </section>
 <section id="check-last-commit-changes">
 <h2><span class="section-number">2.7. </span>Check last commit changes<a class="headerlink" href="#check-last-commit-changes" title="Permalink to this heading">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git show --name-only <span class="c1"># Lists just the files in the last commit and doesn&#39;t give you the entire guts</span>
-git diff HEAD^ HEAD <span class="c1"># HEAD^ identifies last commit</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>show<span class="w"> </span>--name-only<span class="w"> </span><span class="c1"># Lists just the files in the last commit and doesn&#39;t give you the entire guts</span>
+git<span class="w"> </span>diff<span class="w"> </span>HEAD^<span class="w"> </span>HEAD<span class="w"> </span><span class="c1"># HEAD^ identifies last commit</span>
 </pre></div>
 </div>
 </section>
 <section id="installing-git-in-live-iso-arch">
 <h2><span class="section-number">2.8. </span>Installing git in live ISO arch<a class="headerlink" href="#installing-git-in-live-iso-arch" title="Permalink to this heading">#</a></h2>
 <p>If error in keys:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pacman -Sy archlinux-keyring<span class="p">;</span> pacman-key --populate archlinux
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pacman<span class="w"> </span>-Sy<span class="w"> </span>archlinux-keyring<span class="p">;</span><span class="w"> </span>pacman-key<span class="w"> </span>--populate<span class="w"> </span>archlinux
 </pre></div>
 </div>
 </section>
 <section id="change-remote-url">
 <h2><span class="section-number">2.9. </span>Change remote URL<a class="headerlink" href="#change-remote-url" title="Permalink to this heading">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git remote -v <span class="c1"># To check the present remote url</span>
-git remote set-url origin &lt;url&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>-v<span class="w"> </span><span class="c1"># To check the present remote url</span>
+git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>&lt;url&gt;
 </pre></div>
 </div>
 </section>
 <section id="add-remote-url">
 <h2><span class="section-number">2.10. </span>Add remote URL<a class="headerlink" href="#add-remote-url" title="Permalink to this heading">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git remote add name_of_remote &lt;url&gt;
-git push -u name_of_remote --all
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>name_of_remote<span class="w"> </span>&lt;url&gt;
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>name_of_remote<span class="w"> </span>--all
 </pre></div>
 </div>
 <div class="admonition note">
@@ -298,248 +298,319 @@ git push -u name_of_remote --all
 </pre></div>
 </div>
 </li>
-<li><p>Can use this command to change the default git push:</p>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Can use this command to change the default git push.</p>
+</div>
+<ul>
+<li><p>Set preferred remote for current branch:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">branch</span> <span class="o">--</span><span class="nb">set</span><span class="o">-</span><span class="n">upstream</span><span class="o">-</span><span class="n">to</span> <span class="o">&lt;</span><span class="n">remote</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </li>
+<li><p>Set preferred remote for branch_name:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">branch</span> <span class="n">branch_name</span> <span class="o">--</span><span class="nb">set</span><span class="o">-</span><span class="n">upstream</span><span class="o">-</span><span class="n">to</span> <span class="o">&lt;</span><span class="n">remote</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;/</span><span class="n">branch</span>
+</pre></div>
+</div>
+</li>
+<li><p>Shows the default remote for the current branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">vv</span>
+</pre></div>
+</div>
+</li>
 </ul>
-<p>&gt; Set preferred remote for current branch</p>
-<ul class="simple">
-<li><p><cite>git branch branch_name –set-upstream-to &lt;remote-name&gt;/branch</cite></p></li>
-</ul>
-<p>&gt; set preferred remote for branch_name</p>
-<ul class="simple">
-<li><p><cite>git branch -vv</cite></p></li>
-</ul>
-<p>&gt; shows the default remote for the current branch</p>
-<p>## 3.11. Different Pushes</p>
-<ul class="simple">
-<li><p>To push all branches to all remotes:
-<cite>git remote | xargs -L1 git push –all</cite></p></li>
-<li><p>Push a specific branch to all remotes:
-<cite>git remote | xargs -L1 -I R git push R branch_name</cite></p></li>
-<li><p>To make a git alias for the command:
-<cite>git config –global alias.pushall ‘!git remote | xargs -L1 git push –all’</cite></p></li>
-</ul>
-<p>Or</p>
-<ul class="simple">
-<li><p>Create an all remote with several repo URLs to its name:</p></li>
-</ul>
-<dl class="simple">
-<dt><a href="#id2"><span class="problematic" id="id3">``</span></a><a href="#id4"><span class="problematic" id="id5">`</span></a></dt><dd><p>git remote add all origin-host:path/proj.git
-git remote set-url –add all nodester-host:path/proj.git
-git remote set-url –add all duostack-host:path/proj.git
-git push all –all</p>
-</dd>
-</dl>
-<p><a href="#id6"><span class="problematic" id="id7">``</span></a><a href="#id8"><span class="problematic" id="id9">`</span></a></p>
-<p>Or</p>
-<ul class="simple">
-<li><p>If you want to always push to repo1, repo2, and repo3 but always pull only from repo1, set up the remote ‘origin’ as:</p></li>
-</ul>
-<dl class="simple">
-<dt><a href="#id10"><span class="problematic" id="id11">``</span></a><a href="#id12"><span class="problematic" id="id13">`</span></a></dt><dd><p>git remote add origin <a class="reference external" href="https://exampleuser&#64;example.com/path/to/repo1">https://exampleuser&#64;example.com/path/to/repo1</a>
-git remote set-url –push –add origin <a class="reference external" href="https://exampleuser&#64;example.com/path/to/repo1">https://exampleuser&#64;example.com/path/to/repo1</a>
-git remote set-url –push –add origin <a class="reference external" href="https://exampleuser&#64;example.com/path/to/repo2">https://exampleuser&#64;example.com/path/to/repo2</a>
-git remote set-url –push –add origin <a class="reference external" href="https://exampleuser&#64;example.com/path/to/repo3">https://exampleuser&#64;example.com/path/to/repo3</a></p>
-</dd>
-</dl>
-<p><a href="#id14"><span class="problematic" id="id15">``</span></a><a href="#id16"><span class="problematic" id="id17">`</span></a></p>
-<ul class="simple">
-<li><p>If you only want to pull from repo1 but push to repo1 and repo2 for a specific branch specialBranch:</p></li>
-</ul>
-<dl class="simple">
-<dt><a href="#id18"><span class="problematic" id="id19">``</span></a><a href="#id20"><span class="problematic" id="id21">`</span></a></dt><dd><dl class="simple">
-<dt>[remote “origin”]</dt><dd><p>url = <a class="reference external" href="ssh://git&#64;aaa.xxx.com:7999/yyy/repo1.git">ssh://git&#64;aaa.xxx.com:7999/yyy/repo1.git</a>
-fetch = +refs/heads/<em>:refs/remotes/origin/</em>
-…</p>
-</dd>
-<dt>[remote “specialRemote”]</dt><dd><p>url = <a class="reference external" href="ssh://git&#64;aaa.xxx.com:7999/yyy/repo1.git">ssh://git&#64;aaa.xxx.com:7999/yyy/repo1.git</a>
-pushurl = <a class="reference external" href="ssh://git&#64;aaa.xxx.com:7999/yyy/repo1.git">ssh://git&#64;aaa.xxx.com:7999/yyy/repo1.git</a>
-pushurl = <a class="reference external" href="ssh://git&#64;aaa.xxx.com:7999/yyy/repo2.git">ssh://git&#64;aaa.xxx.com:7999/yyy/repo2.git</a>
-fetch = +refs/heads/<em>:refs/remotes/origin/</em> (Note: Has origin here again, only pulls from origin)
-…</p>
-</dd>
-<dt>[branch “specialBranch”]</dt><dd><p>remote = origin
-pushRemote = specialRemote
-…</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p><a href="#id22"><span class="problematic" id="id23">``</span></a><a href="#id24"><span class="problematic" id="id25">`</span></a></p>
+</section>
+<section id="different-pushes">
+<h2><span class="section-number">2.11. </span>Different Pushes<a class="headerlink" href="#different-pushes" title="Permalink to this heading">#</a></h2>
 <ul>
-<li><p>My experience:
-- I can specify which remote to push or pull from:</p>
-<blockquote>
-<div><blockquote>
-<div><p><a href="#id26"><span class="problematic" id="id27">``</span></a><a href="#id28"><span class="problematic" id="id29">`</span></a>bash
-git pull remote_name branch
-git push remote_name branch</p>
-</div></blockquote>
-<p><a href="#id30"><span class="problematic" id="id31">``</span></a><a href="#id32"><span class="problematic" id="id33">`</span></a></p>
-</div></blockquote>
-<ul class="simple">
+<li><p>To push all branches to all remotes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">remote</span> <span class="o">|</span> <span class="n">xargs</span> <span class="o">-</span><span class="n">L1</span> <span class="n">git</span> <span class="n">push</span> <span class="o">--</span><span class="nb">all</span>
+</pre></div>
+</div>
+</li>
+<li><p>Push a specific branch to all remotes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">remote</span> <span class="o">|</span> <span class="n">xargs</span> <span class="o">-</span><span class="n">L1</span> <span class="o">-</span><span class="n">I</span> <span class="n">R</span> <span class="n">git</span> <span class="n">push</span> <span class="n">R</span> <span class="n">branch_name</span>
+</pre></div>
+</div>
+</li>
+<li><p>To make a git alias for the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="o">.</span><span class="n">pushall</span> <span class="s1">&#39;!git remote | xargs -L1 git push --all&#39;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Or</p>
+<ul>
+<li><p>Create an all remote with several repo URLs to its name:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>all<span class="w"> </span>origin-host:path/proj.git
+git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>--add<span class="w"> </span>all<span class="w"> </span>nodester-host:path/proj.git
+git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>--add<span class="w"> </span>all<span class="w"> </span>duostack-host:path/proj.git
+git<span class="w"> </span>push<span class="w"> </span>all<span class="w"> </span>--all
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Or</p>
+<ul>
+<li><p>If you want to always push to repo1, repo2, and repo3 but always pull only from repo1, set up the remote ‘origin’ as:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>https://exampleuser@example.com/path/to/repo1
+git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>--push<span class="w"> </span>--add<span class="w"> </span>origin<span class="w"> </span>https://exampleuser@example.com/path/to/repo1
+git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>--push<span class="w"> </span>--add<span class="w"> </span>origin<span class="w"> </span>https://exampleuser@example.com/path/to/repo2
+git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>--push<span class="w"> </span>--add<span class="w"> </span>origin<span class="w"> </span>https://exampleuser@example.com/path/to/repo3
+</pre></div>
+</div>
+</li>
+<li><p>If you only want to pull from repo1 but push to repo1 and repo2 for a specific branch specialBranch:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>remote<span class="w"> </span><span class="s2">&quot;origin&quot;</span><span class="o">]</span>
+<span class="w">  </span><span class="nv">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ssh://git@aaa.xxx.com:7999/yyy/repo1.git
+<span class="w">  </span><span class="nv">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>+refs/heads/*:refs/remotes/origin/*
+<span class="w">  </span>...
+<span class="o">[</span>remote<span class="w"> </span><span class="s2">&quot;specialRemote&quot;</span><span class="o">]</span>
+<span class="w">  </span><span class="nv">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ssh://git@aaa.xxx.com:7999/yyy/repo1.git
+<span class="w">  </span><span class="nv">pushurl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ssh://git@aaa.xxx.com:7999/yyy/repo1.git
+<span class="w">  </span><span class="nv">pushurl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ssh://git@aaa.xxx.com:7999/yyy/repo2.git
+<span class="w">  </span><span class="nv">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>+refs/heads/*:refs/remotes/origin/*<span class="w"> </span><span class="o">(</span>Note:<span class="w"> </span>Has<span class="w"> </span>origin<span class="w"> </span>here<span class="w"> </span>again,<span class="w"> </span>only<span class="w"> </span>pulls<span class="w"> </span>from<span class="w"> </span>origin<span class="o">)</span>
+<span class="w">  </span>...
+<span class="o">[</span>branch<span class="w"> </span><span class="s2">&quot;specialBranch&quot;</span><span class="o">]</span>
+<span class="w">  </span><span class="nv">remote</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>origin
+<span class="w">  </span><span class="nv">pushRemote</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>specialRemote
+<span class="w">  </span>...
+</pre></div>
+</div>
+</li>
+<li><p>My experience:</p>
+<ul>
+<li><p>I can specify which remote to push or pull from:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull<span class="w"> </span>remote_name<span class="w"> </span>branch
+git<span class="w"> </span>push<span class="w"> </span>remote_name<span class="w"> </span>branch
+</pre></div>
+</div>
+</li>
 <li><p>A branch has a default remote: I only need to specify the remote_name and eventually the branch_name (I can’t pull from a non-default remote without specifying the branch) if I don’t want to do it to the default one</p></li>
 </ul>
 </li>
 </ul>
-<p>## 3.12. Use curl to download from github</p>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">curl</span> <span class="pre">-LkSs</span> <span class="pre">https://api.github.com/repos/jgroboredo/arch_install/tarball</span> <span class="pre">-o</span> <span class="pre">master.tar.gz</span>
-<span class="pre">tar</span> <span class="pre">xf</span> <span class="pre">master.tar.gz</span>
-<span class="pre">`</span></code></p>
-<p>## 3.12. Download a file from github</p>
+</section>
+<section id="use-curl-to-download-from-github">
+<h2><span class="section-number">2.12. </span>Use curl to download from github<a class="headerlink" href="#use-curl-to-download-from-github" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-LkSs<span class="w"> </span>https://api.github.com/repos/jgroboredo/arch_install/tarball<span class="w"> </span>-o<span class="w"> </span>master.tar.gz
+tar<span class="w"> </span>xf<span class="w"> </span>master.tar.gz
+</pre></div>
+</div>
+</section>
+<section id="download-a-file-from-github">
+<h2><span class="section-number">2.13. </span>Download a file from github<a class="headerlink" href="#download-a-file-from-github" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Go to file, click on raw, copy link</p></li>
-<li><p><cite>curl -L “link_from_above_step” &gt;&gt; output</cite></p></li>
+<li><p>Go to file, click on raw, copy link and: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-L</span> <span class="pre">&quot;link_from_above_step&quot;</span> <span class="pre">&gt;&gt;</span> <span class="pre">output</span></code></p></li>
 </ul>
-<p>## 3.13. Merge branches</p>
-<ul class="simple">
-<li><p><cite>git checkout master; git merge other_branch_name</cite></p></li>
-<li><p>Alternative:<cite>git merge –no-ff other_branch_name</cite> . Using –no-ff allows someone reviewing history to clearly see the branch you checked out to work on.</p></li>
-<li><p><cite>git branch -d branch_name</cite></p></li>
-</ul>
-<p>&gt; deletes branch locally</p>
-<ul class="simple">
-<li><p><cite>git push origin –delete branch_name</cite></p></li>
-</ul>
-<p>&gt; deletes a branch remotely</p>
-<ul class="simple">
-<li><p><cite>git fetch -p</cite></p></li>
-</ul>
-<p>&gt; Synchronize branch listing. After fetching, branches which no longer exist on the remote will be deleted.</p>
+</section>
+<section id="merge-branches">
+<h2><span class="section-number">2.14. </span>Merge branches<a class="headerlink" href="#merge-branches" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>master<span class="p">;</span><span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>other_branch_name
+
+<span class="c1"># Alternative:</span>
+git<span class="w"> </span>merge<span class="w"> </span>--no-ff<span class="w"> </span>other_branch_name<span class="w"> </span><span class="c1"># Using --no-ff allows someone reviewing history to clearly see the branch you checked out to work on.</span>
+</pre></div>
+</div>
+</section>
+<section id="delete-branches">
+<h2><span class="section-number">2.15. </span>Delete branches<a class="headerlink" href="#delete-branches" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>branch_name<span class="w"> </span><span class="c1"># deletes branch locally</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>--delete<span class="w"> </span>branch_name<span class="w"> </span><span class="c1"># deletes a branch remotely</span>
+git<span class="w"> </span>fetch<span class="w"> </span>-p<span class="w"> </span><span class="c1"># Synchronize branch listing. After fetching, branches which no longer exist on the remote will be deleted.</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>If I do a: <cite>git pull origin master</cite> on another branch, it will merge them.
-After creating a new branch, we need to specify tracking information for the current branch. That means we need to do something like <cite>git pull &lt;remote&gt; &lt;branch&gt;</cite> for it to work.
+After creating a new branch, we need to specify tracking information for the current branch. That means we need to do something like <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">&lt;remote&gt;</span> <span class="pre">&lt;branch&gt;</span></code> for it to work.
 On the other hand, we can simply set tracking information for the current branch by:
-<cite>git branch –set-upstream-to=origin/&lt;branch&gt; correction_chapter1</cite></p>
-<p>## 3.14. Check merge conflicts</p>
-<p><cite>git show –name-only [commit sha]</cite> on a commit that was a merge containing conflicts and you’ll see it as part of the message.</p>
-<p>## 3.15. Merge mistake (You committed changes to (local) master)</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">git</span> <span class="pre">branch</span> <span class="pre">&lt;new-branch&gt;</span>
-<span class="pre">git</span> <span class="pre">reset</span> <span class="pre">HEAD~</span> <span class="pre">--hard</span>
-<span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">new-branch</span>
-<span class="pre">`</span></code></p>
-<p>The first command creates the new branch we want to work with. The second command resets the main branch to just before the last commit, but leaves the changes you just made in the new branch. Finally, we switch to the new branch where your changes await you.
-If you’ve made multiple commits, use <cite>git reset HEAD~&lt;n&gt; –hard</cite>, where &lt;n&gt; is the number of commits back you want to go.</p>
-<p>## 3.16. Git merge “Deleted by us”</p>
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">--set-upstream-to=origin/&lt;branch&gt;</span> <span class="pre">correction_chapter1</span></code></p>
+</div>
+</section>
+<section id="check-merge-conflicts">
+<h2><span class="section-number">2.16. </span>Check merge conflicts<a class="headerlink" href="#check-merge-conflicts" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>show<span class="w"> </span>--name-only<span class="w"> </span>&lt;commit<span class="w"> </span>sha&gt;<span class="w"> </span><span class="c1"># on a commit that was a merge containing conflicts and you&#39;ll see it as part of the message.</span>
+</pre></div>
+</div>
+</section>
+<section id="merge-mistake-you-committed-changes-to-local-master">
+<h2><span class="section-number">2.17. </span>Merge mistake (You committed changes to (local) master)<a class="headerlink" href="#merge-mistake-you-committed-changes-to-local-master" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>&lt;new-branch&gt;
+git<span class="w"> </span>reset<span class="w"> </span>HEAD~<span class="w"> </span>--hard
+git<span class="w"> </span>checkout<span class="w"> </span>new-branch
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The first command creates the new branch we want to work with. The second command resets the main branch to just before the last commit,
+but leaves the changes you just made in the new branch. Finally, we switch to the new branch where your changes await you.
+If you’ve made multiple commits, use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">HEAD~&lt;n&gt;</span> <span class="pre">--hard</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;n&gt;</span></code> is the number of commits back you want to go.</p></li>
+</ul>
+</section>
+<section id="git-merge-deleted-by-us">
+<h2><span class="section-number">2.18. </span>#Git merge “Deleted by us”<a class="headerlink" href="#git-merge-deleted-by-us" title="Permalink to this heading">#</a></h2>
 <p>Resolve all non deleted merge conflicts by hand, which you have to do anyway;
-Type <cite>git diff –name-only –diff-filter=U</cite> to get a list of all remaining files in conflit. These files must be the ones you want deleted.
-<cite>git diff –name-only –diff-filter=U | xargs git rm</cite></p>
-<p>## 3.17. Commit ID and SHA</p>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">git</span> <span class="pre">show</span> <span class="pre">-s</span> <span class="pre">--format=%H</span> <span class="pre">#</span> <span class="pre">shows</span> <span class="pre">the</span> <span class="pre">last</span> <span class="pre">commit</span> <span class="pre">full</span> <span class="pre">id</span>
-<span class="pre">git</span> <span class="pre">show</span> <span class="pre">-s</span> <span class="pre">--format=%h</span> <span class="pre">#</span> <span class="pre">shows</span> <span class="pre">the</span> <span class="pre">last</span> <span class="pre">commit</span> <span class="pre">sha</span>
-<span class="pre">`</span></code></p>
-<p>## 3.18. Git over ssh using ssh config</p>
-<p><cite>git remote set-url origin ssh://pi(here config name)/home/goncalo/HDD/Documents/git_repos/Notes.git</cite> (here full path)</p>
-<p>## 3.19. Sparse Checkout</p>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">mkdir</span> <span class="pre">&lt;repo&gt;</span>
-<span class="pre">cd</span> <span class="pre">&lt;repo&gt;</span>
-<span class="pre">git</span> <span class="pre">init</span>
-<span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">-f</span> <span class="pre">origin</span> <span class="pre">&lt;url&gt;</span>
-<span class="pre">`</span></code></p>
+Type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">--name-only</span> <span class="pre">--diff-filter=U</span></code> to get a list of all remaining files in conflit. These files must be the ones you want deleted.</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">--name-only</span> <span class="pre">--diff-filter=U</span> <span class="pre">|</span> <span class="pre">xargs</span> <span class="pre">git</span> <span class="pre">rm</span></code></p>
+</section>
+<section id="commit-id-and-sha">
+<h2><span class="section-number">2.19. </span>Commit ID and SHA<a class="headerlink" href="#commit-id-and-sha" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>show<span class="w"> </span>-s<span class="w"> </span>--format<span class="o">=</span>%H<span class="w"> </span><span class="c1"># shows the last commit full id</span>
+git<span class="w"> </span>show<span class="w"> </span>-s<span class="w"> </span>--format<span class="o">=</span>%h<span class="w"> </span><span class="c1"># shows the last commit sha</span>
+</pre></div>
+</div>
+</section>
+<section id="git-over-ssh-using-ssh-config">
+<h2><span class="section-number">2.20. </span>Git over ssh using ssh config<a class="headerlink" href="#git-over-ssh-using-ssh-config" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>ssh://pi<span class="o">(</span>here<span class="w"> </span>config<span class="w"> </span>name<span class="o">)</span>/home/goncalo/HDD/Documents/git_repos/Notes.git
+</pre></div>
+</div>
+</section>
+<section id="sparse-checkout">
+<h2><span class="section-number">2.21. </span>Sparse Checkout<a class="headerlink" href="#sparse-checkout" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>&lt;repo&gt;
+<span class="nb">cd</span><span class="w"> </span>&lt;repo&gt;
+git<span class="w"> </span>init
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>-f<span class="w"> </span>origin<span class="w"> </span>&lt;url&gt;
+</pre></div>
+</div>
 <p>This creates an empty repository with your remote, and fetches all objects but doesn’t check them out.</p>
-<p>Then: <cite>git config core.sparseCheckout true</cite></p>
-<p>Now we define which files/folders we want to check out by editing <cite>.git/info/sparse-checkout</cite>:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">echo</span> <span class="pre">&quot;some/dir/&quot;</span> <span class="pre">&gt;&gt;</span> <span class="pre">.git/info/sparse-checkout</span>
-<span class="pre">echo</span> <span class="pre">&quot;another/sub/tree&quot;</span> <span class="pre">&gt;&gt;</span> <span class="pre">.git/info/sparse-checkout</span>
-<span class="pre">`</span></code></p>
-<p>Finally, just update the repo: <cite>git pull origin master</cite></p>
-<p>## 3.20. Git submodules</p>
-<p>### 3.20.1. Add submodule</p>
-<p><a href="#id34"><span class="problematic" id="id35">``</span></a><a href="#id36"><span class="problematic" id="id37">`</span></a>bash
-# Add submodule to repository
-# By default, submodules will add the subproject
-# into a directory named the same as the repository</p>
-<p>git submodule add &lt;link_to_submodule&gt; &lt;optional_path&gt;</p>
-<p># Although the submodule is a subdirectory in your working directory,
-# Git sees it as a submodule and doesn’t track its
-# contents when you’re not in that directory</p>
-<p>git diff –cached –submodule
-<a href="#id38"><span class="problematic" id="id39">``</span></a><a href="#id40"><span class="problematic" id="id41">`</span></a></p>
-<p>### 3.20.2. Clone repo with submodule</p>
-<p><a href="#id42"><span class="problematic" id="id43">``</span></a><a href="#id44"><span class="problematic" id="id45">`</span></a>bash
-git clone &lt;main_project_link&gt;
-git submodule init # initializes local config file
-git submodule update # fetch all the data from that project</p>
-<p># or</p>
-<p>git clone –recurse-submodules</p>
-<p># or
-git clone &lt;main_project_link&gt;
-git submodule update –init
-<a href="#id46"><span class="problematic" id="id47">``</span></a>`
-### 3.20.3. Pulling in Upstream Changes from the Submodule Remote</p>
-<p><a href="#id48"><span class="problematic" id="id49">``</span></a><a href="#id50"><span class="problematic" id="id51">`</span></a>bash
-cd &lt;git_submodule_dir&gt;
-git fecth
-git merge</p>
-<p># or</p>
-<p>git submodule update –remote &lt;submodule_name&gt;</p>
-<p>cd &lt;main_project&gt;
-git diff –submodule #  get a list of commits that were added to the submodule
-git config –global diff.submodule log # to avoid the need to write –submodule in every git diff</p>
-<p># If you commit at this point then you will lock the submodule
-# into having the new code when other people update.</p>
-<p>git config -f .gitmodules submodule.DbConnector.branch stable # in order to track other branch</p>
-<p># if we leave off -f .gitmodules it will only make the change locally</p>
-<p>git config status.submodulesummary 1 # to see a summary of changes to the submodules
-<a href="#id52"><span class="problematic" id="id53">``</span></a><a href="#id54"><span class="problematic" id="id55">`</span></a></p>
-<p>### 3.20.4. Pulling Upstream Changes from the Project Remote</p>
+<p>Then: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">core.sparseCheckout</span> <span class="pre">true</span></code></p>
+<p>Now we define which files/folders we want to check out by editing <code class="docutils literal notranslate"><span class="pre">.git/info/sparse-checkout</span></code> :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;some/dir/&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.git/info/sparse-checkout
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;another/sub/tree&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.git/info/sparse-checkout
+</pre></div>
+</div>
+<p>Finally, just update the repo: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">master</span></code></p>
+</section>
+<section id="git-submodules">
+<h2><span class="section-number">2.22. </span>3.20. Git submodules<a class="headerlink" href="#git-submodules" title="Permalink to this heading">#</a></h2>
+<section id="add-submodule">
+<h3><span class="section-number">2.22.1. </span>Add submodule<a class="headerlink" href="#add-submodule" title="Permalink to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add submodule to repository</span>
+<span class="c1"># By default, submodules will add the subproject</span>
+<span class="c1"># into a directory named the same as the repository</span>
+
+git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>&lt;link_to_submodule&gt;<span class="w"> </span>&lt;optional_path&gt;
+
+<span class="c1"># Although the submodule is a subdirectory in your working directory,</span>
+<span class="c1"># Git sees it as a submodule and doesn’t track its</span>
+<span class="c1"># contents when you’re not in that directory</span>
+
+git<span class="w"> </span>diff<span class="w"> </span>--cached<span class="w"> </span>--submodule
+</pre></div>
+</div>
+</section>
+<section id="clone-repo-with-submodule">
+<h3><span class="section-number">2.22.2. </span>Clone repo with submodule<a class="headerlink" href="#clone-repo-with-submodule" title="Permalink to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>&lt;main_project_link&gt;
+git<span class="w"> </span>submodule<span class="w"> </span>init<span class="w"> </span><span class="c1"># initializes local config file</span>
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span><span class="c1"># fetch all the data from that project</span>
+
+<span class="c1"># or</span>
+
+git<span class="w"> </span>clone<span class="w"> </span>--recurse-submodules
+
+<span class="c1"># or</span>
+git<span class="w"> </span>clone<span class="w"> </span>&lt;main_project_link&gt;
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init
+</pre></div>
+</div>
+</section>
+<section id="pulling-in-upstream-changes-from-the-submodule-remote">
+<h3><span class="section-number">2.22.3. </span>Pulling in Upstream Changes from the Submodule Remote<a class="headerlink" href="#pulling-in-upstream-changes-from-the-submodule-remote" title="Permalink to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>&lt;git_submodule_dir&gt;
+git<span class="w"> </span>fecth
+git<span class="w"> </span>merge
+
+<span class="c1"># or</span>
+
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--remote<span class="w"> </span>&lt;submodule_name&gt;
+
+<span class="nb">cd</span><span class="w"> </span>&lt;main_project&gt;
+git<span class="w"> </span>diff<span class="w"> </span>--submodule<span class="w"> </span><span class="c1">#  get a list of commits that were added to the submodule</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>diff.submodule<span class="w"> </span>log<span class="w"> </span><span class="c1"># to avoid the need to write --submodule in every git diff</span>
+
+<span class="c1"># If you commit at this point then you will lock the submodule</span>
+<span class="c1"># into having the new code when other people update.</span>
+
+git<span class="w"> </span>config<span class="w"> </span>-f<span class="w"> </span>.gitmodules<span class="w"> </span>submodule.DbConnector.branch<span class="w"> </span>stable<span class="w"> </span><span class="c1"># in order to track other branch</span>
+
+<span class="c1"># if we leave off -f .gitmodules it will only make the change locally</span>
+
+git<span class="w"> </span>config<span class="w"> </span>status.submodulesummary<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1"># to see a summary of changes to the submodules</span>
+</pre></div>
+</div>
+</section>
+<section id="pulling-upstream-changes-from-the-project-remote">
+<h3><span class="section-number">2.22.4. </span>Pulling Upstream Changes from the Project Remote<a class="headerlink" href="#pulling-upstream-changes-from-the-project-remote" title="Permalink to this heading">#</a></h3>
 <p>Now the perspective of the colaborator that cloned the Main Project.</p>
-<p>Simply executing <cite>git pull</cite> is not enough.
+<p>Simply executing <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> is not enough.
 By default, the git pull command recursively fetches submodules changes. However, it does not update the submodules.</p>
-<p><a href="#id56"><span class="problematic" id="id57">``</span></a><a href="#id58"><span class="problematic" id="id59">`</span></a>bash
-git submodule update –init –recursive</p>
-<p># –init flag: MainProject might have added new submodules
-# –recursive flag: if submodules have nested submodules</p>
-<p># or</p>
-<p>git pull –recurse-submodules
-<a href="#id60"><span class="problematic" id="id61">``</span></a><a href="#id62"><span class="problematic" id="id63">`</span></a></p>
-<p>### 3.20.5. Upstream repository changed url of the submodule</p>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">#</span> <span class="pre">copy</span> <span class="pre">the</span> <span class="pre">new</span> <span class="pre">URL</span> <span class="pre">to</span> <span class="pre">your</span> <span class="pre">local</span> <span class="pre">config</span>
-<span class="pre">$</span> <span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">sync</span> <span class="pre">--recursive</span>
-<span class="pre">#</span> <span class="pre">update</span> <span class="pre">the</span> <span class="pre">submodule</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">new</span> <span class="pre">URL</span>
-<span class="pre">$</span> <span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span> <span class="pre">--init</span> <span class="pre">--recursive</span>
-<span class="pre">`</span></code></p>
-<p>### 3.20.6. Switching from subdirectories to submodules</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+
+<span class="c1"># --init flag: MainProject might have added new submodules</span>
+<span class="c1"># --recursive flag: if submodules have nested submodules</span>
+
+<span class="c1"># or</span>
+
+git<span class="w"> </span>pull<span class="w"> </span>--recurse-submodules
+</pre></div>
+</div>
+</section>
+<section id="upstream-repository-changed-url-of-the-submodule">
+<h3><span class="section-number">2.22.5. </span>Upstream repository changed url of the submodule<a class="headerlink" href="#upstream-repository-changed-url-of-the-submodule" title="Permalink to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># copy the new URL to your local config</span>
+$<span class="w"> </span>git<span class="w"> </span>submodule<span class="w"> </span>sync<span class="w"> </span>--recursive
+<span class="c1"># update the submodule from the new URL</span>
+$<span class="w"> </span>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+</pre></div>
+</div>
+</section>
+<section id="switching-from-subdirectories-to-submodules">
+<h3><span class="section-number">2.22.6. </span>Switching from subdirectories to submodules<a class="headerlink" href="#switching-from-subdirectories-to-submodules" title="Permalink to this heading">#</a></h3>
 <p>Problem:  we have been tracking files in our project and want to move them out into a submodule.</p>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">#First</span> <span class="pre">unstage</span>
-<span class="pre">git</span> <span class="pre">rm</span> <span class="pre">-r</span> <span class="pre">SubDir</span>
-<span class="pre">#</span> <span class="pre">Then</span> <span class="pre">Add</span>
-<span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">add</span> <span class="pre">&lt;submodule_link&gt;</span>
-<span class="pre">`</span></code></p>
-<p>## 3.21. Migrate part of git repository</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#First unstage</span>
+git<span class="w"> </span>rm<span class="w"> </span>-r<span class="w"> </span>SubDir
+<span class="c1"># Then Add</span>
+git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>&lt;submodule_link&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="migrate-part-of-git-repository">
+<h2><span class="section-number">2.23. </span>Migrate part of git repository<a class="headerlink" href="#migrate-part-of-git-repository" title="Permalink to this heading">#</a></h2>
 <p>After a fresh clone of the repository to migrate, do:</p>
-<p><a href="#id64"><span class="problematic" id="id65">``</span></a><a href="#id66"><span class="problematic" id="id67">`</span></a>bash
-git-filter-repo –prune-degenerate always –prune-empty always –path /path/to/keep/1 –path /path/to/keep/2</p>
-<p># Eventually rename things
-# Put everything in root
-git-filter-repo –path-rename /previous/path/:</p>
-<p># Change name
-git-filter-repo –path-rename /previous/path/:/new/path</p>
-<p># migrate to new repo
-cd new_repo
-git init
-git remote add old-repo ../myrepo
-git pull old-repo master –allow-unrelated-histories
-git remote remove old-repo
-git add origin &lt;new/origin&gt;
-<a href="#id68"><span class="problematic" id="id69">``</span></a><a href="#id70"><span class="problematic" id="id71">`</span></a></p>
-<p>&lt;div style=”page-break-after: always; break-after: page;”&gt;&lt;/div&gt;</p>
-<p>## 3.22. Git reverse patch</p>
-<p><a href="#id72"><span class="problematic" id="id73">``</span></a><a href="#id74"><span class="problematic" id="id75">`</span></a>bash
-git fsck –no-reflog | awk ‘/dangling commit/ {print $3}’</p>
-<p># create patch</p>
-<p>git diff &gt; my_patch.patch
-git apply –reject –whitespace=fix –reverse my_patch.patch
-<a href="#id76"><span class="problematic" id="id77">``</span></a><a href="#id78"><span class="problematic" id="id79">`</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git-filter-repo<span class="w"> </span>--prune-degenerate<span class="w"> </span>always<span class="w"> </span>--prune-empty<span class="w"> </span>always<span class="w"> </span>--path<span class="w"> </span>/path/to/keep/1<span class="w"> </span>--path<span class="w"> </span>/path/to/keep/2
+
+<span class="c1"># Eventually rename things</span>
+<span class="c1"># Put everything in root</span>
+git-filter-repo<span class="w"> </span>--path-rename<span class="w"> </span>/previous/path/:
+
+<span class="c1"># Change name</span>
+git-filter-repo<span class="w"> </span>--path-rename<span class="w"> </span>/previous/path/:/new/path
+
+<span class="c1"># migrate to new repo</span>
+<span class="nb">cd</span><span class="w"> </span>new_repo
+git<span class="w"> </span>init
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>old-repo<span class="w"> </span>../myrepo
+git<span class="w"> </span>pull<span class="w"> </span>old-repo<span class="w"> </span>master<span class="w"> </span>--allow-unrelated-histories
+git<span class="w"> </span>remote<span class="w"> </span>remove<span class="w"> </span>old-repo
+git<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>&lt;new/origin&gt;
+</pre></div>
+</div>
+</section>
+<section id="git-reverse-patch">
+<h2><span class="section-number">2.24. </span>Git reverse patch<a class="headerlink" href="#git-reverse-patch" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>fsck<span class="w"> </span>--no-reflog<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/dangling commit/ {print $3}&#39;</span>
+
+<span class="c1"># create patch</span>
+
+git<span class="w"> </span>diff<span class="w"> </span>&gt;<span class="w"> </span>my_patch.patch
+git<span class="w"> </span>apply<span class="w"> </span>--reject<span class="w"> </span>--whitespace<span class="o">=</span>fix<span class="w"> </span>--reverse<span class="w"> </span>my_patch.patch
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -604,6 +675,28 @@ git apply –reject –whitespace=fix –reverse my_patch.patch
 <li><a class="reference internal" href="#installing-git-in-live-iso-arch">2.8. Installing git in live ISO arch</a></li>
 <li><a class="reference internal" href="#change-remote-url">2.9. Change remote URL</a></li>
 <li><a class="reference internal" href="#add-remote-url">2.10. Add remote URL</a></li>
+<li><a class="reference internal" href="#different-pushes">2.11. Different Pushes</a></li>
+<li><a class="reference internal" href="#use-curl-to-download-from-github">2.12. Use curl to download from github</a></li>
+<li><a class="reference internal" href="#download-a-file-from-github">2.13. Download a file from github</a></li>
+<li><a class="reference internal" href="#merge-branches">2.14. Merge branches</a></li>
+<li><a class="reference internal" href="#delete-branches">2.15. Delete branches</a></li>
+<li><a class="reference internal" href="#check-merge-conflicts">2.16. Check merge conflicts</a></li>
+<li><a class="reference internal" href="#merge-mistake-you-committed-changes-to-local-master">2.17. Merge mistake (You committed changes to (local) master)</a></li>
+<li><a class="reference internal" href="#git-merge-deleted-by-us">2.18. #Git merge “Deleted by us”</a></li>
+<li><a class="reference internal" href="#commit-id-and-sha">2.19. Commit ID and SHA</a></li>
+<li><a class="reference internal" href="#git-over-ssh-using-ssh-config">2.20. Git over ssh using ssh config</a></li>
+<li><a class="reference internal" href="#sparse-checkout">2.21. Sparse Checkout</a></li>
+<li><a class="reference internal" href="#git-submodules">2.22. 3.20. Git submodules</a><ul>
+<li><a class="reference internal" href="#add-submodule">2.22.1. Add submodule</a></li>
+<li><a class="reference internal" href="#clone-repo-with-submodule">2.22.2. Clone repo with submodule</a></li>
+<li><a class="reference internal" href="#pulling-in-upstream-changes-from-the-submodule-remote">2.22.3. Pulling in Upstream Changes from the Submodule Remote</a></li>
+<li><a class="reference internal" href="#pulling-upstream-changes-from-the-project-remote">2.22.4. Pulling Upstream Changes from the Project Remote</a></li>
+<li><a class="reference internal" href="#upstream-repository-changed-url-of-the-submodule">2.22.5. Upstream repository changed url of the submodule</a></li>
+<li><a class="reference internal" href="#switching-from-subdirectories-to-submodules">2.22.6. Switching from subdirectories to submodules</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#migrate-part-of-git-repository">2.23. Migrate part of git repository</a></li>
+<li><a class="reference internal" href="#git-reverse-patch">2.24. Git reverse patch</a></li>
 </ul>
 </li>
 </ul>

@@ -8,7 +8,13 @@ Welcome to Gonçalo's Personal Notes's!
 ======================================
 
 These notes are written using sphinx. For more information, visit the sphinx documentation `here <https://www.sphinx-doc.org>`_.
-In order to build the notes, just run ``make clean; make html``
+In order to build the notes, just run ``make clean; make html``.
+
+The dependencies to build this documentation are:
+
+- sphinx;
+- furo (theme);
+- sphinx-multitoc-numbering - check :ref:`this section <sphinx-numbered-sections>` for more information.
 
 --------
 Contents
