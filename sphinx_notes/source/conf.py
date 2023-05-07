@@ -14,7 +14,7 @@ release = '0.1'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["sphinx_multitoc_numbering"]
+extensions = ["sphinx_multitoc_numbering", "sphinx_copybutton"]
 
 templates_path = ['_templates']
 exclude_patterns = []

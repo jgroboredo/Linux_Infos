@@ -3,12 +3,13 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="3. Bash Notes" href="bash.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="5. Qemu Notes" href="qemu.html" /><link rel="prev" title="3. Bash Notes" href="bash.html" />
 
-    <!-- Generated with Sphinx 6.1.3 and Furo 2023.03.27 -->
+    <!-- Generated with Sphinx 6.2.1 and Furo 2023.03.27 -->
         <title>4. LyX Notes - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -160,6 +161,11 @@
 <li class="toctree-l1"><a class="reference internal" href="git.html">2. Git infos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bash.html">3. Bash Notes</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">4. LyX Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qemu.html">5. Qemu Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inkscape.html">6. Inkscape Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zathura.html">7. Zathura Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zsh.html">8. Zsh Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter.html">9. Jupyter Notes</a></li>
 </ul>
 
 </div>
@@ -221,9 +227,9 @@ without doing a recursive directory tree traversal every time a given file is ne
 </section>
 <section id="configure-minted">
 <h2><span class="section-number">4.3. </span>Configure minted<a class="headerlink" href="#configure-minted" title="Permalink to this heading">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mkdir <span class="s2">&quot;/usr/share/texmf-texlive/tex/latex/minted/&quot;</span>
-sudo cp minted.sty <span class="s2">&quot;/usr/share/texmf-texlive/tex/latex/minted/&quot;</span>
-sudo mktexlsr
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span><span class="s2">&quot;/usr/share/texmf-texlive/tex/latex/minted/&quot;</span>
+sudo<span class="w"> </span>cp<span class="w"> </span>minted.sty<span class="w"> </span><span class="s2">&quot;/usr/share/texmf-texlive/tex/latex/minted/&quot;</span>
+sudo<span class="w"> </span>mktexlsr
 </pre></div>
 </div>
 <ul class="simple">
@@ -254,7 +260,7 @@ the highlighted code to appear, go to “Insert&gt;TEX code” to get an Evil Re
 It implies that my_class.cls is a descendent of that class (let’s suppose it’s dependent on report class). Then, in /usr/share/lyx/layouts copy report.layout,
 change its name to my_class.layout and edit like this:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="se">\D</span>eclareLaTeXClass<span class="o">[</span>my_class<span class="o">]{</span>name_of_layout<span class="o">}</span>
-Input report.layout
+Input<span class="w"> </span>report.layout
 </pre></div>
 </div>
 </li>
@@ -269,7 +275,15 @@ Input report.layout
       <footer>
         
         <div class="related-pages">
-          
+          <a class="next-page" href="qemu.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><span class="section-number">5. </span>Qemu Notes</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
           <a class="prev-page" href="bash.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
@@ -331,5 +345,7 @@ Input report.layout
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     </body>
 </html>

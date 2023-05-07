@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="4. LyX Notes" href="lyx.html" /><link rel="prev" title="2. Git infos" href="git.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="6. Inkscape Notes" href="inkscape.html" /><link rel="prev" title="4. LyX Notes" href="lyx.html" />
 
     <!-- Generated with Sphinx 6.2.1 and Furo 2023.03.27 -->
-        <title>3. Bash Notes - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
+        <title>5. Qemu Notes - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -159,9 +159,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="sphinx.html">1. Sphinx tricks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">2. Git infos</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">3. Bash Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bash.html">3. Bash Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lyx.html">4. LyX Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="qemu.html">5. Qemu Notes</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">5. Qemu Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inkscape.html">6. Inkscape Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="zathura.html">7. Zathura Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="zsh.html">8. Zsh Notes</a></li>
@@ -200,77 +200,46 @@
           </label>
         </div>
         <article role="main">
-          <section id="bash-notes">
-<span id="id1"></span><h1><span class="section-number">3. </span>Bash Notes<a class="headerlink" href="#bash-notes" title="Permalink to this heading">#</a></h1>
+          <section id="qemu-notes">
+<span id="id1"></span><h1><span class="section-number">5. </span>Qemu Notes<a class="headerlink" href="#qemu-notes" title="Permalink to this heading">#</a></h1>
 <blockquote class="epigraph">
-<div><p>Bash is the GNU Project’s shell - the Bourne Again SHell. Read more in <a class="reference external" href="https://www.gnu.org/software/bash/">gnu.org</a>.</p>
+<div><p>Qemu is a generic and open source machine emulator and virtualizer. Read more in <a class="reference external" href="https://www.qemu.org/">qemu.org</a>.</p>
 </div></blockquote>
-<section id="bash-note-1">
-<h2><span class="section-number">3.1. </span>Bash Note 1<a class="headerlink" href="#bash-note-1" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>The number of arguments passed to the shell script is given by <code class="docutils literal notranslate"><span class="pre">$#</span></code></p></li>
-<li><p>We identify the args passed to a script/function with <code class="docutils literal notranslate"><span class="pre">$1,</span> <span class="pre">$2</span></code>, etc</p></li>
-</ul>
-</section>
-<section id="bash-note-2">
-<h2><span class="section-number">3.2. </span>Bash Note 2<a class="headerlink" href="#bash-note-2" title="Permalink to this heading">#</a></h2>
-<p>The code:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">case</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="k">in</span>
--f<span class="p">|</span>--from<span class="o">)</span><span class="w"> </span>command1<span class="p">;</span><span class="w"> </span><span class="nb">shift</span><span class="w"> </span><span class="p">;;</span>
-*<span class="o">)</span><span class="w">         </span>command2<span class="p">;;</span>
-<span class="k">esac</span>
-<span class="nb">shift</span>
-</pre></div>
-</div>
-<p>will check if the first argument <code class="docutils literal notranslate"><span class="pre">$1</span></code> passed to the script matches <code class="docutils literal notranslate"><span class="pre">-f</span></code> or <code class="docutils literal notranslate"><span class="pre">--from</span></code> or any other cases; The asterisk means that it does <code class="docutils literal notranslate"><span class="pre">command2</span></code> if it doesn’t match any of the cases above;
-The <code class="docutils literal notranslate"><span class="pre">shift</span></code> command shifts the arguments, i.e., if I have <code class="docutils literal notranslate"><span class="pre">$1</span></code>, <code class="docutils literal notranslate"><span class="pre">$2</span></code> arguments, then <code class="docutils literal notranslate"><span class="pre">$2</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">$1</span></code>.</p>
-</section>
-<section id="bash-note-3">
-<h2><span class="section-number">3.3. </span>Bash Note 3<a class="headerlink" href="#bash-note-3" title="Permalink to this heading">#</a></h2>
-<p>The code:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SCRIPT_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="w"> </span>dirname<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BASH_SOURCE</span><span class="p">[0]</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">pwd</span><span class="w"> </span><span class="k">)</span><span class="s2">&quot;</span>
-</pre></div>
-</div>
-<p>will give you the full directory name of the script no matter where it is being called from.</p>
-</section>
-<section id="bash-note-4-compare-files">
-<h2><span class="section-number">3.4. </span>Bash Note 4 - Compare Files<a class="headerlink" href="#bash-note-4-compare-files" title="Permalink to this heading">#</a></h2>
-<p>The code:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>-F<span class="w"> </span>-x<span class="w"> </span>-v<span class="w"> </span>-f<span class="w"> </span>fileA<span class="w"> </span>fileB
-</pre></div>
-</div>
-<p>works by using each line in <code class="docutils literal notranslate"><span class="pre">fileA</span></code> as a pattern (<code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">fileA</span></code>) and treating it as a plain string to match (<code class="docutils literal notranslate"><span class="pre">-F</span></code>). You force the match to happen on the whole line <code class="docutils literal notranslate"><span class="pre">-x</span></code> and
-print out only the lines that don’t match (<code class="docutils literal notranslate"><span class="pre">-v</span></code>). Therefore, you are printing out the lines in fileB that don’t contain the same data as any line in <code class="docutils literal notranslate"><span class="pre">fileA</span></code>.</p>
-</section>
-<section id="bash-note-5-use-of-curly-braces">
-<h2><span class="section-number">3.5. </span>Bash Note 5 - Use of curly braces<a class="headerlink" href="#bash-note-5-use-of-curly-braces" title="Permalink to this heading">#</a></h2>
-<ol class="arabic">
-<li><p>In the example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">var</span><span class="o">=</span><span class="m">10</span><span class="w">        </span><span class="c1"># Declare variable</span>
+<section id="some-commands">
+<h2><span class="section-number">5.1. </span>Some Commands<a class="headerlink" href="#some-commands" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qemu-img<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>qcow2<span class="w"> </span>qemu_image<span class="w"> </span>8G
+qemu-system-x86_64<span class="w"> </span>-smp<span class="w"> </span><span class="m">6</span><span class="w"> </span>-m<span class="w"> </span>4G<span class="w"> </span>-enable-kvm<span class="w"> </span>-cdrom<span class="w"> </span>arch.iso<span class="w"> </span>-boot<span class="w"> </span><span class="nv">order</span><span class="o">=</span>d<span class="w"> </span>qemu_image
+smp<span class="w"> </span><span class="o">(</span>number<span class="w"> </span>of<span class="w"> </span>cores<span class="o">)</span>
 
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">var</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># One use of the variable</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$var</span><span class="s2">&quot;</span><span class="w">   </span><span class="c1"># Another use of the variable</span>
+qemu-system-x86_64<span class="w"> </span>-soundhw<span class="w"> </span>ac97<span class="w"> </span>-k<span class="w"> </span>en-us<span class="w"> </span>-vga<span class="w"> </span>std<span class="w"> </span>-enable-kvm<span class="w"> </span>-m<span class="w"> </span>4G<span class="w">  </span>-usbdevice<span class="w"> </span>tablet<span class="w"> </span>-smp<span class="w"> </span><span class="m">6</span><span class="w"> </span>-enable-kvm<span class="w"> </span>-boot<span class="w"> </span>c<span class="w"> </span>qemu_image
+
+<span class="c1"># For no sound</span>
+qemu-system-x86_64<span class="w"> </span>-k<span class="w"> </span>en-us<span class="w"> </span>-vga<span class="w"> </span>std<span class="w"> </span>-enable-kvm<span class="w"> </span>-m<span class="w"> </span>4G<span class="w">  </span>-usbdevice<span class="w"> </span>tablet<span class="w"> </span>-smp<span class="w"> </span><span class="m">6</span><span class="w"> </span>-boot<span class="w"> </span>c<span class="w"> </span>qemu_image
 </pre></div>
 </div>
-<p>it makes no difference to use curly braces.</p>
-</li>
-<li><p>However, the <code class="docutils literal notranslate"><span class="pre">{}</span></code> in <code class="docutils literal notranslate"><span class="pre">${}</span></code> are useful if you want to expand the variable foo in the string <code class="docutils literal notranslate"><span class="pre">&quot;${foo}bar&quot;</span></code> since <code class="docutils literal notranslate"><span class="pre">$foobar</span></code>
-would instead expand the variable identified by foobar.</p></li>
-</ol>
-<p>Curly braces are also unconditionally required when:</p>
-<ul class="simple">
-<li><p>expanding array elements, as in <code class="docutils literal notranslate"><span class="pre">${array[42]}</span></code></p></li>
-<li><p>using parameter expansion operations, as in <code class="docutils literal notranslate"><span class="pre">${filename%.*}</span></code> (remove extension)</p></li>
-<li><p>expanding positional parameters beyond 9: <code class="docutils literal notranslate"><span class="pre">&quot;$8</span> <span class="pre">$9</span> <span class="pre">${10}</span> <span class="pre">${11}&quot;</span></code></p></li>
-</ul>
 </section>
-<section id="bash-note-6-search-recursively-in-directory">
-<h2><span class="section-number">3.6. </span>Bash Note 6 - Search recursively in directory<a class="headerlink" href="#bash-note-6-search-recursively-in-directory" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-R</span> <span class="pre">&quot;stuff&quot;</span></code> will search recursively on all files on that directory and look for the word stuff</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">**/.ipynb_checkpoints</span></code> will find recursively all directories with this name</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">./pattern</span></code> will search for this pattern in current directory</p></li>
-</ul>
+<section id="variables">
+<h2><span class="section-number">5.2. </span>Variables<a class="headerlink" href="#variables" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-k<span class="w"> </span>en-us<span class="w"> </span><span class="o">(</span>keymap<span class="o">)</span>
+-usbdevice<span class="w"> </span>tablet
+
+-cpu<span class="w"> </span>host
+-smp<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="c1"># number of cores</span>
+-machine<span class="w"> </span><span class="nv">type</span><span class="o">=</span>pc,accel<span class="o">=</span>kvm
+-enable-kvm
+-format<span class="o">=</span>raw<span class="w"> </span>??
+-machine<span class="w"> </span><span class="nv">smm</span><span class="o">=</span>off<span class="w"> </span><span class="c1"># bug?</span>
+-soundhw<span class="w"> </span>sb16,es1370
+
+<span class="c1">#telnet access</span>
+qemu-system-x86_64<span class="w"> </span>-curses<span class="w"> </span>-monitor<span class="w"> </span>telnet:127.0.0.1:1234,server,nowait<span class="w"> </span>-boot<span class="w"> </span>c<span class="w"> </span>qemu_image
+telnet<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span><span class="m">1234</span><span class="w">  </span>--<span class="w"> </span><span class="k">in</span><span class="w"> </span>another<span class="w"> </span>terminal
+
+<span class="c1">#KVM Quick Check</span>
+zgrep<span class="w"> </span>CONFIG_VIRTIO<span class="w"> </span>/proc/config.gz
+lsmod<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>kvm
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -279,23 +248,23 @@ would instead expand the variable identified by foobar.</p></li>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="lyx.html">
+          <a class="next-page" href="inkscape.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title"><span class="section-number">4. </span>LyX Notes</div>
+                <div class="title"><span class="section-number">6. </span>Inkscape Notes</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="git.html">
+          <a class="prev-page" href="lyx.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title"><span class="section-number">2. </span>Git infos</div>
+                <div class="title"><span class="section-number">4. </span>LyX Notes</div>
                 
               </div>
             </a>
@@ -329,13 +298,9 @@ would instead expand the variable identified by foobar.</p></li>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">3. Bash Notes</a><ul>
-<li><a class="reference internal" href="#bash-note-1">3.1. Bash Note 1</a></li>
-<li><a class="reference internal" href="#bash-note-2">3.2. Bash Note 2</a></li>
-<li><a class="reference internal" href="#bash-note-3">3.3. Bash Note 3</a></li>
-<li><a class="reference internal" href="#bash-note-4-compare-files">3.4. Bash Note 4 - Compare Files</a></li>
-<li><a class="reference internal" href="#bash-note-5-use-of-curly-braces">3.5. Bash Note 5 - Use of curly braces</a></li>
-<li><a class="reference internal" href="#bash-note-6-search-recursively-in-directory">3.6. Bash Note 6 - Search recursively in directory</a></li>
+<li><a class="reference internal" href="#">5. Qemu Notes</a><ul>
+<li><a class="reference internal" href="#some-commands">5.1. Some Commands</a></li>
+<li><a class="reference internal" href="#variables">5.2. Variables</a></li>
 </ul>
 </li>
 </ul>

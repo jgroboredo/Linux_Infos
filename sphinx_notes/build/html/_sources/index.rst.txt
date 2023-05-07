@@ -14,7 +14,8 @@ The dependencies to build this documentation are:
 
 - sphinx;
 - furo (theme);
-- sphinx-multitoc-numbering - check :ref:`this section <sphinx-numbered-sections>` for more information.
+- sphinx-multitoc-numbering - check :ref:`this section <sphinx-numbered-sections>` for more information;
+- sphinx-copybutton - visit `link <https://sphinx-copybutton.readthedocs.io>`_ for more information.
 
 --------
 Contents
@@ -29,3 +30,8 @@ Contents
    tools/git
    tools/bash
    tools/lyx
+   tools/qemu
+   tools/inkscape
+   tools/zathura
+   tools/zsh
+   tools/jupyter
