@@ -237,6 +237,7 @@
 - [70. Compare files](#70-compare-files)
 - [71. Fiddler](#71-fiddler)
 - [72. Termux](#72-termux)
+  - [Setting up termux](#setting-up-termux)
   - [72.1. Termux Brightness](#721-termux-brightness)
   - [72.2. TV url opener](#722-tv-url-opener)
 - [73. VPN Critical](#73-vpn-critical)
@@ -262,6 +263,8 @@
   - [81.1. Desktop icons](#811-desktop-icons)
 - [82. BCompare](#82-bcompare)
   - [82.1. Crack for `4.x`](#821-crack-for-4x)
+- [Frida / HttpToolkit](#frida--httptoolkit)
+  - [Notes about `curl` after intercepting the http requests](#notes-about-curl-after-intercepting-the-http-requests)
 - [83. Misc](#83-misc)
 
 ## 1.1. Introduction
@@ -3193,6 +3196,8 @@ Now you should be able to capture HTTPS traffic too.
 
 # 72. Termux
 
+## Setting up termux
+
 Termux should be installed from F-Droid, both in TV and phone.
 
 Besides termux, install (also using F-Droid) Termux:API, Termux:Boot, Termux:Widgets.
@@ -3201,6 +3206,21 @@ In terms of permissions, both in TV and Phone, allow termux to `Display Over Oth
 In TV, in order to get this setting, go to settings -> Apps -> Termux and it should be there.
 
 Note: In TV, in order to have wireless debug, need to allow USB debugging in developer options and then allow the connection with the pc.
+
+In terms of packages, install:
+
+```bash
+pkg update
+pkg install libqrencode jq yq termux-api termux-styling vim
+```
+
+Copy the `.termux` folder [dotfiles](https://github.com/jgroboredo/lap_dotfiles) to termux home and run:
+
+```bash
+termux-reload-settings
+```
+
+The above is important because otherwise the font my screw up the qrcode.
 
 ## 72.1. Termux Brightness
 
@@ -3535,6 +3555,104 @@ or
 --- BEGIN LICENSE KEY ---
 GXN1eh9FbDiX1ACdd7XKMV7hL7x0ClBJLUJ-zFfKofjaj2yxE53xauIfkqZ8FoLpcZ0Ux6McTyNmODDSvSIHLYhg1QkTxjCeSCk6ARz0ABJcnUmd3dZYJNWFyJun14rmGByRnVPL49QH+Rs0kjRGKCB-cb8IT4Gf0Ue9WMQ1A6t31MO9jmjoYUeoUmbeAQSofvuK8GN1rLRv7WXfUJ0uyvYlGLqzq1ZoJAJDyo0Kdr4ThF-IXcv2cxVyWVW1SaMq8GFosDEGThnY7C-SgNXW30jqAOgiRjKKRX9RuNeDMFqgP2cuf0NMvyMrMScnM1ZyiAaJJtzbxqN5hZOMClUTE+++
 --- END LICENSE KEY -----
+```
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# Frida / HttpToolkit
+
+For now, this section is a summary of the steps that I needed to follow in order to disable the **SSL Pinning** done by the FitnessHut app (in order to catch the https requests).
+
+For more informations, check [http toolkit blog](https://httptoolkit.com/blog/frida-certificate-pinning/).
+
+First, download **Frida Android Service** from [Github](https://github.com/frida/frida/releases) for `arm64`.
+
+Then extract the `.xz` file with the `unxz` command.
+
+Now, we can start the Frida server in the phone:
+
+```bash
+# Copy the server to the device
+adb push ./frida-server-$version-android-$arch /data/local/tmp/frida-server
+#        ^Change this to match the name of the binary you just extracted
+
+# Enable root access to the device
+adb root
+
+# Make the server binary executable
+adb shell "chmod 755 /data/local/tmp/frida-server"
+
+# Start the server on your device
+adb shell "/data/local/tmp/frida-server &"
+```
+
+After, install Frida in the computer:
+
+```bash
+pip install frida-tools
+```
+
+We can test this by running `frida-ps -U`.
+
+After, we can start the application that we which to hook into (also, go to the app info and find it's name - e.g., `com.twitter.android`):
+
+```bash
+frida -U -l ./frida-script.js -f $TARGET_PACKAGE_NAME # here, TARGET_PACKAGE_NAME comes from the name of the app
+```
+
+> **Note**: The `frida-script.js` will be included with in dotfiles repository. TODO: Find a better place for these type of scripts.
+
+This will restart the app on your phone, and print out a series of libraries where unpinning was attempted.
+
+In the meantime don't forget to launch `HttpToolkit`. In order to install it, run:
+
+```bash
+yay -S httptoolkit
+``` 
+
+After launching, simply select `Android device connected via ADB` and everything will work.
+
+> **Note**: In order to kill frida, do:
+
+```bash
+adb shell 
+ps -e | grep frida-server 
+
+kill -9 pid
+```
+
+## Notes about `curl` after intercepting the http requests
+
+In order to do a `POST` request, run:
+
+```bash
+curl -X POST <link>
+   -H "Content-Type: application/json"
+   -d '{"Key1": Val1, "Key2": Val2}'
+```
+
+The json for the data can also be put in a file, let's say `data.json` and then call:
+
+```bash
+curl -d @data.json <link>
+```
+
+In the example above we are posting `JSON` data. However, we can need to `POST` a form:
+
+```bash
+curl -X POST <lnik>
+   -H "Content-Type: application/x-www-form-urlencoded" 
+   -d "key1=value1&key2=value2" 
+```
+
+and the `Content-Type` in the header identifies what we are posting.
+
+If a value in the form as special characters, do this:
+
+```bash
+curl -s -X POST -H "Content-Type: application/x-www-form-urlencoded" \
+--data-urlencode "email=user_email" --data-urlencode "password=PassWithSpecialCharacters" \
+--data-urlencode "appName=fitnesshut" "https://vivagym.myvitale.com/api/v2.0/pt/exerp/newAuth?access_token=${access_token}" > "${SCRIPT_DIR}/refresh_token.json"
 ```
 
 <div style="page-break-after: always; break-after: page;"></div>

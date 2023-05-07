@@ -716,6 +716,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li><a href="#fiddler" id="toc-fiddler">71. Fiddler</a></li>
           <li><a href="#termux" id="toc-termux">72. Termux</a>
           <ul>
+          <li><a href="#setting-up-termux"
+          id="toc-setting-up-termux">Setting up termux</a></li>
           <li><a href="#termux-brightness"
           id="toc-termux-brightness">72.1. Termux Brightness</a></li>
           <li><a href="#tv-url-opener" id="toc-tv-url-opener">72.2. TV
@@ -780,6 +782,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <ul>
           <li><a href="#crack-for-4.x" id="toc-crack-for-4.x">82.1.
           Crack for <code>4.x</code></a></li>
+          </ul></li>
+          <li><a href="#frida-httptoolkit"
+          id="toc-frida-httptoolkit">Frida / HttpToolkit</a>
+          <ul>
+          <li><a
+          href="#notes-about-curl-after-intercepting-the-http-requests"
+          id="toc-notes-about-curl-after-intercepting-the-http-requests">Notes
+          about <code>curl</code> after intercepting the http
+          requests</a></li>
           </ul></li>
           <li><a href="#misc" id="toc-misc">83. Misc</a></li>
           </ul>
@@ -1189,6 +1200,7 @@ Management → Task Switcher</a></li>
 <li><a href="#71-fiddler">71. Fiddler</a></li>
 <li><a href="#72-termux">72. Termux</a>
 <ul>
+<li><a href="#setting-up-termux">Setting up termux</a></li>
 <li><a href="#721-termux-brightness">72.1. Termux Brightness</a></li>
 <li><a href="#722-tv-url-opener">72.2. TV url opener</a></li>
 </ul></li>
@@ -1236,6 +1248,12 @@ calendar to google</a></li>
 <ul>
 <li><a href="#821-crack-for-4x">82.1. Crack for
 <code>4.x</code></a></li>
+</ul></li>
+<li><a href="#frida--httptoolkit">Frida / HttpToolkit</a>
+<ul>
+<li><a
+href="#notes-about-curl-after-intercepting-the-http-requests">Notes
+about <code>curl</code> after intercepting the http requests</a></li>
 </ul></li>
 <li><a href="#83-misc">83. Misc</a></li>
 </ul>
@@ -4412,6 +4430,7 @@ follow:</p>
 
 </div>
 <h1 id="termux">72. Termux</h1>
+<h2 id="setting-up-termux">Setting up termux</h2>
 <p>Termux should be installed from F-Droid, both in TV and phone.</p>
 <p>Besides termux, install (also using F-Droid) Termux:API, Termux:Boot,
 Termux:Widgets.</p>
@@ -4422,6 +4441,17 @@ there.</p>
 <p>Note: In TV, in order to have wireless debug, need to allow USB
 debugging in developer options and then allow the connection with the
 pc.</p>
+<p>In terms of packages, install:</p>
+<div class="sourceCode" id="cb109"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg</span> update</span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pkg</span> install libqrencode jq yq termux-api termux-styling vim</span></code></pre></div>
+<p>Copy the <code>.termux</code> folder <a
+href="https://github.com/jgroboredo/lap_dotfiles">dotfiles</a> to termux
+home and run:</p>
+<div class="sourceCode" id="cb110"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="ex">termux-reload-settings</span></span></code></pre></div>
+<p>The above is important because otherwise the font my screw up the
+qrcode.</p>
 <h2 id="termux-brightness">72.1. Termux Brightness</h2>
 <p>This needs termux:api. Termux:Api should be allowed to
 <code>Modify system settings</code>.</p>
@@ -4430,32 +4460,32 @@ pc.</p>
 termux:Widget.</p>
 <p>Then, in order to control brightness use
 <code>termux-brightness</code>. Example:</p>
-<div class="sourceCode" id="cb109"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-o</span><span class="va">)</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;Android&quot;</span> <span class="kw">]];</span> <span class="cf">then</span></span>
-<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">termux-brightness</span> 255</span>
-<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">trap</span> <span class="st">&quot;termux-brightness 40; exit&quot;</span> SIGINT</span>
-<span id="cb109-4"><a href="#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-o</span><span class="va">)</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;Android&quot;</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">termux-brightness</span> 255</span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">trap</span> <span class="st">&quot;termux-brightness 40; exit&quot;</span> SIGINT</span>
+<span id="cb111-4"><a href="#cb111-4" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div>
 <h2 id="tv-url-opener">72.2. TV url opener</h2>
 <p>Use Termux:Boot in order to start sshd server.</p>
 <p>Create script under <code>~/bin/</code> name
 <code>termux-url-opener</code>:</p>
-<div class="sourceCode" id="cb110"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/data/data/com.termux/files/usr/bin/sh</span></span>
-<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> 192.168.200.70 <span class="at">-p</span> 8022 termux-open-url <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/data/data/com.termux/files/usr/bin/sh</span></span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> 192.168.200.70 <span class="at">-p</span> 8022 termux-open-url <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span></span></code></pre></div>
 <div style="page-break-after: always; break-after: page;">
 
 </div>
 <h1 id="vpn-critical">73. VPN Critical</h1>
 <p>Some commands:</p>
-<div class="sourceCode" id="cb111"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nslookup</span></span>
-<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> server <span class="op">&lt;</span>Server_IP<span class="op">&gt;</span></span>
-<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> name.company.com</span>
-<span id="cb111-4"><a href="#cb111-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-5"><a href="#cb111-5" aria-hidden="true" tabindex="-1"></a><span class="ex">resolvectl</span> query name.company.com</span>
-<span id="cb111-6"><a href="#cb111-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-7"><a href="#cb111-7" aria-hidden="true" tabindex="-1"></a><span class="ex">nmcli</span> device show wlp1s0 <span class="kw">|</span> <span class="fu">grep</span> DNS</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nslookup</span></span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> server <span class="op">&lt;</span>Server_IP<span class="op">&gt;</span></span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> name.company.com</span>
+<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a><span class="ex">resolvectl</span> query name.company.com</span>
+<span id="cb113-6"><a href="#cb113-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-7"><a href="#cb113-7" aria-hidden="true" tabindex="-1"></a><span class="ex">nmcli</span> device show wlp1s0 <span class="kw">|</span> <span class="fu">grep</span> DNS</span></code></pre></div>
 <p>On Ubuntu: <code>/etc/NetworkManager/NetworkManager.conf</code>
 append the following lines:</p>
 <pre class="text"><code>[keyfile]
@@ -4474,31 +4504,31 @@ unmanaged-devices=interface-name:vpn*,except:interface-name:enp0s3;interface-nam
 is <code>Enabled</code></li>
 <li>After, create keys</li>
 </ol>
-<div class="sourceCode" id="cb113"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbctl</span> create-keys</span>
-<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 600 /usr/share/secureboot/keys/<span class="pp">**</span>/<span class="pp">*</span>.key</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbctl</span> create-keys</span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 600 /usr/share/secureboot/keys/<span class="pp">**</span>/<span class="pp">*</span>.key</span></code></pre></div>
 <ol start="5" type="1">
 <li><p>If <code>Setup Mode</code> is Enabled, then enroll keys:</p>
-<div class="sourceCode" id="cb114"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbctl</span> enroll-keys <span class="at">--microsoft</span></span></code></pre></div></li>
+<div class="sourceCode" id="cb116"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbctl</span> enroll-keys <span class="at">--microsoft</span></span></code></pre></div></li>
 <li><p>Keep the keys in the efi partition for easy re-enrollment:
 <code>mkdir -p /efi/keys; cp /usr/share/secureboot/keys/**/*.pem /efi/keys</code></p></li>
 <li><p><code>mkdir -p /efi/EFI/Linux</code></p></li>
 <li><p>Finally,</p></li>
 </ol>
-<div class="sourceCode" id="cb115"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bundle and sign kernel</span></span>
-<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sbctl</span> bundle <span class="at">-s</span> <span class="dt">\</span></span>
-<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">-i</span> <span class="st">&quot;/boot/</span><span class="va">$ARCH_CPU_BRAND</span><span class="st">-ucode.img&quot;</span> <span class="dt">\</span></span>
-<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">-k</span> <span class="st">&quot;/boot/vmlinuz-</span><span class="va">$ARCH_KERNEL</span><span class="st">&quot;</span> <span class="dt">\</span></span>
-<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">-f</span> <span class="st">&quot;/boot/booster-</span><span class="va">$ARCH_KERNEL</span><span class="st">.img&quot;</span> <span class="dt">\</span></span>
-<span id="cb115-6"><a href="#cb115-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;/efi/EFI/Linux/booster-</span><span class="va">$ARCH_KERNEL</span><span class="st">.efi&quot;</span></span>
-<span id="cb115-7"><a href="#cb115-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-8"><a href="#cb115-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Sign systemd-boot</span></span>
-<span id="cb115-9"><a href="#cb115-9" aria-hidden="true" tabindex="-1"></a><span class="ex">sbctl</span> sign <span class="at">-s</span> <span class="st">&quot;/efi/EFI/systemd/systemd-bootx64.efi&quot;</span></span>
-<span id="cb115-10"><a href="#cb115-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-11"><a href="#cb115-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-generate all</span></span>
-<span id="cb115-12"><a href="#cb115-12" aria-hidden="true" tabindex="-1"></a><span class="ex">sbctl</span> sign-all <span class="at">-g</span></span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bundle and sign kernel</span></span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sbctl</span> bundle <span class="at">-s</span> <span class="dt">\</span></span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">-i</span> <span class="st">&quot;/boot/</span><span class="va">$ARCH_CPU_BRAND</span><span class="st">-ucode.img&quot;</span> <span class="dt">\</span></span>
+<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">-k</span> <span class="st">&quot;/boot/vmlinuz-</span><span class="va">$ARCH_KERNEL</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">-f</span> <span class="st">&quot;/boot/booster-</span><span class="va">$ARCH_KERNEL</span><span class="st">.img&quot;</span> <span class="dt">\</span></span>
+<span id="cb117-6"><a href="#cb117-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;/efi/EFI/Linux/booster-</span><span class="va">$ARCH_KERNEL</span><span class="st">.efi&quot;</span></span>
+<span id="cb117-7"><a href="#cb117-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-8"><a href="#cb117-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Sign systemd-boot</span></span>
+<span id="cb117-9"><a href="#cb117-9" aria-hidden="true" tabindex="-1"></a><span class="ex">sbctl</span> sign <span class="at">-s</span> <span class="st">&quot;/efi/EFI/systemd/systemd-bootx64.efi&quot;</span></span>
+<span id="cb117-10"><a href="#cb117-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-11"><a href="#cb117-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-generate all</span></span>
+<span id="cb117-12"><a href="#cb117-12" aria-hidden="true" tabindex="-1"></a><span class="ex">sbctl</span> sign-all <span class="at">-g</span></span></code></pre></div>
 <ol start="9" type="1">
 <li>Don’t forget to have the same keys in the main system and in the
 recovery system</li>
@@ -4637,10 +4667,10 @@ search taildbd36.ts.net</code></pre>
 <code>/usr/share/xdg-desktop-portal/portals/gtk.portal</code></li>
 </ul>
 <p>Also add to .zprofile the following exports:</p>
-<div class="sourceCode" id="cb119"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">XDG_SESSION_TYPE</span><span class="op">=</span>x11</span>
-<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">XDG_CURRENT_DESKTOP</span><span class="op">=</span>i3</span>
-<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">GDK_BACKEND</span><span class="op">=</span>x11</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">XDG_SESSION_TYPE</span><span class="op">=</span>x11</span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">XDG_CURRENT_DESKTOP</span><span class="op">=</span>i3</span>
+<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">GDK_BACKEND</span><span class="op">=</span>x11</span></code></pre></div>
 <div style="page-break-after: always; break-after: page;">
 
 </div>
@@ -4682,32 +4712,32 @@ href="https://github.com/derekantrican/GAS-ICS-Sync">project</a></li>
 <li>Follow installation instructions</li>
 </ol>
 <p>My current settings are the following:</p>
-<div class="sourceCode" id="cb120"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sourceCalendars <span class="op">=</span> [                <span class="co">// The ics/ical urls that you want to get events from along with their target calendars (list a new row for each mapping of ICS url to Google Calendar)</span></span>
-<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>                                       <span class="co">// For instance: [&quot;https://p24-calendars.icloud.com/holidays/us_en.ics&quot;, &quot;US Holidays&quot;]</span></span>
-<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a>                                       <span class="co">// Or with colors following mapping https://developers.google.com/apps-script/reference/calendar/event-color, </span></span>
-<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a>                                       <span class="co">// for instance: [&quot;https://p24-calendars.icloud.com/holidays/us_en.ics&quot;, &quot;US Holidays&quot;, &quot;11&quot;]</span></span>
-<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a>  [<span class="st">&quot;https://outlook.office365.com/owa/calendar/401c00bd235044d38e439e7352416c0e@criticalsoftware.com/e46fa34441d4423db0ac4cd9b55cfc3a13335818381581453928/calendar.ics&quot;</span><span class="op">,</span> <span class="st">&quot;Calendar&quot;</span>]</span>
-<span id="cb120-6"><a href="#cb120-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb120-7"><a href="#cb120-7" aria-hidden="true" tabindex="-1"></a>]<span class="op">;</span></span>
-<span id="cb120-8"><a href="#cb120-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-9"><a href="#cb120-9" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> howFrequent <span class="op">=</span> <span class="dv">15</span><span class="op">;</span>                  <span class="co">// What interval (minutes) to run this script on to check for new events</span></span>
-<span id="cb120-10"><a href="#cb120-10" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> onlyFutureEvents <span class="op">=</span> <span class="kw">false</span><span class="op">;</span>          <span class="co">// If you turn this to &quot;true&quot;, past events will not be synced (this will also removed past events from the target calendar if removeEventsFromCalendar is true)</span></span>
-<span id="cb120-11"><a href="#cb120-11" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> addEventsToCalendar <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>        <span class="co">// If you turn this to &quot;false&quot;, you can check the log (View &gt; Logs) to make sure your events are being read correctly before turning this on</span></span>
-<span id="cb120-12"><a href="#cb120-12" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> modifyExistingEvents <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>       <span class="co">// If you turn this to &quot;false&quot;, any event in the feed that was modified after being added to the calendar will not update</span></span>
-<span id="cb120-13"><a href="#cb120-13" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> removeEventsFromCalendar <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>   <span class="co">// If you turn this to &quot;true&quot;, any event created by the script that is not found in the feed will be removed.</span></span>
-<span id="cb120-14"><a href="#cb120-14" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> addAlerts <span class="op">=</span> <span class="st">&quot;yes&quot;</span><span class="op">;</span>                 <span class="co">// Whether to add the ics/ical alerts as notifications on the Google Calendar events or revert to the calendar&#39;s default reminders (&quot;yes&quot;, &quot;no&quot;, &quot;default&quot;).</span></span>
-<span id="cb120-15"><a href="#cb120-15" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> addOrganizerToTitle <span class="op">=</span> <span class="kw">false</span><span class="op">;</span>       <span class="co">// Whether to prefix the event name with the event organiser for further clarity</span></span>
-<span id="cb120-16"><a href="#cb120-16" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> descriptionAsTitles <span class="op">=</span> <span class="kw">false</span><span class="op">;</span>       <span class="co">// Whether to use the ics/ical descriptions as titles (true) or to use the normal titles as titles (false)</span></span>
-<span id="cb120-17"><a href="#cb120-17" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> addCalToTitle <span class="op">=</span> <span class="kw">false</span><span class="op">;</span>             <span class="co">// Whether to add the source calendar to title</span></span>
-<span id="cb120-18"><a href="#cb120-18" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> addAttendees <span class="op">=</span> <span class="kw">false</span><span class="op">;</span>              <span class="co">// Whether to add the attendee list. If true, duplicate events will be automatically added to the attendees&#39; calendar.</span></span>
-<span id="cb120-19"><a href="#cb120-19" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> defaultAllDayReminder <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span>        <span class="co">// Default reminder for all day events in minutes before the day of the event (-1 = no reminder, the value has to be between 0 and 40320)</span></span>
-<span id="cb120-20"><a href="#cb120-20" aria-hidden="true" tabindex="-1"></a>                                       <span class="co">// See https://github.com/derekantrican/GAS-ICS-Sync/issues/75 for why this is neccessary.</span></span>
-<span id="cb120-21"><a href="#cb120-21" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> overrideVisibility <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span>           <span class="co">// Changes the visibility of the event (&quot;default&quot;, &quot;public&quot;, &quot;private&quot;, &quot;confidential&quot;). Anything else will revert to the class value of the ICAL event.</span></span>
-<span id="cb120-22"><a href="#cb120-22" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> addTasks <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
-<span id="cb120-23"><a href="#cb120-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-24"><a href="#cb120-24" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> emailSummary <span class="op">=</span> <span class="kw">false</span><span class="op">;</span>              <span class="co">// Will email you when an event is added/modified/removed to your calendar</span></span>
-<span id="cb120-25"><a href="#cb120-25" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> email <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span>                        <span class="co">// OPTIONAL: If &quot;emailSummary&quot; is set to true or you want to receive update notifications, you will need to provide your email address</span></span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sourceCalendars <span class="op">=</span> [                <span class="co">// The ics/ical urls that you want to get events from along with their target calendars (list a new row for each mapping of ICS url to Google Calendar)</span></span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a>                                       <span class="co">// For instance: [&quot;https://p24-calendars.icloud.com/holidays/us_en.ics&quot;, &quot;US Holidays&quot;]</span></span>
+<span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a>                                       <span class="co">// Or with colors following mapping https://developers.google.com/apps-script/reference/calendar/event-color, </span></span>
+<span id="cb122-4"><a href="#cb122-4" aria-hidden="true" tabindex="-1"></a>                                       <span class="co">// for instance: [&quot;https://p24-calendars.icloud.com/holidays/us_en.ics&quot;, &quot;US Holidays&quot;, &quot;11&quot;]</span></span>
+<span id="cb122-5"><a href="#cb122-5" aria-hidden="true" tabindex="-1"></a>  [<span class="st">&quot;https://outlook.office365.com/owa/calendar/401c00bd235044d38e439e7352416c0e@criticalsoftware.com/e46fa34441d4423db0ac4cd9b55cfc3a13335818381581453928/calendar.ics&quot;</span><span class="op">,</span> <span class="st">&quot;Calendar&quot;</span>]</span>
+<span id="cb122-6"><a href="#cb122-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb122-7"><a href="#cb122-7" aria-hidden="true" tabindex="-1"></a>]<span class="op">;</span></span>
+<span id="cb122-8"><a href="#cb122-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-9"><a href="#cb122-9" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> howFrequent <span class="op">=</span> <span class="dv">15</span><span class="op">;</span>                  <span class="co">// What interval (minutes) to run this script on to check for new events</span></span>
+<span id="cb122-10"><a href="#cb122-10" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> onlyFutureEvents <span class="op">=</span> <span class="kw">false</span><span class="op">;</span>          <span class="co">// If you turn this to &quot;true&quot;, past events will not be synced (this will also removed past events from the target calendar if removeEventsFromCalendar is true)</span></span>
+<span id="cb122-11"><a href="#cb122-11" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> addEventsToCalendar <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>        <span class="co">// If you turn this to &quot;false&quot;, you can check the log (View &gt; Logs) to make sure your events are being read correctly before turning this on</span></span>
+<span id="cb122-12"><a href="#cb122-12" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> modifyExistingEvents <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>       <span class="co">// If you turn this to &quot;false&quot;, any event in the feed that was modified after being added to the calendar will not update</span></span>
+<span id="cb122-13"><a href="#cb122-13" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> removeEventsFromCalendar <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>   <span class="co">// If you turn this to &quot;true&quot;, any event created by the script that is not found in the feed will be removed.</span></span>
+<span id="cb122-14"><a href="#cb122-14" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> addAlerts <span class="op">=</span> <span class="st">&quot;yes&quot;</span><span class="op">;</span>                 <span class="co">// Whether to add the ics/ical alerts as notifications on the Google Calendar events or revert to the calendar&#39;s default reminders (&quot;yes&quot;, &quot;no&quot;, &quot;default&quot;).</span></span>
+<span id="cb122-15"><a href="#cb122-15" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> addOrganizerToTitle <span class="op">=</span> <span class="kw">false</span><span class="op">;</span>       <span class="co">// Whether to prefix the event name with the event organiser for further clarity</span></span>
+<span id="cb122-16"><a href="#cb122-16" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> descriptionAsTitles <span class="op">=</span> <span class="kw">false</span><span class="op">;</span>       <span class="co">// Whether to use the ics/ical descriptions as titles (true) or to use the normal titles as titles (false)</span></span>
+<span id="cb122-17"><a href="#cb122-17" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> addCalToTitle <span class="op">=</span> <span class="kw">false</span><span class="op">;</span>             <span class="co">// Whether to add the source calendar to title</span></span>
+<span id="cb122-18"><a href="#cb122-18" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> addAttendees <span class="op">=</span> <span class="kw">false</span><span class="op">;</span>              <span class="co">// Whether to add the attendee list. If true, duplicate events will be automatically added to the attendees&#39; calendar.</span></span>
+<span id="cb122-19"><a href="#cb122-19" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> defaultAllDayReminder <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span>        <span class="co">// Default reminder for all day events in minutes before the day of the event (-1 = no reminder, the value has to be between 0 and 40320)</span></span>
+<span id="cb122-20"><a href="#cb122-20" aria-hidden="true" tabindex="-1"></a>                                       <span class="co">// See https://github.com/derekantrican/GAS-ICS-Sync/issues/75 for why this is neccessary.</span></span>
+<span id="cb122-21"><a href="#cb122-21" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> overrideVisibility <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span>           <span class="co">// Changes the visibility of the event (&quot;default&quot;, &quot;public&quot;, &quot;private&quot;, &quot;confidential&quot;). Anything else will revert to the class value of the ICAL event.</span></span>
+<span id="cb122-22"><a href="#cb122-22" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> addTasks <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb122-23"><a href="#cb122-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-24"><a href="#cb122-24" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> emailSummary <span class="op">=</span> <span class="kw">false</span><span class="op">;</span>              <span class="co">// Will email you when an event is added/modified/removed to your calendar</span></span>
+<span id="cb122-25"><a href="#cb122-25" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> email <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span>                        <span class="co">// OPTIONAL: If &quot;emailSummary&quot; is set to true or you want to receive update notifications, you will need to provide your email address</span></span></code></pre></div>
 <h2 id="gcalcli">80.3. gcalcli</h2>
 <p>Finally, integrate this with <a
 href="https://github.com/insanum/gcalcli">gcalcli</a></p>
@@ -4740,11 +4770,11 @@ Ding desktop icons</a></li>
 <h1 id="bcompare">82. BCompare</h1>
 <h2 id="crack-for-4.x">82.1. Crack for <code>4.x</code></h2>
 <p>First delete trial mode:</p>
-<div class="sourceCode" id="cb121"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> ~/.config/bcompare</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> ~/.config/bcompare</span></code></pre></div>
 <p>and perform the following substitution:</p>
-<div class="sourceCode" id="cb122"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&quot;s/keexjEP3t4Mue23hrnuPtY4TdcsqNiJL-5174TsUdLmJSIXKfG2NGPwBL6vnRPddT7tH29qpkneX63DO9ECSPE9rzY1zhThHERg8lHM9IBFT+rVuiY823aQJuqzxCKIE1bcDqM4wgW01FH6oCBP1G4ub01xmb4BGSUG6ZrjxWHJyNLyIlGvOhoY2HAYzEtzYGwxFZn2JZ66o4RONkXjX0DF9EzsdUef3UAS+JQ+fCYReLawdjEe6tXCv88GKaaPKWxCeaUL9PejICQgRQOLGOZtZQkLgAelrOtehxz5ANOOqCaJgy2mJLQVLM5SJ9Dli909c5ybvEhVmIC0dc9dWH+/N9KmiLVlKMU7RJqnE+WXEEPI1SgglmfmLc1yVH7dqBb9ehOoKG9UE+HAE1YvH1XX2XVGeEqYUY-Tsk7YBTz0WpSpoYyPgx6Iki5KLtQ5G-aKP9eysnkuOAkrvHU8bLbGtZteGwJarev03PhfCioJL4OSqsmQGEvDbHFEbNl1qJtdwEriR+VNZts9vNNLk7UGfeNwIiqpxjk4Mn09nmSd8FhM4ifvcaIbNCRoMPGl6KU12iseSe+w+1kFsLhX+OhQM8WXcWV10cGqBzQE9OqOLUcg9n0krrR3KrohstS9smTwEx9olyLYppvC0p5i7dAx2deWvM1ZxKNs0BvcXGukR+/g&quot;</span> /path/to/beyondcompare/BCompare</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&quot;s/keexjEP3t4Mue23hrnuPtY4TdcsqNiJL-5174TsUdLmJSIXKfG2NGPwBL6vnRPddT7tH29qpkneX63DO9ECSPE9rzY1zhThHERg8lHM9IBFT+rVuiY823aQJuqzxCKIE1bcDqM4wgW01FH6oCBP1G4ub01xmb4BGSUG6ZrjxWHJyNLyIlGvOhoY2HAYzEtzYGwxFZn2JZ66o4RONkXjX0DF9EzsdUef3UAS+JQ+fCYReLawdjEe6tXCv88GKaaPKWxCeaUL9PejICQgRQOLGOZtZQkLgAelrOtehxz5ANOOqCaJgy2mJLQVLM5SJ9Dli909c5ybvEhVmIC0dc9dWH+/N9KmiLVlKMU7RJqnE+WXEEPI1SgglmfmLc1yVH7dqBb9ehOoKG9UE+HAE1YvH1XX2XVGeEqYUY-Tsk7YBTz0WpSpoYyPgx6Iki5KLtQ5G-aKP9eysnkuOAkrvHU8bLbGtZteGwJarev03PhfCioJL4OSqsmQGEvDbHFEbNl1qJtdwEriR+VNZts9vNNLk7UGfeNwIiqpxjk4Mn09nmSd8FhM4ifvcaIbNCRoMPGl6KU12iseSe+w+1kFsLhX+OhQM8WXcWV10cGqBzQE9OqOLUcg9n0krrR3KrohstS9smTwEx9olyLYppvC0p5i7dAx2deWvM1ZxKNs0BvcXGukR+/g&quot;</span> /path/to/beyondcompare/BCompare</span></code></pre></div>
 <p>Then, restart BC, click <code>Enter License</code>:</p>
 <pre class="text"><code>--- BEGIN LICENSE KEY ---
 ayvZeJDYPBHS4J-1K6g6bDBuPoo0G-oGAq35blZtAoRqC-qQeSz28XAzX
@@ -4758,6 +4788,90 @@ kdtgaKEEik7aNiI3jXvp5r34wViVJCiX7m2y7pqBV9gZIvP9hP9KPnP++++
 <pre class="text"><code>--- BEGIN LICENSE KEY ---
 GXN1eh9FbDiX1ACdd7XKMV7hL7x0ClBJLUJ-zFfKofjaj2yxE53xauIfkqZ8FoLpcZ0Ux6McTyNmODDSvSIHLYhg1QkTxjCeSCk6ARz0ABJcnUmd3dZYJNWFyJun14rmGByRnVPL49QH+Rs0kjRGKCB-cb8IT4Gf0Ue9WMQ1A6t31MO9jmjoYUeoUmbeAQSofvuK8GN1rLRv7WXfUJ0uyvYlGLqzq1ZoJAJDyo0Kdr4ThF-IXcv2cxVyWVW1SaMq8GFosDEGThnY7C-SgNXW30jqAOgiRjKKRX9RuNeDMFqgP2cuf0NMvyMrMScnM1ZyiAaJJtzbxqN5hZOMClUTE+++
 --- END LICENSE KEY -----</code></pre>
+<div style="page-break-after: always; break-after: page;">
+
+</div>
+<h1 id="frida-httptoolkit">Frida / HttpToolkit</h1>
+<p>For now, this section is a summary of the steps that I needed to
+follow in order to disable the <strong>SSL Pinning</strong> done by the
+FitnessHut app (in order to catch the https requests).</p>
+<p>For more informations, check <a
+href="https://httptoolkit.com/blog/frida-certificate-pinning/">http
+toolkit blog</a>.</p>
+<p>First, download <strong>Frida Android Service</strong> from <a
+href="https://github.com/frida/frida/releases">Github</a> for
+<code>arm64</code>.</p>
+<p>Then extract the <code>.xz</code> file with the <code>unxz</code>
+command.</p>
+<p>Now, we can start the Frida server in the phone:</p>
+<div class="sourceCode" id="cb127"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the server to the device</span></span>
+<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> push ./frida-server-<span class="va">$version</span>-android-<span class="va">$arch</span> /data/local/tmp/frida-server</span>
+<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="co">#        ^Change this to match the name of the binary you just extracted</span></span>
+<span id="cb127-4"><a href="#cb127-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-5"><a href="#cb127-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Enable root access to the device</span></span>
+<span id="cb127-6"><a href="#cb127-6" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> root</span>
+<span id="cb127-7"><a href="#cb127-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-8"><a href="#cb127-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the server binary executable</span></span>
+<span id="cb127-9"><a href="#cb127-9" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> shell <span class="st">&quot;chmod 755 /data/local/tmp/frida-server&quot;</span></span>
+<span id="cb127-10"><a href="#cb127-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-11"><a href="#cb127-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Start the server on your device</span></span>
+<span id="cb127-12"><a href="#cb127-12" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> shell <span class="st">&quot;/data/local/tmp/frida-server &amp;&quot;</span></span></code></pre></div>
+<p>After, install Frida in the computer:</p>
+<div class="sourceCode" id="cb128"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install frida-tools</span></code></pre></div>
+<p>We can test this by running <code>frida-ps -U</code>.</p>
+<p>After, we can start the application that we which to hook into (also,
+go to the app info and find it’s name - e.g.,
+<code>com.twitter.android</code>):</p>
+<div class="sourceCode" id="cb129"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="ex">frida</span> <span class="at">-U</span> <span class="at">-l</span> ./frida-script.js <span class="at">-f</span> <span class="va">$TARGET_PACKAGE_NAME</span> <span class="co"># here, TARGET_PACKAGE_NAME comes from the name of the app</span></span></code></pre></div>
+<blockquote>
+<p><strong>Note</strong>: The <code>frida-script.js</code> will be
+included with in dotfiles repository. TODO: Find a better place for
+these type of scripts.</p>
+</blockquote>
+<p>This will restart the app on your phone, and print out a series of
+libraries where unpinning was attempted.</p>
+<p>In the meantime don’t forget to launch <code>HttpToolkit</code>. In
+order to install it, run:</p>
+<div class="sourceCode" id="cb130"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="ex">yay</span> <span class="at">-S</span> httptoolkit</span></code></pre></div>
+<p>After launching, simply select
+<code>Android device connected via ADB</code> and everything will
+work.</p>
+<blockquote>
+<p><strong>Note</strong>: In order to kill frida, do:</p>
+</blockquote>
+<div class="sourceCode" id="cb131"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> shell </span>
+<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ps</span> <span class="at">-e</span> <span class="kw">|</span> <span class="fu">grep</span> frida-server </span>
+<span id="cb131-3"><a href="#cb131-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-4"><a href="#cb131-4" aria-hidden="true" tabindex="-1"></a><span class="bu">kill</span> <span class="at">-9</span> pid</span></code></pre></div>
+<h2 id="notes-about-curl-after-intercepting-the-http-requests">Notes
+about <code>curl</code> after intercepting the http requests</h2>
+<p>In order to do a <code>POST</code> request, run:</p>
+<div class="sourceCode" id="cb132"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> POST <span class="op">&lt;</span>link<span class="op">&gt;</span></span>
+<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a>   <span class="ex">-H</span> <span class="st">&quot;Content-Type: application/json&quot;</span></span>
+<span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a>   <span class="ex">-d</span> <span class="st">&#39;{&quot;Key1&quot;: Val1, &quot;Key2&quot;: Val2}&#39;</span></span></code></pre></div>
+<p>The json for the data can also be put in a file, let’s say
+<code>data.json</code> and then call:</p>
+<div class="sourceCode" id="cb133"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-d</span> @data.json <span class="op">&lt;</span>link<span class="op">&gt;</span></span></code></pre></div>
+<p>In the example above we are posting <code>JSON</code> data. However,
+we can need to <code>POST</code> a form:</p>
+<div class="sourceCode" id="cb134"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> POST <span class="op">&lt;</span>lnik<span class="op">&gt;</span></span>
+<span id="cb134-2"><a href="#cb134-2" aria-hidden="true" tabindex="-1"></a>   <span class="ex">-H</span> <span class="st">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span> </span>
+<span id="cb134-3"><a href="#cb134-3" aria-hidden="true" tabindex="-1"></a>   <span class="ex">-d</span> <span class="st">&quot;key1=value1&amp;key2=value2&quot;</span> </span></code></pre></div>
+<p>and the <code>Content-Type</code> in the header identifies what we
+are posting.</p>
+<p>If a value in the form as special characters, do this:</p>
+<div class="sourceCode" id="cb135"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> <span class="at">-X</span> POST <span class="at">-H</span> <span class="st">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span> <span class="dt">\</span></span>
+<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a>--data-urlencode <span class="st">&quot;email=user_email&quot;</span> <span class="at">--data-urlencode</span> <span class="st">&quot;password=PassWithSpecialCharacters&quot;</span> <span class="dt">\</span></span>
+<span id="cb135-3"><a href="#cb135-3" aria-hidden="true" tabindex="-1"></a>--data-urlencode <span class="st">&quot;appName=fitnesshut&quot;</span> <span class="st">&quot;https://vivagym.myvitale.com/api/v2.0/pt/exerp/newAuth?access_token=</span><span class="va">${access_token}</span><span class="st">&quot;</span> <span class="op">&gt;</span> <span class="st">&quot;</span><span class="va">${SCRIPT_DIR}</span><span class="st">/refresh_token.json&quot;</span></span></code></pre></div>
 <div style="page-break-after: always; break-after: page;">
 
 </div>
@@ -4812,17 +4926,17 @@ prints hostname</li>
 </ul></li>
 <li>Writting on a remote file:</li>
 </ul>
-<div class="sourceCode" id="cb126"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&#39;Some Text&#39;</span> <span class="kw">|</span> <span class="fu">ssh</span> user@remotehost <span class="at">-T</span> <span class="st">&quot;cat &gt; /remotefile.txt&quot;</span></span>
-<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (-T flag fowards stdin local through ssh)</span></span>
-<span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_rsa.pub <span class="kw">|</span> <span class="fu">ssh</span> user@remote.host <span class="st">&#39;dd of=.ssh/authorized_keys oflag=append conv=notrunc&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&#39;Some Text&#39;</span> <span class="kw">|</span> <span class="fu">ssh</span> user@remotehost <span class="at">-T</span> <span class="st">&quot;cat &gt; /remotefile.txt&quot;</span></span>
+<span id="cb137-2"><a href="#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (-T flag fowards stdin local through ssh)</span></span>
+<span id="cb137-3"><a href="#cb137-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_rsa.pub <span class="kw">|</span> <span class="fu">ssh</span> user@remote.host <span class="st">&#39;dd of=.ssh/authorized_keys oflag=append conv=notrunc&#39;</span></span></code></pre></div>
 <ul>
 <li>In order to have several ssh keys, do:</li>
 </ul>
-<div class="sourceCode" id="cb127"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> rsa <span class="at">-b</span> 4096 <span class="at">-C</span> <span class="st">&quot;your_email@example.com&quot;</span></span>
-<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="va">$(</span><span class="fu">ssh-agent</span><span class="va">)</span></span>
-<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_rsa2 <span class="er">(</span><span class="ex">newly</span> created key<span class="kw">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> rsa <span class="at">-b</span> 4096 <span class="at">-C</span> <span class="st">&quot;your_email@example.com&quot;</span></span>
+<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="va">$(</span><span class="fu">ssh-agent</span><span class="va">)</span></span>
+<span id="cb138-3"><a href="#cb138-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_rsa2 <span class="er">(</span><span class="ex">newly</span> created key<span class="kw">)</span></span></code></pre></div>
 <ul>
 <li>In order to have ssh-agent always running, check ~/.config/systemd
 and .zshrc</li>
@@ -4843,11 +4957,11 @@ ProxyCommand ssh goncalo@jgroboredo.ddns.net -W %h:%p</code></pre>
 <li>If ssh service fails to start with error: Start request repeated too
 quickly, do the following:</li>
 </ul>
-<div class="sourceCode" id="cb129"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl stop sshd.socket and sshd.service</span>
-<span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> /usr/bin/sshd <span class="at">-d</span></span>
-<span id="cb129-3"><a href="#cb129-3" aria-hidden="true" tabindex="-1"></a><span class="co">#If message from above command states a permission issue:</span></span>
-<span id="cb129-4"><a href="#cb129-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod 400 /etc/ssh/ssh<span class="pp">*</span>key</span></code></pre></div></li>
+<div class="sourceCode" id="cb140"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl stop sshd.socket and sshd.service</span>
+<span id="cb140-2"><a href="#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> /usr/bin/sshd <span class="at">-d</span></span>
+<span id="cb140-3"><a href="#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="co">#If message from above command states a permission issue:</span></span>
+<span id="cb140-4"><a href="#cb140-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod 400 /etc/ssh/ssh<span class="pp">*</span>key</span></code></pre></div></li>
 <li><p>Firefox crash</p>
 <ul>
 <li><p>Seems like it was the gtk theme from popOS that made firefox to
@@ -4915,15 +5029,15 @@ by pamac-aur)</li>
 <li><p>CHECK RAM <code>sudo dmidecode -t memory</code></p></li>
 <li><p>lxrandr to change monitors</p></li>
 <li><p>CONFIG LINUX ACCOUNT</p>
-<div class="sourceCode" id="cb131"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> useradd <span class="at">-m</span> test</span>
-<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="ex">userdel</span> <span class="op">&lt;</span>nome de utilizador do utilizador<span class="op">&gt;</span></span>
-<span id="cb131-3"><a href="#cb131-3" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span> username sudo</span>
-<span id="cb131-4"><a href="#cb131-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/etc/ssh/sshd_config</span> <span class="co"># Allow pubkey and add authorized_keys file;</span></span>
-<span id="cb131-5"><a href="#cb131-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chsh</span> <span class="at">-s</span> <span class="va">$(</span><span class="fu">which</span> zsh<span class="va">)</span></span>
-<span id="cb131-6"><a href="#cb131-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> service ssh restart</span>
-<span id="cb131-7"><a href="#cb131-7" aria-hidden="true" tabindex="-1"></a><span class="co"># For redmine: couldn&#39;t add repos to redmine: change permissions: </span></span>
-<span id="cb131-8"><a href="#cb131-8" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 775 /path/to/dir</span></code></pre></div></li>
+<div class="sourceCode" id="cb142"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> useradd <span class="at">-m</span> test</span>
+<span id="cb142-2"><a href="#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="ex">userdel</span> <span class="op">&lt;</span>nome de utilizador do utilizador<span class="op">&gt;</span></span>
+<span id="cb142-3"><a href="#cb142-3" aria-hidden="true" tabindex="-1"></a><span class="ex">adduser</span> username sudo</span>
+<span id="cb142-4"><a href="#cb142-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/etc/ssh/sshd_config</span> <span class="co"># Allow pubkey and add authorized_keys file;</span></span>
+<span id="cb142-5"><a href="#cb142-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chsh</span> <span class="at">-s</span> <span class="va">$(</span><span class="fu">which</span> zsh<span class="va">)</span></span>
+<span id="cb142-6"><a href="#cb142-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> service ssh restart</span>
+<span id="cb142-7"><a href="#cb142-7" aria-hidden="true" tabindex="-1"></a><span class="co"># For redmine: couldn&#39;t add repos to redmine: change permissions: </span></span>
+<span id="cb142-8"><a href="#cb142-8" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 775 /path/to/dir</span></code></pre></div></li>
 <li><p>Dmenu-extended</p>
 <ul>
 <li>For apps to open I need desktop files to associate a given mimetype
@@ -4935,16 +5049,16 @@ to a binary</li>
 <li>Solution: boot to a pen with manjaro and reboot</li>
 <li>See logs:</li>
 </ul>
-<div class="sourceCode" id="cb132"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> /sys/class/net <span class="at">-follow</span> <span class="at">-maxdepth</span> 2 <span class="at">-name</span> wireless</span>
-<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> /proc/net/wireless</span>
-<span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a><span class="ex">iw</span> dev</span>
-<span id="cb132-4"><a href="#cb132-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> iw dev wlp0s20f3 connect <span class="st">&quot;ROBOREDO&quot;</span></span>
-<span id="cb132-5"><a href="#cb132-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dmesg <span class="kw">|</span> <span class="fu">grep</span> firmware</span>
-<span id="cb132-6"><a href="#cb132-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dmesg <span class="at">--level</span><span class="op">=</span>emerg,alert,crit,err</span>
-<span id="cb132-7"><a href="#cb132-7" aria-hidden="true" tabindex="-1"></a><span class="ex">lspci</span> <span class="kw">|</span> <span class="fu">grep</span> net</span>
-<span id="cb132-8"><a href="#cb132-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lsmod</span></span>
-<span id="cb132-9"><a href="#cb132-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> ls /etc/netctl/interfaces</span></code></pre></div></li>
+<div class="sourceCode" id="cb143"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> /sys/class/net <span class="at">-follow</span> <span class="at">-maxdepth</span> 2 <span class="at">-name</span> wireless</span>
+<span id="cb143-2"><a href="#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> /proc/net/wireless</span>
+<span id="cb143-3"><a href="#cb143-3" aria-hidden="true" tabindex="-1"></a><span class="ex">iw</span> dev</span>
+<span id="cb143-4"><a href="#cb143-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> iw dev wlp0s20f3 connect <span class="st">&quot;ROBOREDO&quot;</span></span>
+<span id="cb143-5"><a href="#cb143-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dmesg <span class="kw">|</span> <span class="fu">grep</span> firmware</span>
+<span id="cb143-6"><a href="#cb143-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dmesg <span class="at">--level</span><span class="op">=</span>emerg,alert,crit,err</span>
+<span id="cb143-7"><a href="#cb143-7" aria-hidden="true" tabindex="-1"></a><span class="ex">lspci</span> <span class="kw">|</span> <span class="fu">grep</span> net</span>
+<span id="cb143-8"><a href="#cb143-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lsmod</span></span>
+<span id="cb143-9"><a href="#cb143-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> ls /etc/netctl/interfaces</span></code></pre></div></li>
 <li><p>Rebuild all yay packages depending on python:
 <code>yay -S $(pacman -Qoq /usr/lib/python3.9) --answerclean All</code></p></li>
 <li><p>nc : install <code>pacman -S gnu-netcat</code></p></li>
@@ -4962,10 +5076,10 @@ variables. For that, just add a env.conf file to .config/environment.d/
 <code>bash     chown -R root:root /etc     find /etc -type f -exec chmod 644 {} +     find /etc -type d -exec chmod 755 {} +     chmod 755 /etc/init.d/* /etc/rc.local /etc/network/* /etc/cron.*/*     chmod 400 /etc/ssh/ssh*key     check desktop_dotfiles</code></p></li>
 <li><p>Need imagemagick for blurlock</p></li>
 <li><p>samba</p>
-<div class="sourceCode" id="cb133"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="ex">smbclient</span> <span class="st">&#39;//print-server.critical.pt/Drivers/&#39;</span> <span class="at">-U</span> critical/jgroboredo <span class="er">(</span><span class="ex">smbclient</span> <span class="st">&#39;//ip/Directory&#39;</span><span class="kw">)</span></span>
-<span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="ex">smbclient</span> <span class="st">&#39;\\files.critical.pt/Repository&#39;</span> <span class="at">-U</span> critical/jgroboredo</span>
-<span id="cb133-3"><a href="#cb133-3" aria-hidden="true" tabindex="-1"></a><span class="ex">get</span> file</span></code></pre></div></li>
+<div class="sourceCode" id="cb144"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="ex">smbclient</span> <span class="st">&#39;//print-server.critical.pt/Drivers/&#39;</span> <span class="at">-U</span> critical/jgroboredo <span class="er">(</span><span class="ex">smbclient</span> <span class="st">&#39;//ip/Directory&#39;</span><span class="kw">)</span></span>
+<span id="cb144-2"><a href="#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="ex">smbclient</span> <span class="st">&#39;\\files.critical.pt/Repository&#39;</span> <span class="at">-U</span> critical/jgroboredo</span>
+<span id="cb144-3"><a href="#cb144-3" aria-hidden="true" tabindex="-1"></a><span class="ex">get</span> file</span></code></pre></div></li>
 <li><p>bluedevil; bluedevil-wizard; systemctl start bluetooth;
 pavucontrol: High Fidelity Playback (A2DP Sink, codec LDAC)
 blueberry-tray</p></li>
