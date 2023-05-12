@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="2. Git infos" href="git.html" /><link rel="prev" title="Welcome to Gonçalo’s Personal Notes’s!" href="../index.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="11. Grub Notes" href="grub.html" />
 
     <!-- Generated with Sphinx 6.2.1 and Furo 2023.03.27 -->
-        <title>1. Sphinx tricks - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
+        <title>12. Vim Notes - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -157,7 +157,7 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">1. Sphinx tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">1. Sphinx tricks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">2. Git infos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bash.html">3. Bash Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lyx.html">4. LyX Notes</a></li>
@@ -168,7 +168,7 @@
 <li class="toctree-l1"><a class="reference internal" href="jupyter.html">9. Jupyter Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pacman.html">10. Pacman Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="grub.html">11. Grub Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vim.html">12. Vim Notes</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">12. Vim Notes</a></li>
 </ul>
 
 </div>
@@ -203,105 +203,103 @@
           </label>
         </div>
         <article role="main">
-          <section id="sphinx-tricks">
-<span id="id1"></span><h1><span class="section-number">1. </span>Sphinx tricks<a class="headerlink" href="#sphinx-tricks" title="Permalink to this heading">#</a></h1>
-<section id="nested-blocks">
-<h2><span class="section-number">1.1. </span>Nested Blocks<a class="headerlink" href="#nested-blocks" title="Permalink to this heading">#</a></h2>
-<p>Consider the following example:</p>
-<ul>
-<li><p>List item 1</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="n">sample</span>
-</pre></div>
-</div>
-<ul>
-<li><p>List item 2</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="n">sample</span>
-</pre></div>
-</div>
-</li>
-</ul>
-</li>
-</ul>
-<p>In terms of code:</p>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="m">-</span> List item 1 ::
-
-   code sample 1
-
-  <span class="m">-</span> List item 2 ::
-
-     code sample 2
-</pre></div>
-</div>
-<p>Basically, in this example, the “code sample 1” is indented in respect to “List item 1”
-(i.e., there are 3 spaces to the beginning of the line). On the other hand, the “code sample 2”
-is indented with respect to “List item 2” (i.e, there are 3 spaces with respect to the second
-indentation level, which is the hyphen where “List item 2” starts)</p>
-<ul>
-<li><p>List item 1</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="n">block</span>
-</pre></div>
-</div>
-<ul>
-<li><p>List item 2</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="n">block</span>
-</pre></div>
-</div>
-</li>
-</ul>
-</li>
-</ul>
-<p>Apparently I can simply tab the code blocks to indent. I just need to be careful where the
-nested item starts (the hyphen needs to be right under the first letter of “List item 1”).</p>
-</section>
-<section id="sphinx-doc-extlinks">
-<h2><span class="section-number">1.2. </span>Sphinx Doc -  extlinks<a class="headerlink" href="#sphinx-doc-extlinks" title="Permalink to this heading">#</a></h2>
-<p>In sphinx documentation, they have the following in the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
-<blockquote>
-<div><p>extlinks = {‘duref’: (’<a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/">https://docutils.sourceforge.io/docs/ref/rst/</a>’…}</p>
+          <section id="vim-notes">
+<span id="id1"></span><h1><span class="section-number">12. </span>Vim Notes<a class="headerlink" href="#vim-notes" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>Vim is a highly configurable text editor built to make creating and changing
+any kind of text very efficient. It is included as “vi” with most UNIX systems and with Apple OS X.
+Read more in <a class="reference external" href="https://www.vim.org/">vim.org</a>.</p>
 </div></blockquote>
-<p>Then, they can use, for e.g., <code class="docutils literal notranslate"><span class="pre">(:duref:`ref</span> <span class="pre">&lt;paragraphs&gt;`)</span></code> to link to a reference
-created in the documents in the link provided (in this case, with the name paragraphs).</p>
-<p>This extension is meant to help with the common pattern of having many external
-links that point to URLs on one and the same site, e.g. links to bug trackers,
-version control web interfaces, or simply subpages in other websites.  It does
-so by providing aliases to base URLs, so that you only need to give the subpage
-name when creating a link.</p>
-<p>Let’s assume that you want to include many links to issues at the Sphinx
-tracker, at <code class="samp docutils literal notranslate"><span class="pre">https://github.com/sphinx-doc/sphinx/issues/</span><em><span class="pre">num</span></em></code>.  Typing
-this URL again and again is tedious, so you can use <code class="xref py py-mod docutils literal notranslate"><span class="pre">extlinks</span></code>
-to avoid repeating yourself.</p>
-<p>The extension adds a config value:</p>
-<p>This config value must be a dictionary of external sites, mapping unique
-short alias names to a <em>base URL</em> and a <em>caption</em>.  For example, to create an
-alias for the above mentioned issues, you would add</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">extlinks</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;issue&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;https://github.com/sphinx-doc/sphinx/issues/</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;issue </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">)}</span>
+<section id="install-vim">
+<h2><span class="section-number">12.1. </span>Install Vim<a class="headerlink" href="#install-vim" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">yay</span> <span class="pre">-S</span> <span class="pre">vim-plug-git</span></code></p></li>
+<li><p>add <code class="docutils literal notranslate"><span class="pre">.vimrc</span></code> with the plugs I want</p></li>
+<li><p>add folder <code class="docutils literal notranslate"><span class="pre">~/.vim/plugged/</span></code></p></li>
+<li><p>to install plugs, do <code class="docutils literal notranslate"><span class="pre">:PlugInstall</span></code></p></li>
+<li><p>for fzt pluggin: <code class="docutils literal notranslate"><span class="pre">:Files</span></code> command</p></li>
+<li><p>For the NERDTree plugin to see icon of file, install: <code class="docutils literal notranslate"><span class="pre">yay</span> <span class="pre">-S</span> <span class="pre">nerd-fonts-complete</span></code> ;
+This font package my screw up font sizes of icons. To correct this, add to i3blocks config the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;span size=&#39;small&#39; font_weight=&#39;light&#39;&gt; icon &lt;/span&gt;
 </pre></div>
 </div>
-<p>Now, you can use the alias name as a new role, e.g. <code class="docutils literal notranslate"><span class="pre">:issue:`123`</span></code>.  This
-then inserts a link to <a class="reference external" href="https://github.com/sphinx-doc/sphinx/issues/123">https://github.com/sphinx-doc/sphinx/issues/123</a>.
-As you can see, the target given in the role is substituted in the <em>base URL</em>
-in the place of <code class="docutils literal notranslate"><span class="pre">%s</span></code>.</p>
+<p>And change font on terminal to SauceCodePro Nerd Font Medium</p>
+</li>
+<li><p>To open a file in a new tab in <code class="docutils literal notranslate"><span class="pre">nerdtree</span></code>, press <code class="docutils literal notranslate"><span class="pre">t</span></code> (or <code class="docutils literal notranslate"><span class="pre">T</span></code>); to open vertically click <code class="docutils literal notranslate"><span class="pre">s</span></code> ;</p></li>
+<li><p>To cycle through windows: <code class="docutils literal notranslate"><span class="pre">C-W-W</span></code>, <code class="docutils literal notranslate"><span class="pre">C-W-H</span></code>, <code class="docutils literal notranslate"><span class="pre">C-W-L</span></code>, <code class="docutils literal notranslate"><span class="pre">C-W-J</span></code>, <code class="docutils literal notranslate"><span class="pre">C-W-K</span></code></p></li>
+<li><p>To open file using fzf do:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CTRL+T</span></code> to open in new tab</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CTRL+X</span></code> to open a new split</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CTRL+V</span></code> to open in a new vertical split</p></li>
+<li><p>While in NERDTree, click on “m” to have a menu to do stuff with the file or other things</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yay</span> <span class="pre">-S</span> <span class="pre">vim-youcompleteme-git</span></code> -&gt; vim autocompletion (Needs to be done separately from the installation of the dotfiles)</p></li>
+<li><p>No need to add this plugin (<code class="docutils literal notranslate"><span class="pre">vim-youcompleteme-git</span></code>) to the <code class="docutils literal notranslate"><span class="pre">.vimrc</span></code> file</p></li>
+<li><p>add: <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">g:ycm_show_diagnostics_ui</span> <span class="pre">=</span> <span class="pre">0</span></code> to disable error checking by <code class="docutils literal notranslate"><span class="pre">YouCompleteMe</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pacman</span> <span class="pre">-S</span> <span class="pre">python-black</span></code></p></li>
+</ul>
 </section>
-<section id="sphinx-numbered-sections">
-<span id="id2"></span><h2><span class="section-number">1.3. </span>Sphinx Numbered Sections<a class="headerlink" href="#sphinx-numbered-sections" title="Permalink to this heading">#</a></h2>
-<p>In order to have numbered sections in sphinx, check this <a class="reference external" href="https://sphinx-multitoc-numbering.readthedocs.io/en/latest/">link</a>.</p>
-<p>The steps for installation are the following:</p>
-<ol class="arabic">
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/executablebooks/sphinx-multitoc-numbering</span></code></p></li>
-<li><p>and install using the following commands:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">multitoc</span><span class="o">-</span><span class="n">numbering</span>
-<span class="n">sudo</span> <span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+<section id="install-vim-in-cluster">
+<h2><span class="section-number">12.2. </span>Install Vim in cluster<a class="headerlink" href="#install-vim-in-cluster" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/vim/vim.git
+./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$HOME</span>/.local<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>install
+<span class="c1"># More flags: --disable-perlinterp --enable-rubyinterp --enable-multibyte --enable-pythoninterp --with-features=huge</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/home/youruser/.local/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<span class="c1"># For plugins:</span>
+mkdir<span class="w"> </span>.vim/autoload
+curl<span class="w"> </span>-fLo<span class="w"> </span>~/.vim/autoload/plug.vim<span class="w"> </span>--create-dirs<span class="w"> </span><span class="se">\</span>
+https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 </pre></div>
 </div>
-</li>
-<li><p>Add this to the extensions list in the sphinx <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinx_multitoc_numbering&quot;</span><span class="p">]</span>
+<p>Place in <code class="docutils literal notranslate"><span class="pre">.vimrc</span></code> before <code class="docutils literal notranslate"><span class="pre">plug#begin()</span></code> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>let data_dir = has(&#39;nvim&#39;) ? stdpath(&#39;data&#39;) . &#39;/site&#39; : &#39;~/.vim&#39;
+if empty(glob(data_dir . &#39;/autoload/plug.vim&#39;))
+    silent execute &#39;!curl -fLo &#39;.data_dir.&#39;/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim&#39;
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 </pre></div>
 </div>
-</li>
-<li><p>Finally, use <code class="docutils literal notranslate"><span class="pre">:numbered:</span></code> option in toctrees.</p></li>
-</ol>
+</section>
+<section id="vim-snippets">
+<h2><span class="section-number">12.3. </span>Vim snippets<a class="headerlink" href="#vim-snippets" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">:UltiSnipsEdit</span></code> command opens up a custom snippets file for the current <code class="docutils literal notranslate"><span class="pre">language/filytype</span></code></p></li>
+<li><p>Don’t need the above step if I install <code class="docutils literal notranslate"><span class="pre">vim-snippets</span></code> plugin</p></li>
+</ul>
+</section>
+<section id="manage-tabs">
+<h2><span class="section-number">12.4. </span>Manage Tabs<a class="headerlink" href="#manage-tabs" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>To move tabs -&gt; <code class="docutils literal notranslate"><span class="pre">Alt</span> <span class="pre">+</span> <span class="pre">arrows</span></code></p></li>
+<li><p>To merge tabs -&gt; <code class="docutils literal notranslate"><span class="pre">Ctr</span> <span class="pre">+</span> <span class="pre">m</span></code> or <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">n</span></code> ;</p></li>
+<li><p>To exchange position of merged tabs -&gt; <code class="docutils literal notranslate"><span class="pre">&lt;C-w&gt;</span> <span class="pre">x</span></code> ;</p></li>
+<li><p>To change cursor position -&gt; <code class="docutils literal notranslate"><span class="pre">&lt;C-w&gt;</span> <span class="pre">w</span></code> ;</p></li>
+<li><p>To rotate windows -&gt; <code class="docutils literal notranslate"><span class="pre">&lt;C-w&gt;</span> <span class="pre">&lt;C-r&gt;</span></code></p></li>
+</ul>
+</section>
+<section id="vim-surroundings">
+<h2><span class="section-number">12.5. </span>Vim surroundings<a class="headerlink" href="#vim-surroundings" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>cs(atual)(target) -&gt; change surround from “atual” to “target”</p></li>
+<li><p>ds”  -&gt; delete surround “</p></li>
+<li><p>ysiw[ -&gt; yank surround inner word [ -&gt; puts [ surrounding the word the cursor is in</p></li>
+<li><p>ysf(smth)[ -&gt; puts [ surrounding current cursor position till smth</p></li>
+</ul>
+</section>
+<section id="some-commands">
+<h2><span class="section-number">12.6. </span>Some commands<a class="headerlink" href="#some-commands" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>procurar coisas: <code class="docutils literal notranslate"><span class="pre">/searchthing</span></code> e usa-se n ou N para avançar para as seguintes</p></li>
+<li><p>procurar string e substituir:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>:s/search/replace/
+:8,10 s/search/replace/g procura nas linhas 8 a 10
+:%s/search/replace/g procura no documento inteiro
+:%s/search/replace/gc pede confirmação para alterar
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>copiar e colar: selecionar o texto, y copia, p cola</p></li>
+</ul>
 </section>
 </section>
 
@@ -310,23 +308,15 @@ in the place of <code class="docutils literal notranslate"><span class="pre">%s<
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="git.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title"><span class="section-number">2. </span>Git infos</div>
-              </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="../index.html">
+          
+          <a class="prev-page" href="grub.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Home</div>
+                <div class="title"><span class="section-number">11. </span>Grub Notes</div>
                 
               </div>
             </a>
@@ -360,10 +350,13 @@ in the place of <code class="docutils literal notranslate"><span class="pre">%s<
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">1. Sphinx tricks</a><ul>
-<li><a class="reference internal" href="#nested-blocks">1.1. Nested Blocks</a></li>
-<li><a class="reference internal" href="#sphinx-doc-extlinks">1.2. Sphinx Doc -  extlinks</a></li>
-<li><a class="reference internal" href="#sphinx-numbered-sections">1.3. Sphinx Numbered Sections</a></li>
+<li><a class="reference internal" href="#">12. Vim Notes</a><ul>
+<li><a class="reference internal" href="#install-vim">12.1. Install Vim</a></li>
+<li><a class="reference internal" href="#install-vim-in-cluster">12.2. Install Vim in cluster</a></li>
+<li><a class="reference internal" href="#vim-snippets">12.3. Vim snippets</a></li>
+<li><a class="reference internal" href="#manage-tabs">12.4. Manage Tabs</a></li>
+<li><a class="reference internal" href="#vim-surroundings">12.5. Vim surroundings</a></li>
+<li><a class="reference internal" href="#some-commands">12.6. Some commands</a></li>
 </ul>
 </li>
 </ul>

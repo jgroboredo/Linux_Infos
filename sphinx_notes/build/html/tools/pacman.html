@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="2. Git infos" href="git.html" /><link rel="prev" title="Welcome to Gonçalo’s Personal Notes’s!" href="../index.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="11. Grub Notes" href="grub.html" /><link rel="prev" title="9. Jupyter Notes" href="jupyter.html" />
 
     <!-- Generated with Sphinx 6.2.1 and Furo 2023.03.27 -->
-        <title>1. Sphinx tricks - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
+        <title>10. Pacman Notes - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -157,7 +157,7 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">1. Sphinx tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">1. Sphinx tricks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">2. Git infos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bash.html">3. Bash Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lyx.html">4. LyX Notes</a></li>
@@ -166,7 +166,7 @@
 <li class="toctree-l1"><a class="reference internal" href="zathura.html">7. Zathura Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="zsh.html">8. Zsh Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyter.html">9. Jupyter Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pacman.html">10. Pacman Notes</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">10. Pacman Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="grub.html">11. Grub Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vim.html">12. Vim Notes</a></li>
 </ul>
@@ -203,105 +203,59 @@
           </label>
         </div>
         <article role="main">
-          <section id="sphinx-tricks">
-<span id="id1"></span><h1><span class="section-number">1. </span>Sphinx tricks<a class="headerlink" href="#sphinx-tricks" title="Permalink to this heading">#</a></h1>
-<section id="nested-blocks">
-<h2><span class="section-number">1.1. </span>Nested Blocks<a class="headerlink" href="#nested-blocks" title="Permalink to this heading">#</a></h2>
-<p>Consider the following example:</p>
-<ul>
-<li><p>List item 1</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="n">sample</span>
-</pre></div>
-</div>
-<ul>
-<li><p>List item 2</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="n">sample</span>
-</pre></div>
-</div>
-</li>
-</ul>
-</li>
-</ul>
-<p>In terms of code:</p>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="m">-</span> List item 1 ::
-
-   code sample 1
-
-  <span class="m">-</span> List item 2 ::
-
-     code sample 2
-</pre></div>
-</div>
-<p>Basically, in this example, the “code sample 1” is indented in respect to “List item 1”
-(i.e., there are 3 spaces to the beginning of the line). On the other hand, the “code sample 2”
-is indented with respect to “List item 2” (i.e, there are 3 spaces with respect to the second
-indentation level, which is the hyphen where “List item 2” starts)</p>
-<ul>
-<li><p>List item 1</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="n">block</span>
-</pre></div>
-</div>
-<ul>
-<li><p>List item 2</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="n">block</span>
-</pre></div>
-</div>
-</li>
-</ul>
-</li>
-</ul>
-<p>Apparently I can simply tab the code blocks to indent. I just need to be careful where the
-nested item starts (the hyphen needs to be right under the first letter of “List item 1”).</p>
-</section>
-<section id="sphinx-doc-extlinks">
-<h2><span class="section-number">1.2. </span>Sphinx Doc -  extlinks<a class="headerlink" href="#sphinx-doc-extlinks" title="Permalink to this heading">#</a></h2>
-<p>In sphinx documentation, they have the following in the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
-<blockquote>
-<div><p>extlinks = {‘duref’: (’<a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/">https://docutils.sourceforge.io/docs/ref/rst/</a>’…}</p>
+          <section id="pacman-notes">
+<span id="id1"></span><h1><span class="section-number">10. </span>Pacman Notes<a class="headerlink" href="#pacman-notes" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>The pacman package manager is one of the major distinguishing features of Arch Linux.
+It combines a simple binary package format with an easy-to-use build system.
+The goal of pacman is to make it possible to easily manage packages,
+whether they are from the official repositories or the user’s own builds.
+Read more in <a class="reference external" href="https://wiki.archlinux.org/title/pacman">arch wiki</a>.</p>
 </div></blockquote>
-<p>Then, they can use, for e.g., <code class="docutils literal notranslate"><span class="pre">(:duref:`ref</span> <span class="pre">&lt;paragraphs&gt;`)</span></code> to link to a reference
-created in the documents in the link provided (in this case, with the name paragraphs).</p>
-<p>This extension is meant to help with the common pattern of having many external
-links that point to URLs on one and the same site, e.g. links to bug trackers,
-version control web interfaces, or simply subpages in other websites.  It does
-so by providing aliases to base URLs, so that you only need to give the subpage
-name when creating a link.</p>
-<p>Let’s assume that you want to include many links to issues at the Sphinx
-tracker, at <code class="samp docutils literal notranslate"><span class="pre">https://github.com/sphinx-doc/sphinx/issues/</span><em><span class="pre">num</span></em></code>.  Typing
-this URL again and again is tedious, so you can use <code class="xref py py-mod docutils literal notranslate"><span class="pre">extlinks</span></code>
-to avoid repeating yourself.</p>
-<p>The extension adds a config value:</p>
-<p>This config value must be a dictionary of external sites, mapping unique
-short alias names to a <em>base URL</em> and a <em>caption</em>.  For example, to create an
-alias for the above mentioned issues, you would add</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">extlinks</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;issue&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;https://github.com/sphinx-doc/sphinx/issues/</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;issue </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">)}</span>
+<ul class="simple">
+<li><p>Update pacman mirrors: <code class="docutils literal notranslate"><span class="pre">reflector</span> <span class="pre">--verbose</span> <span class="pre">--latest</span> <span class="pre">5</span> <span class="pre">--sort</span> <span class="pre">rate</span> <span class="pre">--save</span> <span class="pre">/etc/pacman.d/mirrorlist</span></code></p></li>
+<li><p>Check recently installed packages: <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">installed</span> <span class="pre">/var/log/pacman.log</span></code></p></li>
+</ul>
+<section id="pacman-cache">
+<h2><span class="section-number">10.1. </span>Pacman cache<a class="headerlink" href="#pacman-cache" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ls<span class="w"> </span>/var/cache/pacman/pkg/<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="w"> </span><span class="c1"># checks cached packages</span>
+du<span class="w"> </span>-sh<span class="w"> </span>/var/cache/pacman/pkg/<span class="w"> </span><span class="c1"># disk space occupied by cache</span>
+sudo<span class="w"> </span>paccache<span class="w"> </span>-r<span class="w"> </span><span class="c1"># cleans all packages except most recent 3</span>
+sudo<span class="w"> </span>paccache<span class="w"> </span>-rk<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1"># keep only one most recent version</span>
+sudo<span class="w"> </span>pacman<span class="w"> </span>-Sc<span class="w"> </span><span class="c1"># remove all uninstalled packages</span>
+sudo<span class="w"> </span>pacman<span class="w"> </span>-Scc<span class="w"> </span><span class="c1"># remove installed and uninstalled packages from cache</span>
+sudo<span class="w"> </span>paccache<span class="w"> </span>-ruk0<span class="w"> </span><span class="c1">#**** remove all versions of uninstalled packages</span>
+change<span class="w"> </span>/etc/pacman.conf<span class="w"> </span><span class="nv">ParallelDownloads</span><span class="o">=</span><span class="m">5</span>
 </pre></div>
 </div>
-<p>Now, you can use the alias name as a new role, e.g. <code class="docutils literal notranslate"><span class="pre">:issue:`123`</span></code>.  This
-then inserts a link to <a class="reference external" href="https://github.com/sphinx-doc/sphinx/issues/123">https://github.com/sphinx-doc/sphinx/issues/123</a>.
-As you can see, the target given in the role is substituted in the <em>base URL</em>
-in the place of <code class="docutils literal notranslate"><span class="pre">%s</span></code>.</p>
 </section>
-<section id="sphinx-numbered-sections">
-<span id="id2"></span><h2><span class="section-number">1.3. </span>Sphinx Numbered Sections<a class="headerlink" href="#sphinx-numbered-sections" title="Permalink to this heading">#</a></h2>
-<p>In order to have numbered sections in sphinx, check this <a class="reference external" href="https://sphinx-multitoc-numbering.readthedocs.io/en/latest/">link</a>.</p>
-<p>The steps for installation are the following:</p>
-<ol class="arabic">
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/executablebooks/sphinx-multitoc-numbering</span></code></p></li>
-<li><p>and install using the following commands:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">multitoc</span><span class="o">-</span><span class="n">numbering</span>
-<span class="n">sudo</span> <span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+<section id="install-from-live-usb">
+<h2><span class="section-number">10.2. </span>Install from live usb<a class="headerlink" href="#install-from-live-usb" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mount<span class="w"> </span>system:<span class="w"> </span>mount<span class="w"> </span>/dev/sdax<span class="w"> </span>/mnt
+sudo<span class="w"> </span>pacman<span class="w"> </span>--root<span class="w"> </span>/mnt<span class="w"> </span>-S<span class="w"> </span>package
+sudo<span class="w"> </span>pacman<span class="w"> </span>-Qkk<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>warning<span class="w"> </span><span class="c1"># To verify the presence of the files  installed by a package</span>
+sudo<span class="w"> </span>pacman<span class="w"> </span>--root<span class="w"> </span>/mnt<span class="w"> </span>-S<span class="w"> </span><span class="k">$(</span>sudo<span class="w"> </span>pacman<span class="w"> </span>--root<span class="w"> </span>/mnt<span class="w"> </span>-Qeq<span class="k">)</span><span class="w"> </span>--noconfirm<span class="w"> </span><span class="c1"># reinstalls installed packages</span>
+<span class="c1">#If need to remove aur packages:</span>
+sudo<span class="w"> </span>pacman<span class="w"> </span>--root<span class="w"> </span>/mnt<span class="w"> </span>-Qeq<span class="w"> </span>&gt;<span class="w"> </span>packages.txt
+sudo<span class="w"> </span>pacman<span class="w"> </span>--root<span class="w"> </span>/mnt<span class="w"> </span>-S<span class="w"> </span><span class="k">$(</span>cat<span class="w"> </span>packages.txt<span class="k">)</span><span class="w"> </span>--noconfirm
 </pre></div>
 </div>
-</li>
-<li><p>Add this to the extensions list in the sphinx <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinx_multitoc_numbering&quot;</span><span class="p">]</span>
+</section>
+<section id="pacman-infos">
+<h2><span class="section-number">10.3. </span>Pacman infos<a class="headerlink" href="#pacman-infos" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pacman<span class="w"> </span>-Qe<span class="w"> </span><span class="c1"># lists explicitly installed packages</span>
+pacman<span class="w"> </span>-Rsc<span class="w"> </span><span class="c1"># uninstalls (including unneeded dependencies)</span>
+pacman<span class="w"> </span>-Qs<span class="w"> </span><span class="s2">&quot;query&quot;</span><span class="w"> </span><span class="c1"># search installed packages for keywords</span>
+pacman<span class="w"> </span>-Qdt<span class="w"> </span><span class="c1"># list unneeded packages</span>
+pacman<span class="w"> </span>-Rns<span class="w"> </span><span class="k">$(</span>pacman<span class="w"> </span>-Qdtq<span class="k">)</span><span class="w"> </span><span class="c1"># uninstall unneeded packages (nota: quando adicionei isto aos aliases, sempre que abri o terminal pedia-me a pass do sudo (estava a correr o que esta a frente de $)</span>
 </pre></div>
 </div>
-</li>
-<li><p>Finally, use <code class="docutils literal notranslate"><span class="pre">:numbered:</span></code> option in toctrees.</p></li>
-</ol>
+</section>
+<section id="pacman-mirrors">
+<h2><span class="section-number">10.4. </span>Pacman mirrors<a class="headerlink" href="#pacman-mirrors" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>pacman-mirrors<span class="w"> </span>--fasttrack<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pacman<span class="w"> </span>-Syyu
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -310,23 +264,23 @@ in the place of <code class="docutils literal notranslate"><span class="pre">%s<
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="git.html">
+          <a class="next-page" href="grub.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title"><span class="section-number">2. </span>Git infos</div>
+                <div class="title"><span class="section-number">11. </span>Grub Notes</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../index.html">
+          <a class="prev-page" href="jupyter.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Home</div>
+                <div class="title"><span class="section-number">9. </span>Jupyter Notes</div>
                 
               </div>
             </a>
@@ -360,10 +314,11 @@ in the place of <code class="docutils literal notranslate"><span class="pre">%s<
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">1. Sphinx tricks</a><ul>
-<li><a class="reference internal" href="#nested-blocks">1.1. Nested Blocks</a></li>
-<li><a class="reference internal" href="#sphinx-doc-extlinks">1.2. Sphinx Doc -  extlinks</a></li>
-<li><a class="reference internal" href="#sphinx-numbered-sections">1.3. Sphinx Numbered Sections</a></li>
+<li><a class="reference internal" href="#">10. Pacman Notes</a><ul>
+<li><a class="reference internal" href="#pacman-cache">10.1. Pacman cache</a></li>
+<li><a class="reference internal" href="#install-from-live-usb">10.2. Install from live usb</a></li>
+<li><a class="reference internal" href="#pacman-infos">10.3. Pacman infos</a></li>
+<li><a class="reference internal" href="#pacman-mirrors">10.4. Pacman mirrors</a></li>
 </ul>
 </li>
 </ul>

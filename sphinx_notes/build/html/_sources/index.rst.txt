@@ -35,3 +35,6 @@ Contents
    tools/zathura
    tools/zsh
    tools/jupyter
+   tools/pacman
+   tools/grub
+   tools/vim
