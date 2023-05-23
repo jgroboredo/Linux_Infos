@@ -70,6 +70,7 @@
   - [15.3. Manage Tabs](#153-manage-tabs)
   - [15.4. Vim surroundings](#154-vim-surroundings)
   - [15.5. Some commands](#155-some-commands)
+- [NeoVim](#neovim)
 - [16. Alacritty](#16-alacritty)
 - [17. Lighdm](#17-lighdm)
 - [18. i3Blocks](#18-i3blocks)
@@ -1074,6 +1075,17 @@ endif
 
 - copiar e colar:
 selecionar o texto, y copia, p cola
+
+<div style="page-break-after: always; break-after: page;"></div>
+
+# NeoVim
+
+Commands: 
+
+- `TSInstallInfo`
+- `TSInstall c`
+- `MasonInstallAll`
+- `checkhealth`
 
 <div style="page-break-after: always; break-after: page;"></div>
 
