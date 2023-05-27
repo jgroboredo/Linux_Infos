@@ -3722,6 +3722,7 @@ In manjaro, do: `sudo mv /usr/share/dbus-1/services/org.knopwob.dunst.service{,.
 
    - In order to have ssh-agent always running, check ~/.config/systemd and .zshrc
    - `systemctl --user enable ssh-agent.service` (probably don't need to do this since I have a backup of .config/systemd)
+   - On an headless server, this might not be enough. I first need to change the sshd_config and add: `UsePam yes` 
    - Check services: `systemctl --user list-unit-files | grep enabled`
    - Check services (all): `systemctl list-unit-files | grep enabled`
    - Also, need to add to zshrc a function to load keys, since ssh-add only works for the current session
