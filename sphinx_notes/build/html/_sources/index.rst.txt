@@ -17,6 +17,17 @@ The dependencies to build this documentation are:
 - sphinx-multitoc-numbering - check :ref:`this section <sphinx-numbered-sections>` for more information;
 - sphinx-copybutton - visit `link <https://sphinx-copybutton.readthedocs.io>`_ for more information.
 
+In order to install the dependencies, simply run ``pip install -r requirements.txt``.
+
+.. note:: 
+
+   Note that we should use a ``venv`` in order to build this. In order to do so:
+
+   .. code-block :: bash
+
+      python -m venv python-sphinx
+      source python-sphinx/bin/activate
+
 --------
 Contents
 --------
@@ -38,3 +49,4 @@ Contents
    tools/pacman
    tools/grub
    tools/vim
+   tools/python

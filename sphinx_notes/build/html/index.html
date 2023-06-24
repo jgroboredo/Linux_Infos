@@ -2,13 +2,13 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="1. Sphinx tricks" href="tools/sphinx.html" />
 
-    <!-- Generated with Sphinx 6.2.1 and Furo 2023.03.27 -->
+    <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
         <title>Gonçalo&#39;s Personal Notes 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
@@ -169,6 +169,7 @@
 <li class="toctree-l1"><a class="reference internal" href="tools/pacman.html">10. Pacman Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools/grub.html">11. Grub Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools/vim.html">12. Vim Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/python.html">13. Python Notes</a></li>
 </ul>
 
 </div>
@@ -214,6 +215,15 @@ In order to build the notes, just run <code class="docutils literal notranslate"
 <li><p>sphinx-multitoc-numbering - check <a class="reference internal" href="tools/sphinx.html#sphinx-numbered-sections"><span class="std std-ref">this section</span></a> for more information;</p></li>
 <li><p>sphinx-copybutton - visit <a class="reference external" href="https://sphinx-copybutton.readthedocs.io">link</a> for more information.</p></li>
 </ul>
+<p>In order to install the dependencies, simply run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that we should use a <code class="docutils literal notranslate"><span class="pre">venv</span></code> in order to build this. In order to do so:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>python-sphinx
+<span class="nb">source</span><span class="w"> </span>python-sphinx/bin/activate
+</pre></div>
+</div>
+</div>
 <section id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
@@ -250,6 +260,7 @@ In order to build the notes, just run <code class="docutils literal notranslate"
 <li class="toctree-l2"><a class="reference internal" href="tools/git.html#git-submodules">2.22. 3.20. Git submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tools/git.html#migrate-part-of-git-repository">2.23. Migrate part of git repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tools/git.html#git-reverse-patch">2.24. Git reverse patch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/git.html#git-tag-checkout-submodules">2.25. Git tag checkout submodules</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tools/bash.html">3. Bash Notes</a><ul>
@@ -302,6 +313,10 @@ In order to build the notes, just run <code class="docutils literal notranslate"
 <li class="toctree-l2"><a class="reference internal" href="tools/vim.html#manage-tabs">12.4. Manage Tabs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tools/vim.html#vim-surroundings">12.5. Vim surroundings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tools/vim.html#some-commands">12.6. Some commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools/python.html">13. Python Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools/python.html#pyenv">13.1. pyenv</a></li>
 </ul>
 </li>
 </ul>

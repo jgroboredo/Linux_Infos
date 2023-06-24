@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="13. Python Notes" href="python.html" /><link rel="prev" title="11. Grub Notes" href="grub.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="12. Vim Notes" href="vim.html" />
 
     <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
-        <title>12. Vim Notes - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
+        <title>13. Python Notes - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -168,8 +168,8 @@
 <li class="toctree-l1"><a class="reference internal" href="jupyter.html">9. Jupyter Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pacman.html">10. Pacman Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="grub.html">11. Grub Notes</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">12. Vim Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python.html">13. Python Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vim.html">12. Vim Notes</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">13. Python Notes</a></li>
 </ul>
 
 </div>
@@ -204,103 +204,38 @@
           </label>
         </div>
         <article role="main">
-          <section id="vim-notes">
-<span id="id1"></span><h1><span class="section-number">12. </span>Vim Notes<a class="headerlink" href="#vim-notes" title="Permalink to this heading">#</a></h1>
+          <section id="python-notes">
+<span id="id1"></span><h1><span class="section-number">13. </span>Python Notes<a class="headerlink" href="#python-notes" title="Permalink to this heading">#</a></h1>
 <blockquote class="epigraph">
-<div><p>Vim is a highly configurable text editor built to make creating and changing
-any kind of text very efficient. It is included as “vi” with most UNIX systems and with Apple OS X.
-Read more in <a class="reference external" href="https://www.vim.org/">vim.org</a>.</p>
+<div><p>Python is a high-level, general-purpose programming language.
+Its design philosophy emphasizes code readability with the use of
+significant indentation via the off-side rule. Python is dynamically
+typed and garbage-collected.</p>
+<p>Read more in <a class="reference external" href="https://www.python.org/">python.org</a>.</p>
 </div></blockquote>
-<section id="install-vim">
-<h2><span class="section-number">12.1. </span>Install Vim<a class="headerlink" href="#install-vim" title="Permalink to this heading">#</a></h2>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">yay</span> <span class="pre">-S</span> <span class="pre">vim-plug-git</span></code></p></li>
-<li><p>add <code class="docutils literal notranslate"><span class="pre">.vimrc</span></code> with the plugs I want</p></li>
-<li><p>add folder <code class="docutils literal notranslate"><span class="pre">~/.vim/plugged/</span></code></p></li>
-<li><p>to install plugs, do <code class="docutils literal notranslate"><span class="pre">:PlugInstall</span></code></p></li>
-<li><p>for fzt pluggin: <code class="docutils literal notranslate"><span class="pre">:Files</span></code> command</p></li>
-<li><p>For the NERDTree plugin to see icon of file, install: <code class="docutils literal notranslate"><span class="pre">yay</span> <span class="pre">-S</span> <span class="pre">nerd-fonts-complete</span></code> ;
-This font package my screw up font sizes of icons. To correct this, add to i3blocks config the following:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;span size=&#39;small&#39; font_weight=&#39;light&#39;&gt; icon &lt;/span&gt;
-</pre></div>
-</div>
-<p>And change font on terminal to SauceCodePro Nerd Font Medium</p>
-</li>
-<li><p>To open a file in a new tab in <code class="docutils literal notranslate"><span class="pre">nerdtree</span></code>, press <code class="docutils literal notranslate"><span class="pre">t</span></code> (or <code class="docutils literal notranslate"><span class="pre">T</span></code>); to open vertically click <code class="docutils literal notranslate"><span class="pre">s</span></code> ;</p></li>
-<li><p>To cycle through windows: <code class="docutils literal notranslate"><span class="pre">C-W-W</span></code>, <code class="docutils literal notranslate"><span class="pre">C-W-H</span></code>, <code class="docutils literal notranslate"><span class="pre">C-W-L</span></code>, <code class="docutils literal notranslate"><span class="pre">C-W-J</span></code>, <code class="docutils literal notranslate"><span class="pre">C-W-K</span></code></p></li>
-<li><p>To open file using fzf do:</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CTRL+T</span></code> to open in new tab</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CTRL+X</span></code> to open a new split</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CTRL+V</span></code> to open in a new vertical split</p></li>
-<li><p>While in NERDTree, click on “m” to have a menu to do stuff with the file or other things</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">yay</span> <span class="pre">-S</span> <span class="pre">vim-youcompleteme-git</span></code> -&gt; vim autocompletion (Needs to be done separately from the installation of the dotfiles)</p></li>
-<li><p>No need to add this plugin (<code class="docutils literal notranslate"><span class="pre">vim-youcompleteme-git</span></code>) to the <code class="docutils literal notranslate"><span class="pre">.vimrc</span></code> file</p></li>
-<li><p>add: <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">g:ycm_show_diagnostics_ui</span> <span class="pre">=</span> <span class="pre">0</span></code> to disable error checking by <code class="docutils literal notranslate"><span class="pre">YouCompleteMe</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pacman</span> <span class="pre">-S</span> <span class="pre">python-black</span></code></p></li>
-</ul>
-</section>
-<section id="install-vim-in-cluster">
-<h2><span class="section-number">12.2. </span>Install Vim in cluster<a class="headerlink" href="#install-vim-in-cluster" title="Permalink to this heading">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/vim/vim.git
-./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$HOME</span>/.local<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>install
-<span class="c1"># More flags: --disable-perlinterp --enable-rubyinterp --enable-multibyte --enable-pythoninterp --with-features=huge</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/home/youruser/.local/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
-<span class="c1"># For plugins:</span>
-mkdir<span class="w"> </span>.vim/autoload
-curl<span class="w"> </span>-fLo<span class="w"> </span>~/.vim/autoload/plug.vim<span class="w"> </span>--create-dirs<span class="w"> </span><span class="se">\</span>
-https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-</pre></div>
-</div>
-<p>Place in <code class="docutils literal notranslate"><span class="pre">.vimrc</span></code> before <code class="docutils literal notranslate"><span class="pre">plug#begin()</span></code> :</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>let data_dir = has(&#39;nvim&#39;) ? stdpath(&#39;data&#39;) . &#39;/site&#39; : &#39;~/.vim&#39;
-if empty(glob(data_dir . &#39;/autoload/plug.vim&#39;))
-    silent execute &#39;!curl -fLo &#39;.data_dir.&#39;/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim&#39;
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-</pre></div>
-</div>
-</section>
-<section id="vim-snippets">
-<h2><span class="section-number">12.3. </span>Vim snippets<a class="headerlink" href="#vim-snippets" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">:UltiSnipsEdit</span></code> command opens up a custom snippets file for the current <code class="docutils literal notranslate"><span class="pre">language/filytype</span></code></p></li>
-<li><p>Don’t need the above step if I install <code class="docutils literal notranslate"><span class="pre">vim-snippets</span></code> plugin</p></li>
-</ul>
-</section>
-<section id="manage-tabs">
-<h2><span class="section-number">12.4. </span>Manage Tabs<a class="headerlink" href="#manage-tabs" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>To move tabs -&gt; <code class="docutils literal notranslate"><span class="pre">Alt</span> <span class="pre">+</span> <span class="pre">arrows</span></code></p></li>
-<li><p>To merge tabs -&gt; <code class="docutils literal notranslate"><span class="pre">Ctr</span> <span class="pre">+</span> <span class="pre">m</span></code> or <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">n</span></code> ;</p></li>
-<li><p>To exchange position of merged tabs -&gt; <code class="docutils literal notranslate"><span class="pre">&lt;C-w&gt;</span> <span class="pre">x</span></code> ;</p></li>
-<li><p>To change cursor position -&gt; <code class="docutils literal notranslate"><span class="pre">&lt;C-w&gt;</span> <span class="pre">w</span></code> ;</p></li>
-<li><p>To rotate windows -&gt; <code class="docutils literal notranslate"><span class="pre">&lt;C-w&gt;</span> <span class="pre">&lt;C-r&gt;</span></code></p></li>
-</ul>
-</section>
-<section id="vim-surroundings">
-<h2><span class="section-number">12.5. </span>Vim surroundings<a class="headerlink" href="#vim-surroundings" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>cs(atual)(target) -&gt; change surround from “atual” to “target”</p></li>
-<li><p>ds”  -&gt; delete surround “</p></li>
-<li><p>ysiw[ -&gt; yank surround inner word [ -&gt; puts [ surrounding the word the cursor is in</p></li>
-<li><p>ysf(smth)[ -&gt; puts [ surrounding current cursor position till smth</p></li>
-</ul>
-</section>
-<section id="some-commands">
-<h2><span class="section-number">12.6. </span>Some commands<a class="headerlink" href="#some-commands" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>procurar coisas: <code class="docutils literal notranslate"><span class="pre">/searchthing</span></code> e usa-se n ou N para avançar para as seguintes</p></li>
-<li><p>procurar string e substituir:</p></li>
-</ul>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>:s/search/replace/
-:8,10 s/search/replace/g procura nas linhas 8 a 10
-:%s/search/replace/g procura no documento inteiro
-:%s/search/replace/gc pede confirmação para alterar
+<section id="pyenv">
+<h2><span class="section-number">13.1. </span>pyenv<a class="headerlink" href="#pyenv" title="Permalink to this heading">#</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">pyenv</span></code> to manage python versions. Check the installation instrctions in
+<a class="reference external" href="https://github.com/pyenv/pyenv">github.com</a>.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">zsh</span></code> do:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;command -v pyenv &gt;/dev/null || export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(pyenv init -)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>copiar e colar: selecionar o texto, y copia, p cola</p></li>
+<li><p>Then, the installed versions can be checked with <code class="docutils literal notranslate"><span class="pre">pyenv</span> <span class="pre">versions</span></code> and the version in use
+using <code class="docutils literal notranslate"><span class="pre">pyenv</span> <span class="pre">version</span></code>.</p></li>
+<li><p>In order to change the python version used for the current shell: <code class="docutils literal notranslate"><span class="pre">pyenv</span> <span class="pre">shell</span> <span class="pre">&lt;version&gt;</span></code>.</p></li>
+<li><p>To install a new version, we can check the available versions with <code class="docutils literal notranslate"><span class="pre">pyenv</span> <span class="pre">install</span> <span class="pre">--list</span></code>
+and then <code class="docutils literal notranslate"><span class="pre">pyenv</span> <span class="pre">install</span> <span class="pre">&lt;version&gt;</span></code>.</p></li>
 </ul>
+<section id="pyenv-pip">
+<h3><span class="section-number">13.1.1. </span>pyenv pip<a class="headerlink" href="#pyenv-pip" title="Permalink to this heading">#</a></h3>
+<p>After changing the python version, we can simply use <cite>pip</cite> and it will automatically install packages
+for that python version. The same is true to initialize a new venv: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">&lt;venv_name&gt;</span></code>
+will work.</p>
+</section>
 </section>
 </section>
 
@@ -309,23 +244,15 @@ endif
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="python.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title"><span class="section-number">13. </span>Python Notes</div>
-              </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="grub.html">
+          
+          <a class="prev-page" href="vim.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title"><span class="section-number">11. </span>Grub Notes</div>
+                <div class="title"><span class="section-number">12. </span>Vim Notes</div>
                 
               </div>
             </a>
@@ -359,13 +286,11 @@ endif
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">12. Vim Notes</a><ul>
-<li><a class="reference internal" href="#install-vim">12.1. Install Vim</a></li>
-<li><a class="reference internal" href="#install-vim-in-cluster">12.2. Install Vim in cluster</a></li>
-<li><a class="reference internal" href="#vim-snippets">12.3. Vim snippets</a></li>
-<li><a class="reference internal" href="#manage-tabs">12.4. Manage Tabs</a></li>
-<li><a class="reference internal" href="#vim-surroundings">12.5. Vim surroundings</a></li>
-<li><a class="reference internal" href="#some-commands">12.6. Some commands</a></li>
+<li><a class="reference internal" href="#">13. Python Notes</a><ul>
+<li><a class="reference internal" href="#pyenv">13.1. pyenv</a><ul>
+<li><a class="reference internal" href="#pyenv-pip">13.1.1. pyenv pip</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

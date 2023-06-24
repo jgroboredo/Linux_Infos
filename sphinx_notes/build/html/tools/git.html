@@ -2,13 +2,13 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="3. Bash Notes" href="bash.html" /><link rel="prev" title="1. Sphinx tricks" href="sphinx.html" />
 
-    <!-- Generated with Sphinx 6.2.1 and Furo 2023.03.27 -->
+    <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
         <title>2. Git infos - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
@@ -169,6 +169,7 @@
 <li class="toctree-l1"><a class="reference internal" href="pacman.html">10. Pacman Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="grub.html">11. Grub Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vim.html">12. Vim Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">13. Python Notes</a></li>
 </ul>
 
 </div>
@@ -623,6 +624,23 @@ git<span class="w"> </span>apply<span class="w"> </span>--reject<span class="w">
 </pre></div>
 </div>
 </section>
+<section id="git-tag-checkout-submodules">
+<h2><span class="section-number">2.25. </span>Git tag checkout submodules<a class="headerlink" href="#git-tag-checkout-submodules" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">--recurse-submodules</span> <span class="pre">tags/&lt;tag_name&gt;</span></code>, where the <code class="docutils literal notranslate"><span class="pre">tag_name</span></code> can be
+obtained through <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-l</span></code>, assumes that every submodule recorded in that tag are
+already initialized. Since that’s not the case here, it errors out because it can’t
+find the .git directory of the submodule. The message could be clearer.
+What you have to do (the first time you switch to branch-c after cloning your repository)
+is to check out branch-c non-recursively, and then initialize the submodule:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>branch-c
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Submodules working trees are not checked out by default by git checkout &lt;branch&gt;.</p>
+</div>
+</section>
 </section>
 
         </article>
@@ -716,6 +734,7 @@ git<span class="w"> </span>apply<span class="w"> </span>--reject<span class="w">
 </li>
 <li><a class="reference internal" href="#migrate-part-of-git-repository">2.23. Migrate part of git repository</a></li>
 <li><a class="reference internal" href="#git-reverse-patch">2.24. Git reverse patch</a></li>
+<li><a class="reference internal" href="#git-tag-checkout-submodules">2.25. Git tag checkout submodules</a></li>
 </ul>
 </li>
 </ul>

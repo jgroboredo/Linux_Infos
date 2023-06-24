@@ -474,3 +474,22 @@ Git reverse patch
 
   git diff > my_patch.patch
   git apply --reject --whitespace=fix --reverse my_patch.patch
+
+---------------------------
+Git tag checkout submodules
+---------------------------
+
+``git checkout --recurse-submodules tags/<tag_name>``, where the ``tag_name`` can be
+obtained through ``git tag -l``, assumes that every submodule recorded in that tag are 
+already initialized. Since that's not the case here, it errors out because it can't 
+find the .git directory of the submodule. The message could be clearer. 
+What you have to do (the first time you switch to branch-c after cloning your repository) 
+is to check out branch-c non-recursively, and then initialize the submodule:
+
+.. code-block:: bash
+
+  git checkout branch-c
+  git submodule update --init --recursive
+
+.. note:: 
+  Submodules working trees are not checked out by default by git checkout <branch>.
