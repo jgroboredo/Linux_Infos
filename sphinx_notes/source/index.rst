@@ -50,3 +50,4 @@ Contents
    tools/grub
    tools/vim
    tools/python
+   tools/libreoffice
