@@ -642,6 +642,61 @@ git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w
 <p>Submodules working trees are not checked out by default by git checkout &lt;branch&gt;.</p>
 </div>
 </section>
+<section id="git-pushd-popd">
+<h2><span class="section-number">2.26. </span>Git pushd/popd<a class="headerlink" href="#git-pushd-popd" title="Permalink to this heading">#</a></h2>
+<p>In order to mimic the <code class="docutils literal notranslate"><span class="pre">pushd</span></code> and <code class="docutils literal notranslate"><span class="pre">popd</span></code> shell commands but for git checkout,
+add the following scripts to path:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">git-pushd</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">SUBDIRECTORY_OK</span><span class="o">=</span><span class="m">1</span>
+.<span class="w"> </span><span class="k">$(</span>git<span class="w"> </span>--exec-path<span class="k">)</span>/git-sh-setup
+
+<span class="o">{</span><span class="w"> </span>git<span class="w"> </span>symbolic-ref<span class="w"> </span>HEAD<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>s_refs/heads/__<span class="p">;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="nv">$GIT_DIR</span>/.pushd<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>cat<span class="w"> </span><span class="nv">$GIT_DIR</span>/.pushd<span class="p">;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span>&gt;<span class="nv">$GIT_DIR</span>/.pushd.new
+mv<span class="w"> </span><span class="nv">$GIT_DIR</span>/.pushd.new<span class="w"> </span><span class="nv">$GIT_DIR</span>/.pushd
+git<span class="w"> </span>checkout<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git-popd</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">SUBDIRECTORY_OK</span><span class="o">=</span><span class="m">1</span>
+.<span class="w"> </span><span class="k">$(</span>git<span class="w"> </span>--exec-path<span class="k">)</span>/git-sh-setup
+
+<span class="nv">REF</span><span class="o">=</span><span class="k">$(</span>head<span class="w"> </span>-n1<span class="w"> </span><span class="nv">$GIT_DIR</span>/.pushd<span class="k">)</span>
+
+<span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REF</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>die<span class="w"> </span><span class="s2">&quot;No refs to pop&quot;</span>
+git<span class="w"> </span>checkout<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REF</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;1d&#39;</span><span class="w"> </span><span class="nv">$GIT_DIR</span>/.pushd
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When adding a script to <code class="docutils literal notranslate"><span class="pre">PATH</span></code> with a name <code class="docutils literal notranslate"><span class="pre">git-smth</span></code>, then the command
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">smth</span></code> becomes available.</p>
+</div>
+<p>Finally, for the auto-completions, do:</p>
+<ul>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">bash</span></code>, create a file <code class="docutils literal notranslate"><span class="pre">/etc/bash_completion.d/git-pushd</span></code> with the following content:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/usr/share/bash-completion/completions/git
+
+_git_pushd<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>_git_checkout<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">zsh</span></code>, add to the file <code class="docutils literal notranslate"><span class="pre">/usr/share/zsh/functions/Completion/Unix/_git</span></code>,
+below the <code class="docutils literal notranslate"><span class="pre">_git-checkout</span></code> function:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>_git-pushd<span class="w"> </span><span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span>_git-checkout
+<span class="o">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
 </section>
 
         </article>
@@ -736,6 +791,7 @@ git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w
 <li><a class="reference internal" href="#migrate-part-of-git-repository">2.23. Migrate part of git repository</a></li>
 <li><a class="reference internal" href="#git-reverse-patch">2.24. Git reverse patch</a></li>
 <li><a class="reference internal" href="#git-tag-checkout-submodules">2.25. Git tag checkout submodules</a></li>
+<li><a class="reference internal" href="#git-pushd-popd">2.26. Git pushd/popd</a></li>
 </ul>
 </li>
 </ul>

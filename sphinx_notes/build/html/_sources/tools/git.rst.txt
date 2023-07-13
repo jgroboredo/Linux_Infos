@@ -493,3 +493,61 @@ is to check out branch-c non-recursively, and then initialize the submodule:
 
 .. note:: 
   Submodules working trees are not checked out by default by git checkout <branch>.
+
+--------------
+Git pushd/popd
+--------------
+
+In order to mimic the ``pushd`` and ``popd`` shell commands but for git checkout,
+add the following scripts to path:
+
+- ``git-pushd``:
+
+  .. code-block:: bash
+
+     #!/bin/bash
+
+     SUBDIRECTORY_OK=1
+     . $(git --exec-path)/git-sh-setup
+ 
+     { git symbolic-ref HEAD | sed s_refs/heads/__; [ -f $GIT_DIR/.pushd ] && cat $GIT_DIR/.pushd; } >$GIT_DIR/.pushd.new
+     mv $GIT_DIR/.pushd.new $GIT_DIR/.pushd
+     git checkout "$@"
+
+- ``git-popd``
+
+  .. code-block:: bash
+
+     #!/bin/bash
+ 
+     SUBDIRECTORY_OK=1
+     . $(git --exec-path)/git-sh-setup
+ 
+     REF=$(head -n1 $GIT_DIR/.pushd)
+ 
+     [ -n "$REF" ] || die "No refs to pop"
+     git checkout "$REF" && sed -i -e '1d' $GIT_DIR/.pushd
+
+.. note:: 
+   
+   When adding a script to ``PATH`` with a name ``git-smth``, then the command
+   ``git smth`` becomes available.
+
+Finally, for the auto-completions, do:
+
+- For ``bash``, create a file ``/etc/bash_completion.d/git-pushd`` with the following content:
+  
+  .. code-block:: bash
+
+     source /usr/share/bash-completion/completions/git
+
+     _git_pushd() { _git_checkout ; }
+
+- For ``zsh``, add to the file ``/usr/share/zsh/functions/Completion/Unix/_git``,
+  below the ``_git-checkout`` function:
+
+  .. code-block:: bash
+
+     _git-pushd () {
+       _git-checkout
+     }
