@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="15. Code Notes" href="vscode.html" /><link rel="prev" title="13. Python Notes" href="python.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="14. Libreoffice Notes" href="libreoffice.html" />
 
     <!-- Generated with Sphinx 6.2.1 and Furo 2023.03.27 -->
-        <title>14. Libreoffice Notes - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
+        <title>15. Code Notes - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -170,8 +170,8 @@
 <li class="toctree-l1"><a class="reference internal" href="grub.html">11. Grub Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vim.html">12. Vim Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python.html">13. Python Notes</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">14. Libreoffice Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vscode.html">15. Code Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libreoffice.html">14. Libreoffice Notes</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">15. Code Notes</a></li>
 </ul>
 
 </div>
@@ -206,29 +206,46 @@
           </label>
         </div>
         <article role="main">
-          <section id="libreoffice-notes">
-<span id="id1"></span><h1><span class="section-number">14. </span>Libreoffice Notes<a class="headerlink" href="#libreoffice-notes" title="Permalink to this heading">#</a></h1>
+          <section id="code-notes">
+<span id="id1"></span><h1><span class="section-number">15. </span>Code Notes<a class="headerlink" href="#code-notes" title="Permalink to this heading">#</a></h1>
 <blockquote class="epigraph">
-<div><p>LibreOffice is Free and Open Source Software. Development is open to new talent
-and new ideas, and our software is tested and used daily by a large and devoted
-user community.
-Read more in <a class="reference external" href="https://www.libreoffice.org/">libreoffice.org</a>.</p>
+<div><p>The repository (“Code - OSS”) is where Microsoft develops the Visual Studio Code product
+together with the community. Not only do they work on code and issues there, they also publish
+our roadmap, monthly iteration plans, and endgame plans. The source code is available to everyone
+under the standard MIT license.</p>
+<p>Read more in <a class="reference external" href="https://github.com/microsoft/vscode">github.com</a>.</p>
 </div></blockquote>
-<section id="libreoffice-general">
-<h2><span class="section-number">14.1. </span>Libreoffice - General<a class="headerlink" href="#libreoffice-general" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Latex in impress: <code class="docutils literal notranslate"><span class="pre">pacman</span> <span class="pre">-S</span> <span class="pre">libreoffice-extension-texmaths</span></code></p></li>
-<li><p>Check extension in Extension Manager inside <code class="docutils literal notranslate"><span class="pre">libreoffice</span></code></p></li>
-<li><p>To install <code class="docutils literal notranslate"><span class="pre">ExpandAnimations</span></code> go to <code class="docutils literal notranslate"><span class="pre">Tools-&gt;ExtensionManager</span></code> and add there the oxt file</p></li>
-</ul>
-</section>
-<section id="fail-to-startup">
-<h2><span class="section-number">14.2. </span>Fail to startup<a class="headerlink" href="#fail-to-startup" title="Permalink to this heading">#</a></h2>
-<p>If <code class="docutils literal notranslate"><span class="pre">libreoffice</span></code> fails to startup, try to launch it in safe mode and disable hardware acceleration:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>libreoffice<span class="w"> </span>--safe-mode
+<section id="installation">
+<h2><span class="section-number">15.1. </span>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
+<p>In archlinux, install the following packages:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pacman<span class="w"> </span>-S<span class="w"> </span>code<span class="w"> </span><span class="c1"># Code - OSS — Official Arch Linux open-source release.</span>
+yay<span class="w"> </span>-S<span class="w"> </span>code-features
+yay<span class="w"> </span>-S<span class="w"> </span>code-marketplace
 </pre></div>
 </div>
-<p>And then Select “Configure” -&gt; “Disable Hardware Acceleration (OpenGL, OpenCL)”.</p>
+</section>
+<section id="extensions">
+<h2><span class="section-number">15.2. </span>Extensions<a class="headerlink" href="#extensions" title="Permalink to this heading">#</a></h2>
+<section id="c-c-extension">
+<h3><span class="section-number">15.2.1. </span>C/C++ Extension<a class="headerlink" href="#c-c-extension" title="Permalink to this heading">#</a></h3>
+<p>In settings, set the <code class="docutils literal notranslate"><span class="pre">C_Cpp.default.configurationProvider</span></code> to <code class="docutils literal notranslate"><span class="pre">ms-vscode.cmake-tools</span></code>.</p>
+</section>
+<section id="cmake-tools">
+<h3><span class="section-number">15.2.2. </span>CMake Tools<a class="headerlink" href="#cmake-tools" title="Permalink to this heading">#</a></h3>
+<p>In settings, set the <code class="docutils literal notranslate"><span class="pre">cmake.configueOnOpen</span></code> to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+</section>
+<section id="gitlens">
+<h3><span class="section-number">15.2.3. </span>GitLens<a class="headerlink" href="#gitlens" title="Permalink to this heading">#</a></h3>
+<p>By clicking on the <code class="docutils literal notranslate"><span class="pre">GitLens</span></code> extension on the left hand bar, I can then select <code class="docutils literal notranslate"><span class="pre">file</span> <span class="pre">history</span></code>
+and check the history of the current open file.</p>
+</section>
+<section id="sonarlint">
+<h3><span class="section-number">15.2.4. </span>SonarLint<a class="headerlink" href="#sonarlint" title="Permalink to this heading">#</a></h3>
+<p>By clicking on the <code class="docutils literal notranslate"><span class="pre">SonarLint</span></code> extension on the left hand bar, I can then select connected mode
+and add a <code class="docutils literal notranslate"><span class="pre">SonarQube</span></code> connection. The token should be a UserToken and not a ProjectAnalysis token.
+At least the latter was not working when setting up <code class="docutils literal notranslate"><span class="pre">SonarLint</span></code>.</p>
+<p>This can also be debugged by clicking <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">P</span></code> , then select <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Logs</span></code>.</p>
+</section>
 </section>
 </section>
 
@@ -237,23 +254,15 @@ Read more in <a class="reference external" href="https://www.libreoffice.org/">l
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="vscode.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title"><span class="section-number">15. </span>Code Notes</div>
-              </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="python.html">
+          
+          <a class="prev-page" href="libreoffice.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title"><span class="section-number">13. </span>Python Notes</div>
+                <div class="title"><span class="section-number">14. </span>Libreoffice Notes</div>
                 
               </div>
             </a>
@@ -287,9 +296,15 @@ Read more in <a class="reference external" href="https://www.libreoffice.org/">l
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">14. Libreoffice Notes</a><ul>
-<li><a class="reference internal" href="#libreoffice-general">14.1. Libreoffice - General</a></li>
-<li><a class="reference internal" href="#fail-to-startup">14.2. Fail to startup</a></li>
+<li><a class="reference internal" href="#">15. Code Notes</a><ul>
+<li><a class="reference internal" href="#installation">15.1. Installation</a></li>
+<li><a class="reference internal" href="#extensions">15.2. Extensions</a><ul>
+<li><a class="reference internal" href="#c-c-extension">15.2.1. C/C++ Extension</a></li>
+<li><a class="reference internal" href="#cmake-tools">15.2.2. CMake Tools</a></li>
+<li><a class="reference internal" href="#gitlens">15.2.3. GitLens</a></li>
+<li><a class="reference internal" href="#sonarlint">15.2.4. SonarLint</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

@@ -51,3 +51,4 @@ Contents
    tools/vim
    tools/python
    tools/libreoffice
+   tools/vscode
