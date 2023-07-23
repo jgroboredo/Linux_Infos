@@ -52,3 +52,4 @@ Contents
    tools/python
    tools/libreoffice
    tools/vscode
+   tools/nvidia
