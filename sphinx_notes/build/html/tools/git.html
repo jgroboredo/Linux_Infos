@@ -2,15 +2,15 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="3. Bash Notes" href="bash.html" /><link rel="prev" title="1. Sphinx tricks" href="sphinx.html" />
 
-    <!-- Generated with Sphinx 6.2.1 and Furo 2023.03.27 -->
+    <!-- Generated with Sphinx 7.1.2 and Furo 2023.07.26 -->
         <title>2. Git infos - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
     
     
 
@@ -699,6 +699,18 @@ below the <code class="docutils literal notranslate"><span class="pre">_git-chec
 </li>
 </ul>
 </section>
+<section id="git-ssh">
+<h2><span class="section-number">2.27. </span>Git ssh<a class="headerlink" href="#git-ssh" title="Permalink to this heading">#</a></h2>
+<p>An useful git config for ssh usage might come from the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>Core.sshCommand<span class="w"> </span><span class="s1">&#39;ssh -i /home/jenkins/.ssh/id_rsa -o IdentitiesOnly=yes -o PasswordAuthentication=no&#39;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I had a problem when executing this as another user. What solved it was adding a correct <code class="docutils literal notranslate"><span class="pre">known_hosts</span></code> file to the
+corresponding user <code class="docutils literal notranslate"><span class="pre">.ssh</span></code> folder.</p>
+</div>
+</section>
 </section>
 
         </article>
@@ -794,6 +806,7 @@ below the <code class="docutils literal notranslate"><span class="pre">_git-chec
 <li><a class="reference internal" href="#git-reverse-patch">2.24. Git reverse patch</a></li>
 <li><a class="reference internal" href="#git-tag-checkout-submodules">2.25. Git tag checkout submodules</a></li>
 <li><a class="reference internal" href="#git-pushd-popd">2.26. Git pushd/popd</a></li>
+<li><a class="reference internal" href="#git-ssh">2.27. Git ssh</a></li>
 </ul>
 </li>
 </ul>
@@ -805,11 +818,11 @@ below the <code class="docutils literal notranslate"><span class="pre">_git-chec
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/scripts/furo.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
     </body>
 </html>

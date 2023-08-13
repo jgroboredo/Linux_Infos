@@ -551,3 +551,18 @@ Finally, for the auto-completions, do:
      _git-pushd () {
        _git-checkout
      }
+
+-------
+Git ssh
+-------
+
+An useful git config for ssh usage might come from the following command:
+
+.. code-block:: bash
+   
+   git config --global Core.sshCommand 'ssh -i /home/jenkins/.ssh/id_rsa -o IdentitiesOnly=yes -o PasswordAuthentication=no'
+
+.. note:: 
+
+   I had a problem when executing this as another user. What solved it was adding a correct ``known_hosts`` file to the
+   corresponding user ``.ssh`` folder.
