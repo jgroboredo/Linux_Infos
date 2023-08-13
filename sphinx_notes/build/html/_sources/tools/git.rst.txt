@@ -437,6 +437,21 @@ Problem:  we have been tracking files in our project and want to move them out i
   # Then Add
   git submodule add <submodule_link>
 
+^^^^^^^^^^^^^^^^^^^^
+Removing a submodule
+^^^^^^^^^^^^^^^^^^^^
+
+In order to delete a submodule:
+
+- Delete the relevant line from the ``.gitmodules`` file
+- Delete the relevant section from ``.git/config``
+- git rm --cached path_to_submodule
+
+.. note:: 
+   
+   In the last step, if the submodule is under sparse-checkout, add the flag ``--sparse`` to also affect it.
+
+
 ------------------------------
 Migrate part of git repository
 ------------------------------

@@ -593,6 +593,19 @@ git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> 
 </pre></div>
 </div>
 </section>
+<section id="removing-a-submodule">
+<h3><span class="section-number">2.22.7. </span>Removing a submodule<a class="headerlink" href="#removing-a-submodule" title="Permalink to this heading">#</a></h3>
+<p>In order to delete a submodule:</p>
+<ul class="simple">
+<li><p>Delete the relevant line from the <code class="docutils literal notranslate"><span class="pre">.gitmodules</span></code> file</p></li>
+<li><p>Delete the relevant section from <code class="docutils literal notranslate"><span class="pre">.git/config</span></code></p></li>
+<li><p>git rm –cached path_to_submodule</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the last step, if the submodule is under sparse-checkout, add the flag <code class="docutils literal notranslate"><span class="pre">--sparse</span></code> to also affect it.</p>
+</div>
+</section>
 </section>
 <section id="migrate-part-of-git-repository">
 <h2><span class="section-number">2.23. </span>Migrate part of git repository<a class="headerlink" href="#migrate-part-of-git-repository" title="Permalink to this heading">#</a></h2>
@@ -800,6 +813,7 @@ corresponding user <code class="docutils literal notranslate"><span class="pre">
 <li><a class="reference internal" href="#pulling-upstream-changes-from-the-project-remote">2.22.4. Pulling Upstream Changes from the Project Remote</a></li>
 <li><a class="reference internal" href="#upstream-repository-changed-url-of-the-submodule">2.22.5. Upstream repository changed url of the submodule</a></li>
 <li><a class="reference internal" href="#switching-from-subdirectories-to-submodules">2.22.6. Switching from subdirectories to submodules</a></li>
+<li><a class="reference internal" href="#removing-a-submodule">2.22.7. Removing a submodule</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#migrate-part-of-git-repository">2.23. Migrate part of git repository</a></li>
