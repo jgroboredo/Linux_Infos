@@ -581,3 +581,47 @@ An useful git config for ssh usage might come from the following command:
 
    I had a problem when executing this as another user. What solved it was adding a correct ``known_hosts`` file to the
    corresponding user ``.ssh`` folder.
+
+-------
+Git lfs
+-------
+
+The promise of git lfs is not that your repo will be smaller but that when you clone, you won't have to 
+download all the git objects so the clone will be smaller and faster. 
+Because for the file managed by git-lfs, only the files that should appear 
+in your working directory will be downloaded during the git checkout.
+
+In order to track files:
+
+.. code-block:: bash
+   
+   git lfs track "*.psd"
+
+and in order to move files to lfs:
+
+.. code-block:: bash
+
+   git lfs migrate import --include="dir/**" --include-ref=refs/heads/master
+  
+.. note:: 
+
+   This will rewrite the history of a repo so that specified large files are kept in LFS.
+
+If I get the message ``Encountered 1 file that should have been a pointer, but wasn't``, I can run the following command:
+
+.. code-block:: bash
+   
+   git lfs fsck --pointers
+
+There are also the following commands:
+
+.. code-block:: bash
+
+   git lfs migrate import --everything --include='*.png' --exclude='myfile.png'
+
+.. note:: 
+   
+   Note that ``--everything`` means that it will change all commits. 
+   The ``--everything`` option will run the migration in all local and remote Git refs (branches, tags).
+   Additionally, this will also create a .gitattributes file that will tell Git to store 
+   all files specified in Git LFS.

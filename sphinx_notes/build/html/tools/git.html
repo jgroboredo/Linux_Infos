@@ -724,6 +724,40 @@ below the <code class="docutils literal notranslate"><span class="pre">_git-chec
 corresponding user <code class="docutils literal notranslate"><span class="pre">.ssh</span></code> folder.</p>
 </div>
 </section>
+<section id="git-lfs">
+<h2><span class="section-number">2.28. </span>Git lfs<a class="headerlink" href="#git-lfs" title="Permalink to this heading">#</a></h2>
+<p>The promise of git lfs is not that your repo will be smaller but that when you clone, you won’t have to
+download all the git objects so the clone will be smaller and faster.
+Because for the file managed by git-lfs, only the files that should appear
+in your working directory will be downloaded during the git checkout.</p>
+<p>In order to track files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>lfs<span class="w"> </span>track<span class="w"> </span><span class="s2">&quot;*.psd&quot;</span>
+</pre></div>
+</div>
+<p>and in order to move files to lfs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>lfs<span class="w"> </span>migrate<span class="w"> </span>import<span class="w"> </span>--include<span class="o">=</span><span class="s2">&quot;dir/**&quot;</span><span class="w"> </span>--include-ref<span class="o">=</span>refs/heads/master
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This will rewrite the history of a repo so that specified large files are kept in LFS.</p>
+</div>
+<p>If I get the message <code class="docutils literal notranslate"><span class="pre">Encountered</span> <span class="pre">1</span> <span class="pre">file</span> <span class="pre">that</span> <span class="pre">should</span> <span class="pre">have</span> <span class="pre">been</span> <span class="pre">a</span> <span class="pre">pointer,</span> <span class="pre">but</span> <span class="pre">wasn't</span></code>, I can run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>lfs<span class="w"> </span>fsck<span class="w"> </span>--pointers
+</pre></div>
+</div>
+<p>There are also the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>lfs<span class="w"> </span>migrate<span class="w"> </span>import<span class="w"> </span>--everything<span class="w"> </span>--include<span class="o">=</span><span class="s1">&#39;*.png&#39;</span><span class="w"> </span>--exclude<span class="o">=</span><span class="s1">&#39;myfile.png&#39;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">--everything</span></code> means that it will change all commits.
+The <code class="docutils literal notranslate"><span class="pre">--everything</span></code> option will run the migration in all local and remote Git refs (branches, tags).
+Additionally, this will also create a .gitattributes file that will tell Git to store
+all files specified in Git LFS.</p>
+</div>
+</section>
 </section>
 
         </article>
@@ -821,6 +855,7 @@ corresponding user <code class="docutils literal notranslate"><span class="pre">
 <li><a class="reference internal" href="#git-tag-checkout-submodules">2.25. Git tag checkout submodules</a></li>
 <li><a class="reference internal" href="#git-pushd-popd">2.26. Git pushd/popd</a></li>
 <li><a class="reference internal" href="#git-ssh">2.27. Git ssh</a></li>
+<li><a class="reference internal" href="#git-lfs">2.28. Git lfs</a></li>
 </ul>
 </li>
 </ul>
