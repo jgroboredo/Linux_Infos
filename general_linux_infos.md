@@ -82,192 +82,191 @@
 - [22. Mime-Types](#22-mime-types)
   - [22.1. Alternative to xdg:](#221-alternative-to-xdg)
 - [23. Color-Scheme](#23-color-scheme)
-- [24. LibreOffice](#24-libreoffice)
-- [25. Reflector](#25-reflector)
-- [26. AceStream](#26-acestream)
-- [27. Swig](#27-swig)
-- [28. TTY Login](#28-tty-login)
-  - [28.1. Add Username](#281-add-username)
-  - [28.2. Change startup message](#282-change-startup-message)
-- [29. HPC](#29-hpc)
-  - [29.1. Modules](#291-modules)
-  - [29.2. Some Commands](#292-some-commands)
-- [30. Network](#30-network)
-  - [30.1. Network not connecting at startup](#301-network-not-connecting-at-startup)
-  - [30.2. MAC address](#302-mac-address)
-- [31. Dmenu\_ext](#31-dmenu_ext)
-  - [31.1. Not opening paths](#311-not-opening-paths)
-- [32. Nvidia](#32-nvidia)
-  - [32.1. NVIDIA back screen on TTY](#321-nvidia-back-screen-on-tty)
-- [33. CFP Nvidia](#33-cfp-nvidia)
-  - [33.1. VPN access](#331-vpn-access)
-  - [33.2. First steps to config account](#332-first-steps-to-config-account)
-- [34. Awk](#34-awk)
-- [35. Sublime-Text](#35-sublime-text)
-- [36. Config-Printer](#36-config-printer)
-  - [36.1. CUPS](#361-cups)
-  - [36.2. AVAHI](#362-avahi)
-  - [36.3. HP SCANNER](#363-hp-scanner)
-- [37. Sway](#37-sway)
-  - [37.1. Packages to check for base arch install](#371-packages-to-check-for-base-arch-install)
-  - [37.2. Services](#372-services)
-  - [37.3. Sway install from YT:](#373-sway-install-from-yt)
-  - [37.4. Sway my experience](#374-sway-my-experience)
-    - [37.4.1. Packages](#3741-packages)
-    - [37.4.2. Configuration](#3742-configuration)
-    - [37.4.3. Fix cannot open display](#3743-fix-cannot-open-display)
-    - [37.4.4. Mathematica](#3744-mathematica)
-    - [37.4.5. Zoom](#3745-zoom)
-    - [37.4.6. Albert](#3746-albert)
-- [38. Rclone](#38-rclone)
-  - [38.1. Config](#381-config)
-  - [38.2. Rclone union](#382-rclone-union)
-  - [38.3. Problem](#383-problem)
-  - [38.4. Sync](#384-sync)
-  - [38.5. OneDrive](#385-onedrive)
-- [39. Pipewire](#39-pipewire)
-- [40. Fail2Ban](#40-fail2ban)
-  - [40.1. Configuration](#401-configuration)
-- [41. Systemd-User](#41-systemd-user)
-- [42. Systemd-Resolved](#42-systemd-resolved)
-  - [42.1. Activate Service:](#421-activate-service)
-  - [42.2. systemd-networkd](#422-systemd-networkd)
-- [43. Dual Boot](#43-dual-boot)
-  - [43.1. Windows After Linux](#431-windows-after-linux)
-  - [43.2. Fix Windows bootloader Gone](#432-fix-windows-bootloader-gone)
-- [44. RP Monitor](#44-rp-monitor)
-  - [44.1. Create db in influxdb](#441-create-db-in-influxdb)
-  - [44.2. CONFIG GRAFANA](#442-config-grafana)
-  - [44.3. Notes](#443-notes)
-- [45. Docker](#45-docker)
-  - [45.1. Jacket](#451-jacket)
-  - [45.2. Sonarr](#452-sonarr)
-    - [45.2.1. Add manually downloaded season](#4521-add-manually-downloaded-season)
-    - [45.2.2. Add manually downloaded movie (Radarr)](#4522-add-manually-downloaded-movie-radarr)
-  - [45.3. System service to run docker](#453-system-service-to-run-docker)
-  - [45.4. Rclone DLNA](#454-rclone-dlna)
-  - [45.5. Transdrone](#455-transdrone)
-  - [45.6. JellyFin](#456-jellyfin)
-  - [45.7. QBitTorrent](#457-qbittorrent)
-  - [45.8. Bazarr](#458-bazarr)
-  - [45.9. Organizrr](#459-organizrr)
-  - [45.10. NginX](#4510-nginx)
-  - [45.11. Some Important Concepts](#4511-some-important-concepts)
-  - [45.12. Update Containers](#4512-update-containers)
-  - [45.13. Some notes based on experience](#4513-some-notes-based-on-experience)
-- [46. VPN](#46-vpn)
-  - [46.1. Configuration](#461-configuration)
-  - [46.2. Notes](#462-notes)
-  - [46.3. Viseu](#463-viseu)
-  - [46.4. Check Ports](#464-check-ports)
-  - [46.5. Fix connection problem](#465-fix-connection-problem)
-  - [46.6. Connect to Rebelo](#466-connect-to-rebelo)
-  - [46.7. Allow access to my VPN on another VPN](#467-allow-access-to-my-vpn-on-another-vpn)
-  - [46.8. UDP2RAW](#468-udp2raw)
-  - [46.9. Updated VPN](#469-updated-vpn)
-  - [46.10. Fixing routes](#4610-fixing-routes)
-  - [46.11. Rebelo's Jellyfin](#4611-rebelos-jellyfin)
-- [47. DDNS](#47-ddns)
-- [48. Encrypt dir](#48-encrypt-dir)
-  - [48.1. Disable password cache](#481-disable-password-cache)
-- [49. Violent Monkey](#49-violent-monkey)
-- [50. Wireshark](#50-wireshark)
-- [51. Telegram](#51-telegram)
-  - [51.1. BotFather](#511-botfather)
-  - [51.2. Find bot chat ID](#512-find-bot-chat-id)
-  - [51.3. Add sonarr and radarr to telegram](#513-add-sonarr-and-radarr-to-telegram)
-- [52. Barrier](#52-barrier)
-- [53. TeamViewer](#53-teamviewer)
-- [54. Flatpak](#54-flatpak)
-  - [54.1. Firefox](#541-firefox)
-- [55. VM](#55-vm)
-  - [55.1. Fix Resolution](#551-fix-resolution)
-  - [55.2. SDcard on VM](#552-sdcard-on-vm)
-- [56. Latex](#56-latex)
-- [57. Plex](#57-plex)
-- [58. Format phone](#58-format-phone)
-  - [58.1. Formatting](#581-formatting)
-  - [58.2. Connecting to PC](#582-connecting-to-pc)
-  - [58.3. ARCH LINUX IN TERMUX](#583-arch-linux-in-termux)
-  - [58.4. Process to format](#584-process-to-format)
-  - [58.5. Apps ADB](#585-apps-adb)
-- [59. Find Command](#59-find-command)
-  - [59.1. Error with mv command](#591-error-with-mv-command)
-- [60. Conky Desktop](#60-conky-desktop)
-  - [60.1. Install conky-manager](#601-install-conky-manager)
-- [61. EndeavourOS Stuff](#61-endeavouros-stuff)
-  - [61.1. Relativamente ao barrier](#611-relativamente-ao-barrier)
-- [62. Map Keyboard Keys](#62-map-keyboard-keys)
-- [63. Format Pen](#63-format-pen)
-  - [63.1. Apagar partições](#631-apagar-partições)
-  - [63.2. Criar Partição](#632-criar-partição)
-  - [63.3. Format pen with ISO](#633-format-pen-with-iso)
-- [64. Borg Backup](#64-borg-backup)
-  - [64.1. Setup Steps](#641-setup-steps)
-  - [64.2. MOUNT BACKUP AUTOMATICALLY](#642-mount-backup-automatically)
-- [65. HDD Format](#65-hdd-format)
-  - [65.1. Delete Partitions](#651-delete-partitions)
-  - [65.2. Create New GPT partition table](#652-create-new-gpt-partition-table)
-  - [65.3. Format Disk](#653-format-disk)
-  - [65.4. Find UUID and check type](#654-find-uuid-and-check-type)
-  - [65.5. Fstab](#655-fstab)
-- [66. Ubuntu](#66-ubuntu)
-  - [66.1. Fix ethernet unavailable](#661-fix-ethernet-unavailable)
-- [67. PROBLEM: Unknown fs type vfat](#67-problem-unknown-fs-type-vfat)
-  - [67.1. Some notes](#671-some-notes)
-- [68. Permissions](#68-permissions)
-  - [68.1. Fix permissions](#681-fix-permissions)
-- [69. Raspberry Pi](#69-raspberry-pi)
-- [70. Plasma](#70-plasma)
-  - [70.1. Packages](#701-packages)
-  - [70.2. Launch](#702-launch)
-  - [70.3. Autostart](#703-autostart)
-  - [70.4. XDG Autostart directories](#704-xdg-autostart-directories)
-  - [70.5. Autostart Manager](#705-autostart-manager)
-  - [70.6. Disable kdeconnect](#706-disable-kdeconnect)
-  - [70.7. Shortcuts](#707-shortcuts)
-  - [70.8. Fixing hanging service on shutdown](#708-fixing-hanging-service-on-shutdown)
-  - [70.9. Config](#709-config)
-    - [70.9.1. Startup and Shutdown → Background Services](#7091-startup-and-shutdown--background-services)
-    - [70.9.2. Startup and Shutdown → Desktop Session](#7092-startup-and-shutdown--desktop-session)
-    - [70.9.3. Power Management → Energy Saving](#7093-power-management--energy-saving)
-    - [70.9.4. Display and Monitor → Night Color](#7094-display-and-monitor--night-color)
-    - [70.9.5. Window Management → Task Switcher](#7095-window-management--task-switcher)
-    - [70.9.6. FlameShot](#7096-flameshot)
-    - [70.9.7. Task Bar](#7097-task-bar)
-- [71. Regex](#71-regex)
-- [72. Compare files](#72-compare-files)
-- [73. Fiddler](#73-fiddler)
-- [74. Termux](#74-termux)
-  - [74.1. Setting up termux](#741-setting-up-termux)
-  - [74.2. Termux Brightness](#742-termux-brightness)
-  - [74.3. TV url opener](#743-tv-url-opener)
-- [75. VPN Critical](#75-vpn-critical)
-- [76. Secure Boot](#76-secure-boot)
-  - [76.1. Steps for secure boot](#761-steps-for-secure-boot)
-- [77. Helix](#77-helix)
-  - [77.1. Some commands](#771-some-commands)
-- [78. Pihole](#78-pihole)
-  - [78.1. Configuration](#781-configuration)
-- [79. Thunderbird](#79-thunderbird)
-  - [79.1. Critical Account](#791-critical-account)
-    - [79.1.1. Configure](#7911-configure)
-    - [79.1.2. Calendar](#7912-calendar)
-- [80. XDG-DESKTOP-PORTAL](#80-xdg-desktop-portal)
-- [81. Parsec](#81-parsec)
-  - [81.1. Wake on lan](#811-wake-on-lan)
-  - [81.2. Wake PC](#812-wake-pc)
-- [82. Calendar](#82-calendar)
-  - [82.1. Share Microsoft Calendar](#821-share-microsoft-calendar)
-  - [82.2. Add microsoft calendar to google](#822-add-microsoft-calendar-to-google)
-  - [82.3. gcalcli](#823-gcalcli)
-- [83. Gnome-desktop](#83-gnome-desktop)
-  - [83.1. Desktop icons](#831-desktop-icons)
-- [84. BCompare](#84-bcompare)
-  - [84.1. Crack for `4.x`](#841-crack-for-4x)
-- [85. Frida / HttpToolkit](#85-frida--httptoolkit)
-  - [85.1. Notes about `curl` after intercepting the http requests](#851-notes-about-curl-after-intercepting-the-http-requests)
-- [86. Misc](#86-misc)
+- [24. Reflector](#24-reflector)
+- [25. AceStream](#25-acestream)
+- [26. Swig](#26-swig)
+- [27. TTY Login](#27-tty-login)
+  - [27.1. Add Username](#271-add-username)
+  - [27.2. Change startup message](#272-change-startup-message)
+- [28. HPC](#28-hpc)
+  - [28.1. Modules](#281-modules)
+  - [28.2. Some Commands](#282-some-commands)
+- [29. Network](#29-network)
+  - [29.1. Network not connecting at startup](#291-network-not-connecting-at-startup)
+  - [29.2. MAC address](#292-mac-address)
+- [30. Dmenu\_ext](#30-dmenu_ext)
+  - [30.1. Not opening paths](#301-not-opening-paths)
+- [31. Nvidia](#31-nvidia)
+  - [31.1. NVIDIA back screen on TTY](#311-nvidia-back-screen-on-tty)
+- [32. CFP Nvidia](#32-cfp-nvidia)
+  - [32.1. VPN access](#321-vpn-access)
+  - [32.2. First steps to config account](#322-first-steps-to-config-account)
+- [33. Awk](#33-awk)
+- [34. Sublime-Text](#34-sublime-text)
+- [35. Config-Printer](#35-config-printer)
+  - [35.1. CUPS](#351-cups)
+  - [35.2. AVAHI](#352-avahi)
+  - [35.3. HP SCANNER](#353-hp-scanner)
+- [36. Sway](#36-sway)
+  - [36.1. Packages to check for base arch install](#361-packages-to-check-for-base-arch-install)
+  - [36.2. Services](#362-services)
+  - [36.3. Sway install from YT:](#363-sway-install-from-yt)
+  - [36.4. Sway my experience](#364-sway-my-experience)
+    - [36.4.1. Packages](#3641-packages)
+    - [36.4.2. Configuration](#3642-configuration)
+    - [36.4.3. Fix cannot open display](#3643-fix-cannot-open-display)
+    - [36.4.4. Mathematica](#3644-mathematica)
+    - [36.4.5. Zoom](#3645-zoom)
+    - [36.4.6. Albert](#3646-albert)
+- [37. Rclone](#37-rclone)
+  - [37.1. Config](#371-config)
+  - [37.2. Rclone union](#372-rclone-union)
+  - [37.3. Problem](#373-problem)
+  - [37.4. Sync](#374-sync)
+  - [37.5. OneDrive](#375-onedrive)
+- [38. Pipewire](#38-pipewire)
+- [39. Fail2Ban](#39-fail2ban)
+  - [39.1. Configuration](#391-configuration)
+- [40. Systemd-User](#40-systemd-user)
+- [41. Systemd-Resolved](#41-systemd-resolved)
+  - [41.1. Activate Service:](#411-activate-service)
+  - [41.2. systemd-networkd](#412-systemd-networkd)
+- [42. Dual Boot](#42-dual-boot)
+  - [42.1. Windows After Linux](#421-windows-after-linux)
+  - [42.2. Fix Windows bootloader Gone](#422-fix-windows-bootloader-gone)
+- [43. RP Monitor](#43-rp-monitor)
+  - [43.1. Create db in influxdb](#431-create-db-in-influxdb)
+  - [43.2. CONFIG GRAFANA](#432-config-grafana)
+  - [43.3. Notes](#433-notes)
+- [44. Docker](#44-docker)
+  - [44.1. Jacket](#441-jacket)
+  - [44.2. Sonarr](#442-sonarr)
+    - [44.2.1. Add manually downloaded season](#4421-add-manually-downloaded-season)
+    - [44.2.2. Add manually downloaded movie (Radarr)](#4422-add-manually-downloaded-movie-radarr)
+  - [44.3. System service to run docker](#443-system-service-to-run-docker)
+  - [44.4. Rclone DLNA](#444-rclone-dlna)
+  - [44.5. Transdrone](#445-transdrone)
+  - [44.6. JellyFin](#446-jellyfin)
+  - [44.7. QBitTorrent](#447-qbittorrent)
+  - [44.8. Bazarr](#448-bazarr)
+  - [44.9. Organizrr](#449-organizrr)
+  - [44.10. NginX](#4410-nginx)
+  - [44.11. Some Important Concepts](#4411-some-important-concepts)
+  - [44.12. Update Containers](#4412-update-containers)
+  - [44.13. Some notes based on experience](#4413-some-notes-based-on-experience)
+- [45. VPN](#45-vpn)
+  - [45.1. Configuration](#451-configuration)
+  - [45.2. Notes](#452-notes)
+  - [45.3. Viseu](#453-viseu)
+  - [45.4. Check Ports](#454-check-ports)
+  - [45.5. Fix connection problem](#455-fix-connection-problem)
+  - [45.6. Connect to Rebelo](#456-connect-to-rebelo)
+  - [45.7. Allow access to my VPN on another VPN](#457-allow-access-to-my-vpn-on-another-vpn)
+  - [45.8. UDP2RAW](#458-udp2raw)
+  - [45.9. Updated VPN](#459-updated-vpn)
+  - [45.10. Fixing routes](#4510-fixing-routes)
+  - [45.11. Rebelo's Jellyfin](#4511-rebelos-jellyfin)
+- [46. DDNS](#46-ddns)
+- [47. Encrypt dir](#47-encrypt-dir)
+  - [47.1. Disable password cache](#471-disable-password-cache)
+- [48. Violent Monkey](#48-violent-monkey)
+- [49. Wireshark](#49-wireshark)
+- [50. Telegram](#50-telegram)
+  - [50.1. BotFather](#501-botfather)
+  - [50.2. Find bot chat ID](#502-find-bot-chat-id)
+  - [50.3. Add sonarr and radarr to telegram](#503-add-sonarr-and-radarr-to-telegram)
+- [51. Barrier](#51-barrier)
+- [52. TeamViewer](#52-teamviewer)
+- [53. Flatpak](#53-flatpak)
+  - [53.1. Firefox](#531-firefox)
+- [54. VM](#54-vm)
+  - [54.1. Fix Resolution](#541-fix-resolution)
+  - [54.2. SDcard on VM](#542-sdcard-on-vm)
+- [55. Latex](#55-latex)
+- [56. Plex](#56-plex)
+- [57. Format phone](#57-format-phone)
+  - [57.1. Formatting](#571-formatting)
+  - [57.2. Connecting to PC](#572-connecting-to-pc)
+  - [57.3. ARCH LINUX IN TERMUX](#573-arch-linux-in-termux)
+  - [57.4. Process to format](#574-process-to-format)
+  - [57.5. Apps ADB](#575-apps-adb)
+- [58. Find Command](#58-find-command)
+  - [58.1. Error with mv command](#581-error-with-mv-command)
+- [59. Conky Desktop](#59-conky-desktop)
+  - [59.1. Install conky-manager](#591-install-conky-manager)
+- [60. EndeavourOS Stuff](#60-endeavouros-stuff)
+  - [60.1. Relativamente ao barrier](#601-relativamente-ao-barrier)
+- [61. Map Keyboard Keys](#61-map-keyboard-keys)
+- [62. Format Pen](#62-format-pen)
+  - [62.1. Apagar partições](#621-apagar-partições)
+  - [62.2. Criar Partição](#622-criar-partição)
+  - [62.3. Format pen with ISO](#623-format-pen-with-iso)
+- [63. Borg Backup](#63-borg-backup)
+  - [63.1. Setup Steps](#631-setup-steps)
+  - [63.2. MOUNT BACKUP AUTOMATICALLY](#632-mount-backup-automatically)
+- [64. HDD Format](#64-hdd-format)
+  - [64.1. Delete Partitions](#641-delete-partitions)
+  - [64.2. Create New GPT partition table](#642-create-new-gpt-partition-table)
+  - [64.3. Format Disk](#643-format-disk)
+  - [64.4. Find UUID and check type](#644-find-uuid-and-check-type)
+  - [64.5. Fstab](#645-fstab)
+- [65. Ubuntu](#65-ubuntu)
+  - [65.1. Fix ethernet unavailable](#651-fix-ethernet-unavailable)
+- [66. PROBLEM: Unknown fs type vfat](#66-problem-unknown-fs-type-vfat)
+  - [66.1. Some notes](#661-some-notes)
+- [67. Permissions](#67-permissions)
+  - [67.1. Fix permissions](#671-fix-permissions)
+- [68. Raspberry Pi](#68-raspberry-pi)
+- [69. Plasma](#69-plasma)
+  - [69.1. Packages](#691-packages)
+  - [69.2. Launch](#692-launch)
+  - [69.3. Autostart](#693-autostart)
+  - [69.4. XDG Autostart directories](#694-xdg-autostart-directories)
+  - [69.5. Autostart Manager](#695-autostart-manager)
+  - [69.6. Disable kdeconnect](#696-disable-kdeconnect)
+  - [69.7. Shortcuts](#697-shortcuts)
+  - [69.8. Fixing hanging service on shutdown](#698-fixing-hanging-service-on-shutdown)
+  - [69.9. Config](#699-config)
+    - [69.9.1. Startup and Shutdown → Background Services](#6991-startup-and-shutdown--background-services)
+    - [69.9.2. Startup and Shutdown → Desktop Session](#6992-startup-and-shutdown--desktop-session)
+    - [69.9.3. Power Management → Energy Saving](#6993-power-management--energy-saving)
+    - [69.9.4. Display and Monitor → Night Color](#6994-display-and-monitor--night-color)
+    - [69.9.5. Window Management → Task Switcher](#6995-window-management--task-switcher)
+    - [69.9.6. FlameShot](#6996-flameshot)
+    - [69.9.7. Task Bar](#6997-task-bar)
+- [70. Regex](#70-regex)
+- [71. Compare files](#71-compare-files)
+- [72. Fiddler](#72-fiddler)
+- [73. Termux](#73-termux)
+  - [73.1. Setting up termux](#731-setting-up-termux)
+  - [73.2. Termux Brightness](#732-termux-brightness)
+  - [73.3. TV url opener](#733-tv-url-opener)
+- [74. VPN Critical](#74-vpn-critical)
+- [75. Secure Boot](#75-secure-boot)
+  - [75.1. Steps for secure boot](#751-steps-for-secure-boot)
+- [76. Helix](#76-helix)
+  - [76.1. Some commands](#761-some-commands)
+- [77. Pihole](#77-pihole)
+  - [77.1. Configuration](#771-configuration)
+- [78. Thunderbird](#78-thunderbird)
+  - [78.1. Critical Account](#781-critical-account)
+    - [78.1.1. Configure](#7811-configure)
+    - [78.1.2. Calendar](#7812-calendar)
+- [79. XDG-DESKTOP-PORTAL](#79-xdg-desktop-portal)
+- [80. Parsec](#80-parsec)
+  - [80.1. Wake on lan](#801-wake-on-lan)
+  - [80.2. Wake PC](#802-wake-pc)
+- [81. Calendar](#81-calendar)
+  - [81.1. Share Microsoft Calendar](#811-share-microsoft-calendar)
+  - [81.2. Add microsoft calendar to google](#812-add-microsoft-calendar-to-google)
+  - [81.3. gcalcli](#813-gcalcli)
+- [82. Gnome-desktop](#82-gnome-desktop)
+  - [82.1. Desktop icons](#821-desktop-icons)
+- [83. BCompare](#83-bcompare)
+  - [83.1. Crack for `4.x`](#831-crack-for-4x)
+- [84. Frida / HttpToolkit](#84-frida--httptoolkit)
+  - [84.1. Notes about `curl` after intercepting the http requests](#841-notes-about-curl-after-intercepting-the-http-requests)
+- [85. Misc](#85-misc)
 
 ## 1.1. Introduction
 
@@ -1215,15 +1214,7 @@ NOTE:
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 24. LibreOffice
-
-- Latex in impress: `pacman -S libreoffice-extension-texmaths`
-- Check extension in Extension Manager inside libreoffice
-- To install ExpandAnimations go to Tools->ExtensionManager and add there the oxt file
-
-<div style="page-break-after: always; break-after: page;"></div>
-
-# 25. Reflector
+# 24. Reflector
 
 ```bash
 reflector --latest 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
@@ -1232,7 +1223,7 @@ reflector --country 'France,Germany' --age 12 --protocol https --sort rate --sav
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 26. AceStream
+# 25. AceStream
 
 ```bash
 yay -S acestream-engine
@@ -1243,7 +1234,7 @@ acestream-launcher acestream://id -p player
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 27. Swig
+# 26. Swig
 
 ```bash
 g++ -Wall -Wextra -Wpedantic -I/usr/include/python3.9 -I/usr/lib/python3.9/site-packages/numpy/core/include/ -fPIC -shared example_wrap.cxx -o _example.so -lpython3.9   
@@ -1252,9 +1243,9 @@ the first includes python and the second numpy/arrayobject.h
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 28. TTY Login
+# 27. TTY Login
 
-## 28.1. Add Username
+## 27.1. Add Username
 
 ```bash
 cat /etc/systemd/system/getty@tty1.service.d/override.conf:
@@ -1264,16 +1255,16 @@ cat /etc/systemd/system/getty@tty1.service.d/override.conf:
 systemctl edit getty@tty1
 ```
 
-## 28.2. Change startup message
+## 27.2. Change startup message
 
 1) added script to bin folder that re-writes /etc/issue with the correct value of the  baterry. It uses a template situated in issue folder. This template has a PLACEHOLDER  text that is used by sed to substitute with the value of the battery. In order for this to work, I created a systemd service (check systemd_scripts folder) which runs the 
 script. Everything is situated in lap_dotfiles
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 29. HPC
+# 28. HPC
 
-## 29.1. Modules
+## 28.1. Modules
 
 - To list all currently loaded modules: `module list`
 - To list all available (loadable) modules: `module avail`
@@ -1281,7 +1272,7 @@ script. Everything is situated in lap_dotfiles
 - To unload a module: `module unload x`
 - To swap a specific module for another: `module switch x y`
 
-## 29.2. Some Commands
+## 28.2. Some Commands
 
 ```bash
 sinfo
@@ -1303,13 +1294,13 @@ Launch Script:
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 30. Network
+# 29. Network
 
-## 30.1. Network not connecting at startup
+## 29.1. Network not connecting at startup
 
 - `systemctl restart NetworkManager`
 
-## 30.2. MAC address
+## 29.2. MAC address
 
 - To find the default device -> `ip route list`
 - To find the mac address -> `ifconfig -a`
@@ -1319,17 +1310,17 @@ Launch Script:
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 31. Dmenu_ext
+# 30. Dmenu_ext
 
-## 31.1. Not opening paths
+## 30.1. Not opening paths
 
 Add to mimeapps.list: inode/directory=pcmanfm.desktop;
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 32. Nvidia
+# 31. Nvidia
 
-## 32.1. NVIDIA back screen on TTY
+## 31.1. NVIDIA back screen on TTY
 
 - /etc/modprobe.d/blacklist.conf:
 
@@ -1340,16 +1331,16 @@ Add to mimeapps.list: inode/directory=pcmanfm.desktop;
   
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 33. CFP Nvidia
+# 32. CFP Nvidia
 
-## 33.1. VPN access
+## 32.1. VPN access
 
 - Install snx from InfoCiencias
 - create .snxrc file
 - connect by snx
 - disconnect by snx -d
 
-## 33.2. First steps to config account
+## 32.2. First steps to config account
 
 - To create home directory by default: CREATE_HOME yes in /etc/login.defs
 - On first login had no home:
@@ -1365,7 +1356,7 @@ Add to mimeapps.list: inode/directory=pcmanfm.desktop;
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 34. Awk
+# 33. Awk
 
 - Print every 3 lines
 
@@ -1380,7 +1371,7 @@ Add to mimeapps.list: inode/directory=pcmanfm.desktop;
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 35. Sublime-Text
+# 34. Sublime-Text
 
 - Go to sublime text webpage, linux repos and find pacman. Follow the commands
   - Go to preferences -> package control (to install the package manager)
@@ -1477,9 +1468,9 @@ My first shortcuts were: alt+z(open files) e alt+x(open servers)
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 36. Config-Printer
+# 35. Config-Printer
 
-## 36.1. CUPS
+## 35.1. CUPS
 
 - Packages to install:
   - cups, cups-filters, liblouis, qpdf, cups-pdf, python-pycups, python-pycurl, gsfonts
@@ -1520,7 +1511,7 @@ This utilizes "Printer Settings" (system-config-printer package) a native GUI ap
 
 After these steps, it should work. Do not need to go for avahi!!!!
 
-## 36.2. AVAHI
+## 35.2. AVAHI
 
 - Packages to install:
   - avahi, nss-mdns
@@ -1536,7 +1527,7 @@ The question is not avahi or cups but : Do I need/want printer autodiscovery or 
 If answer is yes > enable avahi , if answer is no > disable avahi
 Either use cups or cups + avahi
 
-## 36.3. HP SCANNER
+## 35.3. HP SCANNER
 
 - wiki page: SANE/Scanner-specific problems
 - pacman -S sane-airscan ipp-usb
@@ -1548,16 +1539,16 @@ Either use cups or cups + avahi
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 37. Sway
+# 36. Sway
 
-## 37.1. Packages to check for base arch install
+## 36.1. Packages to check for base arch install
 
 ```bash
 pacman -S grub efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools reflector base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils cups hplip alsa-utils bash-completion openssh rsync reflector acpi acpi_call tlp virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq vde2 openbsd-netcat iptables-nft ipset firewalld flatpak sof-firmware nss-mdns acpid os-prober ntfs-3g terminus-font
 pacman -S xdg-desktop-portal-wlr
 ```
 
-## 37.2. Services
+## 36.2. Services
 
 ```bash
 systemctl enable NetworkManager
@@ -1573,13 +1564,13 @@ systemctl enable firewalld
 systemctl enable acpid
 ```
 
-## 37.3. Sway install from YT:
+## 36.3. Sway install from YT:
 
 `pacman -S sway swaylock swayidle xorg-xwayland ttf-font-awesome`
 
-## 37.4. Sway my experience
+## 36.4. Sway my experience
 
-### 37.4.1. Packages
+### 36.4.1. Packages
 
 ```bash
 pacman -S sway swaylock
@@ -1602,7 +1593,7 @@ yay -S clipman
 # installed i3-quickterm from github: https://github.com/lbonn/i3-quickterm.git
 ```
 
-### 37.4.2. Configuration
+### 36.4.2. Configuration
 
 - The first config lines are concerned with environment variables needed to make gtk applications launch faster:
   - exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
@@ -1626,12 +1617,12 @@ tty takes me to a tui to choose the wm. Shift+Enter takes me to tty login
 However, it doesn't load the gtk theme this way. Then, I added to .confi/sway/env the
 flag GTK_THEME=Nordic. Need to change this in accordance to the gtk theme I want
 
-### 37.4.3. Fix cannot open display
+### 36.4.3. Fix cannot open display
 
 `pacman -S xorg-server-xwayland`
 
 	
-### 37.4.4. Mathematica
+### 36.4.4. Mathematica
 
 - In order to run mathematica: `QT_QPA_PLATFORM="xcb" mathematica &`
 - A better way is to add a folder: $HOME/bin and the following script name mathematica
@@ -1651,20 +1642,20 @@ file in /usr/share/applications/wolfram-mathematica12.desktop. In the field exec
 to put the path to $HOME/bin/mathematica script. I saved the original desktop file in  /usr/share/applications/mathematica.desktop.
 - mathematica was crashing with 3D graphics. Solution: run mathematica with mesa: mathematica -mesa notebook_name.
 
-### 37.4.5. Zoom
+### 36.4.5. Zoom
 
 - Currently doesn't allow for sreen sharing. Use zoom in firefox and it works fine!
 - Eventually try XGD_CURRENT_DESKTOP=gnome zoom
 
-### 37.4.6. Albert
+### 36.4.6. Albert
 
 - albert crashing after search or cancelling search: rm .config/albert/core.db
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 38. Rclone
+# 37. Rclone
 
-## 38.1. Config
+## 37.1. Config
 
 - rclone is best configured using ssh-agent:
   - rclone config
@@ -1675,7 +1666,7 @@ to put the path to $HOME/bin/mathematica script. I saved the original desktop fi
 - ssh port: blank
 - To use ssh-agent, leave all the other options blank (and eventually refuse them)
 
-## 38.2. Rclone union
+## 37.2. Rclone union
 
 ```text
 [paulo_http_single]
@@ -1691,7 +1682,7 @@ upstreams = paulo_http_single:/:ro /cache/union
 - We need to mount (for the union to work) the `[paulo_http]` one.
 - what we write in the mounted drive will go to /cache/union and reading merges both
 
-## 38.3. Problem
+## 37.3. Problem
 
 - NewFs: couldn't connect SSH: ssh: handshake failed: ssh: unable to authenticate, attempted methods [none publickey], no supported methods remain
 - This was happening because of the type of keys. I should generate: ssh-keygen -t ed25519
@@ -1703,18 +1694,18 @@ upstreams = paulo_http_single:/:ro /cache/union
   PasswordAuthentication no
   ```
 
-## 38.4. Sync
+## 37.4. Sync
 
 - `rclone sync /home/goncalo/Documents pi:/home/goncalo/HDD/Documents/Backups/Laptop/Documents --log-file /home/goncalo/.local/my_logs/backup.log -v --exclude lap_dotfiles/ --transfers=8 --progress`
 - -i flag asks question about copying 
 
-## 38.5. OneDrive
+## 37.5. OneDrive
 
 - `rclone copy UsefulScripts OneDrive:Documents/UsefulScripts` (copies the contents of UsefulScripts -> therefore I copy to Documents/UsefulScripts, otherwise would populate Documents with its contents)
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 39. Pipewire
+# 38. Pipewire
 
 - `pacman -S pipewire`
 - `pacman -S pipewire-pulse`. Remove pulseaudio and pulseaudio-bluetooth
@@ -1727,12 +1718,12 @@ upstreams = paulo_http_single:/:ro /cache/union
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 40. Fail2Ban
+# 39. Fail2Ban
 
 - `pacman -S fail2ban`
 - enable/start fail2ban.service
 
-## 40.1. Configuration
+## 39.1. Configuration
 Edit file /etc/fail2ban/jail.local:
 
 ```text
@@ -1747,7 +1738,7 @@ enabled = true
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 41. Systemd-User
+# 40. Systemd-User
 
 - Can configure `/etc/systemd/user.conf` and set the default environment for the units. Affects all user units:
 
@@ -1764,7 +1755,7 @@ DefaultEnvironment="VAR1=word1 word2" VAR2=word3 "VAR3=word 5 6" -> Sets three v
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 42. Systemd-Resolved
+# 41. Systemd-Resolved
 
 `/etc/systemd/resolved.conf`:
 
@@ -1792,10 +1783,10 @@ ReadEtcHosts=yes
 dns = none
 ```
 
-## 42.1. Activate Service:
+## 41.1. Activate Service:
 `systemctl enable systemd-resolved.service`
 
-## 42.2. systemd-networkd
+## 41.2. systemd-networkd
 
 I can force the dns of a given interface like this:
 
@@ -1817,9 +1808,9 @@ Then, simply: `systemctl start systemd-networkd`.
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 43. Dual Boot
+# 42. Dual Boot
 
-## 43.1. Windows After Linux
+## 42.1. Windows After Linux
 
 - Install windows;
 - Boot live iso; mount disk with linux:
@@ -1833,7 +1824,7 @@ Then, simply: `systemctl start systemd-networkd`.
   - Check the path to the manjaro boot option
   - `Bcdedit /set {bootmgr} path path\from\above\step` (e.g. \EFI\Manjaro\grubx64.efi)
 
-## 43.2. Fix Windows bootloader Gone
+## 42.2. Fix Windows bootloader Gone
 
 - shift+f10
 - diskpart
@@ -1860,7 +1851,7 @@ Then, simply: `systemctl start systemd-networkd`.
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 44. RP Monitor
+# 43. RP Monitor
 
 - for the monotoring need 3 docker containers: grafana, influxdb (database), telegraf
   - the ports on docker-compose need to match the ones in telegraf.conf
@@ -1869,7 +1860,7 @@ Then, simply: `systemctl start systemd-networkd`.
     - username and pw must match what I put in influxdb
     - hostname must be the one on of pi
 
-## 44.1. Create db in influxdb
+## 43.1. Create db in influxdb
 
 ```bash
 docker exec -it influxdb bash 
@@ -1882,7 +1873,7 @@ GRANT ALL ON "pi" TO "telegraf"
 SHOW DATABASES
 ```
 
-## 44.2. CONFIG GRAFANA
+## 43.2. CONFIG GRAFANA
 
 - add data source:
   - Configuration -> Data Sources:
@@ -1894,7 +1885,7 @@ SHOW DATABASES
   - ID: 10578
   - Select data source added above
 
-## 44.3. Notes
+## 43.3. Notes
 
 - In order to restart a container do docker-compose up container_name (this reloads the yml if it changed); otherwise use docker-compose restart container_name
 - `docker rm -f container_name` (deletes container)
@@ -1903,7 +1894,7 @@ SHOW DATABASES
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 45. Docker
+# 44. Docker
 
 - `pacman -S docker docker-compose`
 - `systemctl enble docker.service`
@@ -1923,12 +1914,12 @@ SHOW DATABASES
 - To set pw and username on qbittorrent: Tools -> Options -> Connection -> Authentication
 - Rebuild image: docker-compose build rclone-extension --no-cache
 
-## 45.1. Jacket
+## 44.1. Jacket
 
 - http://localhost:9117
 - Add indexer -> RARBG and 1337x;
 
-## 45.2. Sonarr
+## 44.2. Sonarr
 
 - Download clients -> Clicl + -> Select qbittorrent -> host é qbittorrent (you can access containers by name)
 - Port: 8080
@@ -1960,21 +1951,21 @@ SHOW DATABASES
   - Add new series to default path where sonarr can write
   - Open sqlitebrowser -> Open Database -> sonardb (inside config folder in container) -> In table, select Series -> find series -> Select Path -> Change on the right
 
-### 45.2.1. Add manually downloaded season
+### 44.2.1. Add manually downloaded season
 
 - Go to Wanted on the meny on the left
 - Manual Import
 - Select Folder with manually downloaded season
 - Move automatically
 
-### 45.2.2. Add manually downloaded movie (Radarr)
+### 44.2.2. Add manually downloaded movie (Radarr)
 
 - Go to movies main section (where all movies are)
 - Manual Import (at the top bar)
 - Select movie to import
 - Move automatically
 
-## 45.3. System service to run docker
+## 44.3. System service to run docker
 
   ```text
   /etc/systemd/system/docker-compose.service
@@ -1998,17 +1989,17 @@ SHOW DATABASES
   WantedBy=multi-user.target
   ```
 
-## 45.4. Rclone DLNA
+## 44.4. Rclone DLNA
 
 - Settings -> Download clients -> Advanced options -> Enable remove imported downloads from download client history
 - This is streaming the /media folder to my network
 - In VLC go to view -> playlist -> local network -> universal plug and play
 
-## 45.5. Transdrone
+## 44.5. Transdrone
 
 Description: App for android to manage torrents
 
-## 45.6. JellyFin
+## 44.6. JellyFin
 
 - drive ntfs -> does not support inotify -> scan manually: Settings -> dashboard -> scan all libraries
 - In order to change folder go to settings -> Dashboard -> Libraries
@@ -2018,19 +2009,19 @@ Description: App for android to manage torrents
 - DNLA
   - add to yml: "network_mode: host" on jellyfin container and remove ports section
 
-## 45.7. QBitTorrent
+## 44.7. QBitTorrent
 
 - In order to stop seeding go to tools -> bittorrent -> seeding limits -> min ratio 0.01 -> max seed time 1 minute (Pause torrent, remove doesnt work)
 
-## 45.8. Bazarr
+## 44.8. Bazarr
 
 - Go to settings -> Languages -> Add New Profile -> Add desired languages -> Below this option, check the boxes Series and Movies and choose the profile just created in the step before
 
-## 45.9. Organizrr
+## 44.9. Organizrr
 
 - In order for qbittorrent to work: Tools -> WebUI -> Untick "Enable clickjacking protection" and "Enable Cross-Site Request Forgery protection"
 
-## 45.10. NginX
+## 44.10. NginX
 
 - Need to get nginx.conf and proxy.conf from swag github;
 - On the nginx.conf carefull with the following lines:
@@ -2064,7 +2055,7 @@ Description: App for android to manage torrents
   sed -i "s/'Home'/''/g" -i "$FANCYINDEX_THEME_PATH/layout/js/breadcrumbs.js"
   ```
 
-## 45.11. Some Important Concepts
+## 44.11. Some Important Concepts
 
 - Docker bypasses iptables
 - localhost de um container não é o mesmo que de outro (estao isolados)
@@ -2082,7 +2073,7 @@ Description: App for android to manage torrents
 - `docker image inspect <image_id_from_above_step>`
 - `docker manifest inspect --verbose <container_name>`
 
-## 45.12. Update Containers
+## 44.12. Update Containers
 
 - `docker-compose pull`
 - `docker-compose up`
@@ -2109,7 +2100,7 @@ Info: --cleanup doesn't leave older version on the computer.
 - list images: `docker images -a`
 - remove all images: `docker rmi $(docker images -a -q)`
 
-## 45.13. Some notes based on experience
+## 44.13. Some notes based on experience
 
 - `docker run -it image_name sh` -> runs an interactive shell container using the image "image_name"
  The above command can be necessary because if the container is a one-shot, it will simply die after running: `docker run <image_name>`
@@ -2128,9 +2119,9 @@ Info: --cleanup doesn't leave older version on the computer.
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 46. VPN
+# 45. VPN
 
-## 46.1. Configuration
+## 45.1. Configuration
  
 - `pacman -S wireguard-tools` (wireguard-dkms, headers)
 - script wgg from rebelo:
@@ -2160,7 +2151,7 @@ Info: --cleanup doesn't leave older version on the computer.
 - `sudo wg-quick up wg0`
 - ip r show show the routes
 
-## 46.2. Notes
+## 45.2. Notes
 
 - Each computer needs an individual ip and key
 - For example, if I copy my laptop's file and put it in another computer, changing the ip, it won't
@@ -2169,7 +2160,7 @@ work if both connect since the key is the same
 - With A.B.C.D/X we mean that the X most significant digits are considered: 192.168.1.0/24 -> 192.168.0.x with x between 0 to 255
 - 192.168.0.0/16 -> 192.168.0.0 to 192.168.255.255
 
-## 46.3. Viseu
+## 45.3. Viseu
 
 - na config do desktop do porto, tens lá uma entrada para cada peer
 - no peer de viseu, para alem de 10.0.10.4/32, adicionavas 192.168.20.0/24
@@ -2179,12 +2170,12 @@ work if both connect since the key is the same
 - tinhas que adicionar a 192.168.20.0/24 no peer de viseu em wg1 no desktop do porto
 - e nos peers tinha de adicionar  192.168.20.0/24 para cada um dos peers saber que, pelo desktop do porto, consegue chegar a viseu
 
-## 46.4. Check Ports
+## 45.4. Check Ports
 
 - sudo nmap -sU -p- ip (UDP)
 - sudo nmap -sT -p- ip (TCP)
 
-## 46.5. Fix connection problem
+## 45.5. Fix connection problem
 
 - On laptop:
   - ip route add 192.168.1.64/32 via 192.168.1.254 dev (interface, ex: wlp0s20f3)
@@ -2192,7 +2183,7 @@ work if both connect since the key is the same
   - nmcli connection modify CONNECTION_NAME (ex: ROBOREDO) +ipv4.routes "192.168.1.0/24 192.168.1.254"
 - Apparently, this fix isn't permanent
 
-## 46.6. Connect to Rebelo
+## 45.6. Connect to Rebelo
 
 - Add wg2.conf in /etc/wireguard (note: can have both vpns up)
 - Alternatively, I can add the `[Peer]` section to wg1 and, then, I don't need wg2 and this works best.
@@ -2209,7 +2200,7 @@ work if both connect since the key is the same
 - `tcpdump -i any icmp` (icmp are the type of packages, the ones used by ping command. This command listens to packages being sent through
 my computer)
 
-## 46.7. Allow access to my VPN on another VPN
+## 45.7. Allow access to my VPN on another VPN
 
 - Create another peer. In the allowed IPs of this peer in the config of my server, it should be:
 
@@ -2224,7 +2215,7 @@ my computer)
   What this means is that, when they try to connect to my VPN from one of their peers, the IPs of my network are in the config of their VPN. Then, their server has a route for my VPN through the `[PEER]` section provided on the config of their server. However, since now it's their server connecting to mine, I need the public key of the server and not the public key associated with the config that I gave them. For this reason, read last point.
 - Finally, I need to change the public key of the peer that I created for them and put the public key of their server.
 
-## 46.8. UDP2RAW
+## 45.8. UDP2RAW
 
 - `pacman -S udp2raw-tunnel`
 - Open tcp port on router for udp2raw (e.g: 58374)
@@ -2258,7 +2249,7 @@ my computer)
   - Add in the `[Interface]` group the line: "MTU = 1300" (udp2raw doesn't support large packages)
   - Change endpoint to: "127.0.0.1:5634"
 
-## 46.9. Updated VPN
+## 45.9. Updated VPN
 
 - In iptables, drop all connections except the ones I want to keep;
 - These connections are only concerned with the direct access to the raspberry and not the traffic thourgh vpn;
@@ -2273,7 +2264,7 @@ and I want to be able to access the restricted access peer, I need to include in
   - A container that hasn't network_mode host can't now connect to one that is on the network_mode host. To solve this, allow input from docker interface:
     - `-A INPUT -i br+ -p TCP --dport 32400 -j ACCEPT`
 
-## 46.10. Fixing routes
+## 45.10. Fixing routes
 
 - When laptop is not connected to VPN but desktop is (both in porto), I could not ping desktop from laptop using the local ip, since the wireguard
  priority was lower and the response of the desktop went through the vpn (and laptop was not connected)
@@ -2285,7 +2276,7 @@ and I want to be able to access the restricted access peer, I need to include in
 
  NOTE:  [Nginx Server](https://hub.docker.com/r/linuxserver/swag)
 
-## 46.11. Rebelo's Jellyfin
+## 45.11. Rebelo's Jellyfin
 
 I need to foward the traffic in order for a peer to have access to Rebelo's Jellyfin. If the peer has full access, everything will work. If the peer has limited access and I want to maintain it like that, I need to add the following lines:
 
@@ -2305,7 +2296,7 @@ Note: the `-d <ip>` only affects traffic that goes specifically to that ip. I am
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 47. DDNS
+# 46. DDNS
 
 ON ROUTER:
 
@@ -2316,12 +2307,12 @@ ON ROUTER:
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 48. Encrypt dir
+# 47. Encrypt dir
 
 - tar -cvzf - folder | gpg -c > folder.tar.gz.gpg
   - gpg -d folder.tar.gz.gpg | tar -xvzf -
 
-## 48.1. Disable password cache
+## 47.1. Disable password cache
 
 - Edit `~/.gnupg/gpg-agent.conf`
 
@@ -2332,7 +2323,7 @@ ON ROUTER:
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 49. Violent Monkey
+# 48. Violent Monkey
 
 - https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/
 - https://github.com/Purfview/IMDb-Scout-Mod
@@ -2346,16 +2337,16 @@ ON ROUTER:
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 50. Wireshark
+# 49. Wireshark
 
 - Dissectors: .local/lib/wireshark/plugins
 - For rfcomm dlci: file -> export -> export as json
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 51. Telegram
+# 50. Telegram
 
-## 51.1. BotFather
+## 50.1. BotFather
 
 ```text
 /newbot
@@ -2365,14 +2356,14 @@ botusername_bot
 @botusername_bot (note: this doesn't work without the "@")
 ```
 
-## 51.2. Find bot chat ID
+## 50.2. Find bot chat ID
 
 - On telegram, search by: @botusername_bot
 - `https://api.telegram.org/bot<bot_token_here>/getUpdates`
 - Send message to bot in telegram and update this page
 - Another option is to add @RawDataBot to my group (do not forget to kick it after)
 
-## 51.3. Add sonarr and radarr to telegram
+## 50.3. Add sonarr and radarr to telegram
 
 - Go to settings -> Connect -> Telegram
 - In name, just put Telegram
@@ -2380,7 +2371,7 @@ botusername_bot
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 52. Barrier
+# 51. Barrier
 
 Connect first with barrier only after do this:
 
@@ -2420,13 +2411,13 @@ Barrier does not work on wayland
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 53. TeamViewer
+# 52. TeamViewer
 
 Start teamviewer service: `systemctl start teamviewerd.service`
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 54. Flatpak
+# 53. Flatpak
 
 ```bash
 pacman -S flatpak
@@ -2437,7 +2428,7 @@ sudo ln -s /var/lib/flatpak/exports/bin/chat.rocket.RocketChat /usr/bin/rocket-c
 cp /var/lib/flatpak/app/media.emby.EmbyTheater/current/active/files/share/applications/media.emby.EmbyTheater.desktop  /usr/share/applications/
 ```
 
-## 54.1. Firefox
+## 53.1. Firefox
 
 ```bash
 flatpak install flathub org.mozilla.firefox
@@ -2449,16 +2440,16 @@ systemd-analyze --system unit-paths
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 55. VM
+# 54. VM
 
-## 55.1. Fix Resolution
+## 54.1. Fix Resolution
 
 - go to /etc/default/grub
 - GRUB_GFXMODE=1024x768x32
 - GRUB_GFXPAYLOAD_LINUX=keep
 - grub-mkconfig -o /boot/grub/grub.cfg
 
-## 55.2. SDcard on VM
+## 54.2. SDcard on VM
 
 - check with `fdisk -l` where is the sdcard (/dev/mmcblk0)
 - unmount if mounted
@@ -2469,7 +2460,7 @@ systemd-analyze --system unit-paths
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 56. Latex
+# 55. Latex
 
 ```text
 /usr/share/texmf-dist/tex/latex/local
@@ -2479,7 +2470,7 @@ sudo path/to/mktexlsr or sudo $(which mktexlsr)---> update latex
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 57. Plex
+# 56. Plex
 
 ```text
 docker stop plex
@@ -2491,9 +2482,9 @@ docker start plex
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 58. Format phone
+# 57. Format phone
 
-## 58.1. Formatting
+## 57.1. Formatting
 
 - `pacman -S android-tools`
 - `adb shell - cd /data/adb/modules/quick* - find . -name "*.apk"`
@@ -2515,7 +2506,7 @@ docker start plex
 - To install, for example, Orange Fox, from TWRP, I can simply flash it from TWRP
 - Installing lavender with gapps did not work... Need MindTheGapps
 
-## 58.2. Connecting to PC
+## 57.2. Connecting to PC
 
 - Primeiro instalar termux
   - install fdroid and install termux from  there
@@ -2555,7 +2546,7 @@ need this):
   sudo <comand>
   ```
 
-## 58.3. ARCH LINUX IN TERMUX
+## 57.3. ARCH LINUX IN TERMUX
 
 ```bash
 pkg update
@@ -2583,14 +2574,14 @@ add su - <user> to bash
 # create symlinks (ln -s) for storage
 ```
 
-## 58.4. Process to format
+## 57.4. Process to format
 
 - Boot to recovery
 - Format system, data, cachr
 - Reboot to recovery to reload partition table
 - Install rom, format data, reboot to rom
 
-## 58.5. Apps ADB
+## 57.5. Apps ADB
 
 ```bash
 adb shell pm list packages
@@ -2603,9 +2594,9 @@ adb shell content query --uri content://contacts/phones/  --projection display_n
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 59. Find Command
+# 58. Find Command
 
-## 59.1. Error with mv command
+## 58.1. Error with mv command
 
 By running the following command:
 
@@ -2638,11 +2629,11 @@ Using the option `-maxdepth 1` should also solve the issue.
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 60. Conky Desktop
+# 59. Conky Desktop
 
 `/usr/share/conky conky_maia` is the file I want. I have it saved in Linux backup.
 
-## 60.1. Install conky-manager
+## 59.1. Install conky-manager
 
 Change in config:
 
@@ -2661,7 +2652,7 @@ background yes
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 61. EndeavourOS Stuff
+# 60. EndeavourOS Stuff
 
 - Might need to connect to network:
 
@@ -2684,7 +2675,7 @@ background yes
 - Nao consigo obter em lyx o output por causa de ficheiros eps: `pacman -S ghostscript`
 - Ao instalar o Mathematica, o script não gostou que o path tivesse um espaco
 
-## 61.1. Relativamente ao barrier
+## 60.1. Relativamente ao barrier
 
 - O nome dos dois pcs nao pode ser o mesmo;
 - No ficheiro `/etc/systemd/system/barrier.service` tenho de ter:
@@ -2713,7 +2704,7 @@ Note: Adicionar à config do i3 workspace_auto_back_and_forth yes
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 62. Map Keyboard Keys
+# 61. Map Keyboard Keys
 
 - Search for keycode:
   - `xmodmap -pk`
@@ -2737,9 +2728,9 @@ On my keyboard, ç -> alt + ,
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 63. Format Pen
+# 62. Format Pen
 
-## 63.1. Apagar partições
+## 62.1. Apagar partições
 
 ```bash
 sudo fdisk -l -> para ver qual é a pen
@@ -2750,14 +2741,14 @@ sudo gdisk /dev/sdX -> em que X é o que encontro em cima
   w
 ```
 
-## 63.2. Criar Partição
+## 62.2. Criar Partição
 
 ```bash
 sudo mkfs.vfat /dev/sdX1
 sudo mkfs.exfat # (for SD CARD)
 ```
 
-## 63.3. Format pen with ISO
+## 62.3. Format pen with ISO
 
 ```text
 sudo fdisk --list
@@ -2769,9 +2760,9 @@ If I want to install windows, use woeusb: `sudo woeusb --target-filesystem NTFS 
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 64. Borg Backup
+# 63. Borg Backup
 
-## 64.1. Setup Steps
+## 63.1. Setup Steps
 
 1) Create backup user in pi (do not add user no any groups):
 
@@ -2801,7 +2792,7 @@ If I want to install windows, use woeusb: `sudo woeusb --target-filesystem NTFS 
 
   `borg mount path/to/repo::backup/name /mount/point`
 
-## 64.2. MOUNT BACKUP AUTOMATICALLY
+## 63.2. MOUNT BACKUP AUTOMATICALLY
 
 - Do it with systemd mount: needs a mount and .automount unit; This allows to export environment variables in the mount process;
 
@@ -2814,15 +2805,15 @@ If I want to install windows, use woeusb: `sudo woeusb --target-filesystem NTFS 
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 65. HDD Format
+# 64. HDD Format
 
 `sudo fdisk -l`
 
-## 65.1. Delete Partitions
+## 64.1. Delete Partitions
 
 `sudo gdisk /dev/sdX` (where X is found from the previous step) and then select `d` and `w`
 
-## 65.2. Create New GPT partition table
+## 64.2. Create New GPT partition table
 
 ```text
 sudo gdisk /dev/sdX
@@ -2833,15 +2824,15 @@ sudo gdisk /dev/sdX
   - w
 ```
 
-## 65.3. Format Disk
+## 64.3. Format Disk
 
 `sudo mkfs.btrs -f /dev/sdX1`
 
-## 65.4. Find UUID and check type
+## 64.4. Find UUID and check type
 
 `sudo blkid`
 
-## 65.5. Fstab
+## 64.5. Fstab
 
 ```text
 UUID=d1e18a1a-1c64-458e-9aa3-e59cd9b8bd51       /home/goncalo/HDD2            btrfs   defaults,nofail,noatime   0       0
@@ -2849,9 +2840,9 @@ UUID=d1e18a1a-1c64-458e-9aa3-e59cd9b8bd51       /home/goncalo/HDD2            bt
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 66. Ubuntu
+# 65. Ubuntu
 
-## 66.1. Fix ethernet unavailable
+## 65.1. Fix ethernet unavailable
 
 ```text
 [ifupdown]
@@ -2860,7 +2851,7 @@ managed=true
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 67. PROBLEM: Unknown fs type vfat
+# 66. PROBLEM: Unknown fs type vfat
 
 Issue: Booted and got an error while mounting /efi during boot: /efi, unknown file system type vfat
 What is happening: booting a different kernel from what is on /
@@ -2901,7 +2892,7 @@ efi_microcode=(/boot/*-ucode.img)
 efi_efi_image="/efi/EFI/Linux/linux.efi"
 ```
 
-## 67.1. Some notes
+## 66.1. Some notes
 
 - initramfs is the / before the actual / is mounted (it is mounted in ram) and provides basic utillities + systemd. It also includes some base kernel modules -> need to rebuild initramfs after kernel update
 - systemd-bootx64.efi is just the bootloader
@@ -2912,9 +2903,9 @@ efi_efi_image="/efi/EFI/Linux/linux.efi"
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 68. Permissions
+# 67. Permissions
 
-## 68.1. Fix permissions
+## 67.1. Fix permissions
 
 - `sudo pacman-fix-permissions`
 - check ssh to fix key permissions
@@ -2924,7 +2915,7 @@ I have made a script with a file which has the correct permissions which I got f
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 69. Raspberry Pi
+# 68. Raspberry Pi
 
 - Needed to systemctl enable sshd inside chroot (chroot root/@)
 - p10k configure to configure p10k theme for zsh
@@ -2996,9 +2987,9 @@ Final step: `docker-compose build`
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 70. Plasma
+# 69. Plasma
 
-## 70.1. Packages
+## 69.1. Packages
 
 ```text
 plasma-desktop
@@ -3019,7 +3010,7 @@ xdg-desktop-portal xdg-desktop-portal-kde xdg-desktop-portal-gtk
 khotkeys
 ```
 
-## 70.2. Launch
+## 69.2. Launch
 
 ```bash
 # Wayland
@@ -3031,7 +3022,7 @@ exec startplasma-wayland
 exec sx startplasma-x11
 ```
 
-## 70.3. Autostart
+## 69.3. Autostart
 
 Check the following paths
 
@@ -3044,7 +3035,7 @@ Check the following paths
 /usr/share/autostart
 ```
 
-## 70.4. XDG Autostart directories
+## 69.4. XDG Autostart directories
 
 Place Desktop entries (i.e. .desktop files) in the appropriate **XDG Autostart directory**:
 
@@ -3053,7 +3044,7 @@ Place Desktop entries (i.e. .desktop files) in the appropriate **XDG Autostart d
 
 To disable a system-wide entry, create an overriding entry containing `Hidden=true`.
 
-## 70.5. Autostart Manager
+## 69.5. Autostart Manager
 
 The program scans `$HOME/.config/autostart/` for applications and login scripts, `$HOME/.config/plasma-workspace/env` for pre-startup scripts and `$HOME/.config/plasma-workspace/shutdown` for logout scripts to check what programs and scripts are already there and displays them. However, applications in `/etc/xdg/autostart` are also launched.
 
@@ -3061,7 +3052,7 @@ To autostart an application, navigate to System Settings > Startup and Shutdown 
 
 If a desktop file under `$HOME/.config/autostart/` has `OnlyShowIn=XFCE;`, then it will not be autostarted.
 
-## 70.6. Disable kdeconnect
+## 69.6. Disable kdeconnect
 
 First we need to avoid kdedconnect to autostart:
 
@@ -3093,7 +3084,7 @@ Exec=/usr/bin/false
 
 Now kdeconnectd should not run anymore after you logout and login again.
 
-## 70.7. Shortcuts
+## 69.7. Shortcuts
 
 - "Switch to Next Screen" shortcut to work: you need to check "Separate screen focus" option first from System settings → Window behavior → Window Behavior (on the left side) → Separate screen focus
 - Logout Menu: Shortcuts → Session Management → Logout (default: ctrl+alt_del)
@@ -3103,7 +3094,7 @@ Now kdeconnectd should not run anymore after you logout and login again.
 - "Switch to Window to the Left": Meta+Alt+Left
 - "Switch to Window to the Right": Meta+Alt+Right
 
-## 70.8. Fixing hanging service on shutdown
+## 69.8. Fixing hanging service on shutdown
 
 First atempt: `sudo rm /usr/share/dbus-1/accessibility-services/org.a11y.*`
 
@@ -3113,32 +3104,32 @@ Add:
 
 to makepkg.conf.
 
-## 70.9. Config
+## 69.9. Config
 
-### 70.9.1. Startup and Shutdown → Background Services
+### 69.9.1. Startup and Shutdown → Background Services
 
 - Remove Search Folder Updater (also go to Search → File Search and untick `Enable File Search`)
 
-### 70.9.2. Startup and Shutdown → Desktop Session
+### 69.9.2. Startup and Shutdown → Desktop Session
 
 - [x] Start with an empty session
 - [x] Confirm Logout
 - [x] Offer Shutdown Options
 - [x] End Current Session
 
-### 70.9.3. Power Management → Energy Saving
+### 69.9.3. Power Management → Energy Saving
 
 - Untick Screen Energy Saving
 
-### 70.9.4. Display and Monitor → Night Color
+### 69.9.4. Display and Monitor → Night Color
 
 - Activate
 
-### 70.9.5. Window Management → Task Switcher
+### 69.9.5. Window Management → Task Switcher
 
 - Filter Windows by: Virtual desktops and Screens (**current** in both)
 
-### 70.9.6. FlameShot
+### 69.9.6. FlameShot
 
 I should not use the shortcut option for flameshot that comes by default. Instead do:
 
@@ -3146,7 +3137,7 @@ I should not use the shortcut option for flameshot that comes by default. Instea
 - Right click > New > Global Shortcut > Command/Url
 - Select trigger and Command/Url to `/usr/bin/flameshot gui`
 
-### 70.9.7. Task Bar
+### 69.9.7. Task Bar
 
 - Add "Task Manager" widget to each panel
 - Right-click on an item in Task Manager -> Configure Task Manager
@@ -3154,7 +3145,7 @@ I should not use the shortcut option for flameshot that comes by default. Instea
   
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 71. Regex
+# 70. Regex
 
 ```bash
 # Lessons: need -n flag which disables automatic printing
@@ -3164,7 +3155,7 @@ sed -n 's/.*\(FOR-ICU-[0-9]\+\).*/\1/p' List_Of_Reqs.txt
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 72. Compare files
+# 71. Compare files
 
 ```bash
 # This command will output lines unique to file_2. So, if output is empty, then all file_2 lines are contained in the file_1.
@@ -3173,7 +3164,7 @@ comm -13 <(sort -u file_1) <(sort -u file_2)
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 73. Fiddler
+# 72. Fiddler
 
 First, you should enable the Allow remote computers to connect setting in Fiddler
 
@@ -3213,9 +3204,9 @@ Now you should be able to capture HTTPS traffic too.
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 74. Termux
+# 73. Termux
 
-## 74.1. Setting up termux
+## 73.1. Setting up termux
 
 Termux should be installed from F-Droid, both in TV and phone.
 
@@ -3241,7 +3232,7 @@ termux-reload-settings
 
 The above is important because otherwise the font my screw up the qrcode.
 
-## 74.2. Termux Brightness
+## 73.2. Termux Brightness
 
 This needs termux:api. Termux:Api should be allowed to `Modify system settings`.
 
@@ -3256,7 +3247,7 @@ if [[ "$(uname -o)" == "Android" ]]; then
 fi
 ```
 
-## 74.3. TV url opener
+## 73.3. TV url opener
 
 Use Termux:Boot in order to start sshd server.
 
@@ -3270,7 +3261,7 @@ ssh 192.168.200.70 -p 8022 termux-open-url "$1"
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 75. VPN Critical
+# 74. VPN Critical
 
 Some commands: 
 
@@ -3293,9 +3284,9 @@ unmanaged-devices=interface-name:vpn*,except:interface-name:enp0s3;interface-nam
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 76. Secure Boot
+# 75. Secure Boot
 
-## 76.1. Steps for secure boot
+## 75.1. Steps for secure boot
 
 1) Setup motherboard in setup mode. In order to do that, go to `Secure boot options` and `Delete all Signatures`;
 2) Install booster: `pacman -S booster`
@@ -3340,7 +3331,7 @@ Note: If I already had windows installed, this would work out of the box because
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 77. Helix
+# 76. Helix
 
 The helix mindset is that we always highlight something before performing an action.
 
@@ -3353,7 +3344,7 @@ language-server = { command = "/path/to/mdpls" }
 config = { markdown.preview.auto = true, markdown.preview.browser = "firefox" }
 ```
 
-## 77.1. Some commands
+## 76.1. Some commands
 
 1) Modes: insert, visual, normal, space, go-to, match
 2) File picker: space mode -> f
@@ -3377,9 +3368,9 @@ config = { markdown.preview.auto = true, markdown.preview.browser = "firefox" }
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 78. Pihole
+# 77. Pihole
 
-## 78.1. Configuration
+## 77.1. Configuration
 
 By default, it won't work since, by using systemd-resolved stub listener, port 53 will be occupied. For that, the stub resolver should be disabled with:
 
@@ -3407,11 +3398,11 @@ search taildbd36.ts.net
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 79. Thunderbird
+# 78. Thunderbird
 
-## 79.1. Critical Account
+## 78.1. Critical Account
 
-### 79.1.1. Configure
+### 78.1.1. Configure
 
 Incoming:
 
@@ -3430,7 +3421,7 @@ Outgoing:
 
 Username (Incoming and Outgoing): email
 
-### 79.1.2. Calendar
+### 78.1.2. Calendar
 
 - Install TBSync extension
 - Install Provider for Exchange ActiveSync
@@ -3438,7 +3429,7 @@ Username (Incoming and Outgoing): email
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 80. XDG-DESKTOP-PORTAL
+# 79. XDG-DESKTOP-PORTAL
 
 Fix applications taking long to on startup:
 
@@ -3456,22 +3447,22 @@ export GDK_BACKEND=x11
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 81. Parsec
+# 80. Parsec
 
-## 81.1. Wake on lan
+## 80.1. Wake on lan
 
 For wake on lan to work, check: `ethtool interface | grep Wake-on`. The output should be `g` and it is required for `WoL` to work. It can be set with `ethtool -s interface wol g`. If using `NetworkManager`, this can be made persistent by going into the ethernet configuration inside network manager and enabling the magic packet.
 
-## 81.2. Wake PC
+## 80.2. Wake PC
 
 - ssh to rpi and run: `wol -v bc:5f:f4:83:32:cc`.
 - In desktop, `systemctl reboot --boot-loader-entry=auto-windows`
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 82. Calendar
+# 81. Calendar
 
-## 82.1. Share Microsoft Calendar
+## 81.1. Share Microsoft Calendar
 
 1) Go to [outlook](outlook.office365.com);
 2) Settings -> View All Outlook Settings;
@@ -3479,7 +3470,7 @@ For wake on lan to work, check: `ethtool interface | grep Wake-on`. The output s
 4) Publish a calendar -> Can view all details
 5) Grab the ICS link
 
-## 82.2. Add microsoft calendar to google
+## 81.2. Add microsoft calendar to google
 
 Microsoft calendar doesn't sync well in google. Therefore, use a google script to update the calendar for me:
 
@@ -3517,7 +3508,7 @@ var emailSummary = false;              // Will email you when an event is added/
 var email = "";                        // OPTIONAL: If "emailSummary" is set to true or you want to receive update notifications, you will need to provide your email address
 ```
 
-## 82.3. gcalcli
+## 81.3. gcalcli
 
 Finally, integrate this with [gcalcli](https://github.com/insanum/gcalcli)
 
@@ -3525,9 +3516,9 @@ Finally, integrate this with [gcalcli](https://github.com/insanum/gcalcli)
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 83. Gnome-desktop
+# 82. Gnome-desktop
 
-## 83.1. Desktop icons
+## 82.1. Desktop icons
 
 `gnome-desktop` no longer ships with desktop icons. One easy way to fix this is by doing the following:
 
@@ -3539,9 +3530,9 @@ Finally, integrate this with [gcalcli](https://github.com/insanum/gcalcli)
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 84. BCompare
+# 83. BCompare
 
-## 84.1. Crack for `4.x`
+## 83.1. Crack for `4.x`
 
 First delete trial mode:
 
@@ -3578,7 +3569,7 @@ GXN1eh9FbDiX1ACdd7XKMV7hL7x0ClBJLUJ-zFfKofjaj2yxE53xauIfkqZ8FoLpcZ0Ux6McTyNmODDS
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 85. Frida / HttpToolkit
+# 84. Frida / HttpToolkit
 
 For now, this section is a summary of the steps that I needed to follow in order to disable the **SSL Pinning** done by the FitnessHut app (in order to catch the https requests).
 
@@ -3640,7 +3631,7 @@ ps -e | grep frida-server
 kill -9 pid
 ```
 
-## 85.1. Notes about `curl` after intercepting the http requests
+## 84.1. Notes about `curl` after intercepting the http requests
 
 In order to do a `POST` request, run:
 
@@ -3676,7 +3667,7 @@ curl -s -X POST -H "Content-Type: application/x-www-form-urlencoded" \
 
 <div style="page-break-after: always; break-after: page;"></div>
 
-# 86. Misc
+# 85. Misc
 
 1) By disabling all F86 binds in config and installing xfce-power-management (which needs to be started in config and need to get config from Manjaro/Home/.config) and installed pa-applet-git, pavucontrol and pulseaudio (initiated in config) all the F86 binds work.
 2) It is preferable to have xfce4-notify (initiated in config by running `/usr/lib/xfce4/notifyd/xfce4-notifyd`) than dunst... Better notifications. Check i3 config and uninstall dunst (in endeavour).
