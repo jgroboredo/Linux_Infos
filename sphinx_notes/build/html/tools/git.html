@@ -758,6 +758,26 @@ Additionally, this will also create a .gitattributes file that will tell Git to 
 all files specified in Git LFS.</p>
 </div>
 </section>
+<section id="git-absorb">
+<h2><span class="section-number">2.29. </span>Git absorb<a class="headerlink" href="#git-absorb" title="Permalink to this heading">#</a></h2>
+<p>Check <a class="reference external" href="https://github.com/tummychow/git-absorb">github.com</a>.</p>
+<p>You have a feature branch with a few commits. Your teammate reviewed the branch and pointed out a few bugs.
+You have fixes for the bugs, but you don’t want to shove them all into an opaque commit that says fixes,
+because you believe in atomic commits. Instead of manually finding commit SHAs for git commit –fixup,
+or running a manual interactive rebase, do this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span><span class="nv">$FILES_YOU_FIXED</span>
+git<span class="w"> </span>absorb<span class="w"> </span>--and-rebase
+</pre></div>
+</div>
+</section>
+<section id="git-fixup">
+<h2><span class="section-number">2.30. </span>Git fixup<a class="headerlink" href="#git-fixup" title="Permalink to this heading">#</a></h2>
+<p>Fixup commits are created using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">--fixup</span> <span class="pre">&lt;SHA&gt;</span></code>. Practically, <code class="docutils literal notranslate"><span class="pre">--fixup</span></code> associates a new
+commit with an existing commit so that when you do an interactive rebase, you don’t have to re-order any
+commits in order to squash them. And you don’t have to change any commit messages.</p>
+<p>It is usually used with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span> <span class="pre">-i</span> <span class="pre">--autosquash</span></code>. The rebase will automatically take care of
+squashing those commits created with –fixup in the correct order!</p>
+</section>
 </section>
 
         </article>
@@ -856,6 +876,8 @@ all files specified in Git LFS.</p>
 <li><a class="reference internal" href="#git-pushd-popd">2.26. Git pushd/popd</a></li>
 <li><a class="reference internal" href="#git-ssh">2.27. Git ssh</a></li>
 <li><a class="reference internal" href="#git-lfs">2.28. Git lfs</a></li>
+<li><a class="reference internal" href="#git-absorb">2.29. Git absorb</a></li>
+<li><a class="reference internal" href="#git-fixup">2.30. Git fixup</a></li>
 </ul>
 </li>
 </ul>

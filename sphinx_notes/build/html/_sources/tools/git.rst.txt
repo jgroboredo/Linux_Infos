@@ -625,3 +625,30 @@ There are also the following commands:
    The ``--everything`` option will run the migration in all local and remote Git refs (branches, tags).
    Additionally, this will also create a .gitattributes file that will tell Git to store 
    all files specified in Git LFS.
+
+----------
+Git absorb
+----------
+
+Check `github.com <https://github.com/tummychow/git-absorb>`_.
+
+You have a feature branch with a few commits. Your teammate reviewed the branch and pointed out a few bugs. 
+You have fixes for the bugs, but you don't want to shove them all into an opaque commit that says fixes, 
+because you believe in atomic commits. Instead of manually finding commit SHAs for git commit --fixup, 
+or running a manual interactive rebase, do this:
+
+.. code-block:: bash
+
+   git add $FILES_YOU_FIXED
+   git absorb --and-rebase
+
+---------
+Git fixup
+---------
+
+Fixup commits are created using ``git commit --fixup <SHA>``. Practically, ``--fixup`` associates a new 
+commit with an existing commit so that when you do an interactive rebase, you don't have to re-order any 
+commits in order to squash them. And you don't have to change any commit messages.
+
+It is usually used with ``git rebase -i --autosquash``. The rebase will automatically take care of 
+squashing those commits created with --fixup in the correct order!
