@@ -5,12 +5,12 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="1. Sphinx tricks" href="tools/sphinx.html" />
 
-    <!-- Generated with Sphinx 7.1.2 and Furo 2023.07.26 -->
+    <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
         <title>Gonçalo&#39;s Personal Notes 0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
 
@@ -173,6 +173,7 @@
 <li class="toctree-l1"><a class="reference internal" href="tools/libreoffice.html">14. Libreoffice Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools/vscode.html">15. Code Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools/nvidia.html">16. Nvidia Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/linux_sound.html">17. Sound on Linux Notes</a></li>
 </ul>
 
 </div>
@@ -226,6 +227,22 @@ In order to build the notes, just run <code class="docutils literal notranslate"
 <span class="nb">source</span><span class="w"> </span>python-sphinx/bin/activate
 </pre></div>
 </div>
+<p>An even better solution is to use <code class="docutils literal notranslate"><span class="pre">pyenv</span></code> and <code class="docutils literal notranslate"><span class="pre">pyenv-virtualenv</span></code> (the latter found on aur) to manage
+virtual environments.
+To do so, after installing the packages, add the following lines to <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.pyenv/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>pyenv<span class="w"> </span>init<span class="w"> </span>-<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>pyenv<span class="w"> </span>virtualenv-init<span class="w"> </span>-<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>After, on the project folder, simply do:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyenv<span class="w"> </span>virtualenv<span class="w"> </span>&lt;optional_python_version&gt;<span class="w"> </span>project_name
+pyenv<span class="w"> </span><span class="nb">local</span><span class="w"> </span>project_name<span class="w"> </span><span class="c1"># on the base folder of the project</span>
+</pre></div>
+</div>
+<p>After this, <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code> should point to <code class="docutils literal notranslate"><span class="pre">$HOME/.pyenv/shims/python</span></code> and
+<code class="docutils literal notranslate"><span class="pre">pyenv</span> <span class="pre">versions</span></code> should show the correct virtualenv selected.
+From now on, simply use <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&lt;package&gt;</span></code> to do stuff.</p>
 </div>
 <section id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">#</a></h2>
@@ -341,6 +358,10 @@ In order to build the notes, just run <code class="docutils literal notranslate"
 <li class="toctree-l2"><a class="reference internal" href="tools/nvidia.html#nvidia-tearing">16.1. Nvidia tearing</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="tools/linux_sound.html">17. Sound on Linux Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools/linux_sound.html#line-in-jack-for-7-1-surround">17.1. Line-in jack for 7.1 surround</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -404,11 +425,11 @@ In order to build the notes, just run <code class="docutils literal notranslate"
       
     </aside>
   </div>
-</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
-    <script src="_static/scripts/furo.js?v=32e29ea5"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=f281be69"></script>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
     </body>
 </html>

@@ -28,6 +28,27 @@ In order to install the dependencies, simply run ``pip install -r requirements.t
       python -m venv python-sphinx
       source python-sphinx/bin/activate
 
+   An even better solution is to use ``pyenv`` and ``pyenv-virtualenv`` (the latter found on aur) to manage
+   virtual environments. 
+   To do so, after installing the packages, add the following lines to ``.zshrc``:
+
+   .. code-block :: bash
+
+      export PATH="$HOME/.pyenv/bin:$PATH"
+      eval "$(pyenv init -)"
+      eval "$(pyenv virtualenv-init -)"
+   
+   After, on the project folder, simply do:
+
+   .. code-block :: bash
+
+      pyenv virtualenv <optional_python_version> project_name
+      pyenv local project_name # on the base folder of the project
+
+   After this, ``which python`` should point to ``$HOME/.pyenv/shims/python`` and 
+   ``pyenv versions`` should show the correct virtualenv selected. 
+   From now on, simply use ``python -m pip install <package>`` to do stuff.
+
 --------
 Contents
 --------
@@ -53,3 +74,4 @@ Contents
    tools/libreoffice
    tools/vscode
    tools/nvidia
+   tools/linux_sound
