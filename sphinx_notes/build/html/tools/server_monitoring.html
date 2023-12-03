@@ -316,6 +316,8 @@ like GitLab.</p>
 </div>
 <p>The first login user and password are “admin:admin”.</p>
 <p>Assuming <code class="docutils literal notranslate"><span class="pre">influxdb</span></code> is already setup, go to data sources and add <code class="docutils literal notranslate"><span class="pre">influxdb</span></code> with the following parameters:</p>
+<section id="influxdb-flux">
+<h3><span class="section-number">18.3.1. </span>InfluxDB - Flux<a class="headerlink" href="#influxdb-flux" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Query Language: Flux</p></li>
 <li><p>Url: <code class="docutils literal notranslate"><span class="pre">http://influxdb:8086</span></code></p></li>
@@ -331,6 +333,41 @@ like GitLab.</p>
 </li>
 </ul>
 <p>After clicking “Save &amp; test”, it should recognize 3 buckets.</p>
+</section>
+<section id="influxdb-influxql">
+<h3><span class="section-number">18.3.2. </span>InfluxDB - InfluxQL<a class="headerlink" href="#influxdb-influxql" title="Permalink to this heading">#</a></h3>
+<p>In InfluxDB, do the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-u<span class="w"> </span><span class="m">0</span><span class="w"> </span>-it<span class="w"> </span>influxdb<span class="w"> </span>bash
+
+<span class="c1"># To try:</span>
+influx<span class="w"> </span>config<span class="w"> </span>create<span class="w"> </span>--active<span class="w"> </span>-n<span class="w"> </span>&lt;config<span class="w"> </span>name&gt;<span class="w"> </span>-u<span class="w"> </span>http://influxdb:8086<span class="w"> </span>-t<span class="w"> </span>&lt;token&gt;<span class="w"> </span>-o<span class="w"> </span>xeon-metric<span class="w"> </span><span class="c1"># -o org_id</span>
+influx<span class="w"> </span>v1<span class="w"> </span>dbrp<span class="w"> </span>create<span class="w"> </span>--db<span class="w"> </span>&lt;db_name&gt;<span class="w"> </span>--rp<span class="w"> </span>autogen<span class="w"> </span>--bucket-id<span class="w"> </span>&lt;bucket_id&gt;<span class="w"> </span>--default
+
+<span class="c1"># However, I should be able to use virtual dbrp mappings</span>
+<span class="c1"># Check with:</span>
+influx<span class="w"> </span>v1<span class="w"> </span>dbrp<span class="w"> </span>list
+
+<span class="c1"># The above command outputs a telegraf database (with the same id as the bucket I created)</span>
+</pre></div>
+</div>
+<p>After, in datasources, add the following:</p>
+<ul class="simple">
+<li><p>Query Language: InfluxQL</p></li>
+<li><p>Url: <code class="docutils literal notranslate"><span class="pre">http://influxdb:8086</span></code></p></li>
+<li><p>Add custom header:</p>
+<ul>
+<li><p>Header: Authorization</p></li>
+<li><p>Value: Token &lt;token_here&gt;</p></li>
+</ul>
+</li>
+<li><p>Database: telegraf (same as in <code class="docutils literal notranslate"><span class="pre">influx</span> <span class="pre">v1</span> <span class="pre">dbrp</span> <span class="pre">list</span></code>)</p></li>
+<li><p>User: goncalo</p></li>
+<li><p>Pw: &lt;pw&gt;</p></li>
+<li><p>Get</p></li>
+<li><p>Min time interval: 10s (default)</p></li>
+<li><p>Max series: 1000 (default)</p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -384,7 +421,11 @@ like GitLab.</p>
 <li><a class="reference internal" href="#">18. Server Monitoring</a><ul>
 <li><a class="reference internal" href="#telegraf">18.1. Telegraf</a></li>
 <li><a class="reference internal" href="#influxdb">18.2. InfluxDB</a></li>
-<li><a class="reference internal" href="#grafana">18.3. Grafana</a></li>
+<li><a class="reference internal" href="#grafana">18.3. Grafana</a><ul>
+<li><a class="reference internal" href="#influxdb-flux">18.3.1. InfluxDB - Flux</a></li>
+<li><a class="reference internal" href="#influxdb-influxql">18.3.2. InfluxDB - InfluxQL</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

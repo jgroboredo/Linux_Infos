@@ -121,6 +121,10 @@ The first login user and password are "admin:admin".
 
 Assuming ``influxdb`` is already setup, go to data sources and add ``influxdb`` with the following parameters:
 
+^^^^^^^^^^^^^^^
+InfluxDB - Flux
+^^^^^^^^^^^^^^^
+
 - Query Language: Flux
 - Url: ``http://influxdb:8086``
 - Basic Auth: Disabled
@@ -133,3 +137,39 @@ Assuming ``influxdb`` is already setup, go to data sources and add ``influxdb`` 
   - Max series: 1000 (default)
 
 After clicking "Save & test", it should recognize 3 buckets.
+
+^^^^^^^^^^^^^^^^^^^
+InfluxDB - InfluxQL
+^^^^^^^^^^^^^^^^^^^
+
+In InfluxDB, do the following:
+
+.. code-block:: bash
+
+    docker exec -u 0 -it influxdb bash
+
+    # To try:
+    influx config create --active -n <config name> -u http://influxdb:8086 -t <token> -o xeon-metric # -o org_id
+    influx v1 dbrp create --db <db_name> --rp autogen --bucket-id <bucket_id> --default
+
+    # However, I should be able to use virtual dbrp mappings
+    # Check with:
+    influx v1 dbrp list
+
+    # The above command outputs a telegraf database (with the same id as the bucket I created)
+
+After, in datasources, add the following:
+
+- Query Language: InfluxQL
+- Url: ``http://influxdb:8086``
+- Add custom header: 
+  
+  - Header: Authorization
+  - Value: Token <token_here>
+
+- Database: telegraf (same as in ``influx v1 dbrp list``)
+- User: goncalo
+- Pw: <pw>
+- Get
+- Min time interval: 10s (default)
+- Max series: 1000 (default)
