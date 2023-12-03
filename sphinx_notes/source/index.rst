@@ -75,3 +75,4 @@ Contents
    tools/vscode
    tools/nvidia
    tools/linux_sound
+   tools/server_monitoring
