@@ -76,3 +76,4 @@ Contents
    tools/nvidia
    tools/linux_sound
    tools/server_monitoring
+   tools/pcmanfm
