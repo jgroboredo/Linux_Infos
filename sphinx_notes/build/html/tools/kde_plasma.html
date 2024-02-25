@@ -1,0 +1,460 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="19. PCManFM Notes" href="pcmanfm.html" />
+
+    <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
+        <title>20. KDE Infos - Notes on configuration - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Gonçalo's Personal Notes 0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Gonçalo's Personal Notes 0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">1. Sphinx tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git.html">2. Git infos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bash.html">3. Bash Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lyx.html">4. LyX Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qemu.html">5. Qemu Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inkscape.html">6. Inkscape Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zathura.html">7. Zathura Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zsh.html">8. Zsh Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter.html">9. Jupyter Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pacman.html">10. Pacman Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grub.html">11. Grub Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vim.html">12. Vim Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">13. Python Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libreoffice.html">14. Libreoffice Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode.html">15. Code Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nvidia.html">16. Nvidia Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_sound.html">17. Sound on Linux Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server_monitoring.html">18. Server Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcmanfm.html">19. PCManFM Notes</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">20. KDE Infos - Notes on configuration</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="kde-infos-notes-on-configuration">
+<span id="kde-plasma-infos"></span><h1><span class="section-number">20. </span>KDE Infos - Notes on configuration<a class="headerlink" href="#kde-infos-notes-on-configuration" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>KDE Plasma, a graphical desktop environment with customizable layouts and panels,
+supporting virtual desktops and widgets. Written with Qt 5 and KDE Frameworks 5. KDE Frameworks, a collection of libraries and software frameworks built on top of Qt.
+Read more in <a class="reference external" href="https://kde.org/plasma-desktop/">kde.org</a>.</p>
+</div></blockquote>
+<section id="packages">
+<h2><span class="section-number">20.1. </span>Packages<a class="headerlink" href="#packages" title="Permalink to this heading">#</a></h2>
+<p>The list of relevant packages is:</p>
+<ul class="simple">
+<li><p>plasma-desktop</p></li>
+<li><p>plasma-wayland-session</p></li>
+<li><p>plasma-workspace-wallpapers</p></li>
+<li><p>plasma-systemmonitor</p></li>
+<li><p>plasma-nm</p></li>
+<li><p>plasma-pa</p></li>
+<li><p>plasma-browser-integration</p></li>
+<li><p>powerdevil</p></li>
+<li><p>bluedevil</p></li>
+<li><p>kdialog  # for native dialogs in some apps</p></li>
+<li><p>breeze breeze-gtk</p></li>
+<li><p>kwrited</p></li>
+<li><p>phonon-qt5-gstreamer</p></li>
+<li><p>kde-gtk-config</p></li>
+<li><p>xdg-desktop-portal xdg-desktop-portal-kde xdg-desktop-portal-gtk</p></li>
+<li><p>khotkeys</p></li>
+</ul>
+</section>
+<section id="launch-env">
+<h2><span class="section-number">20.2. </span>Launch env<a class="headerlink" href="#launch-env" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Wayland</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MOZ_ENABLE_WAYLAND</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">XDG_SESSION_TYPE</span><span class="o">=</span>wayland
+<span class="nb">exec</span><span class="w"> </span>startplasma-wayland
+
+<span class="c1"># X11</span>
+<span class="nb">exec</span><span class="w"> </span>sx<span class="w"> </span>startplasma-x11
+</pre></div>
+</div>
+</section>
+<section id="autostart">
+<h2><span class="section-number">20.3. </span>Autostart<a class="headerlink" href="#autostart" title="Permalink to this heading">#</a></h2>
+<p>Check the following paths:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/.kde/Autostart</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/.kde/share/autostart</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/.config/autostart</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/.local/share/autostart</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/etc/xdg/autostart</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/usr/share/autostart</span></code></p></li>
+</ul>
+</section>
+<section id="xdg-autostart-directories">
+<h2><span class="section-number">20.4. </span>XDG Autostart directories<a class="headerlink" href="#xdg-autostart-directories" title="Permalink to this heading">#</a></h2>
+<p>Place Desktop entries (i.e. .desktop files) in the appropriate <strong>XDG Autostart directory</strong>:</p>
+<ul class="simple">
+<li><p>user-specific: <code class="docutils literal notranslate"><span class="pre">$XDG_CONFIG_HOME/autostart</span></code> (<code class="docutils literal notranslate"><span class="pre">~/.config/autostart</span></code> by default)</p></li>
+<li><p>system-wide: <code class="docutils literal notranslate"><span class="pre">$XDG_CONFIG_DIRS/autostart</span></code> (<code class="docutils literal notranslate"><span class="pre">/etc/xdg/autostart</span></code> by default)</p></li>
+</ul>
+<p>To disable a system-wide entry, create an overriding entry containing <code class="docutils literal notranslate"><span class="pre">Hidden=true</span></code>.</p>
+</section>
+<section id="autostart-manager">
+<h2><span class="section-number">20.5. </span>Autostart Manager<a class="headerlink" href="#autostart-manager" title="Permalink to this heading">#</a></h2>
+<p>The program scans <code class="docutils literal notranslate"><span class="pre">$HOME/.config/autostart/</span></code> for applications and login scripts, <code class="docutils literal notranslate"><span class="pre">$HOME/.config/plasma-workspace/env</span></code>
+for pre-startup scripts and <code class="docutils literal notranslate"><span class="pre">$HOME/.config/plasma-workspace/shutdown</span></code> for logout scripts to check what programs and
+scripts are already there and displays them. However, applications in <code class="docutils literal notranslate"><span class="pre">/etc/xdg/autostart</span></code> are also launched.</p>
+<p>To autostart an application, navigate to <code class="docutils literal notranslate"><span class="pre">System</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Startup</span> <span class="pre">and</span> <span class="pre">Shutdown</span> <span class="pre">&gt;</span> <span class="pre">Autostart</span></code> and add the program or
+shell script of your choice. For applications, a <code class="docutils literal notranslate"><span class="pre">.desktop</span></code> file will be created, for login scripts, a <code class="docutils literal notranslate"><span class="pre">.desktop</span></code>
+file launching the script will be created.</p>
+<p>If a desktop file under <code class="docutils literal notranslate"><span class="pre">$HOME/.config/autostart/</span></code> has <code class="docutils literal notranslate"><span class="pre">OnlyShowIn=XFCE;</span></code>, then it will not be autostarted.</p>
+</section>
+<section id="disable-kdeconnect">
+<h2><span class="section-number">20.6. </span>Disable kdeconnect<a class="headerlink" href="#disable-kdeconnect" title="Permalink to this heading">#</a></h2>
+<p>First we need to avoid kdedconnect to autostart:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>/etc/xdg/autostart/org.kde.kdeconnect.daemon.desktop<span class="w"> </span>~/.config/autostart/
+</pre></div>
+</div>
+<p>Now edit the file <code class="docutils literal notranslate"><span class="pre">~/.config/autostart/org.kde.kdeconnect.daemon.desktop</span></code> and add <code class="docutils literal notranslate"><span class="pre">Hidden=true</span></code>.
+Actually you can even remove everything else, because only the file name has to be identically so it’s “overriden”. So it looks like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[Desktop Entry]
+Hidden=true
+</pre></div>
+</div>
+<p>Now the autostart service is disabled, but this isn’t enough. We also need to “disable” the d-bus service:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.local/share/dbus-1/services/
+cp<span class="w"> </span>/usr/share/dbus-1/services/org.kde.kdeconnect.service<span class="w"> </span>~/.local/share/dbus-1/services/
+</pre></div>
+</div>
+<p>Edit the file <code class="docutils literal notranslate"><span class="pre">~/.local/share/dbus-1/services/org.kde.kdeconnect.service</span></code>  and change Exec to <code class="docutils literal notranslate"><span class="pre">/usr/bin/false</span></code> so the file looks like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[D-BUS Service]
+Name=org.kde.kdeconnect
+Exec=/usr/bin/false
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">/usr/bin/false</span></code> will return with a “error” return code (because it returns with 1 and not 0), so your logs (via journalctl)
+may display the process couldn’t start or failed. But that shouldn’t matter.</p>
+<p>Now kdeconnectd should not run anymore after you logout and login again.</p>
+<p>## 69.7. Shortcuts</p>
+<ul class="simple">
+<li><p>“Switch to Next Screen” shortcut to work: you need to check “Separate screen focus” option first from System settings → Window behavior → Window Behavior (on the left side) → Separate screen focus</p></li>
+<li><p>Logout Menu: Shortcuts → Session Management → Logout (default: ctrl+alt_del)</p></li>
+<li><p>Screen Lock: Workspace Behavior → Sreen Locking (also, disable automatic screen lock here)</p></li>
+<li><p>“Switch to Screen 0”: Meta+Ctrl+Right</p></li>
+<li><p>“Switch to Screen 1”: Meta+Ctrl+Left</p></li>
+<li><p>“Switch to Window to the Left”: Meta+Alt+Left</p></li>
+<li><p>“Switch to Window to the Right”: Meta+Alt+Right</p></li>
+</ul>
+</section>
+<section id="fixing-hanging-service-on-shutdown">
+<h2><span class="section-number">20.7. </span>Fixing hanging service on shutdown<a class="headerlink" href="#fixing-hanging-service-on-shutdown" title="Permalink to this heading">#</a></h2>
+<p>First atempt: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">rm</span> <span class="pre">/usr/share/dbus-1/accessibility-services/org.a11y.*</span></code></p>
+<p>Add:</p>
+<p><code class="docutils literal notranslate"><span class="pre">NoExtract</span> <span class="pre">=</span> <span class="pre">usr/share/dbus-1/accessibility-services/org.a11y.*</span></code></p>
+<p>to makepkg.conf.</p>
+</section>
+<section id="config">
+<h2><span class="section-number">20.8. </span>## 69.9. Config<a class="headerlink" href="#config" title="Permalink to this heading">#</a></h2>
+<section id="startup-and-shutdown-background-services">
+<h3><span class="section-number">20.8.1. </span>Startup and Shutdown: Background Services<a class="headerlink" href="#startup-and-shutdown-background-services" title="Permalink to this heading">#</a></h3>
+<p>Remove Search Folder Updater (also go to Search → File Search and untick <code class="docutils literal notranslate"><span class="pre">Enable</span> <span class="pre">File</span> <span class="pre">Search</span></code>)</p>
+</section>
+<section id="startup-and-shutdown-desktop-session">
+<h3><span class="section-number">20.8.2. </span>Startup and Shutdown: Desktop Session<a class="headerlink" href="#startup-and-shutdown-desktop-session" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>[x] Start with an empty session</p></li>
+<li><p>[x] Confirm Logout</p></li>
+<li><p>[x] Offer Shutdown Options</p></li>
+<li><p>[x] End Current Session</p></li>
+</ul>
+</section>
+<section id="power-management-energy-saving">
+<h3><span class="section-number">20.8.3. </span>Power Management: Energy Saving<a class="headerlink" href="#power-management-energy-saving" title="Permalink to this heading">#</a></h3>
+<p>Untick Screen Energy Saving</p>
+</section>
+<section id="display-and-monitor-night-color">
+<h3><span class="section-number">20.8.4. </span>Display and Monitor: Night Color<a class="headerlink" href="#display-and-monitor-night-color" title="Permalink to this heading">#</a></h3>
+<p>Activate</p>
+</section>
+<section id="window-management-task-switcher">
+<h3><span class="section-number">20.8.5. </span>Window Management: Task Switcher<a class="headerlink" href="#window-management-task-switcher" title="Permalink to this heading">#</a></h3>
+<p>Filter Windows by: Virtual desktops and Screens (<strong>current</strong> in both)</p>
+</section>
+<section id="flameshot">
+<h3><span class="section-number">20.8.6. </span>FlameShot<a class="headerlink" href="#flameshot" title="Permalink to this heading">#</a></h3>
+<p>I should not use the shortcut option for flameshot that comes by default. Instead do:</p>
+<ul class="simple">
+<li><p>Go to Settings &gt; Shortcuts &gt; Custom Shortcuts</p></li>
+<li><p>Right click &gt; New &gt; Global Shortcut &gt; Command/Url</p></li>
+<li><p>Select trigger and Command/Url to <code class="docutils literal notranslate"><span class="pre">/usr/bin/flameshot</span> <span class="pre">gui</span></code></p></li>
+</ul>
+</section>
+<section id="task-bar">
+<h3><span class="section-number">20.8.7. </span>Task Bar<a class="headerlink" href="#task-bar" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Add “Task Manager” widget to each panel</p></li>
+<li><p>Right-click on an item in Task Manager -&gt; Configure Task Manager</p></li>
+<li><p>Behavior tab -&gt; Filter: Show only tasks from the current screen</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="pcmanfm.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><span class="section-number">19. </span>PCManFM Notes</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Gonçalo Roboredo
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">20. KDE Infos - Notes on configuration</a><ul>
+<li><a class="reference internal" href="#packages">20.1. Packages</a></li>
+<li><a class="reference internal" href="#launch-env">20.2. Launch env</a></li>
+<li><a class="reference internal" href="#autostart">20.3. Autostart</a></li>
+<li><a class="reference internal" href="#xdg-autostart-directories">20.4. XDG Autostart directories</a></li>
+<li><a class="reference internal" href="#autostart-manager">20.5. Autostart Manager</a></li>
+<li><a class="reference internal" href="#disable-kdeconnect">20.6. Disable kdeconnect</a></li>
+<li><a class="reference internal" href="#fixing-hanging-service-on-shutdown">20.7. Fixing hanging service on shutdown</a></li>
+<li><a class="reference internal" href="#config">20.8. ## 69.9. Config</a><ul>
+<li><a class="reference internal" href="#startup-and-shutdown-background-services">20.8.1. Startup and Shutdown: Background Services</a></li>
+<li><a class="reference internal" href="#startup-and-shutdown-desktop-session">20.8.2. Startup and Shutdown: Desktop Session</a></li>
+<li><a class="reference internal" href="#power-management-energy-saving">20.8.3. Power Management: Energy Saving</a></li>
+<li><a class="reference internal" href="#display-and-monitor-night-color">20.8.4. Display and Monitor: Night Color</a></li>
+<li><a class="reference internal" href="#window-management-task-switcher">20.8.5. Window Management: Task Switcher</a></li>
+<li><a class="reference internal" href="#flameshot">20.8.6. FlameShot</a></li>
+<li><a class="reference internal" href="#task-bar">20.8.7. Task Bar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    </body>
+</html>

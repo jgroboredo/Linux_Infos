@@ -77,3 +77,4 @@ Contents
    tools/linux_sound
    tools/server_monitoring
    tools/pcmanfm
+   tools/kde_plasma

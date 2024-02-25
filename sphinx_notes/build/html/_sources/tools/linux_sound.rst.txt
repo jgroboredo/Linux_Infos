@@ -20,8 +20,8 @@ Then, using ``hdajackretask``, select ``Realtek ALC897`` and set:
 
 This can then be tested using:
 
-  .. code-block:: bash
+.. code-block:: bash
 
-    speaker-test -t wav -c 6 -l 1
+   speaker-test -t wav -c 6 -l 1
 
 
