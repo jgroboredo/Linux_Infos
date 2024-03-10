@@ -123,7 +123,9 @@ may display the process couldn't start or failed. But that shouldn't matter.
 
 Now kdeconnectd should not run anymore after you logout and login again.
 
-## 69.7. Shortcuts
+---------
+Shortcuts
+---------
 
 - "Switch to Next Screen" shortcut to work: you need to check "Separate screen focus" option first from System settings → Window behavior → Window Behavior (on the left side) → Separate screen focus
 - Logout Menu: Shortcuts → Session Management → Logout (default: ctrl+alt_del)
@@ -145,16 +147,28 @@ Add:
 
 to makepkg.conf.
 
----------------
-## 69.9. Config
----------------
+------
+Config
+------
 
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Startup and Shutdown: Background Services
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Remove Search Folder Updater (also go to Search → File Search and untick ``Enable File Search``)
+Remove Search Folder Updater (also go to Search → File Search and untick ``Enable File Search`` to completely disable file search).
+
+Otherwise, search for ``file search`` and do:
+
+- File indexing: enabled;
+- Data to index: files names only;
+- Specifically add folders to index - eventually disable the entire home folder.
+
+In order to disabel discover service,
+
+.. code-block :: bash
+
+   sed -e '$aHidden=True' /etc/xdg/autostart/org.kde.discover.notifier.desktop > "$HOME/.config/autostart/org.kde.discover.notifier.desktop" 
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Startup and Shutdown: Desktop Session
@@ -193,6 +207,20 @@ I should not use the shortcut option for flameshot that comes by default. Instea
 - Right click > New > Global Shortcut > Command/Url
 - Select trigger and Command/Url to ``/usr/bin/flameshot gui``
 
+If flameshot compresses both monitors, check if they are both with 100% scalling. 
+
+If flameshot only appears in one monitor, create the following window rule (Settings -> Window Management -> Window Rules):
+
+- Name: Force Flameshot size
+- Window Class: Exact Match -> flameshot
+- Match whole window class: No
+- Window types: Normal Windows
+- Add property -> Window Title: Exact match -> Flameshot
+- Add property -> Position -> Force -> 0x0
+- Add property -> Fullscreen -> Force -> No
+- Add property -> Obey geometry restrictions -> Force -> No
+- Add property -> Keep above other windows -> Force -> Yes
+
 ^^^^^^^^
 Task Bar
 ^^^^^^^^
@@ -200,3 +228,9 @@ Task Bar
 - Add "Task Manager" widget to each panel
 - Right-click on an item in Task Manager -> Configure Task Manager
 - Behavior tab -> Filter: Show only tasks from the current screen
+
+^^^^^^^^
+Polonium
+^^^^^^^^
+
+- Go to `GitHub <https://github.com/zeroxoneafour/polonium/releases/>`_ and download the polonium.kwinscript asset from a release of your choice, then install it in KWin Scripts in the settings menu (or use yay);
