@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="5. Qemu Notes" href="qemu.html" /><link rel="prev" title="3. Bash Notes" href="bash.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="20. KDE Infos - Notes on configuration" href="kde_plasma.html" />
 
     <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
-        <title>4. LyX Notes - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
+        <title>21. Handlr Notes - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -160,7 +160,7 @@
 <li class="toctree-l1"><a class="reference internal" href="sphinx.html">1. Sphinx tricks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">2. Git infos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bash.html">3. Bash Notes</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">4. LyX Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lyx.html">4. LyX Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qemu.html">5. Qemu Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inkscape.html">6. Inkscape Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="zathura.html">7. Zathura Notes</a></li>
@@ -177,7 +177,7 @@
 <li class="toctree-l1"><a class="reference internal" href="server_monitoring.html">18. Server Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pcmanfm.html">19. PCManFM Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kde_plasma.html">20. KDE Infos - Notes on configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="handlr.html">21. Handlr Notes</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">21. Handlr Notes</a></li>
 </ul>
 
 </div>
@@ -212,73 +212,39 @@
           </label>
         </div>
         <article role="main">
-          <section id="lyx-notes">
-<span id="id1"></span><h1><span class="section-number">4. </span>LyX Notes<a class="headerlink" href="#lyx-notes" title="Permalink to this heading">#</a></h1>
+          <section id="handlr-notes">
+<span id="id1"></span><h1><span class="section-number">21. </span>Handlr Notes<a class="headerlink" href="#handlr-notes" title="Permalink to this heading">#</a></h1>
 <blockquote class="epigraph">
-<div><p>LyX is a document processor that encourages an approach to writing based on the structure of your documents and not simply their appearance.
-LyX combines the power and flexibility of TeX/LaTeX with the ease of use of a graphical interface. Read more in <a class="reference external" href="https://www.lyx.org/">lyx.org</a>.</p>
+<div><p>handlr, written in Rust, provides the functionality of xdg-open and xdg-mime with a streamlined interface.
+Compared to xdg-utils, it includes:
+setting associations by extension, removing the need to look up or remember mime types,
+validation for mime types and extensions,
+removal of invalid entries from mimeapps.list,
+intelligent detection of mime types from file content in case filename is ambiguous,
+autocompletion of mimes, extensions, and desktop entries,</p>
+<p>Read more in <a class="reference external" href="https://wiki.archlinux.org/title/Default_applications#handlr">wiki.archlinux.org</a> and in
+<a class="reference external" href="https://github.com/Anomalocaridid/handlr-regex/tree/main">github.com</a>.</p>
 </div></blockquote>
-<section id="configure-lyx">
-<h2><span class="section-number">4.1. </span>Configure lyx<a class="headerlink" href="#configure-lyx" title="Permalink to this heading">#</a></h2>
+<section id="installation">
+<h2><span class="section-number">21.1. </span>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
+<p>Install the following aur packages:</p>
 <ul class="simple">
-<li><p>Tools-Preferences-File Formats: PDF (pdflatex), shortname: pdf2, Viewer: Custom - zathura</p></li>
-<li><p>Tools-Preferences-Output-PDF command: <code class="docutils literal notranslate"><span class="pre">zathura</span> <span class="pre">--synctex-forward</span> <span class="pre">$$n:1:$$t</span> <span class="pre">$$o</span></code></p></li>
-<li><p>Tools-Preferences-Shortcuts-New: buffer-view pdf2 and buffer-update pdf2</p></li>
-<li><p>For the spellchecker, might need to install <code class="docutils literal notranslate"><span class="pre">hunspell-en_US</span></code> and <code class="docutils literal notranslate"><span class="pre">hunspel-pt_pt</span></code> and <code class="docutils literal notranslate"><span class="pre">enchant</span></code></p></li>
-<li><p>For <code class="docutils literal notranslate"><span class="pre">lgrenc.def</span> <span class="pre">not</span> <span class="pre">found</span></code> -&gt; install <code class="docutils literal notranslate"><span class="pre">texlive-langgreek</span></code></p></li>
-<li><p>To use eps figures in lyx I need <code class="docutils literal notranslate"><span class="pre">ghostscript</span></code> : try to <code class="docutils literal notranslate"><span class="pre">epstopdf</span></code> on command line to discover this.</p></li>
+<li><p>handlr-regex</p></li>
+<li><p>xdg-utils-handlr</p></li>
 </ul>
 </section>
-<section id="kpathsea">
-<h2><span class="section-number">4.2. </span>Kpathsea<a class="headerlink" href="#kpathsea" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Kpathsea</span></code> is a library for path searching (e.g., for very quickly locating a given .sty file in a set of potentially large TEXMF trees,
-without doing a recursive directory tree traversal every time a given file is needed. (pse -&gt; pathsea)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">kpsewhich</span> <span class="pre">minted.sy</span></code> to search efficiently on tex library</p></li>
-</ul>
-</section>
-<section id="configure-minted">
-<h2><span class="section-number">4.3. </span>Configure minted<a class="headerlink" href="#configure-minted" title="Permalink to this heading">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span><span class="s2">&quot;/usr/share/texmf-texlive/tex/latex/minted/&quot;</span>
-sudo<span class="w"> </span>cp<span class="w"> </span>minted.sty<span class="w"> </span><span class="s2">&quot;/usr/share/texmf-texlive/tex/latex/minted/&quot;</span>
-sudo<span class="w"> </span>mktexlsr
+<section id="usage">
+<h2><span class="section-number">21.2. </span>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h2>
+<p>In order to find the mime type of a given of given paths/URLs, desktop</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>handlr<span class="w"> </span>mime<span class="w"> </span>https://duckduckgo.com<span class="w"> </span>.<span class="w"> </span>README.md<span class="w"> </span><span class="c1"># this works for directories</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Then in lyx, go to Tools/Tex Information, select latex styles and click rescan. minted.sty should appear in the list in lyx, go to “Tools&gt;preferences&gt;file handling&gt;converters” and
-find the converter from tex to pdflatex. Edit its command line adding the option “-shell-escape” (no quotes) into the Converter field, then click the Modify button next to the list
-of converters. This is equivalent to going to Documents-&gt;Formats-&gt;Allow running external programs (is a better solution since it avoids writting a warning message).
-Then click Apply in lyx, go to Document&gt;Settings and enter “/usepackage{minted}” (no quotes) in the latex preamble in lyx, in the part of your document where you want
-the highlighted code to appear, go to “Insert&gt;TEX code” to get an Evil Red Text (ERT) box</p></li>
-<li><p>In <code class="docutils literal notranslate"><span class="pre">Document-&gt;Settings-&gt;Listings</span></code>, add following options:</p>
-<ul>
-<li><p>language=C++</p></li>
-<li><p>frame=single</p></li>
-<li><p>mathescape=true</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">syoek</span> <span class="pre">--synctex-forward</span> <span class="pre">$$n:1:$$t</span> <span class="pre">$$o</span></code></p></li>
-</ul>
-</li>
-<li><p>Ordered bibliography: Use style <code class="docutils literal notranslate"><span class="pre">unsrt</span></code> and add to preamble: <code class="docutils literal notranslate"><span class="pre">\usepackage{notoccite}</span></code></p></li>
-</ul>
-</section>
-<section id="install-custom-cls">
-<h2><span class="section-number">4.4. </span>Install custom cls<a class="headerlink" href="#install-custom-cls" title="Permalink to this heading">#</a></h2>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">latex</span> <span class="pre">my_class.ins</span></code> -&gt; produces my_class.cls</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">kpsewhich</span> <span class="pre">-var-value=TEXMFHOME</span></code> -&gt; prints path where to put cls</p></li>
-<li><p>Regarding the above command, it’s good to put the usual path: <code class="docutils literal notranslate"><span class="pre">$HOME/texmf/tex/latex/commonstuff/</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">kpsewhich</span> <span class="pre">my_class.cls</span></code> -&gt; to check path of the class</p></li>
-<li><p>Write lyx layout: In order to do this, find the basis class for our new class. For that, inspect my_class.cls and check the line LoadClass.
-It implies that my_class.cls is a descendent of that class (let’s suppose it’s dependent on report class). Then, in /usr/share/lyx/layouts copy report.layout,
-change its name to my_class.layout and edit like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="se">\D</span>eclareLaTeXClass<span class="o">[</span>my_class<span class="o">]{</span>name_of_layout<span class="o">}</span>
-Input<span class="w"> </span>report.layout
+<p>Then, by default, it includes shell completions for mime types and desktop files.</p>
+<p>For example, in order to set the default file browser:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>handlr<span class="w"> </span>mime<span class="w"> </span>/paht/to/dir
+handlr<span class="w"> </span><span class="nb">set</span><span class="w"> </span>inode/directory<span class="w"> </span>pcmnanfm.desktop
 </pre></div>
 </div>
-</li>
-<li><p>In lyx, reconfigure. Now, name_of_layout is the text we see in Document-Class</p></li>
-<li><p>Default classes: <code class="docutils literal notranslate"><span class="pre">/usr/share/texmf-dist/latex/elsarticle/elsarticle.cls</span></code></p></li>
-</ul>
 </section>
 </section>
 
@@ -287,23 +253,15 @@ Input<span class="w"> </span>report.layout
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="qemu.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title"><span class="section-number">5. </span>Qemu Notes</div>
-              </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="bash.html">
+          
+          <a class="prev-page" href="kde_plasma.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title"><span class="section-number">3. </span>Bash Notes</div>
+                <div class="title"><span class="section-number">20. </span>KDE Infos - Notes on configuration</div>
                 
               </div>
             </a>
@@ -337,11 +295,9 @@ Input<span class="w"> </span>report.layout
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">4. LyX Notes</a><ul>
-<li><a class="reference internal" href="#configure-lyx">4.1. Configure lyx</a></li>
-<li><a class="reference internal" href="#kpathsea">4.2. Kpathsea</a></li>
-<li><a class="reference internal" href="#configure-minted">4.3. Configure minted</a></li>
-<li><a class="reference internal" href="#install-custom-cls">4.4. Install custom cls</a></li>
+<li><a class="reference internal" href="#">21. Handlr Notes</a><ul>
+<li><a class="reference internal" href="#installation">21.1. Installation</a></li>
+<li><a class="reference internal" href="#usage">21.2. Usage</a></li>
 </ul>
 </li>
 </ul>

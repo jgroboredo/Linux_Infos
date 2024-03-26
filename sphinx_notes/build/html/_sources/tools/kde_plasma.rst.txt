@@ -123,17 +123,6 @@ may display the process couldn't start or failed. But that shouldn't matter.
 
 Now kdeconnectd should not run anymore after you logout and login again.
 
----------
-Shortcuts
----------
-
-- "Switch to Next Screen" shortcut to work: you need to check "Separate screen focus" option first from System settings → Window behavior → Window Behavior (on the left side) → Separate screen focus
-- Logout Menu: Shortcuts → Session Management → Logout (default: ctrl+alt_del)
-- Screen Lock: Workspace Behavior → Sreen Locking (also, disable automatic screen lock here)
-- "Switch to Screen 0": Meta+Ctrl+Right
-- "Switch to Screen 1": Meta+Ctrl+Left
-- "Switch to Window to the Left": Meta+Alt+Left
-- "Switch to Window to the Right": Meta+Alt+Right
 
 ----------------------------------
 Fixing hanging service on shutdown
@@ -147,10 +136,35 @@ Add:
 
 to makepkg.conf.
 
-------
-Config
-------
+----------------------
+Settings Configuration
+----------------------
 
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+Shortcuts and Key Bindings
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- "Switch to Next Screen" shortcut to work: you need to check "Separate screen focus" option first from System settings → Window behavior → Window Behavior (on the left side) → Separate screen focus
+- Logout Menu: Shortcuts → Session Management → Logout (default: ctrl+alt_del)
+- Screen Lock: Workspace Behavior → Sreen Locking (also, disable automatic screen lock here)
+- "Switch to Screen 0": Meta+Ctrl+Right
+- "Switch to Screen 1": Meta+Ctrl+Left
+- "Switch to Window to the Left": Meta+Alt+Left
+- "Switch to Window to the Right": Meta+Alt+Right
+- Window Management -> Window Behavior -> Focus follows mouse; Delay focus by: 0ms;
+- Window Management -> Window Behavior -> Window Actions -> Meta + Middle Click: Minimize;
+- Window Management -> Task Switcher -> Filter windows by -> Screens -> Current Screen (basically, apply this to each one of the settings;
+- Window Management -> Virtual Desktops -> Add more desktops;
+- Keyboard -> Shortcuts -> Close Window -> Meta + Shift + Q
+- Keyboard -> Shortcuts -> Make Window Full Screen -> Meta + Shift + F
+- Keyboard -> Shortcuts -> Maximize Window -> Meta + F
+- Keyboard -> Shortcuts -> Remove all Quick Tile settings
+- Keyboard -> Shortcuts -> plasmashell -> Remove all Activate Task Manager Entry
+- Keyboard -> Shortcuts -> Set Switch to Desktop shortcuts
+- Keyboard -> Shortcuts -> Add new -> Firefox Web Browser (Meta + F2)
+- Keyboard -> Shortcuts -> Add new -> Alacritty (Meta + Enter)
+- Keyboard -> Shortcuts -> Add new -> -> command -> ``albert toggle`` (Meta + D)
+- In polonium settings, add albert to filter process
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Startup and Shutdown: Background Services
@@ -166,7 +180,7 @@ Otherwise, search for ``file search`` and do:
 
 In order to disabel discover service,
 
-.. code-block :: bash
+.. code-block:: bash
 
    sed -e '$aHidden=True' /etc/xdg/autostart/org.kde.discover.notifier.desktop > "$HOME/.config/autostart/org.kde.discover.notifier.desktop" 
 
@@ -228,3 +242,12 @@ Task Bar
 - Add "Task Manager" widget to each panel
 - Right-click on an item in Task Manager -> Configure Task Manager
 - Behavior tab -> Filter: Show only tasks from the current screen
+
+^^^^^^^^
+Polonium
+^^^^^^^^
+
+- Go to `GitHub <https://github.com/zeroxoneafour/polonium/releases/>`_ and download the polonium.kwinscript asset from a release of your choice, then install it in KWin Scripts in the settings menu (or use yay);
+- If using yay, run ``yay -S kwin-polonium``;
+- In order to activate, go to ``Settings -> KWin Scripts -> Polonium``;
+- In ``Polonium`` settings, change ``Insetion point`` to ``Right Side``;

@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="19. PCManFM Notes" href="pcmanfm.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="21. Handlr Notes" href="handlr.html" /><link rel="prev" title="19. PCManFM Notes" href="pcmanfm.html" />
 
     <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
         <title>20. KDE Infos - Notes on configuration - Gonçalo&#39;s Personal Notes 0.1 documentation</title>
@@ -177,6 +177,7 @@
 <li class="toctree-l1"><a class="reference internal" href="server_monitoring.html">18. Server Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pcmanfm.html">19. PCManFM Notes</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">20. KDE Infos - Notes on configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handlr.html">21. Handlr Notes</a></li>
 </ul>
 
 </div>
@@ -310,8 +311,17 @@ Exec=/usr/bin/false
 may display the process couldn’t start or failed. But that shouldn’t matter.</p>
 <p>Now kdeconnectd should not run anymore after you logout and login again.</p>
 </section>
-<section id="shortcuts">
-<h2><span class="section-number">20.7. </span>Shortcuts<a class="headerlink" href="#shortcuts" title="Permalink to this heading">#</a></h2>
+<section id="fixing-hanging-service-on-shutdown">
+<h2><span class="section-number">20.7. </span>Fixing hanging service on shutdown<a class="headerlink" href="#fixing-hanging-service-on-shutdown" title="Permalink to this heading">#</a></h2>
+<p>First atempt: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">rm</span> <span class="pre">/usr/share/dbus-1/accessibility-services/org.a11y.*</span></code></p>
+<p>Add:</p>
+<p><code class="docutils literal notranslate"><span class="pre">NoExtract</span> <span class="pre">=</span> <span class="pre">usr/share/dbus-1/accessibility-services/org.a11y.*</span></code></p>
+<p>to makepkg.conf.</p>
+</section>
+<section id="settings-configuration">
+<h2><span class="section-number">20.8. </span>Settings Configuration<a class="headerlink" href="#settings-configuration" title="Permalink to this heading">#</a></h2>
+<section id="shortcuts-and-key-bindings">
+<h3><span class="section-number">20.8.1. </span>Shortcuts and Key Bindings<a class="headerlink" href="#shortcuts-and-key-bindings" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>“Switch to Next Screen” shortcut to work: you need to check “Separate screen focus” option first from System settings → Window behavior → Window Behavior (on the left side) → Separate screen focus</p></li>
 <li><p>Logout Menu: Shortcuts → Session Management → Logout (default: ctrl+alt_del)</p></li>
@@ -320,19 +330,24 @@ may display the process couldn’t start or failed. But that shouldn’t matter.
 <li><p>“Switch to Screen 1”: Meta+Ctrl+Left</p></li>
 <li><p>“Switch to Window to the Left”: Meta+Alt+Left</p></li>
 <li><p>“Switch to Window to the Right”: Meta+Alt+Right</p></li>
+<li><p>Window Management -&gt; Window Behavior -&gt; Focus follows mouse; Delay focus by: 0ms;</p></li>
+<li><p>Window Management -&gt; Window Behavior -&gt; Window Actions -&gt; Meta + Middle Click: Minimize;</p></li>
+<li><p>Window Management -&gt; Task Switcher -&gt; Filter windows by -&gt; Screens -&gt; Current Screen (basically, apply this to each one of the settings;</p></li>
+<li><p>Window Management -&gt; Virtual Desktops -&gt; Add more desktops;</p></li>
+<li><p>Keyboard -&gt; Shortcuts -&gt; Close Window -&gt; Meta + Shift + Q</p></li>
+<li><p>Keyboard -&gt; Shortcuts -&gt; Make Window Full Screen -&gt; Meta + Shift + F</p></li>
+<li><p>Keyboard -&gt; Shortcuts -&gt; Maximize Window -&gt; Meta + F</p></li>
+<li><p>Keyboard -&gt; Shortcuts -&gt; Remove all Quick Tile settings</p></li>
+<li><p>Keyboard -&gt; Shortcuts -&gt; plasmashell -&gt; Remove all Activate Task Manager Entry</p></li>
+<li><p>Keyboard -&gt; Shortcuts -&gt; Set Switch to Desktop shortcuts</p></li>
+<li><p>Keyboard -&gt; Shortcuts -&gt; Add new -&gt; Firefox Web Browser (Meta + F2)</p></li>
+<li><p>Keyboard -&gt; Shortcuts -&gt; Add new -&gt; Alacritty (Meta + Enter)</p></li>
+<li><p>Keyboard -&gt; Shortcuts -&gt; Add new -&gt; -&gt; command -&gt; <code class="docutils literal notranslate"><span class="pre">albert</span> <span class="pre">toggle</span></code> (Meta + D)</p></li>
+<li><p>In polonium settings, add albert to filter process</p></li>
 </ul>
 </section>
-<section id="fixing-hanging-service-on-shutdown">
-<h2><span class="section-number">20.8. </span>Fixing hanging service on shutdown<a class="headerlink" href="#fixing-hanging-service-on-shutdown" title="Permalink to this heading">#</a></h2>
-<p>First atempt: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">rm</span> <span class="pre">/usr/share/dbus-1/accessibility-services/org.a11y.*</span></code></p>
-<p>Add:</p>
-<p><code class="docutils literal notranslate"><span class="pre">NoExtract</span> <span class="pre">=</span> <span class="pre">usr/share/dbus-1/accessibility-services/org.a11y.*</span></code></p>
-<p>to makepkg.conf.</p>
-</section>
-<section id="config">
-<h2><span class="section-number">20.9. </span>Config<a class="headerlink" href="#config" title="Permalink to this heading">#</a></h2>
 <section id="startup-and-shutdown-background-services">
-<h3><span class="section-number">20.9.1. </span>Startup and Shutdown: Background Services<a class="headerlink" href="#startup-and-shutdown-background-services" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.8.2. </span>Startup and Shutdown: Background Services<a class="headerlink" href="#startup-and-shutdown-background-services" title="Permalink to this heading">#</a></h3>
 <p>Remove Search Folder Updater (also go to Search → File Search and untick <code class="docutils literal notranslate"><span class="pre">Enable</span> <span class="pre">File</span> <span class="pre">Search</span></code> to completely disable file search).</p>
 <p>Otherwise, search for <code class="docutils literal notranslate"><span class="pre">file</span> <span class="pre">search</span></code> and do:</p>
 <ul class="simple">
@@ -346,7 +361,7 @@ may display the process couldn’t start or failed. But that shouldn’t matter.
 </div>
 </section>
 <section id="startup-and-shutdown-desktop-session">
-<h3><span class="section-number">20.9.2. </span>Startup and Shutdown: Desktop Session<a class="headerlink" href="#startup-and-shutdown-desktop-session" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.8.3. </span>Startup and Shutdown: Desktop Session<a class="headerlink" href="#startup-and-shutdown-desktop-session" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>[x] Start with an empty session</p></li>
 <li><p>[x] Confirm Logout</p></li>
@@ -355,19 +370,19 @@ may display the process couldn’t start or failed. But that shouldn’t matter.
 </ul>
 </section>
 <section id="power-management-energy-saving">
-<h3><span class="section-number">20.9.3. </span>Power Management: Energy Saving<a class="headerlink" href="#power-management-energy-saving" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.8.4. </span>Power Management: Energy Saving<a class="headerlink" href="#power-management-energy-saving" title="Permalink to this heading">#</a></h3>
 <p>Untick Screen Energy Saving</p>
 </section>
 <section id="display-and-monitor-night-color">
-<h3><span class="section-number">20.9.4. </span>Display and Monitor: Night Color<a class="headerlink" href="#display-and-monitor-night-color" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.8.5. </span>Display and Monitor: Night Color<a class="headerlink" href="#display-and-monitor-night-color" title="Permalink to this heading">#</a></h3>
 <p>Activate</p>
 </section>
 <section id="window-management-task-switcher">
-<h3><span class="section-number">20.9.5. </span>Window Management: Task Switcher<a class="headerlink" href="#window-management-task-switcher" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.8.6. </span>Window Management: Task Switcher<a class="headerlink" href="#window-management-task-switcher" title="Permalink to this heading">#</a></h3>
 <p>Filter Windows by: Virtual desktops and Screens (<strong>current</strong> in both)</p>
 </section>
 <section id="flameshot">
-<h3><span class="section-number">20.9.6. </span>FlameShot<a class="headerlink" href="#flameshot" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.8.7. </span>FlameShot<a class="headerlink" href="#flameshot" title="Permalink to this heading">#</a></h3>
 <p>I should not use the shortcut option for flameshot that comes by default. Instead do:</p>
 <ul class="simple">
 <li><p>Go to Settings &gt; Shortcuts &gt; Custom Shortcuts</p></li>
@@ -389,11 +404,20 @@ may display the process couldn’t start or failed. But that shouldn’t matter.
 </ul>
 </section>
 <section id="task-bar">
-<h3><span class="section-number">20.9.7. </span>Task Bar<a class="headerlink" href="#task-bar" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.8.8. </span>Task Bar<a class="headerlink" href="#task-bar" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Add “Task Manager” widget to each panel</p></li>
 <li><p>Right-click on an item in Task Manager -&gt; Configure Task Manager</p></li>
 <li><p>Behavior tab -&gt; Filter: Show only tasks from the current screen</p></li>
+</ul>
+</section>
+<section id="polonium">
+<h3><span class="section-number">20.8.9. </span>Polonium<a class="headerlink" href="#polonium" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Go to <a class="reference external" href="https://github.com/zeroxoneafour/polonium/releases/">GitHub</a> and download the polonium.kwinscript asset from a release of your choice, then install it in KWin Scripts in the settings menu (or use yay);</p></li>
+<li><p>If using yay, run <code class="docutils literal notranslate"><span class="pre">yay</span> <span class="pre">-S</span> <span class="pre">kwin-polonium</span></code>;</p></li>
+<li><p>In order to activate, go to <code class="docutils literal notranslate"><span class="pre">Settings</span> <span class="pre">-&gt;</span> <span class="pre">KWin</span> <span class="pre">Scripts</span> <span class="pre">-&gt;</span> <span class="pre">Polonium</span></code>;</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">Polonium</span></code> settings, change <code class="docutils literal notranslate"><span class="pre">Insetion</span> <span class="pre">point</span></code> to <code class="docutils literal notranslate"><span class="pre">Right</span> <span class="pre">Side</span></code>;</p></li>
 </ul>
 </section>
 </section>
@@ -404,7 +428,15 @@ may display the process couldn’t start or failed. But that shouldn’t matter.
       <footer>
         
         <div class="related-pages">
-          
+          <a class="next-page" href="handlr.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><span class="section-number">21. </span>Handlr Notes</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
           <a class="prev-page" href="pcmanfm.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
@@ -453,16 +485,17 @@ may display the process couldn’t start or failed. But that shouldn’t matter.
 <li><a class="reference internal" href="#xdg-autostart-directories">20.4. XDG Autostart directories</a></li>
 <li><a class="reference internal" href="#autostart-manager">20.5. Autostart Manager</a></li>
 <li><a class="reference internal" href="#disable-kdeconnect">20.6. Disable kdeconnect</a></li>
-<li><a class="reference internal" href="#shortcuts">20.7. Shortcuts</a></li>
-<li><a class="reference internal" href="#fixing-hanging-service-on-shutdown">20.8. Fixing hanging service on shutdown</a></li>
-<li><a class="reference internal" href="#config">20.9. Config</a><ul>
-<li><a class="reference internal" href="#startup-and-shutdown-background-services">20.9.1. Startup and Shutdown: Background Services</a></li>
-<li><a class="reference internal" href="#startup-and-shutdown-desktop-session">20.9.2. Startup and Shutdown: Desktop Session</a></li>
-<li><a class="reference internal" href="#power-management-energy-saving">20.9.3. Power Management: Energy Saving</a></li>
-<li><a class="reference internal" href="#display-and-monitor-night-color">20.9.4. Display and Monitor: Night Color</a></li>
-<li><a class="reference internal" href="#window-management-task-switcher">20.9.5. Window Management: Task Switcher</a></li>
-<li><a class="reference internal" href="#flameshot">20.9.6. FlameShot</a></li>
-<li><a class="reference internal" href="#task-bar">20.9.7. Task Bar</a></li>
+<li><a class="reference internal" href="#fixing-hanging-service-on-shutdown">20.7. Fixing hanging service on shutdown</a></li>
+<li><a class="reference internal" href="#settings-configuration">20.8. Settings Configuration</a><ul>
+<li><a class="reference internal" href="#shortcuts-and-key-bindings">20.8.1. Shortcuts and Key Bindings</a></li>
+<li><a class="reference internal" href="#startup-and-shutdown-background-services">20.8.2. Startup and Shutdown: Background Services</a></li>
+<li><a class="reference internal" href="#startup-and-shutdown-desktop-session">20.8.3. Startup and Shutdown: Desktop Session</a></li>
+<li><a class="reference internal" href="#power-management-energy-saving">20.8.4. Power Management: Energy Saving</a></li>
+<li><a class="reference internal" href="#display-and-monitor-night-color">20.8.5. Display and Monitor: Night Color</a></li>
+<li><a class="reference internal" href="#window-management-task-switcher">20.8.6. Window Management: Task Switcher</a></li>
+<li><a class="reference internal" href="#flameshot">20.8.7. FlameShot</a></li>
+<li><a class="reference internal" href="#task-bar">20.8.8. Task Bar</a></li>
+<li><a class="reference internal" href="#polonium">20.8.9. Polonium</a></li>
 </ul>
 </li>
 </ul>

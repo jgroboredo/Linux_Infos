@@ -78,3 +78,4 @@ Contents
    tools/server_monitoring
    tools/pcmanfm
    tools/kde_plasma
+   tools/handlr
